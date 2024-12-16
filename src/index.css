@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.margintop {
+  margin-top: 50px;
+}
+
+.call-btn {
+  background-color: #ffa02a !important;
+  padding: 5px 18px !important;
+  transition: 0.4s !important;
+  font-weight: 500 !important;
+}
+
+.call-btn:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.call-btn-listing {
+  background-color: #339d3a !important;
+  padding: 5px 12px !important;
+  color: #ffffff !important;
+  transition: 0.4s !important;
+  border: 2px solid #027c0a !important;
+  font-weight: 600 !important;
+  border-radius: 3px !important;
+  letter-spacing: 2px;
+}
+
+.call-btn-listing:hover {
+  background-color: #3ebd46 !important;
+  color: #ffffff !important;
+}
+
+.inquiry-btn-listing {
+  background-color: #ffffff !important;
+  border: 1px solid #cecece !important;
+  padding: 5px 12px !important;
+  color: #000 !important;
+  transition: 0.4s !important;
+  font-weight: 600 !important;
+  border-radius: 3px !important;
+}
+
+.inquiry-btn-listing:hover {
+  background-color: #dfdfdf !important;
+  color: #000000 !important;
+}
+
+.chat-btn-listing {
+  background-color: #a488ff !important;
+  border: 2px solid transparent !important;
+  padding: 5px 12px !important;
+  color: #000 !important;
+  transition: 0.4s !important;
+  font-weight: 500 !important;
+  border-radius: 3px !important;
+}
+
+.chat-btn-listing:hover {
+  background-color: #5623ff !important;
+  color: #ffffff !important;
+}
+
+.btn-submit-review {
+  background: #3e9dff !important;
+  padding: 5px 19px !important;
+  color: #000 !important;
+  font-weight: 600 !important;
+  border-radius: 3px !important;
+}
+
+.btn-submit-review:hover {
+  background: #bfdfff !important;
+  color: #000 !important;
+}
+
+/* Import the base Tailwind CSS styles */
+@import "tailwindcss/base";
+
+/* Import the component styles */
+@import "tailwindcss/components";
+
+/* Import the utility styles */
+@import "tailwindcss/utilities";
+
+.slick-prev:before,
+.slick-next:before {
+  color: #000 !important;
+}
+
+.float {
+  position: fixed;
+  bottom: 40px;
+  left: 20px;
+  background-color: #4acfff;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 2px 2px 4px #000;
+  z-index: 100;
+  padding: 10px 15px;
+  border-radius: 2px solid #0088b9;
+}
+
+.my-float {
+  margin-top: 16px;
+}
