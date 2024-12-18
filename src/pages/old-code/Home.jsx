@@ -11,16 +11,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import HomeAboutUs from "../components/HomeAboutUs";
 import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import HomeRecentActivity from "../components/HomeRecentActivity";
+import Header from "../../components/Header";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false);
+      setLoading(false)
     }, 1000);
   }, []);
   return (
@@ -43,7 +41,11 @@ const Home = () => {
         />
         {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
-        {loading && <div className="preloader" />}
+        {
+          loading && (
+            <div className="preloader" />
+          )
+        }
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
@@ -189,8 +191,7 @@ const Home = () => {
           </section>
           {/* ====================== End Offers ========================= */}
           {/* ======================= All Listing ======================== */}
-          <HomeRecentActivity />
-          {/* <section className="space">
+          <section className="space">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -202,7 +203,9 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+              {/* row */}
               <div className="row justify-content-center text-start">
+                {/* Single */}
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
@@ -328,6 +331,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                {/* Single */}
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
@@ -451,6 +455,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                {/* Single */}
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
@@ -576,6 +581,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                {/* Single */}
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
@@ -699,6 +705,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                {/* Single */}
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
@@ -824,6 +831,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                {/* Single */}
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
@@ -947,6 +955,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                {/* Single */}
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
@@ -1071,6 +1080,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                {/* Single */}
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
@@ -1196,8 +1206,9 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+              {/* /row */}
             </div>
-          </section> */}
+          </section>
           {/* ======================= All Listings ======================== */}
           {/* ======================= Listing Categories ======================== */}
           <section className="space gray">
@@ -1218,15 +1229,15 @@ const Home = () => {
                       href="half-map-search-2.html"
                       className="Goodup-catg-wrap"
                     >
-                      {/* <div className="Goodup-catg-city">07 Cities</div> */}
+                      <div className="Goodup-catg-city">07 Cities</div>
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-wifi" />
+                        <i className="fas fa-stethoscope" />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          WiFi
+                          Dentists
                         </h4>
-                        {/* <span className="text-muted">607 Listings</span> */}
+                        <span className="text-muted">607 Listings</span>
                       </div>
                     </a>
                   </div>
@@ -1237,7 +1248,7 @@ const Home = () => {
                       href="half-map-search-2.html"
                       className="Goodup-catg-wrap"
                     >
-                      {/* <div className="Goodup-catg-city">17 Cities</div> */}
+                      <div className="Goodup-catg-city">17 Cities</div>
                       <div className="Goodup-catg-icon">
                         <i className="fas fa-building" />
                       </div>
@@ -1245,7 +1256,7 @@ const Home = () => {
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
                           IT &amp; Banking
                         </h4>
-                        {/* <span className="text-muted">76 Listings</span> */}
+                        <span className="text-muted">76 Listings</span>
                       </div>
                     </a>
                   </div>
@@ -1558,6 +1569,102 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="single-list col-md-3">
+                      <div className="Goodup-img-location-wrap">
+                        <div className="Goodup-img-location-thumb">
+                          <a href="half-map-search-2.html">
+                            <img
+                              src="images/l-5_1.jpg"
+                              className="img-fluid"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        <div className="Goodup-img-location-caption">
+                          <h4 className="fs-md mb-0 ft-medium m-catrio">
+                            Long Island City
+                          </h4>
+                          <a
+                            href="half-map-search-2.html"
+                            className="Goodup-cat-arrow"
+                          >
+                            <i className="lni lni-arrow-right-circle" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="single-list col-md-3">
+                      <div className="Goodup-img-location-wrap">
+                        <div className="Goodup-img-location-thumb">
+                          <a href="half-map-search-2.html">
+                            <img
+                              src="images/l-6_1.jpg"
+                              className="img-fluid"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        <div className="Goodup-img-location-caption">
+                          <h4 className="fs-md mb-0 ft-medium m-catrio">
+                            West Los Angeles
+                          </h4>
+                          <a
+                            href="half-map-search-2.html"
+                            className="Goodup-cat-arrow"
+                          >
+                            <i className="lni lni-arrow-right-circle" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="single-list col-md-3">
+                      <div className="Goodup-img-location-wrap">
+                        <div className="Goodup-img-location-thumb">
+                          <a href="half-map-search-2.html">
+                            <img
+                              src="images/l-7_1.jpg"
+                              className="img-fluid"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        <div className="Goodup-img-location-caption">
+                          <h4 className="fs-md mb-0 ft-medium m-catrio">
+                            San Antonio
+                          </h4>
+                          <a
+                            href="half-map-search-2.html"
+                            className="Goodup-cat-arrow"
+                          >
+                            <i className="lni lni-arrow-right-circle" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="single-list col-md-3">
+                      <div className="Goodup-img-location-wrap">
+                        <div className="Goodup-img-location-thumb">
+                          <a href="half-map-search-2.html">
+                            <img
+                              src="images/l-8_1.jpg"
+                              className="img-fluid"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        <div className="Goodup-img-location-caption">
+                          <h4 className="fs-md mb-0 ft-medium m-catrio">
+                            Salt Lake City
+                          </h4>
+                          <a
+                            href="half-map-search-2.html"
+                            className="Goodup-cat-arrow"
+                          >
+                            <i className="lni lni-arrow-right-circle" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1810,7 +1917,159 @@ const Home = () => {
           </section>
           {/* ======================= Newsletter Start ============================ */}
           {/* ============================ Footer Start ================================== */}
-          <Footer />
+          <footer className="light-footer skin-light-footer style-2">
+            <div className="footer-middle">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <div className="footer_widget">
+                      <img
+                        src="images/logo.png"
+                        className="img-footer small mb-2"
+                        alt=""
+                      />
+                      <div className="address mt-2">
+                        7742 Sadar Street Range Road, USA
+                        <br />
+                        United Kingdom GHQ11
+                      </div>
+                      <div className="address mt-3">
+                        40 568 423 6597
+                        <br />
+                        support@Goodup.com
+                      </div>
+                      <div className="address mt-2">
+                        <ul className="list-inline">
+                          <li className="list-inline-item">
+                            <a href="#" className="theme-cl">
+                              <i className="lni lni-facebook-filled" />
+                            </a>
+                          </li>
+                          <li className="list-inline-item">
+                            <a href="#" className="theme-cl">
+                              <i className="lni lni-twitter-filled" />
+                            </a>
+                          </li>
+                          <li className="list-inline-item">
+                            <a href="#" className="theme-cl">
+                              <i className="lni lni-youtube" />
+                            </a>
+                          </li>
+                          <li className="list-inline-item">
+                            <a href="#" className="theme-cl">
+                              <i className="lni lni-instagram-filled" />
+                            </a>
+                          </li>
+                          <li className="list-inline-item">
+                            <a href="#" className="theme-cl">
+                              <i className="lni lni-linkedin-original" />
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                    <div className="footer_widget">
+                      <h4 className="widget_title">Main Navigation</h4>
+                      <ul className="footer-menu">
+                        <li>
+                          <a href="#">Explore Listings</a>
+                        </li>
+                        <li>
+                          <a href="#">Browse Authors</a>
+                        </li>
+                        <li>
+                          <a href="#">Submit Listings</a>
+                        </li>
+                        <li>
+                          <a href="#">Shortlisted</a>
+                        </li>
+                        <li>
+                          <a href="#">Dashboard</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                    <div className="footer_widget">
+                      <h4 className="widget_title">Business Owners</h4>
+                      <ul className="footer-menu">
+                        <li>
+                          <a href="#">Browse Categories</a>
+                        </li>
+                        <li>
+                          <a href="#">Payment Links</a>
+                        </li>
+                        <li>
+                          <a href="#">Saved Places</a>
+                        </li>
+                        <li>
+                          <a href="#">Dashboard</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                    <div className="footer_widget">
+                      <h4 className="widget_title">About Company</h4>
+                      <ul className="footer-menu">
+                        <li>
+                          <a href="#">Who We'r?</a>
+                        </li>
+                        <li>
+                          <a href="#">Our Mission</a>
+                        </li>
+                        <li>
+                          <a href="#">Our team</a>
+                        </li>
+                        <li>
+                          <a href="#">Packages</a>
+                        </li>
+                        <li>
+                          <a href="#">Dashboard</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                    <div className="footer_widget">
+                      <h4 className="widget_title">Helpful Topics</h4>
+                      <ul className="footer-menu">
+                        <li>
+                          <a href="#">Site Map</a>
+                        </li>
+                        <li>
+                          <a href="#">Security</a>
+                        </li>
+                        <li>
+                          <a href="#">Contact</a>
+                        </li>
+                        <li>
+                          <a href="#">FAQ's Page</a>
+                        </li>
+                        <li>
+                          <a href="#">Privacy</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="footer-bottom br-top">
+              <div className="container">
+                <div className="row align-items-center">
+                  <div className="col-lg-12 col-md-12 text-center">
+                    <p className="mb-0">
+                      © 2022 Goodup. Designd By{" "}
+                      <a href="https://themezhub.com">ThemezHub</a>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
           {/* ============================ Footer End ================================== */}
           {/* Log In Modal */}
           <div
@@ -1923,6 +2182,15 @@ const Home = () => {
             <i className="ti-arrow-up" />
           </a>
         </div>
+        {/* ============================================================== */}
+        {/* End Wrapper */}
+        {/* ============================================================== */}
+        {/* ============================================================== */}
+        {/* All Jquery */}
+        {/* ============================================================== */}
+        {/* ============================================================== */}
+        {/* This page plugins */}
+        {/* ============================================================== */}
       </>
 
       {/* <Header />
