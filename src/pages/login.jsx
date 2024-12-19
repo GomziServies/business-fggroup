@@ -1,27 +1,107 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-//components
-// import Header from "../components/HeaderStyle/Header";
-// import Footer from "../components/FooterStyle/Footer";
-// import SectionFirst from "../components/HomeSectionFirst";
-// import HomeRecentActivity from "../components/HomeRecentActivity";
-// import HomeBrandsSlider from "../components/HomeBrandsSlider";
-// import HomeBlogs from "../components/HomeBlogs";
-// import HomeAboutUs from "../components/HomeAboutUs";
 import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Button, Form } from "react-bootstrap";
+import axiosInstance from "../js/api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [loading, setLoading] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
+  const [mobileNumber, setMobileNumber] = React.useState("");
+  const [currentStep, setCurrentStep] = React.useState("login");
+  const [otpDialogOpen, setOtpDialogOpen] = React.useState(false);
+  const [otpCode, setOtpCode] = React.useState("");
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    const LoginToken = localStorage.getItem("authorization");
+    if (LoginToken) {
+      setIsLogin(true);
+    }
+  }, []);
+
+  const handleLoginSubmit = async () => {
+    try {
+      const response = await axiosInstance.post("/account/authorization", {
+        mobile: mobileNumber,
+      });
+
+      if (response.data && response.data.data && response.data.data.OTP) {
+        setOtpDialogOpen(true);
+        setCurrentStep("otp");
+        // Automatically set OTP in the state
+        setOtpCode(response.data.data.OTP);
+
+        // Show success toast
+        toast.success("OTP Sent! You will receive an OTP shortly.");
+      } else {
+        setOtpDialogOpen(true);
+        setCurrentStep("otp");
+        toast.success("OTP Sent! You will receive an OTP shortly.");
+      }
+    } catch (error) {
+      toast.error("Failed to send OTP. Please try again.");
+      console.error("Error in handleLoginSubmit:", error);
+    }
+  };
+
+  const handleOtpSubmit = async () => {
+    try {
+      const response = await axiosInstance.post(
+        "/account/authorization/verify",
+        {
+          mobile: mobileNumber,
+          otp: otpCode,
+        }
+      );
+
+      const auth = response.data.data.authorization;
+
+      if (response.status === 200) {
+        // Save data to localStorage
+        localStorage.setItem("authorization", auth);
+        getUserData();
+        setOtpDialogOpen(false);
+        toast.success("OTP Verified!");
+        const activeServices = response.data.data.active_services;
+        // Check for BUSINESS-LISTING within the array
+        if (activeServices.includes("BUSINESS-LISTING")) {
+          toast.success("Login Successful!");
+        }
+        window.location.href = "/";
+      } else {
+        // Handle error scenario if needed
+        toast.error("Failed to verify OTP. Please try again.");
+      }
+    } catch (error) {
+      // Handle errors here
+      console.error("Error in handleOtpSubmit:", error);
+    }
+  };
+
+  const getUserData = async () => {
+    try {
+      const response = await axiosInstance.get("/account/profile");
+      localStorage.setItem("user_info", JSON.stringify(response.data.data));
+    } catch (error) {
+      console.error("Error in handleAgreeAndConfirm:", error);
+    }
+  };
+
+  const handleGoBack = () => {
+    setCurrentStep("login");
+  };
+
   return (
     <div>
       <Helmet>
@@ -42,11 +122,7 @@ const Login = () => {
         />
         {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
-        {
-          loading && (
-            <div className="preloader" />
-          )
-        }
+        {loading && <div className="preloader" />}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
@@ -54,99 +130,106 @@ const Login = () => {
             <div className="container">
               <div className="row align-items-start justify-content-center">
                 <div className="col-xl-5 col-lg-8 col-md-12">
-                  <div className="signup-screen-wrap">
-                    <div className="signup-screen-single">
-                      <div className="text-center mb-4">
-                        <h4 className="m-0 ft-medium">Login Your Account</h4>
-                      </div>
-                      <form className="submit-form">
-                        <div className="form-group">
-                          <label className="mb-1">User Name</label>
-                          <input
-                            type="text"
-                            className="form-control rounded"
-                            placeholder="Username*"
-                          />
+                  {!isLogin && currentStep === "login" && (
+                    <div className="signup-screen-wrap">
+                      <div className="signup-screen-single">
+                        <a
+                          className="nav-brand d-flex justify-content-center align-items-center"
+                          href="#"
+                        >
+                          <img src="images/logo.png" className="logo" alt="" />
+                        </a>
+                        <h3 className="text-center">Welcome</h3>
+                        <div class="text-center mb-5">
+                          <h4 class="m-0 ft-medium">
+                            Login for a seamless experience
+                          </h4>
                         </div>
-                        <div className="form-group">
-                          <label className="mb-1">Password</label>
-                          <input
-                            type="password"
-                            className="form-control rounded"
-                            placeholder="Password*"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <div className="d-flex align-items-center justify-content-between">
-                            <div className="flex-1">
-                              <input
-                                id="dd"
-                                className="checkbox-custom"
-                                name="dd"
-                                type="checkbox"
-                                defaultChecked=""
-                              />
-                              <label
-                                htmlFor="dd"
-                                className="checkbox-custom-label"
-                              >
-                                Remember Me
-                              </label>
-                            </div>
-                            <div className="eltio_k2">
-                              <a href="#" className="theme-cl">
-                                Lost Your Password?
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="form-group">
-                          <button
-                            type="submit"
-                            className="btn btn-md full-width theme-bg text-light rounded ft-medium"
-                          >
-                            Sign In
-                          </button>
-                        </div>
-                        <div className="form-group text-center mb-0">
-                          <p className="extra">Or login with</p>
-                          <div className="option-log">
-                            <div className="single-log-opt">
-                              <a href="javascript:void(0);" className="log-btn">
-                                <img
-                                  src="images/c-1.png"
-                                  className="img-fluid"
-                                  alt=""
-                                />
-                                Login with Google
-                              </a>
-                            </div>
-                            <div className="single-log-opt">
-                              <a href="javascript:void(0);" className="log-btn">
-                                <img
-                                  src="images/facebook.png"
-                                  className="img-fluid"
-                                  alt=""
-                                />
-                                Login with Facebook
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="form-group text-center mt-4 mb-0">
-                          <p className="mb-0">
-                            You Don't have any account?{" "}
-                            <a
-                              href="signup.html"
-                              className="ft-medium text-success"
+                        <Form>
+                          <Form.Group controlId="mobile">
+                            <Form.Label>Mobile Number</Form.Label>
+                            <Form.Control
+                              type="text"
+                              placeholder="Mobile Number*"
+                              className="rounded bg-light"
+                              onChange={(e) => setMobileNumber(e.target.value)}
+                            />
+                          </Form.Group>
+
+                          <div className="text-center my-3">
+                            <Button
+                              variant="primary"
+                              className="w-100 theme-bg text-light rounded ft-medium"
+                              onClick={handleLoginSubmit}
                             >
-                              Sign Up
-                            </a>
-                          </p>
-                        </div>
-                      </form>
+                              Sign In
+                            </Button>
+                          </div>
+                        </Form>
+                      </div>
                     </div>
-                  </div>
+                  )}
+                  {!isLogin && otpDialogOpen && currentStep === "otp" && (
+                    <div className="signup-screen-wrap">
+                      <div className="signup-screen-single">
+                        <a
+                          className="nav-brand d-flex justify-content-center align-items-center"
+                          href="#"
+                        >
+                          <img src="images/logo.png" className="logo" alt="" />
+                        </a>
+                        <div class="text-center mb-5">
+                          <h4 class="m-0 ft-medium">OTP Verification</h4>
+                        </div>
+                        <Form>
+                          <Form.Group controlId="mobile">
+                            <Form.Label>OTP</Form.Label>
+                            <Form.Control
+                              type="text"
+                              placeholder="Enter OTP*"
+                              className="rounded bg-light"
+                              value={otpCode}
+                              onChange={(e) => setOtpCode(e.target.value)}
+                            />
+                          </Form.Group>
+
+                          <div className="text-center row justify-content-center mt-4 my-3">
+                            <div className="col-5">
+                              <Button
+                                variant="primary"
+                                className="w-100 theme-bg text-light rounded ft-medium"
+                                onClick={handleGoBack}
+                              >
+                                Back
+                              </Button>
+                            </div>
+                            <div className="col-5">
+                              <Button
+                                variant="primary"
+                                className="w-100 theme-bg text-light rounded ft-medium"
+                                onClick={handleOtpSubmit}
+                              >
+                                Submit OTP
+                              </Button>
+                            </div>
+                          </div>
+                        </Form>
+                      </div>
+                    </div>
+                  )}
+                  {isLogin && (
+                    <div className="text-center">
+                      <div className="d-flex mb-2 justify-content-center align-items-center">
+                        <img
+                          src="images/logo.png"
+                          className="img-footer small mb-2"
+                          alt=""
+                        />
+                        <h5 className="ps-2 mb-0">FG Group</h5>
+                      </div>
+                      <h3>You have already Logged in</h3>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

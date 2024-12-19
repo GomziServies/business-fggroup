@@ -1,24 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Container from "@mui/material/Container";
-import { Button, Col, Row } from "react-bootstrap";
-import { Typography } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { businessListingAxiosInstance } from "../js/api";
-import Link from "@mui/material/Link";
-import PlaceIcon from "@mui/icons-material/Place";
-import { Box } from "@mui/material";
 import Dummy_img from "../assets/dummy-image-square.jpg";
 import User_img from "../assets/user-profile.png";
-
-// import { Link } from 'react-router-dom';
-
-//Style
 import "../index.css";
+import { Link } from "react-router-dom";
 
-//Testing Img
-import activity1 from "../assets/activity-img-1.jpeg";
 
 const HomeRecentActivity = () => {
   const [businessData, setBusinessData] = useState([]);
@@ -99,8 +85,8 @@ const HomeRecentActivity = () => {
                         <div className="Goodup-featured-tag">Featured</div>
                       </div>
                       <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
+                        <Link
+                          to={`/listing-view?business_id=${business._id}`}
                           className="d-block text-center m-auto"
                         >
                           <img
@@ -111,7 +97,7 @@ const HomeRecentActivity = () => {
                             }}
                             alt={business.business_name}
                           />
-                        </a>
+                        </Link>
                       </div>
                       <div className="Goodup-rating overlay">
                         <div className="Goodup-pr-average high">

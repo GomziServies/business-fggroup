@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-//components
-// import Header from "../components/HeaderStyle/Header";
-// import Footer from "../components/FooterStyle/Footer";
-// import SectionFirst from "../components/HomeSectionFirst";
-// import HomeRecentActivity from "../components/HomeRecentActivity";
-// import HomeBrandsSlider from "../components/HomeBrandsSlider";
-// import HomeBlogs from "../components/HomeBlogs";
-// import HomeAboutUs from "../components/HomeAboutUs";
 import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { businessListingAxiosInstance } from "../js/api";
+import Dummy_img from "../assets/dummy-image-square.jpg";
+import User_img from "../assets/user-profile.png";
 
 const ListingList = () => {
   const [loading, setLoading] = useState(true);
@@ -22,6 +18,124 @@ const ListingList = () => {
       setLoading(false);
     }, 1000);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem("authorization");
+      localStorage.removeItem("user_info");
+      toast.success("Logout Successful!");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Error in handleAgreeAndConfirm:", error);
+      toast.error("Logout Failed. Please try again.");
+    }
+  };
+
+  const [businessData, setBusinessData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const getBusinessData = async () => {
+    try {
+      const response = await businessListingAxiosInstance.get("/get-listing");
+      const fetchedBusinessData = response.data.data;
+      console.log(fetchedBusinessData);
+      setBusinessData(fetchedBusinessData);
+    } catch (error) {
+      console.error("Error in Getting Business Data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getBusinessData();
+  }, []);
+
+  const handleSearch = () => {
+    getBusinessData();
+
+    const filteredData = businessData.filter(
+      (business) =>
+        business.business_name
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) ||
+        business.business_category.some((category) =>
+          category.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+    );
+
+    setBusinessData(filteredData);
+  };
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const getStatusBadge = (status) => {
+    let badgeColor, badgeText;
+
+    if (status === "APPROVED") {
+      badgeColor = "#00d300";
+      badgeText = status;
+    } else if (status === "REJECTED") {
+      badgeColor = "#ff4343";
+      badgeText = status;
+    } else {
+      badgeColor = "orange";
+      badgeText = status;
+    }
+
+    return (
+      <>
+        <div
+          style={{
+            backgroundColor: badgeColor,
+            color: "#000",
+            padding: "5px 10px",
+            borderRadius: "5px",
+            textAlign: "center",
+          }}
+        >
+          {status}
+        </div>
+      </>
+    );
+  };
+
+  const handleDeleteListing = async (businessId) => {
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You will not be able to recover this business!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+        // User confirmed, proceed with the deletion
+        const response = await businessListingAxiosInstance.delete(
+          `/delete-listing?listing_id=${businessId}`
+        );
+
+        if (response.status === 200) {
+          Swal.fire("Deleted!", "Your business has been deleted.", "success");
+          getBusinessData();
+        } else {
+          // Show error message
+          Swal.fire("Error!", "Failed to delete the business.", "error");
+        }
+      }
+    } catch (error) {
+      console.error("Error deleting business listing:", error);
+      Swal.fire(
+        "Error!",
+        "An error occurred while deleting the business listing.",
+        "error"
+      );
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -130,11 +244,11 @@ const ListingList = () => {
                         My Profile{" "}
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/login">
+                    <li role="button" onClick={handleLogout}>
+                      <a href="#">
                         <i className="lni lni-power-switch me-2" />
                         Log Out
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -177,68 +291,121 @@ const ListingList = () => {
                       </div>
                       <div className="dashboard-list-wraps-body py-3 px-3">
                         <div className="dashboard-listing-wraps">
-                          {/* Single Listing Item */}
-                          <div className="dsd-single-listing-wraps">
-                            <div className="dsd-single-lst-thumb">
-                              <img
-                                src="images/l-1.jpg"
-                                className="img-fluid"
-                                alt=""
-                              />
-                            </div>
-                            <div className="dsd-single-lst-caption">
-                              <div className="dsd-single-lst-title">
-                                <h5>Rajwara Marriage Home</h5>
-                              </div>
-                              <span className="agd-location">
-                                <i className="lni lni-map-marker me-1" />
-                                San Francisco, USA
-                              </span>
-                              <div className="ico-content">
-                                <div className="Goodup-ft-first">
-                                  <div className="Goodup-rating">
-                                    <div className="Goodup-rates">
-                                      <i className="fas fa-star" />
-                                      <i className="fas fa-star" />
-                                      <i className="fas fa-star" />
-                                      <i className="fas fa-star" />
-                                      <i className="fas fa-star" />
+                          <div className="row">
+                            {businessData.map((business) => {
+                              return (
+                                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                                  <div className="Goodup-grid-wrap">
+                                    <div className="Goodup-grid-upper">
+                                      <div className="Goodup-bookmark-btn">
+                                        <button type="button">
+                                          <i className="lni lni-heart-filled position-absolute" />
+                                        </button>
+                                      </div>
+                                      <div className="Goodup-pos ab-left">
+                                        {business.approval_status.status ==
+                                        "APPROVED" ? (
+                                          <div className="Goodup-status open me-2">
+                                            APPROVED
+                                          </div>
+                                        ) : business.approval_status.status ==
+                                          "REJECTED" ? (
+                                          <div className="Goodup-featured-tag">
+                                            REJECTED
+                                          </div>
+                                        ) : business.approval_status.status ==
+                                          "PENDING" ? (
+                                          <div className="Goodup-status pending">
+                                            PENDING
+                                          </div>
+                                        ) : (
+                                          ""
+                                        )}
+                                      </div>
+                                      <div className="Goodup-grid-thumb">
+                                        <a
+                                          href="single-listing-detail-3.html"
+                                          className="d-block text-center m-auto"
+                                        >
+                                          <img
+                                            src={`https://files.fggroup.in/${business.business_images[0]}`}
+                                            className="img-fluid"
+                                            onError={(e) => {
+                                              e.target.src = Dummy_img;
+                                            }}
+                                            alt={business.business_name}
+                                          />
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div className="Goodup-grid-fl-wrap">
+                                      <div className="Goodup-caption px-3 py-2">
+                                        <div className="Goodup-author">
+                                          <a href="author-detail.html">
+                                            <img
+                                              src={`https://files.fggroup.in/${business.business_logo}`}
+                                              className="img-fluid circle"
+                                              onError={(e) => {
+                                                e.target.src = User_img;
+                                              }}
+                                              alt={business.business_name}
+                                            />
+                                          </a>
+                                        </div>
+                                        <h4 className="mb-0 ft-medium medium">
+                                          <a
+                                            href="single-listing-detail-3.html"
+                                            className="text-dark fs-md"
+                                          >
+                                            {business.business_name}
+                                            <span className="verified-badge">
+                                              <i className="fas fa-check-circle" />
+                                            </span>
+                                          </a>
+                                        </h4>
+                                        <div className="Goodup-middle-caption mt-2">
+                                          Category :{" "}
+                                          {business.business_category.map(
+                                            (category) => (
+                                              <a
+                                                href="half-map-search-1.html"
+                                                className="cats-1"
+                                              >
+                                                {category}
+                                              </a>
+                                            )
+                                          )}
+                                          <div className="mb-0">
+                                            Type:{" "}
+                                            <span className="text-dark">
+                                              {business.business_type}
+                                            </span>
+                                          </div>
+                                          <div>
+                                            Create Date:{" "}
+                                            <span className="text-dark">
+                                              {new Date(business.createdAt).toLocaleDateString()}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div className="Goodup-grid-footer py-2 px-3">
+                                        <button className="list-listing view">
+                                          <i className="fas fa-eye me-2" />
+                                          View
+                                        </button>
+                                        <button className="list-listing">
+                                          <i className="fas fa-trash me-2" />
+                                          Delete
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                  <div className="Goodup-price-range">
-                                    <span className="ft-medium">
-                                      34 Reviews
-                                    </span>
-                                  </div>
                                 </div>
-                              </div>
-                              <div className="dsd-single-lst-footer">
-                                <a
-                                  href="javascript:void(0);"
-                                  className="btn btn-edit mr-1"
-                                >
-                                  <i className="fas fa-edit me-1" />
-                                  Edit
-                                </a>
-                                <a
-                                  href="javascript:void(0);"
-                                  className="btn btn-view mr-1"
-                                >
-                                  <i className="fas fa-eye me-1" />
-                                  View
-                                </a>
-                                <a
-                                  href="javascript:void(0);"
-                                  className="btn btn-delete"
-                                >
-                                  <i className="fas fa-trash me-1" />
-                                  Delete
-                                </a>
-                              </div>
-                            </div>
+                              );
+                            })}
                           </div>
-                          {/* Single Listing Item */}
-                          <div className="dsd-single-listing-wraps">
+                          {/* <div className="dsd-single-listing-wraps">
                             <div className="dsd-single-lst-thumb">
                               <img
                                 src="images/l-2.jpg"
@@ -297,7 +464,6 @@ const ListingList = () => {
                               </div>
                             </div>
                           </div>
-                          {/* Single Listing Item */}
                           <div className="dsd-single-listing-wraps">
                             <div className="dsd-single-lst-thumb">
                               <img
@@ -357,7 +523,6 @@ const ListingList = () => {
                               </div>
                             </div>
                           </div>
-                          {/* Single Listing Item */}
                           <div className="dsd-single-listing-wraps">
                             <div className="dsd-single-lst-thumb">
                               <img
@@ -417,7 +582,6 @@ const ListingList = () => {
                               </div>
                             </div>
                           </div>
-                          {/* Single Listing Item */}
                           <div className="dsd-single-listing-wraps">
                             <div className="dsd-single-lst-thumb">
                               <img
@@ -477,7 +641,6 @@ const ListingList = () => {
                               </div>
                             </div>
                           </div>
-                          {/* Single Listing Item */}
                           <div className="dsd-single-listing-wraps">
                             <div className="dsd-single-lst-thumb">
                               <img
@@ -537,7 +700,6 @@ const ListingList = () => {
                               </div>
                             </div>
                           </div>
-                          {/* Single Listing Item */}
                           <div className="dsd-single-listing-wraps">
                             <div className="dsd-single-lst-thumb">
                               <img
@@ -596,18 +758,10 @@ const ListingList = () => {
                                 </a>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              {/* footer */}
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="py-3">
-                    © 2022 Goodup. Designd By ThemezHub.
                   </div>
                 </div>
               </div>

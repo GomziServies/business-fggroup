@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import { IconButton } from "@mui/material";
 
 const AddListing = () => {
   const [loading, setLoading] = useState(true);
@@ -23,32 +24,35 @@ const AddListing = () => {
   }, []);
 
   const [formData, setFormData] = useState({
-    businessName: "",
-    blockNumber: "",
-    streetName: "",
-    area: "",
-    landmark: "",
-    city: "",
-    state: "",
-    pin_code: "",
-    contactNumber: "",
-    whatsappNumber: "",
+    businessName: "Demo",
+    address_line_1: "aaa",
+    address_line_2: "aaa",
+    area: "aa",
+    landmark: "214561",
+    city: "aaa",
+    state: "aaa",
+    pin_code: "132145",
+    contactNumber: "987654315",
+    whatsappNumber: "9876543215",
     services: [],
     tags: [],
-    website: "",
-    email: "",
-    branch: "",
+    website: "demo.url",
+    email: "demo@gmail.com",
+    branch: "demo",
   });
   const [businessHours, setBusinessHours] = useState([
-    { day: "Mon", open: "10:00 AM", close: "7:00 PM" },
+    { day: "Mon", open: "10:00 AM", close: "07:00 PM" },
   ]);
-  const [faqs, setFaqs] = useState([{ question: "", answer: "" }]);
+  const [faqs, setFaqs] = useState([
+    { question: "demo", answer: "demo answer" },
+    { question: "demo1", answer: "demo1 answer" },
+  ]);
   const [logoImage, setLogoImage] = useState(null);
   const [businessPhotos, setBusinessPhotos] = useState([]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([
-    { platform: "Instagram", link: "" },
-    { platform: "Facebook", link: "" },
-    { platform: "YouTube", link: "" },
+    { platform: "Instagram", link: "instagram.com" },
+    { platform: "Facebook", link: "Facebook.com" },
+    { platform: "YouTube", link: "YouTube.com" },
   ]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedBusinessType, setSelectedBusinessType] = useState("");
@@ -114,6 +118,18 @@ const AddListing = () => {
 
   // Function to handle business photos change
   const handleBusinessPhotosChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Ensure the file size is within the limit (2 MB)
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File size exceeds 2 MB!");
+        return;
+      }
+      // Generate a preview URL for the selected file
+      const previewUrl = URL.createObjectURL(file);
+      setFeaturePreview(previewUrl);
+    }
+
     const files = event.target.files;
 
     if (files.length > 0) {
@@ -140,6 +156,16 @@ const AddListing = () => {
   // Function to handle logo file change
   const handleLogoChange = (event) => {
     const file = event.target.files[0];
+    if (file) {
+      // Ensure the file size is within the limit (2 MB)
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File size exceeds 2 MB!");
+        return;
+      }
+      // Generate a preview URL for the selected file
+      const previewUrl = URL.createObjectURL(file);
+      setLogoPreview(previewUrl);
+    }
 
     if (file) {
       // Read the file and set the logo image
@@ -305,6 +331,19 @@ const AddListing = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem("authorization");
+      localStorage.removeItem("user_info");
+      toast.success("Logout Successful!");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Error in handleAgreeAndConfirm:", error);
+
+      toast.error("Logout Failed. Please try again.");
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -409,11 +448,11 @@ const AddListing = () => {
                         My Profile{" "}
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/login">
+                    <li role="button" onClick={handleLogout}>
+                      <a href="#">
                         <i className="lni lni-power-switch me-2" />
                         Log Out
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -486,7 +525,7 @@ const AddListing = () => {
                                   }
                                 >
                                   <option>Select Category</option>
-                                  <option value="Personal Trainer">
+                                  <option selected value="Personal Trainer">
                                     Personal Trainer
                                   </option>
                                   <option value="General Trainer">
@@ -511,8 +550,10 @@ const AddListing = () => {
                                   }
                                 >
                                   <option>Select Business Type</option>
-                                  <option value="Personal">Personal</option>
-                                  <option value="Business">Business</option>
+                                  <option value="personal">Personal</option>
+                                  <option selected value="business">
+                                    Business
+                                  </option>
                                 </select>
                               </div>
                             </div>
@@ -712,7 +753,7 @@ const AddListing = () => {
                         <div className="dashboard-list-wraps-body py-3 px-3">
                           <div className="row">
                             {/* Logo */}
-                            <div className="col-lg-4 col-md-6">
+                            <div className="col-12">
                               <label className="mb-1">Upload Logo</label>
                               {logoPreview ? (
                                 <div>
@@ -764,63 +805,81 @@ const AddListing = () => {
                                 type="file"
                                 className="d-none"
                                 accept="image/*"
-                                onChange={handlebusinessLogoChange}
+                                onChange={handleLogoChange}
                               />
                             </div>
                             {/* Featured Image */}
-                            <div className="col-lg-4 col-md-6">
+                            <div className="col-12">
                               <label className="mb-1">Featured Image</label>
-                              {featurePreview ? (
-                                <div>
-                                  <img
-                                    src={featurePreview}
-                                    alt="Logo Preview"
-                                    id="featured-image"
-                                    style={{
-                                      width: "100%",
-                                      maxHeight: "150px",
-                                      objectFit: "contain",
-                                      border: "2px dashed #ccc",
-                                      padding: "20px",
-                                      textAlign: "center",
-                                      cursor: "pointer",
-                                    }}
-                                  />
-                                  <div className="mt-2 text-center">
-                                    <button
-                                      className="btn btn-primary rounded-pill px-3 py-1"
-                                      onClick={handleSelectFeature}
-                                    >
-                                      Change Feature
-                                    </button>
-                                  </div>
-                                </div>
-                              ) : (
-                                <div
-                                  className="dropzone"
-                                  id="featured-image"
-                                  onClick={handleSelectFeature}
-                                  style={{
-                                    border: "2px dashed #ccc",
-                                    padding: "20px",
-                                    textAlign: "center",
-                                    cursor: "pointer",
-                                  }}
-                                >
-                                  <i className="fas fa-upload" />
-                                  <p>Click to Featured Image</p>
-                                </div>
-                              )}
+                              <div
+                                className="dropzone"
+                                id="featured-image"
+                                onClick={handleSelectFeature}
+                                style={{
+                                  border: "2px dashed #ccc",
+                                  padding: "20px",
+                                  textAlign: "center",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <i className="fas fa-upload" />
+                                <p>Click to Featured Image</p>
+                              </div>
 
-                              <label className="smart-text">
-                                Maximum file size: 2 MB.
-                              </label>
+                              <div className="row">
+                                {businessPhotos.map((photo, index) => (
+                                  <div
+                                    key={index}
+                                    className="col-2"
+                                    style={{
+                                      position: "relative",
+                                      marginRight: "10px",
+                                      marginBottom: "10px",
+                                    }}
+                                  >
+                                    <div
+                                      style={{
+                                        width: "150px",
+                                        height: "150px",
+                                      }}
+                                    >
+                                      <img
+                                        src={photo.preview}
+                                        alt={`Business Photo ${index + 1}`}
+                                        style={{
+                                          maxWidth: "100%",
+                                          height: "auto",
+                                          marginBottom: "5px",
+                                        }}
+                                      />
+                                      <IconButton
+                                        onClick={() =>
+                                          handleRemoveBusinessPhoto(index)
+                                        }
+                                        style={{
+                                          position: "absolute",
+                                          top: 0,
+                                          right: 0,
+                                          backgroundColor:
+                                            "rgba(255, 255, 255, 0.8)",
+                                        }}
+                                      >
+                                        <DeleteIcon
+                                          style={{ color: "#ff3838" }}
+                                        />
+                                      </IconButton>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
                               <input
                                 id="featureInput"
                                 type="file"
-                                className="d-none"
                                 accept="image/*"
-                                onChange={handlebusinessFeatureChange}
+                                className="d-none"
+                                onChange={handleBusinessPhotosChange}
+                                multiple
+                                sx={{ mt: 2, mb: 2 }}
                               />
                             </div>
                           </div>
@@ -848,7 +907,7 @@ const AddListing = () => {
                                     <option>Opening Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -878,7 +937,7 @@ const AddListing = () => {
                                     <option>Closing Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -915,7 +974,7 @@ const AddListing = () => {
                                     <option>Opening Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -945,7 +1004,7 @@ const AddListing = () => {
                                     <option>Closing Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -982,7 +1041,7 @@ const AddListing = () => {
                                     <option>Opening Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1012,7 +1071,7 @@ const AddListing = () => {
                                     <option>Closing Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1049,7 +1108,7 @@ const AddListing = () => {
                                     <option>Opening Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1079,7 +1138,7 @@ const AddListing = () => {
                                     <option>Closing Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1116,7 +1175,7 @@ const AddListing = () => {
                                     <option>Opening Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1146,7 +1205,7 @@ const AddListing = () => {
                                     <option>Closing Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1183,7 +1242,7 @@ const AddListing = () => {
                                     <option>Opening Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1213,7 +1272,7 @@ const AddListing = () => {
                                     <option>Closing Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1250,7 +1309,7 @@ const AddListing = () => {
                                     <option>Opening Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1280,7 +1339,7 @@ const AddListing = () => {
                                     <option>Closing Time</option>
                                     <option>1 :00 AM</option>
                                     <option>2 :00 AM</option>
-                                    <option>3 :00 AM</option>
+                                    <option selected>3 :00 AM</option>
                                     <option>4 :00 AM</option>
                                     <option>5 :00 AM</option>
                                     <option>6 :00 AM</option>
@@ -1436,14 +1495,6 @@ const AddListing = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              {/* footer */}
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="py-3">
-                    © 2022 Goodup. Designd By ThemezHub.
                   </div>
                 </div>
               </div>

@@ -5,10 +5,8 @@ import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import StarIcon from '@mui/icons-material/Star';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
 import PlaceIcon from '@mui/icons-material/Place';
 import CircleIcon from '@mui/icons-material/Circle';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import "yet-another-react-lightbox/styles.css";
 import LanguageIcon from '@mui/icons-material/Language';
@@ -32,7 +30,6 @@ import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../../assets/css/animation.css'
 import { Hourglass } from 'react-loader-spinner'
@@ -452,6 +449,7 @@ const ListingBusiness = () => {
         // Combine tags and services and return as keywords
         return `${tags}, ${services}`;
     };
+
     return (
         <>
             <Helmet>

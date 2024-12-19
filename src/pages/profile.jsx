@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import axiosInstance from "../js/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import IconButton from "@mui/material/IconButton";
+import User_img from "../assets/user-profile.png";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
@@ -167,6 +169,19 @@ const Profile = () => {
     </Typography>,
   ];
 
+  const handleLogout = async () => {
+    try {
+      localStorage.removeItem("authorization");
+      localStorage.removeItem("user_info");
+      toast.success("Logout Successful!");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Error in handleAgreeAndConfirm:", error);
+
+      toast.error("Logout Failed. Please try again.");
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -270,11 +285,11 @@ const Profile = () => {
                         My Profile{" "}
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/login">
+                    <li role="button" onClick={handleLogout}>
+                      <a href="#">
                         <i className="lni lni-power-switch me-2" />
                         Log Out
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -290,9 +305,6 @@ const Profile = () => {
                         <li className="breadcrumb-item text-muted">
                           <a href="#">Home</a>
                         </li>
-                        <li className="breadcrumb-item text-muted">
-                          <a href="#">Dashboard</a>
-                        </li>
                         <li className="breadcrumb-item">
                           <a href="#" className="theme-cl">
                             My Profile
@@ -306,21 +318,45 @@ const Profile = () => {
               <div className="dashboard-widg-bar d-block">
                 <div className="row">
                   <div className="col-xl-3 col-lg-3 col-md-4 col-sm-12 order-xl-last order-lg-last order-md-last">
-                    <div className="d-flex bg-white rounded px-3 py-3 mb-3">
-                      <div className="dash-figure">
-                        <div className="dash-figure-thumb">
-                          <img
-                            src="images/t-4.png"
-                            className="img-fluid rounded"
-                            alt=""
-                          />
-                        </div>
-                        <div className="upload-photo-btn">
-                          <div className="Uploadphoto">
-                            <span>
-                              <i className="fas fa-upload" /> Upload Photo
-                            </span>
-                            <input type="file" className="upload" />
+                    <div
+                      className="d-md-flex"
+                      style={{ alignItems: "center", marginBottom: "20px" }}
+                    >
+                      {/* <Avatar
+                        alt="User Photo"
+                        src={formData.profilePhoto}
+                        sx={{ width: 100, height: 100, marginRight: "20px" }}
+                      /> */}
+                      <div>
+                        <div className="d-flex rounded px-3 py-3 mb-3">
+                          <div className="dash-figure">
+                            <div className="dash-figure-thumb">
+                              <img
+                                src={formData.profilePhoto}
+                                className="img-fluid rounded"
+                                alt=""
+                                onError={(e) => {
+                                  e.target.src = User_img;
+                                }}
+                              />
+                            </div>
+                            <input
+                              accept="image/*"
+                              style={{ display: "none" }}
+                              id="profile-photo-upload"
+                              type="file"
+                              onChange={handlePhotoChange}
+                            />
+                            <label
+                              className="upload-photo-btn"
+                              htmlFor="profile-photo-upload"
+                            >
+                              <div className="Uploadphoto">
+                                <span>
+                                  <i className="fas fa-upload" /> Upload Photo
+                                </span>
+                              </div>
+                            </label>
                           </div>
                         </div>
                       </div>
@@ -461,17 +497,23 @@ const Profile = () => {
                               </div>
                             </div>
                           </div>
+                          <div className="row">
+                            <div className="col-4">
+                              <div
+                                className="upload-photo-btn"
+                                onClick={handleSubmit}
+                              >
+                                <div className="Uploadphoto">
+                                  <span>
+                                    <i className="fas fa-pencil me-1" /> Update
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
-                  </div>
-                </div>
-              </div>
-              {/* footer */}
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="py-3">
-                    © 2022 Goodup. Designd By ThemezHub.
                   </div>
                 </div>
               </div>

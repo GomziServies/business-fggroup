@@ -3916,6 +3916,9 @@ button.map-btn {
 .Goodup-status.close{
     background:#1683f4;
 }
+.Goodup-status.pending{
+    background:orange;
+}
 .Goodup-status.offer {
     background: #ff5018;
 }
@@ -8997,4 +9000,26 @@ footer.skin-dark-footer ul.footer-bottom-social li a:hover, footer.skin-dark-foo
 #tops-button:hover {
     background-color:#d2d7e4;
     color:#333c56;
+}
+
+.dash-figure-thumb {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px #ccc;
+}
+.list-listing {
+    border-radius: 4px;
+    position: relative;
+    padding: 6px 12px;
+    background: #F41b3b;
+    color: white;
+}
+.list-listing.view {
+    background: #172228;
+    color: white;
 }

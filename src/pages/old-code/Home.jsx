@@ -2057,18 +2057,6 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="footer-bottom br-top">
-              <div className="container">
-                <div className="row align-items-center">
-                  <div className="col-lg-12 col-md-12 text-center">
-                    <p className="mb-0">
-                      © 2022 Goodup. Designd By{" "}
-                      <a href="https://themezhub.com">ThemezHub</a>.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </footer>
           {/* ============================ Footer End ================================== */}
           {/* Log In Modal */}
