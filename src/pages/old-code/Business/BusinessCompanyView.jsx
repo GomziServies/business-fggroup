@@ -184,8 +184,6 @@ const ListingBusiness = () => {
             const business_img = fetchedBusinessData.business_images || [];
             setBusinessImages(business_img)
 
-            // console.log("Fetched business data:", fetchedBusinessData);
-
             setBusinessData(fetchedBusinessData);
             setLocationData(fetchedLocationData);
             setContactData(fetchedLocationData.contact);
@@ -203,7 +201,6 @@ const ListingBusiness = () => {
             const response = await businessListingAxiosInstance.get(`/get-reviews?business_listing_id=${business_id}`);
             const fetchedReviewsData = response.data.data;
             setUserReviewData(fetchedReviewsData)
-            // console.log("Fetched Reviews data:", fetchedReviewsData);
         } catch (error) {
             console.error('Error in Getting Reviews Data:', error);
         }

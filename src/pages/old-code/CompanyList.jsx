@@ -32,7 +32,6 @@ const CompanyList = () => {
         try {
             const response = await businessListingAxiosInstance.get('/get-listing');
             const fetchedBusinessData = response.data.data;
-            console.log(fetchedBusinessData)
             setBusinessData(fetchedBusinessData);
         } catch (error) {
             console.error('Error in Getting Business Data:', error);

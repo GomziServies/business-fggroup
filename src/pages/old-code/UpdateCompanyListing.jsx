@@ -143,7 +143,6 @@ const CompanyListing = () => {
                         const updatedPhotoUrl = businessPhotos.map(url => url.replace("https://files.fggroup.in/", ""));
                         // Update listing data with the new business photo URL
                         const updatedListingData = { listing_id: listing_id, business_images: [...updatedPhotoUrl, ...photoUrl] };
-                        console.log(updatedListingData)
                         await businessListingAxiosInstance.patch(`/update-listing?listing_id=${listing_id}`, updatedListingData);
 
                         toast.success('Business photo updated successfully!', {
@@ -173,7 +172,6 @@ const CompanyListing = () => {
 
             // Update listing data without the removed business photo
             const updatedListingData = { listing_id: listing_id, business_images: newPhotos.map(url => url.replace("https://files.fggroup.in/", "")) };
-            console.log(updatedListingData);
 
             // Make API request to update the listing data
             await businessListingAxiosInstance.patch(`/update-listing?listing_id=${listing_id}`, updatedListingData);
@@ -198,8 +196,6 @@ const CompanyListing = () => {
             const reader = new FileReader();
 
             reader.onloadend = async () => {
-                console.log('Logo image read:', reader.result);
-
                 setLogoImage(file);
                 const updatedFormData = { ...formData, business_logo: reader.result };
                 setFormData(updatedFormData);
@@ -252,7 +248,6 @@ const CompanyListing = () => {
             const social_media = fetchedBusinessData.social_media;
             const businessHours = fetchedBusinessData.timings || [];
             const approval_status = fetchedBusinessData.approval_status;
-            console.log(approval_status)
             const businessHoursData = businessHours.map(dayData => ({
                 day: dayData.title || '',
                 open: dayData.timings.length > 0 ? dayData.timings[0].from_time : '',
@@ -307,7 +302,6 @@ const CompanyListing = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(socialMediaLinks)
         try {
             const postData = {
                 listing_id: listing_id,
@@ -361,8 +355,6 @@ const CompanyListing = () => {
                     ],
                 })),
             };
-
-            console.log('Form Data:', postData);
 
             await businessListingAxiosInstance.patch('/update-listing', postData);
 

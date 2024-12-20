@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
-
 import axiosInstance, { businessListingAxiosInstance } from "../js/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,9 +14,52 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { IconButton } from "@mui/material";
 import { TagInput } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
+import { useLocation } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 
-const AddListing = () => {
+const UpdateListing = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const listing_id = searchParams.get("business_id");
+  const [formData, setFormData] = useState({
+    listing_id: listing_id,
+    businessName: "",
+    address_line_1: "",
+    address_line_2: "",
+    area: "",
+    landmark: "",
+    city: "",
+    state: "",
+    pin_code: "",
+    contactNumber: "",
+    direction_link: "",
+    whatsappNumber: "",
+    services: [],
+    tags: [],
+    website: "",
+    email: "",
+    branch: "",
+    business_logo: "",
+  });
+  const [faqs, setFaqs] = useState([{ question: "", answer: "" }]);
+  const [logoImage, setLogoImage] = useState(null);
+  const [businessPhotos, setBusinessPhotos] = useState([]);
+  const [businessPhotoOnlyUrl, setBusinessPhotoOnlyUrl] = useState([]);
+  const [socialMediaLinks, setSocialMediaLinks] = useState([
+    { platform: "Instagram", link: "" },
+    { platform: "Facebook", link: "" },
+    { platform: "YouTube", link: "" },
+  ]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedBusinessType, setSelectedBusinessType] = useState("");
+  const [approvedData, setApprovedData] = useState("");
+  const [businessHours, setBusinessHours] = useState([
+    { day: "Mon", open: "10:00 AM", close: "7:00 PM" },
+  ]);
   const [loading, setLoading] = useState(true);
+  const [logoPreview, setLogoPreview] = useState(null);
+  const [featurePreview, setFeaturePreview] = useState(null);
+  const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,43 +67,14 @@ const AddListing = () => {
     }, 1000);
   }, []);
 
-  const [formData, setFormData] = useState({
-    businessName: "Demo",
-    address_line_1: "aaa",
-    address_line_2: "aaa",
-    area: "aa",
-    landmark: "214561",
-    city: "aaa",
-    state: "aaa",
-    pin_code: "132145",
-    contactNumber: "987654315",
-    whatsappNumber: "9876543215",
-    services: [],
-    tags: [],
-    website: "demo.url",
-    email: "demo@gmail.com",
-    branch: "demo",
-  });
-  const [businessHours, setBusinessHours] = useState([
-    { day: "Mon", open: "10:00 AM", close: "07:00 PM" },
-  ]);
-  const [faqs, setFaqs] = useState([
-    { question: "demo", answer: "demo answer" },
-    { question: "demo1", answer: "demo1 answer" },
-  ]);
-  const [logoImage, setLogoImage] = useState(null);
-  const [businessPhotos, setBusinessPhotos] = useState([]);
-  const [socialMediaLinks, setSocialMediaLinks] = useState([
-    { platform: "Instagram", link: "instagram.com" },
-    { platform: "Facebook", link: "Facebook.com" },
-    { platform: "YouTube", link: "YouTube.com" },
-  ]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedBusinessType, setSelectedBusinessType] = useState("");
-  const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [logoPreview, setLogoPreview] = useState(null);
-  const [featurePreview, setFeaturePreview] = useState(null);
+  const handleSelectLogo = () => {
+    const fileInput = document.getElementById("logoInput");
+    fileInput.click();
+  };
+  const handleSelectFeature = () => {
+    const fileInput = document.getElementById("featureInput");
+    fileInput.click();
+  };
 
   const handleDayChange = (index, selectedDay) => {
     const updatedBusinessHours = [...businessHours];
@@ -119,66 +132,161 @@ const AddListing = () => {
   };
 
   // Function to handle business photos change
-  const handleBusinessPhotosChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Ensure the file size is within the limit (2 MB)
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      // Generate a preview URL for the selected file
-      const previewUrl = URL.createObjectURL(file);
-      setFeaturePreview(previewUrl);
-    }
-
+  const handleBusinessPhotosChange = async (event) => {
     const files = event.target.files;
 
     if (files.length > 0) {
       // Read and set the business photos
       const newPhotos = [...businessPhotos];
-      Array.from(files).forEach((file) => {
+
+      Array.from(files).forEach(async (file) => {
         const reader = new FileReader();
-        reader.onloadend = () => {
-          newPhotos.push({ file, preview: reader.result });
+
+        reader.onloadend = async () => {
+          // Store only the image path
+          newPhotos.push(reader.result);
           setBusinessPhotos([...newPhotos]);
+
+          try {
+            // Upload business photo and get the URL
+            const photoFormData = new FormData();
+            photoFormData.append("files", file);
+
+            const photoResponse = await axiosInstance.post(
+              "/file-upload",
+              photoFormData
+            );
+            const photoUrl = photoResponse.data.data.fileURLs;
+
+            // Remove common prefix from the image URL
+            const updatedPhotoUrl = businessPhotos.map((url) =>
+              url.replace("https://files.fggroup.in/", "")
+            );
+            // Update listing data with the new business photo URL
+            const updatedListingData = {
+              listing_id: listing_id,
+              business_images: [...updatedPhotoUrl, ...photoUrl],
+            };
+            await businessListingAxiosInstance.patch(
+              `/update-listing?listing_id=${listing_id}`,
+              updatedListingData
+            );
+
+            toast.success("Business photo updated successfully!", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+          } catch (error) {
+            console.error(
+              "Error updating business photo and listing data:",
+              error
+            );
+            toast.error(
+              "Error updating business photo and listing data. Please try again.",
+              {
+                position: toast.POSITION.TOP_RIGHT,
+              }
+            );
+          }
         };
+
         reader.readAsDataURL(file);
       });
     }
   };
 
   // Function to handle removing a business photo
-  const handleRemoveBusinessPhoto = (index) => {
+  const handleRemoveBusinessPhoto = async (index) => {
     const newPhotos = [...businessPhotos];
-    newPhotos.splice(index, 1);
+    const removedPhoto = newPhotos.splice(index, 1)[0];
     setBusinessPhotos([...newPhotos]);
+
+    try {
+      const updatedRemovedPhoto = removedPhoto.replace(
+        "https://files.fggroup.in/",
+        ""
+      );
+
+      // Update listing data without the removed business photo
+      const updatedListingData = {
+        listing_id: listing_id,
+        business_images: newPhotos.map((url) =>
+          url.replace("https://files.fggroup.in/", "")
+        ),
+      };
+
+      // Make API request to update the listing data
+      await businessListingAxiosInstance.patch(
+        `/update-listing?listing_id=${listing_id}`,
+        updatedListingData
+      );
+
+      toast.success("Business photo removed successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } catch (error) {
+      console.error(
+        "Error removing business photo and updating listing data:",
+        error
+      );
+      toast.error(
+        "Error removing business photo and updating listing data. Please try again.",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+        }
+      );
+    }
   };
 
   // Function to handle logo file change
-  const handleLogoChange = (event) => {
+  const handleLogoChange = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      // Ensure the file size is within the limit (2 MB)
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      // Generate a preview URL for the selected file
-      const previewUrl = URL.createObjectURL(file);
-      setLogoPreview(previewUrl);
-    }
 
     if (file) {
       // Read the file and set the logo image
       const reader = new FileReader();
-      reader.onloadend = () => {
+
+      reader.onloadend = async () => {
         setLogoImage(file);
-        setFormData((prevData) => ({
-          ...prevData,
-          business_logo: reader.result,
-        }));
+        const updatedFormData = { ...formData, business_logo: reader.result };
+        setFormData(updatedFormData);
+
+        try {
+          // Upload logo image and update listing data
+          const logoFormData = new FormData();
+          logoFormData.append("files", file);
+
+          const localStorage =  
+          logoFormData.append("files", file);
+
+          const logoResponse = await axiosInstance.post(
+            "/file-upload",
+            logoFormData
+          );
+          const logoUrl = logoResponse.data.data.fileURLs[0];
+
+          const updatedListingData = {
+            listing_id: listing_id,
+            business_logo: logoUrl,
+          };
+          await businessListingAxiosInstance.patch(
+            "/update-listing",
+            updatedListingData
+          );
+
+          toast.success("Logo updated successfully!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        } catch (error) {
+          console.error("Error updating logo and listing data:", error);
+          toast.error(
+            "Error updating logo and listing data. Please try again.",
+            {
+              position: toast.POSITION.TOP_RIGHT,
+            }
+          );
+        }
       };
+
       reader.readAsDataURL(file);
     }
   };
@@ -197,43 +305,103 @@ const AddListing = () => {
     setSocialMediaLinks([...newLinks]);
   };
 
+  const getBusinessData = async () => {
+    try {
+      const response = await businessListingAxiosInstance.get(
+        `/get-listing?listing_id=${listing_id}`
+      );
+      const fetchedBusinessData = response.data.data[0];
+      const address = fetchedBusinessData.locations[0];
+      const social_media = fetchedBusinessData.social_media;
+      const businessHours = fetchedBusinessData.timings || [];
+      const approval_status = fetchedBusinessData.approval_status;
+      const businessHoursData = businessHours.map((dayData) => ({
+        day: dayData.title || "",
+        open: dayData.timings.length > 0 ? dayData.timings[0].from_time : "",
+        close: dayData.timings.length > 0 ? dayData.timings[0].to_time : "",
+      }));
+      const timesData = businessHours.reduce((acc, dayData) => {
+        acc[dayData.title] = {
+          opening:
+            dayData.timings.length > 0
+              ? dayData.timings[0].from_time
+              : "Closed",
+          closing:
+            dayData.timings.length > 0 ? dayData.timings[0].to_time : "Closed",
+        };
+        return acc;
+      }, {});
+
+      setTimes(timesData);
+      const faq = fetchedBusinessData.faqs;
+      const faqData = faq.map((faqItem) => ({
+        question: faqItem.question,
+        answer: faqItem.answer,
+      }));
+      const logoImg =
+        "https://files.fggroup.in/" + fetchedBusinessData.business_logo;
+      const businessImages = fetchedBusinessData.business_images || [];
+      const businessPhotoURLs = businessImages.map(
+        (imagePath) => `https://files.fggroup.in/${imagePath}`
+      );
+
+      setBusinessPhotoOnlyUrl(businessImages);
+      setBusinessPhotos(businessPhotoURLs);
+      setSocialMediaLinks(social_media);
+      setApprovedData(approval_status);
+
+      setFormData({
+        businessName: fetchedBusinessData.business_name || "",
+        address_line_1: address.address_line_1 || "",
+        address_line_2: address.address_line_2 || "",
+        area: address.area || "",
+        landmark: address.landmark || "",
+        city: address.city || "",
+        state: address.state || "",
+        pin_code: address.pin_code || "",
+        direction_link: address.direction_link || "",
+        contactNumber: fetchedBusinessData.contacts[0]?.value || "",
+        whatsappNumber: fetchedBusinessData.contacts[1]?.value || "",
+        services: fetchedBusinessData.services || [],
+        tags: fetchedBusinessData.tags || [],
+        website:
+          fetchedBusinessData.contacts.find(
+            (contact) => contact.contact_type === "website"
+          )?.value || "",
+        email:
+          fetchedBusinessData.contacts.find(
+            (contact) => contact.contact_type === "email"
+          )?.value || "",
+        branch: address.location_name || "",
+      });
+      setBusinessHours(businessHoursData);
+      setFaqs(faqData);
+      setLogoImage(logoImg);
+      setLogoPreview(logoImg);
+      setSelectedCategory(fetchedBusinessData.business_category[0]);
+      setSelectedBusinessType(fetchedBusinessData.business_type);
+    } catch (error) {
+      console.error("Error in Getting Business Data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getBusinessData();
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      setIsLoading(true);
-      // Upload logo image
-      const logoFormData = new FormData();
-      logoFormData.append("files", logoImage);
-      const logoResponse = await axiosInstance.post(
-        "/file-upload",
-        logoFormData
-      );
-      const logoUrl = logoResponse.data.data.fileURLs[0];
-      // Upload business photos
-      const photoUrls = await Promise.all(
-        businessPhotos.map(async (photo) => {
-          const photoFormData = new FormData();
-          photoFormData.append("files", photo.file);
-          const photoResponse = await axiosInstance.post(
-            "/file-upload",
-            photoFormData
-          );
-          return photoResponse.data.data.fileURLs;
-        })
-      );
-
-      // Map the form data to the structure expected by the Postman request
       const postData = {
+        listing_id: listing_id,
         business_type: selectedBusinessType,
         business_name: formData.businessName,
         business_category: [selectedCategory],
-        business_logo: `${logoUrl}`,
-        business_images: photoUrls.flat(),
         services: formData.services,
         tags: formData.tags,
         social_media: socialMediaLinks.map((link) => ({
-          social_media_type: link.platform.toLowerCase(),
+          social_media_type: link.social_media_type,
           link: link.link,
         })),
         locations: [
@@ -278,57 +446,71 @@ const AddListing = () => {
         })),
       };
 
-      await businessListingAxiosInstance.post("/create-listing", postData);
-      setIsLoading(false);
+      await businessListingAxiosInstance.patch("/update-listing", postData);
+
       // Show success toast
-      toast.success("Listing created successfully!", {
+      toast.success("Business Data Updated successfully!", {
         position: toast.POSITION.TOP_RIGHT,
       });
     } catch (error) {
       console.error("Error uploading files:", error);
-      setIsLoading(false);
+
       // Show error toast
-      toast.error("Error creating listing. Please try again.", {
+      toast.error("Error Updating listing. Please try again.", {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
   };
 
-  const handleSelectLogo = () => {
-    const fileInput = document.getElementById("logoInput");
-    fileInput.click();
-  };
-  const handleSelectFeature = () => {
-    const fileInput = document.getElementById("featureInput");
-    fileInput.click();
-  };
+  const getStatusBadge = (status, feedback) => {
+    let badgeColor, badgeText;
 
-  const handlebusinessLogoChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Ensure the file size is within the limit (2 MB)
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      // Generate a preview URL for the selected file
-      const previewUrl = URL.createObjectURL(file);
-      setLogoPreview(previewUrl);
+    switch (status) {
+      case "APPROVED":
+        badgeColor = "#00d300";
+        badgeText = "Approved";
+        break;
+      case "PENDING":
+        badgeColor = "orange";
+        badgeText = "Pending";
+        break;
+      case "REJECTED":
+        badgeColor = "red";
+        badgeText = "Rejected";
+        break;
+      case "BANNED":
+        badgeColor = "red";
+        badgeText = "Banned";
+        break;
+      default:
+        badgeColor = "gray";
+        badgeText = "Unknown";
     }
-  };
 
-  const handlebusinessFeatureChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Ensure the file size is within the limit (2 MB)
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      // Generate a preview URL for the selected file
-      const previewUrl = URL.createObjectURL(file);
-      setFeaturePreview(previewUrl);
-    }
+    return (
+      <div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            className="mt-2"
+            style={{
+              backgroundColor: badgeColor,
+              color: "#fff",
+              padding: "5px 10px",
+              borderRadius: "5px",
+              textAlign: "center",
+              marginRight: "10px",
+            }}
+          >
+            {badgeText}
+          </div>
+        </div>
+        {feedback && (
+          <div style={{ color: "red" }} className="mt-3">
+            <h6>Feedback: {feedback}</h6>
+          </div>
+        )}
+      </div>
+    );
   };
 
   const handleLogout = async () => {
@@ -415,8 +597,8 @@ const AddListing = () => {
       open: times[day].opening,
       close: times[day].closing,
     }));
-    
-    setBusinessHours(allDaysTime)
+
+    setBusinessHours(allDaysTime);
   };
 
   return (
@@ -451,7 +633,7 @@ const AddListing = () => {
             <div className="abs-list-sec">
               <a href="dashboard-add-listing.html" className="add-list-btn">
                 <i className="fas fa-plus me-2" />
-                Add Listing
+                Update Listing
               </a>
             </div>
             <div className="container">
@@ -512,7 +694,7 @@ const AddListing = () => {
                     <li className="active">
                       <Link to="/add-listing">
                         <i className="lni lni-add-files me-2" />
-                        Add Listing
+                        Update Listing
                       </Link>
                     </li>
                     {/* </ul> */}
@@ -537,7 +719,7 @@ const AddListing = () => {
               <div className="dashboard-tlbar d-block mb-5">
                 <div className="row">
                   <div className="colxl-12 col-lg-12 col-md-12">
-                    <h1 className="ft-medium">Add Listing</h1>
+                    <h1 className="ft-medium">Update Listing</h1>
                     <nav aria-label="breadcrumb">
                       <ol className="breadcrumb">
                         <li className="breadcrumb-item text-muted">
@@ -548,7 +730,7 @@ const AddListing = () => {
                         </li>
                         <li className="breadcrumb-item">
                           <a href="#" className="theme-cl">
-                            Add Listing
+                            Update Listing
                           </a>
                         </li>
                       </ol>
@@ -560,6 +742,45 @@ const AddListing = () => {
                 <div className="row">
                   <div className="col-xl-12 col-lg-2 col-md-12 col-sm-12">
                     <div className="submit-form">
+                      {/* Business Info */}
+                      <div className="dashboard-list-wraps bg-white rounded mb-4">
+                        <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
+                          <div className="dashboard-list-wraps-flx">
+                            <h4 className="mb-0 ft-medium fs-md">
+                              <i className="fa fa-file me-2 theme-cl fs-sm" />
+                              Business Info
+                            </h4>
+                          </div>
+                        </div>
+                        <div className="dashboard-list-wraps-body py-3 px-3">
+                          <div className="row">
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                              <div>
+                                <Typography variant="h6" gutterBottom>
+                                  Business Approval Status
+                                </Typography>
+                                <div style={{ marginBottom: "10px" }}>
+                                  <div>
+                                    <Typography
+                                      variant="subtitle1"
+                                      className="mb-1"
+                                    >
+                                      Date:{" "}
+                                      {new Date(
+                                        approvedData.createdAt
+                                      ).toLocaleDateString()}
+                                    </Typography>
+                                  </div>
+                                  {getStatusBadge(
+                                    approvedData.status,
+                                    approvedData.feedback
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       {/* Listing Info */}
                       <div className="dashboard-list-wraps bg-white rounded mb-4">
                         <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
@@ -846,6 +1067,21 @@ const AddListing = () => {
                                       cursor: "pointer",
                                     }}
                                   />
+
+                                  <IconButton
+                                    onClick={() =>
+                                      setLogoPreview('')
+                                    }
+                                    style={{
+                                      position: "absolute",
+                                      top: 0,
+                                      right: 0,
+                                      backgroundColor:
+                                        "rgba(255, 255, 255, 0.8)",
+                                    }}
+                                  >
+                                    <DeleteIcon style={{ color: "#ff3838" }} />
+                                  </IconButton>
                                   <div className="mt-2 text-center">
                                     <button
                                       className="btn btn-primary rounded-pill px-3 py-1"
@@ -919,7 +1155,7 @@ const AddListing = () => {
                                       }}
                                     >
                                       <img
-                                        src={photo.preview}
+                                        src={photo}
                                         alt={`Business Photo ${index + 1}`}
                                         style={{
                                           maxWidth: "100%",
@@ -1179,7 +1415,7 @@ const AddListing = () => {
                                   onClick={handleSubmit}
                                   disabled={!isDetailsCorrect}
                                 >
-                                  Submit &amp; Preview
+                                  Update Listing
                                 </button>
                               </div>
                             </div>
@@ -1210,4 +1446,4 @@ const AddListing = () => {
   );
 };
 
-export default AddListing;
+export default UpdateListing;

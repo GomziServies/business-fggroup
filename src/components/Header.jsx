@@ -24,10 +24,8 @@ function Header() {
     const handleScroll = () => {
       if (window.scrollY >= 50) {
         setIsFixed(true);
-        console.log(true);
       } else {
         setIsFixed(false);
-        console.log(false);
       }
     };
 

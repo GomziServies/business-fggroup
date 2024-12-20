@@ -239,8 +239,6 @@ const CompanyListing = () => {
                 })),
             };
 
-            // console.log('Transformed Form Data:', postData);
-
             await businessListingAxiosInstance.post('/create-listing', postData);
             setIsLoading(false);
             // Show success toast

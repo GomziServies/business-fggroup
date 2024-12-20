@@ -87,7 +87,6 @@ const UserProfile = () => {
 
     const updateData = async () => {
         try {
-            console.log(formData);
             const response = await axiosInstance.post('/account/update-profile', formData);
             if (response.data.data) {
                 getUserData();
@@ -109,7 +108,6 @@ const UserProfile = () => {
         try {
             const response = await axiosInstance.get('/account/profile');
             const userData = response.data.data;
-            console.log(userData);
             if (userData) {
                 const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
 

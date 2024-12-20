@@ -38,7 +38,6 @@ const ListingList = () => {
     try {
       const response = await businessListingAxiosInstance.get("/get-listing");
       const fetchedBusinessData = response.data.data;
-      console.log(fetchedBusinessData);
       setBusinessData(fetchedBusinessData);
     } catch (error) {
       console.error("Error in Getting Business Data:", error);
@@ -340,7 +339,7 @@ const ListingList = () => {
                                     </div>
                                     <div className="Goodup-grid-fl-wrap">
                                       <div className="Goodup-caption px-3 py-2">
-                                        <div className="Goodup-author">
+                                        <div className="Goodup-author bg-light">
                                           <a href="author-detail.html">
                                             <img
                                               src={`https://files.fggroup.in/${business.business_logo}`}
@@ -384,17 +383,24 @@ const ListingList = () => {
                                           <div>
                                             Create Date:{" "}
                                             <span className="text-dark">
-                                              {new Date(business.createdAt).toLocaleDateString()}
+                                              {new Date(
+                                                business.createdAt
+                                              ).toLocaleDateString()}
                                             </span>
                                           </div>
                                         </div>
                                       </div>
                                       <div className="Goodup-grid-footer py-2 px-3">
-                                        <button className="list-listing view">
+                                        <Link to={`/update-listing?business_id=${business._id}`} className="list-listing view">
                                           <i className="fas fa-eye me-2" />
                                           View
-                                        </button>
-                                        <button className="list-listing">
+                                        </Link>
+                                        <button
+                                          className="list-listing"
+                                          onClick={() =>
+                                            handleDeleteListing(business._id)
+                                          }
+                                        >
                                           <i className="fas fa-trash me-2" />
                                           Delete
                                         </button>

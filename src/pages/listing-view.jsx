@@ -228,8 +228,6 @@ const ListingView = () => {
       const business_img = fetchedBusinessData.business_images || [];
       setBusinessImages(business_img);
 
-      // console.log("Fetched business data:", fetchedBusinessData);
-
       setBusinessData(fetchedBusinessData);
       setLocationData(fetchedLocationData);
       setContactData(fetchedLocationData.contact);
@@ -249,7 +247,6 @@ const ListingView = () => {
       );
       const fetchedReviewsData = response.data.data;
       setUserReviewData(fetchedReviewsData);
-      // console.log("Fetched Reviews data:", fetchedReviewsData);
     } catch (error) {
       console.error("Error in Getting Reviews Data:", error);
     }

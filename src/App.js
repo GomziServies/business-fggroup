@@ -6,6 +6,7 @@ import Login from './pages/login';
 import ListingList from './pages/listing-list';
 import AddListing from './pages/add-listing';
 import ListingView from './pages/listing-view';
+import UpdateListing from './pages/update-listing';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/listing-list" element={<ListingList />} />
         <Route path="/add-listing" element={<AddListing />} />
         <Route path="/listing-view" element={<ListingView />} />
+        <Route path="/update-listing" element={<UpdateListing />} />
         {/* <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/company-listing" element={<CompanyListing />} />
         <Route path="/company-list" element={<CompanyList />} />
