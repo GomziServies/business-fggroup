@@ -58,49 +58,12 @@ const Home = () => {
                   <div className="pe-3">
                     <div className="banner_caption text-left">
                       <h1 className="banner_title ft-normal mb-1">
-                        Find Your Perfect Place in{" "}
-                        <span className="theme-cl">Los Angeles</span>
+                        Transform Your Life with{" "}
+                        <span className="theme-cl">Gomzi's Gym Network</span>
                       </h1>
                       <p className="fs-lg fw-light">
-                        Explore wonderful place to stay, salon, shoping or visit
-                        local areas.
+                        Welcome to Gomzi—India's premier platform connecting fitness enthusiasts with the best gyms tailored to their needs. Our mission is to empower individuals to transform their lives through fitness by offering a curated network of affiliated gyms, personalized recommendations, and unparalleled support. Whether you're a beginner or a seasoned athlete, Gomzi helps you find the perfect gym to achieve your fitness goals and elevate your lifestyle.
                       </p>
-                    </div>
-                    <form className="main-search-wrap fl-wrap one-column mb-5">
-                      <div className="main-search-item">
-                        <span className="search-tag">Find</span>
-                        <input
-                          type="text"
-                          className="form-control radius"
-                          placeholder="Nail salons, plumbers, takeout..."
-                        />
-                      </div>
-                      <div className="main-search-button">
-                        <button
-                          className="btn full-width theme-bg text-white"
-                          type="button"
-                        >
-                          Search
-                          <i className="fas fa-search" />
-                        </button>
-                      </div>
-                    </form>
-                    <div className="Goodup-bnr-cats dark rounded">
-                      <ul>
-                        <li>Popular:</li>
-                        <li>
-                          <a href="half-map-search-1.html">Las Vegas</a>
-                        </li>
-                        <li>
-                          <a href="half-map-search-1.html">Houston</a>
-                        </li>
-                        <li>
-                          <a href="half-map-search-1.html">Las Vegas</a>
-                        </li>
-                        <li>
-                          <a href="half-map-search-1.html">San Jose</a>
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </div>
@@ -113,27 +76,6 @@ const Home = () => {
                         alt="Img Slide"
                       />
                     </div>
-                    {/* <div className="singleSlide">
-                      <img
-                        src="images/imgSlide-02.png"
-                        className="img"
-                        alt="Img Slide"
-                      />
-                    </div>
-                    <div className="singleSlide">
-                      <img
-                        src="images/imgSlide-03.png"
-                        className="img"
-                        alt="Img Slide"
-                      />
-                    </div>
-                    <div className="singleSlide">
-                      <img
-                        src="images/imgSlide-04.png"
-                        className="img"
-                        alt="Img Slide"
-                      />
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -151,15 +93,12 @@ const Home = () => {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                   <div className="offerWrap">
                     <div className="offerCaps">
-                      <span className="off">Summer Sale</span>
-                      <h4 className="title">30% Off on Eat &amp; Drink</h4>
-                      <a href="#" className="btn btn-md btn-dark">
-                        View Offers
-                      </a>
+                      <h4 className="title">Building a Healthier You</h4>
+                      <p>At Gomzi, we're more than just a fitness directory-we're your partner in health and transformation. Explore our extensive list of affiliated gyms across the country.</p>
                     </div>
                     <div className="slice">
                       <img
-                        src="images/imgSlide-01.png"
+                        src="images/imgSlide-04.png"
                         className="img"
                         alt=""
                       />
@@ -169,15 +108,12 @@ const Home = () => {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                   <div className="offerWrap offer-02">
                     <div className="offerCaps">
-                      <span className="off">Delight Offer</span>
-                      <h4 className="title">40% Off for Offices &amp; Space</h4>
-                      <a href="#" className="btn btn-md btn-dark">
-                        View Offers
-                      </a>
+                      <h4 className="title">Explore Top Gyms, Tailored to You</h4>
+                      <p>Discover a world of fitness tailored to your needs. At Gomzi, we connect you with the finest gyms that match your fitness goals and lifestyle preferences.</p>
                     </div>
                     <div className="slice">
                       <img
-                        src="images/imgSlide-02.png"
+                        src="images/imgSlide-03.png"
                         className="img"
                         alt=""
                       />
@@ -190,1014 +126,6 @@ const Home = () => {
           {/* ====================== End Offers ========================= */}
           {/* ======================= All Listing ======================== */}
           <HomeRecentActivity />
-          {/* <section className="space">
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                  <div className="sec_title position-relative mb-5">
-                    <h6 className="text-muted mb-0">Recent Listings</h6>
-                    <h2 className="ft-bold">
-                      Browse Recent <span className="theme-cl">Listings</span>
-                    </h2>
-                  </div>
-                </div>
-              </div>
-              <div className="row justify-content-center text-start">
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute" />
-                        </button>
-                      </div>
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status open me-2">Open</div>
-                        <div className="Goodup-featured-tag">Featured</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-1.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average high">4.4</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>32 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-1.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-cates multi">
-                          <a href="half-map-search-1.html" className="cats-1">
-                            Love
-                          </a>
-                          <a href="half-map-search-1.html" className="cats-2">
-                            Wedding
-                          </a>
-                          <a href="half-map-search-1.html">+2</a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
-                            className="text-dark fs-md"
-                          >
-                            Rajwara Marriage Home
-                            <span className="verified-badge">
-                              <i className="fas fa-check-circle" />
-                            </span>
-                          </a>
-                        </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                          <div className="Goodup-facilities-wrap mb-0">
-                            <div className="Goodup-facility-title">
-                              Facilities :
-                            </div>
-                            <div className="Goodup-facility-list">
-                              <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-location">
-                            <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                            Meltron Silver, UK
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute" />
-                        </button>
-                      </div>
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status close me-2">Closed</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-2.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average mid">3.4</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>19 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-2.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-cates multi">
-                          <a href="half-map-search-1.html" className="cats-1">
-                            Workout
-                          </a>
-                          <a href="half-map-search-1.html" className="cats-2">
-                            Fitness
-                          </a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
-                            className="text-dark fs-md"
-                          >
-                            Decathlon Sport House
-                            <span className="verified-badge">
-                              <i className="fas fa-check-circle" />
-                            </span>
-                          </a>
-                        </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                          <div className="Goodup-facilities-wrap mb-0">
-                            <div className="Goodup-facility-title">
-                              Facilities :
-                            </div>
-                            <div className="Goodup-facility-list">
-                              <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-location">
-                            <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                            California, USA
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute" />
-                        </button>
-                      </div>
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status open me-2">Open</div>
-                        <div className="Goodup-featured-tag">Featured</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-3.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average poor">2.8</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>30 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-3.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-cates multi">
-                          <a href="half-map-search-1.html" className="cats-1">
-                            Hotel
-                          </a>
-                          <a href="half-map-search-1.html" className="cats-2">
-                            Villa
-                          </a>
-                          <a href="half-map-search-1.html">+2</a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
-                            className="text-dark fs-md"
-                          >
-                            The Gold Hotel Lalit
-                            <span className="verified-badge">
-                              <i className="fas fa-check-circle" />
-                            </span>
-                          </a>
-                        </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                          <div className="Goodup-facilities-wrap mb-0">
-                            <div className="Goodup-facility-title">
-                              Facilities :
-                            </div>
-                            <div className="Goodup-facility-list">
-                              <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-location">
-                            <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                            Montreal, Australia
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute" />
-                        </button>
-                      </div>
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status close me-2">Closed</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-4.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average high">4.8</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>56 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-4.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-cates multi">
-                          <a href="half-map-search-1.html" className="cats-1">
-                            Zym
-                          </a>
-                          <a href="half-map-search-1.html" className="cats-2">
-                            Fitness
-                          </a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
-                            className="text-dark fs-md"
-                          >
-                            Fitness Revolution Gym
-                            <span className="verified-badge">
-                              <i className="fas fa-check-circle" />
-                            </span>
-                          </a>
-                        </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                          <div className="Goodup-facilities-wrap mb-0">
-                            <div className="Goodup-facility-title">
-                              Facilities :
-                            </div>
-                            <div className="Goodup-facility-list">
-                              <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-location">
-                            <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                            Old Denver, USA
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute" />
-                        </button>
-                      </div>
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status open me-2">Open</div>
-                        <div className="Goodup-featured-tag">Featured</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-5.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average mid">3.2</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>12 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-5.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-cates multi">
-                          <a href="half-map-search-1.html" className="cats-1">
-                            Beauty
-                          </a>
-                          <a href="half-map-search-1.html" className="cats-2">
-                            Salon
-                          </a>
-                          <a href="half-map-search-1.html">+2</a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
-                            className="text-dark fs-md"
-                          >
-                            Pretty Woman Smart Batra
-                            <span className="verified-badge">
-                              <i className="fas fa-check-circle" />
-                            </span>
-                          </a>
-                        </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                          <div className="Goodup-facilities-wrap mb-0">
-                            <div className="Goodup-facility-title">
-                              Facilities :
-                            </div>
-                            <div className="Goodup-facility-list">
-                              <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-location">
-                            <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                            104 Washington, USA
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute" />
-                        </button>
-                      </div>
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status close me-2">Closed</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-6.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average high">4.2</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>21 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-6.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-cates multi">
-                          <a href="half-map-search-1.html" className="cats-1">
-                            Hotel
-                          </a>
-                          <a href="half-map-search-1.html" className="cats-2">
-                            Event
-                          </a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
-                            className="text-dark fs-md"
-                          >
-                            The Sartaj Blue Night
-                            <span className="verified-badge">
-                              <i className="fas fa-check-circle" />
-                            </span>
-                          </a>
-                        </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                          <div className="Goodup-facilities-wrap mb-0">
-                            <div className="Goodup-facility-title">
-                              Facilities :
-                            </div>
-                            <div className="Goodup-facility-list">
-                              <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-location">
-                            <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                            California, Canada
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute" />
-                        </button>
-                      </div>
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status open me-2">Open</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-7.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average poor">2.3</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>17 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-7.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-cates multi">
-                          <a href="half-map-search-1.html" className="cats-1">
-                            Cafe
-                          </a>
-                          <a href="half-map-search-1.html" className="cats-2">
-                            Coffee
-                          </a>
-                          <a href="half-map-search-1.html">+1</a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
-                            className="text-dark fs-md"
-                          >
-                            Pizza Delight Cafe
-                            <span className="verified-badge">
-                              <i className="fas fa-check-circle" />
-                            </span>
-                          </a>
-                        </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                          <div className="Goodup-facilities-wrap mb-0">
-                            <div className="Goodup-facility-title">
-                              Facilities :
-                            </div>
-                            <div className="Goodup-facility-list">
-                              <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-location">
-                            <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                            Liverpool, London
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute" />
-                        </button>
-                      </div>
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status close me-2">Closed</div>
-                        <div className="Goodup-featured-tag">Featured</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-3.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-8.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average high">4.6</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>26 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-8.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-cates multi">
-                          <a href="half-map-search-1.html" className="cats-1">
-                            Shopping
-                          </a>
-                          <a href="half-map-search-1.html" className="cats-2">
-                            Services
-                          </a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
-                            className="text-dark fs-md"
-                          >
-                            The Decore Allante Shop
-                            <span className="verified-badge">
-                              <i className="fas fa-check-circle" />
-                            </span>
-                          </a>
-                        </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                          <div className="Goodup-facilities-wrap mb-0">
-                            <div className="Goodup-facility-title">
-                              Facilities :
-                            </div>
-                            <div className="Goodup-facility-list">
-                              <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-location">
-                            <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                            San Francisco, USA
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> */}
           {/* ======================= All Listings ======================== */}
           {/* ======================= Listing Categories ======================== */}
           <section className="space gray">
@@ -1205,374 +133,417 @@ const Home = () => {
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="mb-0 theme-cl">Popular Categories</h6>
-                    <h2 className="ft-bold">Browse Top Categories</h2>
+                    <h6 className="mb-0 theme-cl">Popular Features</h6>
+                    <h2 className="ft-bold">Our Features</h2>
                   </div>
                 </div>
               </div>
               {/* row */}
               <div className="row align-items-center">
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      {/* <div className="Goodup-catg-city">07 Cities</div> */}
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-wifi" />
+                        <img
+                          src="images/viral-marketing.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          WiFi
+                          Verified Gym Listings
                         </h4>
-                        {/* <span className="text-muted">607 Listings</span> */}
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      {/* <div className="Goodup-catg-city">17 Cities</div> */}
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-building" />
+                        <img
+                          src="images/group.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          IT &amp; Banking
+                          Fitness Classes Finder
                         </h4>
-                        {/* <span className="text-muted">76 Listings</span> */}
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">19 Cities</div>
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-shopping-basket" />
+                        <img
+                          src="images/trainer.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Shoppings
+                          Trainer Matching Service
                         </h4>
-                        <span className="text-muted">112 Listings</span>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">32 Cities</div>
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-screwdriver" />
+                        <img
+                          src="images/membership-card.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Home Services
+                          Flexible Membership Options
                         </h4>
-                        <span className="text-muted">322 Listings</span>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">27 Cities</div>
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-basketball-ball" />
+                        <img
+                          src="images/building.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Active Life
+                          Personalized Gym Recommendations
                         </h4>
-                        <span className="text-muted">161 Listings</span>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">26 Cities</div>
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-utensils" />
+                        <img
+                          src="images/virtual-reality-fitness.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Restaurants
+                          Virtual Gym Tours
                         </h4>
-                        <span className="text-muted">172 Listings</span>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">10 Cities</div>
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-book-open" />
+                        <img
+                          src="images/rating.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Education
+                          Client Testimonials
                         </h4>
-                        <span className="text-muted">144 Listings</span>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">24 Cities</div>
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-house-damage" />
+                        <img
+                          src="images/nutrition.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Real Estate
+                          Integrated Nutrition Plans
                         </h4>
-                        <span className="text-muted">210 Listings</span>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">18 Cities</div>
+                    <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
-                        <i className="fas fa-wine-glass" />
+                        <img
+                          src="images/international-childrens-day.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Event Palnning
+                          Community Support
                         </h4>
-                        <span className="text-muted">241 Listings</span>
                       </div>
-                    </a>
-                  </div>
-                </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
-                  <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">06 Cities</div>
-                      <div className="Goodup-catg-icon">
-                        <i className="fas fa-car-alt" />
-                      </div>
-                      <div className="Goodup-catg-caption">
-                        <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Automotive
-                        </h4>
-                        <span className="text-muted">52 Listings</span>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
-                  <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">08 Cities</div>
-                      <div className="Goodup-catg-icon">
-                        <i className="fas fa-pencil-ruler" />
-                      </div>
-                      <div className="Goodup-catg-caption">
-                        <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Art &amp; Design
-                        </h4>
-                        <span className="text-muted">97 Listings</span>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
-                  <div className="cats-wrap text-center">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-catg-wrap"
-                    >
-                      <div className="Goodup-catg-city">05 Cities</div>
-                      <div className="Goodup-catg-icon">
-                        <i className="fas fa-plane" />
-                      </div>
-                      <div className="Goodup-catg-caption">
-                        <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Hotel &amp; Travel
-                        </h4>
-                        <span className="text-muted">42 Listings</span>
-                      </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>
               {/* row */}
             </div>
           </section>
-          {/* ======================= Listing Categories End ======================== */}
-          {/* ======================= Explore By Location ======================== */}
-          <section className="space">
+          {/* ======================= Listing Categories ======================== */}
+          {/* ======================= pricing categories ======================== */}
+          <section className="space min">
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div className="col-xl-5 col-lg-7 col-md-9 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="theme-cl mb-0">Find By Location</h6>
-                    <h2 className="ft-bold">
-                      Explore By <span className="theme-cl">Top Locations</span>
-                    </h2>
+                    <h6 className="theme-cl mb-0">Our Packages</h6>
+                    <h2 className="ft-bold">Gym Pricing Segments</h2>
                   </div>
                 </div>
               </div>
-              {/* row */}
-              <div className="row justify-content-center">
-                <div className="col-xl-12 col-lg-12 col-md-12">
-                  <div className="newlocationslider row">
-                    <div className="single-list col-md-3">
-                      <div className="Goodup-img-location-wrap">
-                        <div className="Goodup-img-location-thumb">
-                          <a href="half-map-search-2.html">
-                            <img
-                              src="images/l-1_1.jpg"
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-img-location-caption">
-                          <h4 className="fs-md mb-0 ft-medium m-catrio">
-                            Redondo Beach
-                          </h4>
-                          <a
-                            href="half-map-search-2.html"
-                            className="Goodup-cat-arrow"
-                          >
-                            <i className="lni lni-arrow-right-circle" />
-                          </a>
-                        </div>
+              <div className="row">
+                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div className="Goodup-price-wrap">
+                    <div className="Goodup-author-header">
+                      <div className="Goodup-price-currency">
+                        <h3 className="text-center mb-3">
+                          <span className="Goodup-new-price">
+                            <del className="w-100 text-center">Affordable</del>
+                          </span>
+                        </h3>
                       </div>
+                      <div className="Goodup-price-subtitle">Best Choice for Individuals</div>
                     </div>
-                    <div className="single-list col-md-3">
-                      <div className="Goodup-img-location-wrap">
-                        <div className="Goodup-img-location-thumb">
-                          <a href="half-map-search-2.html">
-                            <img
-                              src="images/l-2_1.jpg"
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-img-location-caption">
-                          <h4 className="fs-md mb-0 ft-medium m-catrio">
-                            San Francisco
-                          </h4>
-                          <a
-                            href="half-map-search-2.html"
-                            className="Goodup-cat-arrow"
-                          >
-                            <i className="lni lni-arrow-right-circle" />
-                          </a>
-                        </div>
-                      </div>
+                    <div className="Goodup-price-body">
+                      <ul className="price__features">
+                        <li><i className="fa fa-angle-right"></i>Basic fitness equipment</li>
+                        <li><i className="fa fa-angle-right"></i>Functional training areas</li>
+                        <li><i className="fa fa-angle-right"></i>Certified trainers available on request</li>
+                        <li><i className="fa fa-angle-right"></i>Access to group fitness classes (limited)</li>
+                        <li><i className="fa fa-angle-right"></i>Ideal for beginners</li>
+                        <li><i className="fa fa-angle-right"></i>Casual fitness enthusiasts</li>
+                      </ul>
                     </div>
-                    <div className="single-list col-md-3">
-                      <div className="Goodup-img-location-wrap">
-                        <div className="Goodup-img-location-thumb">
-                          <a href="half-map-search-2.html">
-                            <img
-                              src="images/l-3_1.jpg"
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-img-location-caption">
-                          <h4 className="fs-md mb-0 ft-medium m-catrio">
-                            Santa Barbara
-                          </h4>
-                          <a
-                            href="half-map-search-2.html"
-                            className="Goodup-cat-arrow"
-                          >
-                            <i className="lni lni-arrow-right-circle" />
-                          </a>
-                        </div>
-                      </div>
+                    <div className="Goodup-price-bottom">
+                      <a className="Goodup-price-btn" href="#"><i className="fas fa-shopping-basket"></i> Purchase Now</a>
                     </div>
-                    <div className="single-list col-md-3">
-                      <div className="Goodup-img-location-wrap">
-                        <div className="Goodup-img-location-thumb">
-                          <a href="half-map-search-2.html">
-                            <img
-                              src="images/l-4_1.jpg"
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <div className="Goodup-img-location-caption">
-                          <h4 className="fs-md mb-0 ft-medium m-catrio">
-                            Huntington Beach
-                          </h4>
-                          <a
-                            href="half-map-search-2.html"
-                            className="Goodup-cat-arrow"
-                          >
-                            <i className="lni lni-arrow-right-circle" />
-                          </a>
-                        </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div className="Goodup-price-wrap">
+                    <div className="Goodup-author-header">
+                      <div className="Goodup-price-currency">
+                        <h3 className="text-center mb-3">
+                          <span className="Goodup-new-price">
+                            <del className="w-100 text-center">Standard</del>
+                          </span>
+                        </h3>
                       </div>
+                      <div className="Goodup-price-subtitle">Best Choice for Individuals </div>
+                    </div>
+                    <div className="Goodup-price-body">
+                      <ul className="price__features">
+                        <li><i className="fa fa-angle-right"></i>Comprehensive gym facilities</li>
+                        <li><i className="fa fa-angle-right"></i>advanced fitness equipment</li>
+                        <li><i className="fa fa-angle-right"></i>Certified trainers included</li>
+                        <li><i className="fa fa-angle-right"></i>Access to a wide variety of group fitness classes</li>
+                        <li><i className="fa fa-angle-right"></i>Locker and shower facilities</li>
+                        <li><i className="fa fa-angle-right"></i>Moderate pricing with flexible membership plans</li>
+                      </ul>
+                    </div>
+                    <div className="Goodup-price-bottom">
+                      <a className="Goodup-price-btn" href="#"><i className="fas fa-shopping-basket"></i> Purchase Now</a>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div className="Goodup-price-wrap">
+                    <div className="Goodup-author-header">
+                      <div className="Goodup-price-currency">
+                        <h3 className="text-center mb-3">
+                          <span className="Goodup-new-price">
+                            <del className="w-100 text-center">Premium</del>
+                          </span>
+                        </h3>
+                      </div>
+                      <div className="Goodup-price-subtitle">Best Choice for Individuals </div>
+                    </div>
+                    <div className="Goodup-price-body">
+                      <ul className="price__features">
+                        <li><i className="fa fa-angle-right"></i>State-of-the-art equipment and luxury facilities</li>
+                        <li><i className="fa fa-angle-right"></i>Personal training sessions included</li>
+                        <li><i className="fa fa-angle-right"></i>Access to exclusive classes and workshops</li>
+                        <li><i className="fa fa-angle-right"></i>Spa, sauna, and wellness zones</li>
+                        <li><i className="fa fa-angle-right"></i>Tailored diet and fitness programs</li>
+                        <li><i className="fa fa-angle-right"></i>Concierge-level customer service</li>
+                      </ul>
+                    </div>
+                    <div className="Goodup-price-bottom">
+                      <a className="Goodup-price-btn" href="#"><i className="fas fa-shopping-basket"></i> Purchase Now</a>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* /row */}
             </div>
           </section>
-          {/* ======================= Explore By Location ======================== */}
+          {/* ======================= pricing categories ======================== */}
+          {/* ======================= blog section ======================== */}
+          <section class="middle">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                  <div class="sec_title position-relative text-center mb-5">
+                    <h6 class="theme-cl mb-0">Latest Updates</h6>
+                    <h2 class="ft-bold">View Recent Updates</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-lg-6 text-left">
+                  <div class="gup_blg_grid_box">
+                    <div class="gup_blg_grid_thumb">
+                      <a href="https://fggroup.in/blogs/ignite-your-nutrition-journey-explore-the-power-of-a-nutrition-course"><img src="images/b-1.webp" class="img-fluid" alt="" /></a>
+                    </div>
+                    <div class="gup_blg_grid_caption">
+                      <div class="blg_tag"><span>Nutrition</span></div>
+                      <div class="blg_title"><h4><a href="https://fggroup.in/blogs/ignite-your-nutrition-journey-explore-the-power-of-a-nutrition-course">Fuel Your Passion for Nutrition</a></h4></div>
+                      <div class="blg_desc"><p>Learn how to nourish your body and fuel your passion for a healthier life.</p></div>
+                    </div>
+                    <div class="crs_grid_foot">
+                      <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                        <div class="crs_fl_first">
+                          <div class="crs_tutor">
+                            <div class="crs_tutor_thumb"><a href="javascript:void(0);"><img src="images/team-2.jpg" class="img-fluid circle" width="35" alt="" /></a></div>
+                          </div>
+                        </div>
+                        <div class="crs_fl_last">
+                          <div class="foot_list_info">
+                            <ul>
+                              <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">10k Views</div></li>
+                              <li><div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div><div class="elsio_tx">March 27, 2018</div></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 text-left">
+                  <div class="gup_blg_grid_box">
+                    <div class="gup_blg_grid_thumb">
+                      <a href="https://fggroup.in/blogs/choosing-the-right-fitness-certification-program-in-India"><img src="images/b-2.webp" class="img-fluid" alt="" /></a>
+                    </div>
+                    <div class="gup_blg_grid_caption">
+                      <div class="blg_tag"><span>Fitness</span></div>
+                      <div class="blg_title"><h4><a href="https://fggroup.in/blogs/choosing-the-right-fitness-certification-program-in-India">Choosing the Right Fitness Certification</a></h4></div>
+                      <div class="blg_desc"><p>Discover the best fitness certifications to kickstart your career.</p></div>
+                    </div>
+                    <div class="crs_grid_foot">
+                      <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                        <div class="crs_fl_first">
+                          <div class="crs_tutor">
+                            <div class="crs_tutor_thumb"><a href="javascript:void(0);"><img src="images/team-3.jpg" class="img-fluid circle" width="35" alt="" /></a></div>
+                          </div>
+                        </div>
+                        <div class="crs_fl_last">
+                          <div class="foot_list_info">
+                            <ul>
+                              <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">10k Views</div></li>
+                              <li><div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div><div class="elsio_tx">March 27, 2018</div></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 text-left">
+                  <div class="gup_blg_grid_box">
+                    <div class="gup_blg_grid_thumb">
+                      <a href="https://fggroup.in/blogs/the-importance-of-fitness-education-in-todays-world"><img src="images/b-3.webp" class="img-fluid" alt="" /></a>
+                    </div>
+                    <div class="gup_blg_grid_caption">
+                      <div class="blg_tag"><span>Health</span></div>
+                      <div class="blg_title"><h4><a href="https://fggroup.in/blogs/the-importance-of-fitness-education-in-todays-world">The Importance Of Fitness Education</a></h4></div>
+                      <div class="blg_desc"><p>Understand the significance of proper fitness education for lasting health.</p></div>
+                    </div>
+                    <div class="crs_grid_foot">
+                      <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                        <div class="crs_fl_first">
+                          <div class="crs_tutor">
+                            <div class="crs_tutor_thumb"><a href="javascript:void(0);"><img src="images/team-5.jpg" class="img-fluid circle" width="35" alt="" /></a></div>
+                          </div>
+                        </div>
+                        <div class="crs_fl_last">
+                          <div class="foot_list_info">
+                            <ul>
+                              <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">10k Views</div></li>
+                              <li><div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div><div class="elsio_tx">March 27, 2018</div></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 text-left">
+                  <div class="gup_blg_grid_box">
+                    <div class="gup_blg_grid_thumb">
+                      <a href="https://fggroup.in/blogs/fatloss-vs-weightloss"><img src="images/b-4.webp" class="img-fluid" alt="" /></a>
+                    </div>
+                    <div class="gup_blg_grid_caption">
+                      <div class="blg_tag"><span>Wellness</span></div>
+                      <div class="blg_title"><h4><a href="https://fggroup.in/blogs/fatloss-vs-weightloss">Weight Loss VS Fat Loss</a></h4></div>
+                      <div class="blg_desc"><p>Explore the difference between weight loss and fat loss, and find the best approach for you.</p></div>
+                    </div>
+                    <div class="crs_grid_foot">
+                      <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                        <div class="crs_fl_first">
+                          <div class="crs_tutor">
+                            <div class="crs_tutor_thumb"><a href="javascript:void(0);"><img src="images/team-2.jpg" class="img-fluid circle" width="35" alt="" /></a></div>
+                          </div>
+                        </div>
+                        <div class="crs_fl_last">
+                          <div class="foot_list_info">
+                            <ul>
+                              <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">10k Views</div></li>
+                              <li><div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div><div class="elsio_tx">March 27, 2018</div></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* ======================= blog section ======================== */}
           {/* ============================ Tag & Submit listing ============================= */}
           <section className="bg-light-theme">
             <div className="container">
-              <div className="row align-items-center justify-content-between g-4">
-                <div className="col-xl-5 col-lg-6 col-md-12">
+              <div className="row align-items-center justify-content-between text-left g-4">
+                <div className="col-lg-6">
                   <div className="capsTextwrap">
                     <h2 className="mb-3">
-                      Why People Choose GoodUp For Promote Own Business
+                      Why Choose Gomzi
                     </h2>
                     <div className="featuresGroups">
                       <div className="singleFeatured">
@@ -1580,45 +551,71 @@ const Home = () => {
                           <i className="fa-solid fa-circle-check" />
                         </div>
                         <div className="caps">
-                          <h4>Easy to publish listing</h4>
+                          <h4>Headline Options</h4>
                           <p>
-                            In a professional context it often happens that
-                            clients corder a publication to be made and
-                            presented with the actual content still not being
-                            ready.
+                            - The Gomzi Advantage: Redefining Fitness Experiences.
+                          </p>
+                          <p>
+                            - Why Thousands Trust Gomzi for Their Fitness Journey.
                           </p>
                         </div>
                       </div>
                       <div className="singleFeatured">
                         <div className="ico">
-                          <i className="fa-solid fa-piggy-bank" />
+                          <i className="fa-solid fa-circle-check" />
                         </div>
                         <div className="caps">
-                          <h4>14 days money back guarantee</h4>
+                          <h4>Core Features</h4>
                           <p>
-                            Think of a news blog that's filled with content
-                            hourly on the day of going live. However, reviewers
-                            be distracted
+                            - Nationwide Gym Network: Partnered with leading gyms across India to bring you the best options.
+                          </p>
+                          <p>
+                            - Unmatched Affiliation Standards: Each gym is thoroughly vetted to ensure the highest quality.
+                          </p>
+                          <p>
+                            - Personalized Recommendations: AI-based tools to find the perfect gym for your goals and location.
+                          </p>
+                          <p>
+                            - Transparent Pricing: Clear and competitive pricing for all gyms.
+                          </p>
+                          <p>
+                            - 24/7 Customer Support: Dedicated support team to assist with all your queries.
                           </p>
                         </div>
                       </div>
                       <div className="singleFeatured">
                         <div className="ico">
-                          <i className="fa-solid fa-phone-volume" />
+                          <i className="fa-solid fa-circle-check" />
                         </div>
                         <div className="caps">
-                          <h4>Video Call Support</h4>
+                          <h4>Additional Features to Highlight</h4>
                           <p>
-                            Besides, random text risks to be unintendedly
-                            humorous or offensive, an unacceptable risk in
-                            corporate environments.
+                            - Customized Fitness Roadmaps: Begin your journey with expert-created fitness plans.
+                          </p>
+                          <p>
+                            - Exclusive Discounts: Get the best deals and offers on gym memberships.
+                          </p>
+                          <p>
+                            - Flexible Payment Plans: Affordable EMI options available.
+                          </p>
+                          <p>
+                            - Regular Updates: Stay informed about new gyms, features, and fitness trends.
+                          </p>
+                          <p>
+                            - Holistic Wellness Approach: Beyond fitness, we focus on nutrition, mental health, and overall well-being.
+                          </p>
+                          <p>
+                            - Cutting-edge Technology: Virtual tours, online booking, and app integration for a seamless experience.
+                          </p>
+                          <p>
+                            - Community Building: Join fitness groups and events to stay motivated.
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-5 col-lg-6 col-md-12">
+                <div className="col-lg-6">
                   <div className="imgBox">
                     <img
                       src="images/custom-img.png"
@@ -1728,33 +725,6 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-                    {/* single review */}
-                    <div className="single-list col-md-4">
-                      <div className="single_review">
-                        <div className="sng_rev_thumb">
-                          <figure>
-                            <img
-                              src="images/t-4.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </figure>
-                        </div>
-                        <div className="rev_author">
-                          <h4 className="mb-0 fs-md ft-medium">Madhu Sharma</h4>
-                          <span className="fs-sm theme-cl">Team Manager</span>
-                        </div>
-                        <div className="sng_rev_caption text-center">
-                          <div className="rev_desc mb-4">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit, sed do eiusmod tempor incididunt ut laboree
-                              voluptate velit esse cillum.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -1765,7 +735,7 @@ const Home = () => {
           <section
             className="space bg-cover"
             style={{
-              background: "#03343b url(images/landing-bg.png) no-repeat",
+              background: "#c76400 url(images/landing-bg.png) no-repeat",
             }}
           >
             <div className="container py-5">

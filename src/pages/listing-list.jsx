@@ -32,18 +32,18 @@ const ListingList = () => {
   };
 
   const [formData, setFormData] = useState({
-      first_name: "",
-      last_name: "",
-      mobile: "",
-      email: "",
-      address_line_1: " ",
-      address_line_2: " ",
-      city: "",
-      state: "",
-      pin_code: "",
-      profilePhoto: null,
-      profile_image: null,
-    });
+    first_name: "",
+    last_name: "",
+    mobile: "",
+    email: "",
+    address_line_1: " ",
+    address_line_2: " ",
+    city: "",
+    state: "",
+    pin_code: "",
+    profilePhoto: null,
+    profile_image: null,
+  });
 
   const getUserData = async () => {
     try {
@@ -216,12 +216,6 @@ const ListingList = () => {
             style={{ background: "red url(images/cover.jpg) no-repeat" }}
             data-overlay={3}
           >
-            <div className="abs-list-sec">
-              <a href="dashboard-add-listing.html" className="add-list-btn">
-                <i className="fas fa-plus me-2" />
-                Add Listing
-              </a>
-            </div>
             <div className="container">
               <div className="row">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -298,21 +292,6 @@ const ListingList = () => {
                 <div className="row">
                   <div className="colxl-12 col-lg-12 col-md-12">
                     <h1 className="ft-medium">Manage Listings</h1>
-                    <nav aria-label="breadcrumb">
-                      <ol className="breadcrumb">
-                        <li className="breadcrumb-item text-muted">
-                          <a href="#">Home</a>
-                        </li>
-                        <li className="breadcrumb-item text-muted">
-                          <a href="#">Dashboard</a>
-                        </li>
-                        <li className="breadcrumb-item">
-                          <a href="#" className="theme-cl">
-                            Manage Listings
-                          </a>
-                        </li>
-                      </ol>
-                    </nav>
                   </div>
                 </div>
               </div>
@@ -343,13 +322,13 @@ const ListingList = () => {
                                       </div>
                                       <div className="Goodup-pos ab-left">
                                         {business.approval_status.status ==
-                                        "APPROVED" ? (
+                                          "APPROVED" ? (
                                           <div className="Goodup-status open me-2">
                                             APPROVED
                                           </div>
                                         ) : business.approval_status.status ==
                                           "REJECTED" ? (
-                                          <div className="Goodup-featured-tag">
+                                          <div className="Goodup-status bg-danger">
                                             REJECTED
                                           </div>
                                         ) : business.approval_status.status ==
@@ -362,8 +341,8 @@ const ListingList = () => {
                                         )}
                                       </div>
                                       <div className="Goodup-grid-thumb">
-                                        <a
-                                          href="single-listing-detail-3.html"
+                                        <Link
+                                          to={`/update-listing?business_id=${business._id}`}
                                           className="d-block text-center m-auto"
                                         >
                                           <img
@@ -374,13 +353,13 @@ const ListingList = () => {
                                             }}
                                             alt={business.business_name}
                                           />
-                                        </a>
+                                        </Link>
                                       </div>
                                     </div>
                                     <div className="Goodup-grid-fl-wrap">
                                       <div className="Goodup-caption px-3 py-2">
                                         <div className="Goodup-author bg-light">
-                                          <a href="author-detail.html">
+                                          <Link to={`/update-listing?business_id=${business._id}`}>
                                             <img
                                               src={`https://files.fggroup.in/${business.business_logo}`}
                                               className="img-fluid circle"
@@ -389,29 +368,26 @@ const ListingList = () => {
                                               }}
                                               alt={business.business_name}
                                             />
-                                          </a>
+                                          </Link>
                                         </div>
                                         <h4 className="mb-0 ft-medium medium">
-                                          <a
-                                            href="single-listing-detail-3.html"
+                                          <Link
+                                            to={`/update-listing?business_id=${business._id}`}
                                             className="text-dark fs-md"
                                           >
                                             {business.business_name}
                                             <span className="verified-badge">
                                               <i className="fas fa-check-circle" />
                                             </span>
-                                          </a>
+                                          </Link>
                                         </h4>
                                         <div className="Goodup-middle-caption mt-2">
                                           Category :{" "}
                                           {business.business_category.map(
                                             (category) => (
-                                              <a
-                                                href="half-map-search-1.html"
-                                                className="cats-1"
-                                              >
+                                              <span className="text-dark">
                                                 {category}
-                                              </a>
+                                              </span>
                                             )
                                           )}
                                           <div className="mb-0">
@@ -436,7 +412,7 @@ const ListingList = () => {
                                           View
                                         </Link>
                                         <button
-                                          className="list-listing"
+                                          className="list-listing bg-danger"
                                           onClick={() =>
                                             handleDeleteListing(business._id)
                                           }
