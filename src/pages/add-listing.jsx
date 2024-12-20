@@ -13,6 +13,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { IconButton } from "@mui/material";
+import { TagInput } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
 
 const AddListing = () => {
   const [loading, setLoading] = useState(true);
@@ -67,11 +69,11 @@ const AddListing = () => {
     setBusinessHours(updatedBusinessHours);
   };
 
-  const handleTimeChange = (index, field, value) => {
-    const updatedBusinessHours = [...businessHours];
-    updatedBusinessHours[index][field] = value;
-    setBusinessHours(updatedBusinessHours);
-  };
+  // const handleTimeChange = (index, field, value) => {
+  //   const updatedBusinessHours = [...businessHours];
+  //   updatedBusinessHours[index][field] = value;
+  //   setBusinessHours(updatedBusinessHours);
+  // };
 
   const handleAddTimeSlot = () => {
     setBusinessHours([
@@ -342,6 +344,82 @@ const AddListing = () => {
 
       toast.error("Logout Failed. Please try again.");
     }
+  };
+
+  const [times, setTimes] = useState({
+    Monday: { opening: "Opening Time", closing: "Closing Time" },
+    Tuesday: { opening: "Opening Time", closing: "Closing Time" },
+    Wednesday: { opening: "Opening Time", closing: "Closing Time" },
+    Thursday: { opening: "Opening Time", closing: "Closing Time" },
+    Friday: { opening: "Opening Time", closing: "Closing Time" },
+    Saturday: { opening: "Opening Time", closing: "Closing Time" },
+    Sunday: { opening: "Opening Time", closing: "Closing Time" },
+  });
+
+  const [sameForAll, setSameForAll] = useState(false);
+
+  const timeOptions = [
+    "01:00 AM",
+    "02:00 AM",
+    "03:00 AM",
+    "04:00 AM",
+    "05:00 AM",
+    "06:00 AM",
+    "07:00 AM",
+    "08:00 AM",
+    "09:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "12:00 AM",
+    "01:00 PM",
+    "02:00 PM",
+    "03:00 PM",
+    "04:00 PM",
+    "05:00 PM",
+    "06:00 PM",
+    "07:00 PM",
+    "08:00 PM",
+    "09:00 PM",
+    "10:00 PM",
+    "11:00 PM",
+    "12:00 PM",
+    "Closed",
+  ];
+
+  const handleTimeChange = (day, field, value) => {
+    const updatedTimes = { ...times };
+    updatedTimes[day][field] = value;
+
+    if (sameForAll) {
+      Object.keys(updatedTimes).forEach((key) => {
+        updatedTimes[key] = { ...updatedTimes[day] };
+      });
+    }
+
+    setTimes(updatedTimes);
+  };
+
+  const handleCheckboxChange = (checked) => {
+    setSameForAll(checked);
+    if (checked) {
+      const mondayTimes = times.Monday;
+      const updatedTimes = { ...times };
+      Object.keys(updatedTimes).forEach((day) => {
+        updatedTimes[day] = { ...mondayTimes };
+      });
+      setTimes(updatedTimes);
+    }
+  };
+
+  const getBusinessHours = () => {
+    const allDaysTime = Object.keys(times).map((day) => ({
+      day,
+      open: times[day].opening,
+      close: times[day].closing,
+    }));
+    console.log("allDaysTime :- ", allDaysTime);
+    
+    setBusinessHours(allDaysTime)
   };
 
   return (
@@ -896,489 +974,106 @@ const AddListing = () => {
                           </div>
                         </div>
                         <div className="dashboard-list-wraps-body py-3 px-3">
-                          <div className="row">
-                            <div className="form-group">
-                              <div className="row align-items-center">
-                                <label className="control-label col-lg-2 col-md-2">
-                                  Monday
-                                </label>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control chosen-select">
-                                    <option>Opening Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control">
-                                    <option>Closing Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <div className="row align-items-center">
-                                <label className="control-label col-lg-2 col-md-2">
-                                  Tuesday
-                                </label>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control chosen-select">
-                                    <option>Opening Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control">
-                                    <option>Closing Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <div className="row align-items-center">
-                                <label className="control-label col-lg-2 col-md-2">
-                                  Wednesday
-                                </label>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control chosen-select">
-                                    <option>Opening Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control">
-                                    <option>Closing Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <div className="row align-items-center">
-                                <label className="control-label col-lg-2 col-md-2">
-                                  Thursday
-                                </label>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control chosen-select">
-                                    <option>Opening Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control">
-                                    <option>Closing Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <div className="row align-items-center">
-                                <label className="control-label col-lg-2 col-md-2">
-                                  Friday
-                                </label>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control chosen-select">
-                                    <option>Opening Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control">
-                                    <option>Closing Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <div className="row align-items-center">
-                                <label className="control-label col-lg-2 col-md-2">
-                                  Saturday
-                                </label>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control chosen-select">
-                                    <option>Opening Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control">
-                                    <option>Closing Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="form-group">
-                              <div className="row align-items-center">
-                                <label className="control-label col-lg-2 col-md-2">
-                                  Sunday
-                                </label>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control chosen-select">
-                                    <option>Opening Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                                <div className="col-lg-5 col-md-5">
-                                  <select className="form-control">
-                                    <option>Closing Time</option>
-                                    <option>1 :00 AM</option>
-                                    <option>2 :00 AM</option>
-                                    <option selected>3 :00 AM</option>
-                                    <option>4 :00 AM</option>
-                                    <option>5 :00 AM</option>
-                                    <option>6 :00 AM</option>
-                                    <option>7 :00 AM</option>
-                                    <option>8 :00 AM</option>
-                                    <option>9 :00 AM</option>
-                                    <option>10 :00 AM</option>
-                                    <option>11 :00 AM</option>
-                                    <option>12 :00 AM</option>
-                                    <option>1 :00 PM</option>
-                                    <option>2 :00 PM</option>
-                                    <option>3 :00 PM</option>
-                                    <option>4 :00 PM</option>
-                                    <option>5 :00 PM</option>
-                                    <option>6 :00 PM</option>
-                                    <option>7 :00 PM</option>
-                                    <option>8 :00 PM</option>
-                                    <option>9 :00 PM</option>
-                                    <option>10 :00 PM</option>
-                                    <option>11 :00 PM</option>
-                                    <option>12 :00 PM</option>
-                                    <option>Closed</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="form-group mt-4">
-                              <input
-                                id="t24"
-                                className="checkbox-custom"
-                                name="24-1"
-                                type="checkbox"
-                              />
-                              <label
-                                htmlFor="t24"
-                                className="checkbox-custom-label"
-                              >
-                                This Business open 7x24
+                          <div className="form-check mb-3">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              id="sameForAll"
+                              checked={sameForAll}
+                              onChange={(e) =>
+                                handleCheckboxChange(e.target.checked)
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="sameForAll"
+                            >
+                              Same with all
+                            </label>
+                          </div>
+                          {Object.keys(times).map((day) => (
+                            <div
+                              className="row align-items-center mb-3"
+                              key={day}
+                            >
+                              <label className="control-label col-lg-2 col-md-2">
+                                {day}
                               </label>
+                              <div className="col-lg-5 col-md-5">
+                                <select
+                                  className="form-control"
+                                  value={times[day].opening}
+                                  onChange={(e) => {
+                                    handleTimeChange(
+                                      day,
+                                      "opening",
+                                      e.target.value
+                                    );
+                                    getBusinessHours();
+                                  }}
+                                >
+                                  <option>Opening Time</option>
+                                  {timeOptions.map((time) => (
+                                    <option key={time} value={time}>
+                                      {time}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                              <div className="col-lg-5 col-md-5">
+                                <select
+                                  className="form-control"
+                                  value={times[day].closing}
+                                  onChange={(e) => {
+                                    handleTimeChange(
+                                      day,
+                                      "closing",
+                                      e.target.value
+                                    );
+                                    getBusinessHours();
+                                  }}
+                                >
+                                  <option>Closing Time</option>
+                                  {timeOptions.map((time) => (
+                                    <option key={time} value={time}>
+                                      {time}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="dashboard-list-wraps-body py-3 px-3">
+                        <div className="row">
+                          <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div className="form-group">
+                              <label className="mb-1">Services</label>
+                              <TagInput
+                                type="text"
+                                className="form-control rounded"
+                                placeholder="Add Services"
+                                value={formData.services}
+                                onChange={(value) =>
+                                  handleInputChange("services", value)
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div className="form-group">
+                              <label className="mb-1">Tags</label>
+                              <TagInput
+                                type="text"
+                                className="form-control rounded"
+                                placeholder="Add Tags"
+                                value={formData.tags}
+                                onChange={(value) =>
+                                  handleInputChange("tags", value)
+                                }
+                              />
                             </div>
                           </div>
                         </div>

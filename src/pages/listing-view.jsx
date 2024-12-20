@@ -60,6 +60,37 @@ const ListingView = () => {
 
   const [loading, setLoading] = useState(true);
 
+  const [allBusinessData, setAllBusinessData] = useState([]);
+
+  const fetchAllBusinessData = async () => {
+    try {
+      const requestData = {
+        filter: {
+          business_type: ["personal", "business"],
+        },
+        sort: {
+          business_name: "asc",
+          rating: "desc",
+        },
+        page: 1,
+        limit: 10,
+      };
+
+      const response = await businessListingAxiosInstance.post(
+        "/get-businesses",
+        requestData
+      );
+      const fetchedBusinessData = response.data.data;
+      setAllBusinessData(fetchedBusinessData);
+    } catch (error) {
+      console.error("Error in Getting Business Data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllBusinessData();
+  }, []);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -403,8 +434,8 @@ const ListingView = () => {
         "/create-review",
         requestData
       );
-      fetchBusinessData();
-      fetchReviewsData();
+      // fetchBusinessData();
+      // fetchReviewsData();
       toast.success("Review submitted successfully");
       setReview("");
       setRating(0);
@@ -509,95 +540,69 @@ const ListingView = () => {
                       <div className="Goodup-lkp-thumb">
                         <img
                           src={`https://files.fggroup.in/${businessData.business_logo}`}
-                          className="img-fluid"
+                          className="img-fluid rounded-circle"
                           width={90}
                           alt=""
                         />
                       </div>
                       <div className="Goodup-lkp-caption ps-3">
-                        <div className="Goodup-lkp-title">
-                          <h1 className="mb-0 ft-bold">
-                            {businessData.business_name}
-                          </h1>
-                        </div>
-                        <div className="Goodup-ft-first">
-                          <div className="Goodup-rating">
-                            <div className="Goodup-rates">
-                              {[...Array(5)].map((_, index) => (
-                                <i
-                                  className="fas fa-star"
-                                  key={index}
-                                  style={{
-                                    color:
-                                      index < businessData.review_stats &&
-                                      businessData.review_stats.average_rating
-                                        ? "#F09000"
-                                        : "#ccc",
-                                  }}
-                                />
-                              ))}
-                            </div>
+                        <div>
+                          <div className="Goodup-lkp-title">
+                            <h1 className="mb-0 ft-bold">
+                              {businessData.business_name}
+                            </h1>
                           </div>
-                          <div className="Goodup-price-range">
-                            <span className="ft-medium">
-                              {(businessData.review_stats &&
-                                businessData.review_stats.average_rating &&
-                                businessData.review_stats &&
-                                businessData.review_stats.average_rating.toFixed(
-                                  1
-                                )) ||
-                                "0"}{" "}
-                              Reviews
-                            </span>
-                          </div>
-                        </div>
-                        <div className="d-block mt-3">
-                          <div className="list-lioe">
-                            <div className="list-lioe-single">
-                              <span className="ft-medium text-info">
-                                <i className="fas fa-check-circle me-1" />
-                                Claimed
-                              </span>
+                          <div className="Goodup-ft-first">
+                            <div className="Goodup-rating">
+                              <div className="Goodup-rates">
+                                {/* {[...Array(5)].map((_, index) => (
+                                  <i className="fas fa-star"
+                                    key={index}
+                                    style={{
+                                      color:
+                                        index < businessData.review_stats &&
+                                        businessData.review_stats.average_rating
+                                          ? "#F09000"
+                                          : "#ccc",
+                                    }}
+                                  />
+                                ))} */}
+
+                                {Array.from({
+                                  length:
+                                    businessData.review_stats &&
+                                    businessData.review_stats.average_rating,
+                                }).map((_, starIndex) => (
+                                  <StarIcon
+                                    key={starIndex}
+                                    sx={{
+                                      fontSize: "16px",
+                                      color: "#FFAE11",
+                                    }}
+                                  />
+                                ))}
+                                {Array.from({
+                                  length:
+                                    5 - businessData.review_stats &&
+                                    businessData.review_stats.average_rating,
+                                }).map((_, starIndex) => (
+                                  <StarIcon
+                                    key={starIndex}
+                                    sx={{ fontSize: "16px", color: "#000" }}
+                                  />
+                                ))}
+                              </div>
                             </div>
-                            <div className="list-lioe-single ms-2 ps-3 seperate">
-                              <a
-                                href="javascript:void(0);"
-                                className="text-dark ft-medium"
-                              >
-                                Chicken Wings
-                              </a>
-                              ,
-                              <a
-                                href="javascript:void(0);"
-                                className="text-dark ft-medium ms-1"
-                              >
-                                Sports Bars
-                              </a>
-                              ,
-                              <a
-                                href="javascript:void(0);"
-                                className="text-dark ft-medium ms-1"
-                              >
-                                American (Traditional)
-                              </a>
-                              ,
-                              <a
-                                href="javascript:void(0);"
-                                className="text-dark ft-medium ms-1"
-                              >
-                                Seafood
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="d-block mt-1">
-                          <div className="list-lioe">
-                            <div className="list-lioe-single">
-                              <span className="ft-medium text-danger">
-                                Closed
-                              </span>
-                              <span className="ft-medium ms-2">
-                                11:00 AM - 12:00 AM
+                            <div className="Goodup-price-range">
+                              <span className="ft-medium">
+                                {(businessData.review_stats &&
+                                  businessData.review_stats.average_rating &&
+                                  businessData.review_stats &&
+                                  businessData.review_stats.average_rating.toFixed(
+                                    1
+                                  )) ||
+                                  "0"}{" "}
+                                Reviews
                               </span>
                             </div>
                           </div>
@@ -637,16 +642,53 @@ const ListingView = () => {
                     </div>
                   </div>
                   {/* About The Business */}
-                  <div className="d-block">
-                    <div className="jbd-01">
-                      <div className="jbd-details">
-                        <h5 className="ft-bold fs-lg">Description</h5>
-                        <div className="d-block mt-3">
-                          <p>{businessData?.description}</p>
+                  {businessData?.description && (
+                    <div className="d-block">
+                      <div className="jbd-01">
+                        <div className="jbd-details">
+                          <h5 className="ft-bold fs-lg">Description</h5>
+                          <div className="d-block mt-3">
+                            <p>{businessData?.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="sep-devider" />
+                  <div>
+                    <div className="d-block mt-3">
+                      <div className="list-lioe">
+                        <div className="list-lioe-single">
+                          <span className="ft-medium text-info">Category</span>
+                        </div>
+                        <div className="list-lioe-single ms-2 ps-3 seperate">
+                          <a
+                            href="javascript:void(0);"
+                            className="text-dark ft-medium"
+                          >
+                            {businessData?.business_category?.[0]}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="d-block mt-1">
+                      <div className="list-lioe">
+                        <div className="list-lioe-single">
+                          <span className="ft-medium text-danger">Type</span>
+                        </div>
+                        <div className="list-lioe-single ms-2 ps-3 seperate">
+                          <a
+                            href="javascript:void(0);"
+                            className="text-dark ft-medium"
+                          >
+                            {businessData.business_type}
+                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div className="sep-devider" />
                   {/* {timings.length > 0 && (
                     <div className="d-block">
@@ -701,47 +743,26 @@ const ListingView = () => {
                   <div className="d-block">
                     <div className="jbd-01">
                       <div className="jbd-details">
-                        <h5 className="ft-bold fs-lg mb-3">Hours</h5>
+                        <h5 className="ft-bold fs-lg mb-3">Timings</h5>
                         <div className="Goodup-lot-wrap d-block">
                           <div className="row g-4">
                             <div className="col-xl-6 col-lg-6 col-md-12">
                               <table className="table table-borderless">
                                 <tbody>
-                                  <tr>
-                                    <th scope="row">Mon</th>
-                                    <td>5:00 PM - 8:30 PM</td>
-                                    <td className="text-success">Open now</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Tue</td>
-                                    <td>5:00 PM - 8:30 PM</td>
-                                    <td />
-                                  </tr>
-                                  <tr>
-                                    <td>Wed</td>
-                                    <td>5:00 PM - 8:30 PM</td>
-                                    <td />
-                                  </tr>
-                                  <tr>
-                                    <td>Thu</td>
-                                    <td>5:00 PM - 8:30 PM</td>
-                                    <td />
-                                  </tr>
-                                  <tr>
-                                    <td>Fri</td>
-                                    <td>5:00 PM - 6:30 PM</td>
-                                    <td />
-                                  </tr>
-                                  <tr>
-                                    <td>Sat</td>
-                                    <td>Closed</td>
-                                    <td />
-                                  </tr>
-                                  <tr>
-                                    <td>Sun</td>
-                                    <td>Closed</td>
-                                    <td />
-                                  </tr>
+                                  {timings.map((day, index) => (
+                                    <tr>
+                                      <th scope="row">{day.title}</th>
+                                      <td>
+                                        {day.timings.length > 0
+                                          ? day.timings[0].from_time !==
+                                              "00:00" &&
+                                            day.timings[0].to_time !== "00:00"
+                                            ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
+                                            : "Closed"
+                                          : "Closed"}
+                                      </td>
+                                    </tr>
+                                  ))}
                                 </tbody>
                               </table>
                             </div>
@@ -750,53 +771,6 @@ const ListingView = () => {
                       </div>
                     </div>
                   </div>
-                  {services.length > 0 && (
-                    <div className="d-block">
-                      <div className="jbd-01">
-                        <div className="jbd-details mb-2">
-                          <h5 className="ft-bold fs-lg">Services</h5>
-                          <div className="d-block mt-3">
-                            <div className="row g-3">
-                              <div>
-                                <div
-                                  style={{ border: "1px solid #B8B8B8" }}
-                                ></div>
-                                <div className="p-3">
-                                  <Typography
-                                    variant="h5"
-                                    className="mb-2"
-                                    sx={{ fontWeight: "600", color: "#000" }}
-                                  >
-                                    Services
-                                  </Typography>
-                                  <ul className="p-0">
-                                    {services.map((service, index) => (
-                                      <li
-                                        key={index}
-                                        className="mb-2 d-block"
-                                        style={{
-                                          fontWeight: "500",
-                                          fontSize: "18px",
-                                        }}
-                                      >
-                                        <CircleIcon
-                                          sx={{
-                                            fontSize: "10px",
-                                            color: "#656565",
-                                          }}
-                                        />{" "}
-                                        {service}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
                   <div className="sep-devider" />
                   {/* Recommended Reviews */}
                   <div className="d-block">
@@ -820,7 +794,7 @@ const ListingView = () => {
                                   </a>
                                   <span className="reviews-comments-item-date">
                                     <i className="ti-calendar theme-cl me-1" />
-                                    {review.createdAt}
+                                    {new Date(review.createdAt).toLocaleDateString()}
                                   </span>
                                 </h4>
                                 <span className="agd-location">
@@ -851,9 +825,7 @@ const ListingView = () => {
                                   ))}
                                 </div>
                                 <div className="clearfix" />
-                                <p>
-                                  {review.comment}
-                                </p>
+                                <p>{review.comment}</p>
                               </div>
                             </div>
                           ))}
@@ -861,167 +833,6 @@ const ListingView = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="sep-devider" />
-                  {/* Frequently Asked Questions */}
-                  <div class="d-block">
-                    <div class="jbd-01">
-                      <div class="jbd-details">
-                        <h5 class="ft-bold fs-lg">
-                          Frequently Asked Questions
-                        </h5>
-
-                        <div class="d-block mt-3">
-                          <div id="accordion2" class="accordion">
-                            <div class="card">
-                              <div class="card-header" id="h7">
-                                <h5 class="mb-0">
-                                  <button
-                                    class="btn btn-link"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#ord7"
-                                    aria-expanded="true"
-                                    aria-controls="ord7"
-                                  >
-                                    Can I get GoodUP listing for free?
-                                  </button>
-                                </h5>
-                              </div>
-
-                              <div
-                                id="ord7"
-                                class="collapse show"
-                                aria-labelledby="h7"
-                                data-parent="#accordion2"
-                              >
-                                <div class="card-body">
-                                  Lorem ipsum dolor sit amet, consectetur
-                                  adipiscing elit, sed do eiusmod tempor
-                                  incididunt ut labore et dolore magna aliqua.
-                                  Ut enim ad minim veniam, quis nostrud
-                                  exercitation ullamco laboris nisi ut aliquip
-                                  ex ea commodo consequat. Duis aute irure dolor
-                                  in reprehenderit in voluptate velit esse
-                                  cillum dolore eu fugiat nulla pariatur.
-                                  Excepteur sint occaecat cupidatat non
-                                  proident, sunt in culpa qui officia deserunt
-                                  mollit anim id est laborum.
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card">
-                              <div class="card-header" id="h8">
-                                <h5 class="mb-0">
-                                  <button
-                                    class="btn btn-link collapsed"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#ord8"
-                                    aria-expanded="false"
-                                    aria-controls="ord8"
-                                  >
-                                    How to Permanently Delete Files From
-                                    Windows?
-                                  </button>
-                                </h5>
-                              </div>
-                              <div
-                                id="ord8"
-                                class="collapse"
-                                aria-labelledby="h8"
-                                data-parent="#accordion2"
-                              >
-                                <div class="card-body">
-                                  Lorem ipsum dolor sit amet, consectetur
-                                  adipiscing elit, sed do eiusmod tempor
-                                  incididunt ut labore et dolore magna aliqua.
-                                  Ut enim ad minim veniam, quis nostrud
-                                  exercitation ullamco laboris nisi ut aliquip
-                                  ex ea commodo consequat. Duis aute irure dolor
-                                  in reprehenderit in voluptate velit esse
-                                  cillum dolore eu fugiat nulla pariatur.
-                                  Excepteur sint occaecat cupidatat non
-                                  proident, sunt in culpa qui officia deserunt
-                                  mollit anim id est laborum.
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card">
-                              <div class="card-header" id="h9">
-                                <h5 class="mb-0">
-                                  <button
-                                    class="btn btn-link collapsed"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#ord9"
-                                    aria-expanded="false"
-                                    aria-controls="ord9"
-                                  >
-                                    Can I get GoodUP listing for free?
-                                  </button>
-                                </h5>
-                              </div>
-                              <div
-                                id="ord9"
-                                class="collapse"
-                                aria-labelledby="h9"
-                                data-parent="#accordion2"
-                              >
-                                <div class="card-body">
-                                  Lorem ipsum dolor sit amet, consectetur
-                                  adipiscing elit, sed do eiusmod tempor
-                                  incididunt ut labore et dolore magna aliqua.
-                                  Ut enim ad minim veniam, quis nostrud
-                                  exercitation ullamco laboris nisi ut aliquip
-                                  ex ea commodo consequat. Duis aute irure dolor
-                                  in reprehenderit in voluptate velit esse
-                                  cillum dolore eu fugiat nulla pariatur.
-                                  Excepteur sint occaecat cupidatat non
-                                  proident, sunt in culpa qui officia deserunt
-                                  mollit anim id est laborum.
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card">
-                              <div class="card-header" id="h4">
-                                <h5 class="mb-0">
-                                  <button
-                                    class="btn btn-link collapsed"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#ord4"
-                                    aria-expanded="false"
-                                    aria-controls="ord4"
-                                  >
-                                    For GoodUp which lisence is better for
-                                    business purpose?
-                                  </button>
-                                </h5>
-                              </div>
-
-                              <div
-                                id="ord4"
-                                class="collapse"
-                                aria-labelledby="h4"
-                                data-parent="#accordion2"
-                              >
-                                <div class="card-body">
-                                  Lorem ipsum dolor sit amet, consectetur
-                                  adipiscing elit, sed do eiusmod tempor
-                                  incididunt ut labore et dolore magna aliqua.
-                                  Ut enim ad minim veniam, quis nostrud
-                                  exercitation ullamco laboris nisi ut aliquip
-                                  ex ea commodo consequat. Duis aute irure dolor
-                                  in reprehenderit in voluptate velit esse
-                                  cillum dolore eu fugiat nulla pariatur.
-                                  Excepteur sint occaecat cupidatat non
-                                  proident, sunt in culpa qui officia deserunt
-                                  mollit anim id est laborum.
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                   <div className="sep-devider" />
                   {/* Drop Your Review */}
                   <div className="d-block">
@@ -1034,58 +845,41 @@ const ListingView = () => {
                               <div className="col-lg-12 col-md-12 col-sm-12">
                                 <div className="form-group mb-3">
                                   <label className="ft-medium small mb-1">
-                                    Choose Rate
-                                  </label>
-                                  <select className="form-control rounded">
-                                    <option>Choose Rating</option>
-                                    <option>1 Star</option>
-                                    <option>2 Star</option>
-                                    <option>3 Star</option>
-                                    <option>4 Star</option>
-                                    <option>5 Star</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div className="col-lg-6 col-md-6 col-sm-12">
-                                <div className="form-group mb-3">
-                                  <label className="ft-medium small mb-1">
-                                    Name
-                                  </label>
-                                  <input
-                                    className="form-control rounded"
-                                    type="text"
-                                    placeholder="Your Name"
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-lg-6 col-md-6 col-sm-12">
-                                <div className="form-group mb-3">
-                                  <label className="ft-medium small mb-1">
-                                    Email
-                                  </label>
-                                  <input
-                                    className="form-control rounded"
-                                    type="email"
-                                    placeholder="Your Email"
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-lg-12 col-md-12 col-sm-12">
-                                <div className="form-group mb-3">
-                                  <label className="ft-medium small mb-1">
                                     Review
                                   </label>
                                   <textarea
                                     className="form-control rounded ht-140"
                                     placeholder="Review"
                                     defaultValue={""}
+                                    value={review}
+                                    onChange={(e) => setReview(e.target.value)}
                                   />
+                                </div>
+                              </div>
+                              <div className="col-lg-12 col-md-12 col-sm-12">
+                                <div className="form-group mb-3">
+                                  <label className="ft-medium small mb-1">
+                                    Select Rating
+                                  </label>
+                                  <div className="d-flex mb-2">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                      <StarIcon
+                                        key={star}
+                                        sx={{
+                                          fontSize: "25px",
+                                          color:
+                                            rating >= star ? "#FFAE11" : "#000",
+                                        }}
+                                        onClick={() => handleRatingChange(star)}
+                                      />
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                               <div className="col-lg-12 col-md-12 col-sm-12">
                                 <div className="form-group">
                                   <button
-                                    type="submit"
+                                    onClick={handleSubmitReview}
                                     className="btn theme-bg text-light rounded"
                                   >
                                     Submit Review
@@ -1098,294 +892,47 @@ const ListingView = () => {
                       </div>
                     </div>
                   </div>
+                  <div className="sep-devider" />
+                  {/* Frequently Asked Questions */}
+                  {faqs.length > 0 && (
+                    <div className="d-block">
+                      <div className="jbd-01">
+                        <div className="jbd-details">
+                          <h5 className="ft-bold fs-lg">
+                            Frequently Asked Questions
+                          </h5>
+                          <div className="d-block mt-3">
+                            <div className="accordion">
+                              {faqs.map((faq, index) => (
+                                <div className="card" key={index}>
+                                  <div
+                                    className="card-header"
+                                    id={`heading-${index}`}
+                                  >
+                                    <h5 className="mb-0">
+                                      <button className="btn btn-link">
+                                        {index + 1}. {faq.question}
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div>
+                                    <div className="card-body">
+                                      {faq.answer}
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                {/* Sidebar */}
+
                 <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 text-start">
-                  {/* Room Booking */}
                   <div className="jb-apply-form bg-white rounded py-4 px-4 border mb-4">
-                    <h4 className="ft-bold mb-1">Book Your Order</h4>
-                    <div className="Goodup-boo-space mt-3">
-                      <div className="row">
-                        <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                          <div className="form-group mb-3">
-                            <label className="ft-medium small mb-1">
-                              Check In
-                            </label>
-                            <div className="cld-box">
-                              <i className="ti-calendar" />
-                              <input
-                                type="text"
-                                name="checkin"
-                                className="form-control"
-                                defaultValue="10/24/2020"
-                                placeholder="Check In"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                          <div className="form-group mb-3">
-                            <label className="ft-medium small mb-1">
-                              Check Out
-                            </label>
-                            <div className="cld-box">
-                              <i className="ti-calendar" />
-                              <input
-                                type="text"
-                                name="checkout"
-                                className="form-control"
-                                defaultValue="10/24/2020"
-                                placeholder="Check Out"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                          <div className="form-group mb-3">
-                            <div className="guests">
-                              <label className="ft-medium small mb-1">
-                                Adults
-                              </label>
-                              <div className="guests-box">
-                                <button
-                                  className="counter-btn"
-                                  type="button"
-                                  id="cnt-down"
-                                >
-                                  <i className="ti-minus" />
-                                </button>
-                                <input
-                                  type="text"
-                                  id="guestNo"
-                                  name="guests"
-                                  defaultValue={2}
-                                />
-                                <button
-                                  className="counter-btn"
-                                  type="button"
-                                  id="cnt-up"
-                                >
-                                  <i className="ti-plus" />
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                          <div className="form-group mb-3">
-                            <div className="guests">
-                              <label className="ft-medium small mb-1">
-                                Kids
-                              </label>
-                              <div className="guests-box">
-                                <button
-                                  className="counter-btn"
-                                  type="button"
-                                  id="kcnt-down"
-                                >
-                                  <i className="ti-minus" />
-                                </button>
-                                <input
-                                  type="text"
-                                  id="kidsNo"
-                                  name="kids"
-                                  defaultValue={0}
-                                />
-                                <button
-                                  className="counter-btn"
-                                  type="button"
-                                  id="kcnt-up"
-                                >
-                                  <i className="ti-plus" />
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-lg12 col-md-12 col-sm-12 mt-3">
-                          <h6 className="ft-medium">Advance features</h6>
-                          <div className="_adv_features_list">
-                            <ul className="no-ul-list">
-                              <li>
-                                <input
-                                  id="a-1"
-                                  className="checkbox-custom"
-                                  name="a-1"
-                                  type="checkbox"
-                                />
-                                <label
-                                  htmlFor="a-1"
-                                  className="checkbox-custom-label"
-                                >
-                                  Air Condition<i>$10</i>
-                                </label>
-                              </li>
-                              <li>
-                                <input
-                                  id="a-2"
-                                  className="checkbox-custom"
-                                  name="a-2"
-                                  type="checkbox"
-                                  defaultChecked=""
-                                />
-                                <label
-                                  htmlFor="a-2"
-                                  className="checkbox-custom-label"
-                                >
-                                  Bedding<i>$07</i>
-                                </label>
-                              </li>
-                              <li>
-                                <input
-                                  id="a-3"
-                                  className="checkbox-custom"
-                                  name="a-3"
-                                  type="checkbox"
-                                  defaultChecked=""
-                                />
-                                <label
-                                  htmlFor="a-3"
-                                  className="checkbox-custom-label"
-                                >
-                                  Heating<i>$20</i>
-                                </label>
-                              </li>
-                              <li>
-                                <input
-                                  id="a-4"
-                                  className="checkbox-custom"
-                                  name="a-4"
-                                  type="checkbox"
-                                />
-                                <label
-                                  htmlFor="a-4"
-                                  className="checkbox-custom-label"
-                                >
-                                  Internet<i>$10</i>
-                                </label>
-                              </li>
-                              <li>
-                                <input
-                                  id="a-5"
-                                  className="checkbox-custom"
-                                  name="a-5"
-                                  type="checkbox"
-                                />
-                                <label
-                                  htmlFor="a-5"
-                                  className="checkbox-custom-label"
-                                >
-                                  Microwave<i>$05</i>
-                                </label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
-                          <h6 className="ft-medium">Price &amp; Taxes</h6>
-                          <div className="_adv_features">
-                            <ul>
-                              <li>
-                                I Night<span>$170</span>
-                              </li>
-                              <li>
-                                Discount 25$<span>-$210</span>
-                              </li>
-                              <li>
-                                Service Fee<span>$13</span>
-                              </li>
-                              <li>
-                                Breakfast Per Adult<span>$24</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
-                          <div className="Goodup-boo-space-foot mb-3">
-                            <span className="Goodup-boo-space-left">
-                              Total Payment
-                            </span>
-                            <h4 className="ft-bold theme-cl">$218</h4>
-                          </div>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12">
-                          <a
-                            href="#"
-                            className="btn text-light rounded full-width theme-bg ft-medium"
-                          >
-                            Book Order Now
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Author Box */}
-                  <div className="jb-apply-form bg-white rounded py-4 px-4 border mb-4">
-                    <div className="Goodup-agent-blocks">
-                      <div className="Goodup-agent-thumb">
-                        <img
-                          src="images/t-1.png"
-                          width={90}
-                          className="img-fluid circle"
-                          alt=""
-                        />
-                      </div>
-                      <div className="Goodup-agent-caption">
-                        <h4 className="ft-medium mb-0">Thomas R. Graves</h4>
-                        <span className="agd-location">
-                          <i className="lni lni-map-marker me-1" />
-                          San Francisco
-                        </span>
-                      </div>
-                      <div className="clearfix" />
-                    </div>
-                    <div className="Goodup-iuky">
-                      <ul>
-                        <li>
-                          140+<span>Listings</span>
-                        </li>
-                        <li>
-                          <div className="text-success">4.7</div>
-                          <span>Rattings</span>
-                        </li>
-                        <li>
-                          80K<span>Followers</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="agent-cnt-info">
-                      <div className="row g-4">
-                        <div className="col-6">
-                          <a
-                            href="javascript:void(0);"
-                            className="adv-btn full-width"
-                          >
-                            Follow Now
-                          </a>
-                        </div>
-                        <div className="col-6">
-                          <a
-                            href="javascript:void(0);"
-                            className="adv-btn full-width"
-                          >
-                            Send Message
-                          </a>
-                        </div>
-                      </div>
-                      <div className="row mt-3">
-                        <div className="col-12">
-                          <a
-                            href="javascript:void(0);"
-                            className="adv-btn full-width theme-bg text-light"
-                          >
-                            View Profile
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Business Inof */}
-                  <div className="jb-apply-form bg-white rounded py-4 px-4 border mb-4">
+                    <h4 className="ft-bold mb-1">Information</h4>
                     <div className="uli-list-info">
                       <ul>
                         <li>
@@ -1395,7 +942,26 @@ const ListingView = () => {
                             </div>
                             <div className="list-uiyt-capt">
                               <h5>Live Site</h5>
-                              <p>https://www.Goodup.com/</p>
+                              {contacts.map(
+                                (contact, index) =>
+                                  contact.contact_type === "website" &&
+                                  isValidWebsite(contact.value) && (
+                                    <div className="d-flex align-items-center">
+                                      <Link
+                                        key={index}
+                                        href={contact.value}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        underline="none"
+                                        sx={{ cursor: "pointer" }}
+                                      >
+                                        <p className="text-dark text-underline">
+                                          {contact.value}
+                                        </p>
+                                      </Link>
+                                    </div>
+                                  )
+                              )}
                             </div>
                           </div>
                         </li>
@@ -1406,7 +972,12 @@ const ListingView = () => {
                             </div>
                             <div className="list-uiyt-capt">
                               <h5>Drop a Mail</h5>
-                              <p>support@Goodup.com</p>
+                              {contacts.map(
+                                (contact, index) =>
+                                  contact.contact_type === "email" && (
+                                    <p>{contact.value}</p>
+                                  )
+                              )}
                             </div>
                           </div>
                         </li>
@@ -1417,7 +988,7 @@ const ListingView = () => {
                             </div>
                             <div className="list-uiyt-capt">
                               <h5>Call Us</h5>
-                              <p>(210) 659 584 756</p>
+                              <p>{contactData.value}</p>
                             </div>
                           </div>
                         </li>
@@ -1428,42 +999,66 @@ const ListingView = () => {
                             </div>
                             <div className="list-uiyt-capt">
                               <h5>Get Directions</h5>
-                              <p>2919 N Flores St San Antonio, TX 78212</p>
+                              <a
+                                href={locationData.direction_link}
+                                className="text-dark"
+                              >
+                                <p className="text-underline">
+                                  {locationData.address_line_1},{" "}
+                                  {locationData.address_line_2},{" "}
+                                  {locationData.landmark}, {locationData.city},{" "}
+                                  {locationData.state} - {locationData.pin_code}
+                                </p>
+                              </a>
                             </div>
                           </div>
                         </li>
                       </ul>
                     </div>
                   </div>
-                  <div className="row g-3 mb-3">
-                    <div className="col-4">
-                      <a
-                        href="javascript:void(0);"
-                        className="adv-btn full-width"
-                      >
-                        <i className="fas fa-camera" />
-                        Add Phoos
-                      </a>
+
+                  {tags.length > 0 && (
+                    <div className="jb-apply-form bg-white rounded py-4 px-4 border mb-4">
+                      <h4 className="ft-bold mb-1">Tags</h4>
+                      <div className="row mt-2">
+                        {tags.map((tag, index) => (
+                          <div
+                            className="btn w-auto m-1 px-3 py-2"
+                            style={{
+                              backgroundColor: "#fff",
+                              color: "#000",
+                              border: "1.5px solid #ccc",
+                              borderRadius: "5px",
+                            }}
+                          >
+                            {tag}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="col-4">
-                      <a
-                        href="javascript:void(0);"
-                        className="adv-btn full-width"
-                      >
-                        <i className="fas fa-share" />
-                        Share
-                      </a>
+                  )}
+
+                  {services.length > 0 && (
+                    <div className="jb-apply-form bg-white rounded py-4 px-4 border mb-4">
+                      <h4 className="ft-bold mb-1">Services</h4>
+                      <div className="row mt-2">
+                        {services.map((service, index) => (
+                          <div
+                            className="btn w-auto m-1 px-3 py-2"
+                            key={index}
+                            style={{
+                              backgroundColor: "#fff",
+                              color: "#000",
+                              border: "1.5px solid #ccc",
+                              borderRadius: "5px",
+                            }}
+                          >
+                            {service}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="col-4">
-                      <a
-                        href="javascript:void(0);"
-                        className="adv-btn full-width"
-                      >
-                        <i className="fas fa-heart" />
-                        Save
-                      </a>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -1476,398 +1071,170 @@ const ListingView = () => {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
                     <h6 className="theme-cl mb-0">Related Listing</h6>
-                    <h2 className="ft-bold">Recently Viewed Listing</h2>
+                    <h2 className="ft-bold">Other Listing</h2>
                   </div>
                 </div>
               </div>
               {/* row */}
               <div className="row justify-content-center">
-                {/* Single */}
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status close me-2">Closed</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-2.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-5.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average high">4.8</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
+                {allBusinessData.slice(0, 4).map((business, index) => {
+                  return (
+                    <div
+                      className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+                      key={index}
+                    >
+                      <div className="Goodup-grid-wrap">
+                        <div className="Goodup-grid-upper">
+                          <div className="Goodup-bookmark-btn">
+                            <button type="button">
+                              <i className="lni lni-heart-filled position-absolute" />
+                            </button>
                           </div>
-                          <div className="Goodup-all-review">
-                            <span>46 Reviews</span>
+                          <div className="Goodup-pos ab-left">
+                            <div className="Goodup-status open me-2">Open</div>
+                            <div className="Goodup-featured-tag">Featured</div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-1.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-2.html"
-                            className="text-dark fs-md"
-                          >
-                            Pretty Woman Smart Batra
-                          </a>
-                        </h4>
-                        <div className="Goodup-location">
-                          <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                          California, USA
-                        </div>
-                        <div className="Goodup-middle-caption mt-3">
-                          <p>
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <a
-                            href="half-map-search-2.html"
-                            className="Goodup-cats-wrap"
-                          >
-                            <div className="cats-ico bg-2">
-                              <i className="lni lni-slim" />
+                          <div className="Goodup-grid-thumb">
+                            <Link
+                              to={`/listing-view?business_id=${business._id}`}
+                              className="d-block text-center m-auto"
+                            >
+                              <img
+                                src={`https://files.fggroup.in/${business.business_images[0]}`}
+                                className="img-fluid"
+                                onError={(e) => {
+                                  e.target.src = Dummy_img;
+                                }}
+                                alt={business.business_name}
+                              />
+                            </Link>
+                          </div>
+                          <div className="Goodup-rating overlay">
+                            <div className="Goodup-pr-average high">
+                              {(business.review_stats.average_rating &&
+                                business.review_stats.average_rating.toFixed(
+                                  1
+                                )) ||
+                                "0"}
                             </div>
-                            <span className="cats-title">
-                              Beauty &amp; Makeup
-                            </span>
-                          </a>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-heart-filled position-absolute" />
-                              </button>
+                            <div className="Goodup-aldeio">
+                              <div className="Goodup-rates">
+                                {[...Array(5)].map((_, index) => (
+                                  <i
+                                    className="fas fa-star"
+                                    key={index}
+                                    style={{
+                                      color:
+                                        index <
+                                        business.review_stats.average_rating
+                                          ? "#F09000"
+                                          : "#ccc",
+                                    }}
+                                  />
+                                ))}
+                              </div>
+                              <div className="Goodup-all-review">
+                                <span>
+                                  {business.review_stats.total_ratings} Rating
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Single */}
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status open me-2">Open</div>
-                        <div className="Goodup-featured-tag">Featured</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-2.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-6.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average high">4.1</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>17 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-2.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-2.html"
-                            className="text-dark fs-md"
-                          >
-                            The Sartaj Blue Night
-                          </a>
-                        </h4>
-                        <div className="Goodup-location">
-                          <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                          San Francisco, USA
-                        </div>
-                        <div className="Goodup-middle-caption mt-3">
-                          <p>
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <a
-                            href="half-map-search-2.html"
-                            className="Goodup-cats-wrap"
-                          >
-                            <div className="cats-ico bg-3">
-                              <i className="lni lni-cake" />
+                        <div className="Goodup-grid-fl-wrap">
+                          <div className="Goodup-caption px-3 py-2">
+                            <div className="Goodup-author">
+                              <a href="author-detail.html">
+                                <img
+                                  src={`https://files.fggroup.in/${business.business_logo}`}
+                                  className="img-fluid circle"
+                                  onError={(e) => {
+                                    e.target.src = User_img;
+                                  }}
+                                  alt={business.business_name}
+                                />
+                              </a>
                             </div>
-                            <span className="cats-title">Night Party</span>
-                          </a>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
+                            <div className="Goodup-cates multi">
+                              {business.business_category.map((category) => (
+                                <a
+                                  href="half-map-search-1.html"
+                                  className="cats-1"
+                                >
+                                  {category}
+                                </a>
+                              ))}
+                              <a href="half-map-search-1.html">+2</a>
                             </div>
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-heart-filled position-absolute" />
-                              </button>
+                            <h4 className="mb-0 ft-medium medium">
+                              <a
+                                href="single-listing-detail-3.html"
+                                className="text-dark fs-md"
+                              >
+                                {business.business_name}
+                                <span className="verified-badge">
+                                  <i className="fas fa-check-circle" />
+                                </span>
+                              </a>
+                            </h4>
+                            <div className="Goodup-middle-caption mt-2">
+                              <p className="fw-normal">
+                                At vero eos et accusamus et iusto odio
+                                dignissimos ducimus
+                              </p>
+                              <div className="Goodup-facilities-wrap mb-0">
+                                <div className="Goodup-facility-title">
+                                  Facilities :
+                                </div>
+                                <div className="Goodup-facility-list">
+                                  <ul className="no-list-style">
+                                    <li
+                                      data-microtip-position="top"
+                                      data-tooltip="Free WiFi"
+                                    >
+                                      <i className="fas fa-wifi" />
+                                    </li>
+                                    <li>
+                                      <i className="fas fa-swimming-pool" />
+                                    </li>
+                                    <li>
+                                      <i className="fas fa-parking" />
+                                    </li>
+                                    <li>
+                                      <i className="fas fa-dog" />
+                                    </li>
+                                    <li>
+                                      <i className="fas fa-fan" />
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="Goodup-grid-footer py-2 px-3">
+                            <div className="Goodup-ft-first">
+                              <div className="Goodup-location">
+                                <i className="fas fa-map-marker-alt me-2 theme-cl" />
+                                {business.locations[0].city +
+                                  ", " +
+                                  business.locations[0].state}
+                              </div>
+                            </div>
+                            <div className="Goodup-ft-last">
+                              <div className="Goodup-inline">
+                                <div className="Goodup-bookmark-btn">
+                                  <button type="button">
+                                    <i className="lni lni-phone position-absolute" />
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                {/* Single */}
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status open me-2">Open</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-2.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-7.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average mid">3.6</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>30 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-3.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-2.html"
-                            className="text-dark fs-md"
-                          >
-                            Pizza Delight Cafe Shop
-                          </a>
-                        </h4>
-                        <div className="Goodup-location">
-                          <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                          102 Satirio, Canada
-                        </div>
-                        <div className="Goodup-middle-caption mt-3">
-                          <p>
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <a
-                            href="half-map-search-2.html"
-                            className="Goodup-cats-wrap"
-                          >
-                            <div className="cats-ico bg-4">
-                              <i className="lni lni-coffee-cup" />
-                            </div>
-                            <span className="cats-title">
-                              Coffee &amp; Bars
-                            </span>
-                          </a>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-heart-filled position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Single */}
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div className="Goodup-grid-wrap">
-                    <div className="Goodup-grid-upper">
-                      <div className="Goodup-pos ab-left">
-                        <div className="Goodup-status close me-2">Closed</div>
-                        <div className="Goodup-featured-tag">Featured</div>
-                      </div>
-                      <div className="Goodup-grid-thumb">
-                        <a
-                          href="single-listing-detail-2.html"
-                          className="d-block text-center m-auto"
-                        >
-                          <img
-                            src="images/l-8.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div className="Goodup-rating overlay">
-                        <div className="Goodup-pr-average poor">2.3</div>
-                        <div className="Goodup-aldeio">
-                          <div className="Goodup-rates">
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                            <i className="fas fa-star" />
-                          </div>
-                          <div className="Goodup-all-review">
-                            <span>42 Reviews</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="Goodup-grid-fl-wrap">
-                      <div className="Goodup-caption px-3 py-2">
-                        <div className="Goodup-author">
-                          <a href="author-detail.html">
-                            <img
-                              src="images/t-4.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </a>
-                        </div>
-                        <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-2.html"
-                            className="text-dark fs-md"
-                          >
-                            The Great Allante Shop
-                          </a>
-                        </h4>
-                        <div className="Goodup-location">
-                          <i className="fas fa-map-marker-alt me-1 theme-cl" />
-                          Oliy Denver, USA
-                        </div>
-                        <div className="Goodup-middle-caption mt-3">
-                          <p>
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
-                          </p>
-                        </div>
-                      </div>
-                      <div className="Goodup-grid-footer py-2 px-3">
-                        <div className="Goodup-ft-first">
-                          <a
-                            href="half-map-search-2.html"
-                            className="Goodup-cats-wrap"
-                          >
-                            <div className="cats-ico bg-5">
-                              <i className="lni lni-shopping-basket" />
-                            </div>
-                            <span className="cats-title">Shopping Mall</span>
-                          </a>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-envelope position-absolute" />
-                              </button>
-                            </div>
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-heart-filled position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
               {/* row */}
             </div>
