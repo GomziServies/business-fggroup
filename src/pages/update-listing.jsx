@@ -61,6 +61,55 @@ const UpdateListing = () => {
   const [featurePreview, setFeaturePreview] = useState(null);
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
 
+  
+
+  const [userData, setUserData] = useState({
+    first_name: "",
+    last_name: "",
+    mobile: "",
+    email: "",
+    address_line_1: " ",
+    address_line_2: " ",
+    city: "",
+    state: "",
+    pin_code: "",
+    profilePhoto: null,
+    profile_image: null,
+  });
+
+const getUserData = async () => {
+  try {
+    const response = await axiosInstance.get("/account/profile");
+    const userData = response.data.data;
+    if (userData) {
+      const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
+
+      setUserData((prevData) => ({
+        ...prevData,
+        first_name: userData.user.first_name || "",
+        last_name: userData.user.last_name || "",
+        mobile: userData.user.mobile || "",
+        email: userData.user.email || "",
+        address_line_1: addressData.address_line_1 || "Enter Address",
+        address_line_2: addressData.address_line_2 || "",
+        city: addressData.city || "",
+        state: addressData.state || "",
+        country: addressData.country || "",
+        pin_code: addressData.pin_code || "",
+        profilePhoto:
+          "https://files.fggroup.in/" + (userData.user.profile_image || ""),
+      }));
+    }
+  } catch (error) {
+    console.error("Error in getUserData:", error);
+    toast.error("Error in getUserData");
+  }
+};
+
+useEffect(() => {
+  getUserData();
+}, []);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -255,8 +304,7 @@ const UpdateListing = () => {
           const logoFormData = new FormData();
           logoFormData.append("files", file);
 
-          const localStorage =  
-          logoFormData.append("files", file);
+          const localStorage = logoFormData.append("files", file);
 
           const logoResponse = await axiosInstance.post(
             "/file-upload",
@@ -641,24 +689,27 @@ const UpdateListing = () => {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="dashboard-head-author-clicl">
                     <div className="dashboard-head-author-thumb">
-                      <img src="images/t-7.png" className="img-fluid" alt="" />
+                      <img
+                        src={`${userData.profilePhoto}`}
+                        className="img-fluid"
+                        alt=""
+                      />
                     </div>
                     <div className="dashboard-head-author-caption">
                       <div className="dashploio">
-                        <h4>Charles D. Robinson</h4>
+                        <h4>
+                          {userData.first_name + " " + userData.last_name}
+                        </h4>
                       </div>
                       <div className="dashploio">
                         <span className="agd-location">
                           <i className="lni lni-map-marker me-1" />
-                          San Francisco, USA
+                          {userData?.city +
+                            ", " +
+                            userData?.state +
+                            ", " +
+                            userData.country}
                         </span>
-                      </div>
-                      <div className="listing-rating high">
-                        <i className="fas fa-star active" />
-                        <i className="fas fa-star active" />
-                        <i className="fas fa-star active" />
-                        <i className="fas fa-star active" />
-                        <i className="fas fa-star active" />
                       </div>
                     </div>
                   </div>
@@ -1069,9 +1120,7 @@ const UpdateListing = () => {
                                   />
 
                                   <IconButton
-                                    onClick={() =>
-                                      setLogoPreview('')
-                                    }
+                                    onClick={() => setLogoPreview("")}
                                     style={{
                                       position: "absolute",
                                       top: 0,

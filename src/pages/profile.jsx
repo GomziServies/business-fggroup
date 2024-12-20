@@ -35,6 +35,39 @@ const Profile = () => {
     profile_image: null,
   });
 
+  const getUserData = async () => {
+    try {
+      const response = await axiosInstance.get("/account/profile");
+      const userData = response.data.data;
+      if (userData) {
+        const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
+
+        setFormData((prevData) => ({
+          ...prevData,
+          first_name: userData.user.first_name || "",
+          last_name: userData.user.last_name || "",
+          mobile: userData.user.mobile || "",
+          email: userData.user.email || "",
+          address_line_1: addressData.address_line_1 || "Enter Address",
+          address_line_2: addressData.address_line_2 || "",
+          city: addressData.city || "",
+          state: addressData.state || "",
+          country: addressData.country || "",
+          pin_code: addressData.pin_code || "",
+          profilePhoto:
+            "https://files.fggroup.in/" + (userData.user.profile_image || ""),
+        }));
+      }
+    } catch (error) {
+      console.error("Error in getUserData:", error);
+      toast.error("Error in getUserData");
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -117,43 +150,11 @@ const Profile = () => {
     }
   };
 
-  const getUserData = async () => {
-    try {
-      const response = await axiosInstance.get("/account/profile");
-      const userData = response.data.data;
-      if (userData) {
-        const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
-
-        setFormData((prevData) => ({
-          ...prevData,
-          first_name: userData.user.first_name || "",
-          last_name: userData.user.last_name || "",
-          mobile: userData.user.mobile || "",
-          email: userData.user.email || "",
-          address_line_1: addressData.address_line_1 || "Enter Address",
-          address_line_2: addressData.address_line_2 || "",
-          city: addressData.city || "",
-          state: addressData.state || "",
-          pin_code: addressData.pin_code || "",
-          profilePhoto:
-            "https://files.fggroup.in/" + (userData.user.profile_image || ""),
-        }));
-      }
-    } catch (error) {
-      console.error("Error in getUserData:", error);
-      toast.error("Error in getUserData");
-    }
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Add any validation or additional logic before updating data
     await updateData();
   };
-
-  useEffect(() => {
-    getUserData();
-  }, []);
 
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">
@@ -220,24 +221,27 @@ const Profile = () => {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="dashboard-head-author-clicl">
                     <div className="dashboard-head-author-thumb">
-                      <img src="images/t-7.png" className="img-fluid" alt="" />
+                      <img
+                        src={`${formData.profilePhoto}`}
+                        className="img-fluid"
+                        alt=""
+                      />
                     </div>
                     <div className="dashboard-head-author-caption">
                       <div className="dashploio">
-                        <h4>Charles D. Robinson</h4>
+                        <h4>
+                          {formData.first_name + " " + formData.last_name}
+                        </h4>
                       </div>
                       <div className="dashploio">
                         <span className="agd-location">
                           <i className="lni lni-map-marker me-1" />
-                          San Francisco, USA
+                          {formData?.city +
+                            ", " +
+                            formData?.state +
+                            ", " +
+                            formData.country}
                         </span>
-                      </div>
-                      <div className="listing-rating high">
-                        <i className="fas fa-star active" />
-                        <i className="fas fa-star active" />
-                        <i className="fas fa-star active" />
-                        <i className="fas fa-star active" />
-                        <i className="fas fa-star active" />
                       </div>
                     </div>
                   </div>
