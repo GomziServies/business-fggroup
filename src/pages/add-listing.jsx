@@ -18,6 +18,7 @@ import "rsuite/dist/rsuite.min.css";
 import { Modal } from "react-bootstrap";
 import Cropper from "react-easy-crop";
 import Footer from "../components/Footer";
+import Select from "react-select";
 
 const AddListing = () => {
   const [loading, setLoading] = useState(true);
@@ -49,9 +50,7 @@ const AddListing = () => {
   const [businessHours, setBusinessHours] = useState([
     { day: "Mon", open: "10:00 AM", close: "07:00 PM" },
   ]);
-  const [faqs, setFaqs] = useState([
-    { question: "", answer: "" },
-  ]);
+  const [faqs, setFaqs] = useState([{ question: "", answer: "" }]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([
     { platform: "Instagram", link: "" },
     { platform: "Facebook", link: "" },
@@ -62,6 +61,25 @@ const AddListing = () => {
   const [selectedBusinessType, setSelectedBusinessType] = useState("");
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const facilities = [
+    { value: "WiFi", label: "WiFi" },
+    { value: "Steam Bath", label: "Steam Bath" },
+    { value: "Air Conditioner", label: "Air Conditioner" },
+    { value: "Parking", label: "Parking" },
+    { value: "Locker", label: "Locker" },
+    { value: "Changing room", label: "Changing room" },
+    { value: "Lounge area", label: "Lounge area" },
+    { value: "Personal trainers", label: "Personal trainers" },
+    { value: "Massage", label: "Massage" },
+  ];
+
+  const handleSelectChange = (selectedOptions) => {
+    setSelectedFacilities(selectedOptions);
+    // Map the selected options to only store the value of each selected option
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setFormData({ services: selectedValues });
+  };
 
   // ----------------------------------------------------------------------------------
 
@@ -124,7 +142,7 @@ const AddListing = () => {
     const file = profilePhoto;
     // const file = event.target.files[0];
 
-    if (file) {
+    if (file instanceof File) {
       // Ensure the file size is within the limit (2 MB)
       if (file.size > 2 * 1024 * 1024) {
         alert("File size exceeds 2 MB!");
@@ -154,7 +172,7 @@ const AddListing = () => {
     fileInput.click();
   };
 
-  const handleBusinessPhotosChange = (event) => {
+  const handleBusinessPhotosChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
       // Ensure the file size is within the limit (2 MB)
@@ -348,42 +366,151 @@ const AddListing = () => {
     setSocialMediaLinks([...newLinks]);
   };
 
+  const uploadLogo = async () => {
+    let logoUrl = "";
+    
+    try {
+      let croppedBlob = profilePhoto;
+      if (typeof profilePhoto === "string") {
+        const byteString = atob(profilePhoto.split(",")[1]);
+        const mimeString = profilePhoto
+          .split(",")[0]
+          .split(":")[1]
+          .split(";")[0];
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        croppedBlob = new Blob([ab], { type: mimeString });
+      }
+
+       if (croppedBlob) {
+        // Read the file and set the logo image
+        const reader = new FileReader();
+
+        reader.onloadend = async () => {
+          setLogoImage(croppedBlob);
+
+          const updatedFormData = {
+            ...formData,
+            business_logo: reader.result,
+          };
+          console.log("updatedFormData :- ", updatedFormData);
+
+          setFormData(updatedFormData);
+
+          console.log("updatedFormData :- ", updatedFormData);
+          try {
+            // Upload logo image and update listing data
+            const logoFormData = new FormData();
+            logoFormData.append("files", croppedBlob);
+
+            const logoResponse = await axiosInstance.post(
+              "/file-upload",
+              logoFormData
+            );
+
+            console.log("logoResponse.data.data :- ", logoResponse.data.data);
+
+            // Retrieve the URL of the uploaded file
+            logoUrl = logoResponse.data.data.fileURLs[0];
+
+            console.log("logoUrl 000 :- ", logoUrl);
+            return logoUrl;
+          } catch (error) {
+            console.error("Error updating logo and listing data:", error);
+            toast.error(
+              "Error updating logo and listing data. Please try again.",
+              {
+                position: toast.POSITION.TOP_RIGHT,
+              }
+            );
+          }
+        };
+
+        reader.readAsDataURL(croppedBlob);
+      }
+    } catch (error) {
+      console.error("Error uploading Logo file:", error);
+      toast.error("Error uploading Logo file. Please try again.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+
+  const uploadFeatureImage = async () => {
+    let uploadedUrls = [];
+    try {
+      // Upload business photos
+      const photoUrls = await Promise.all(
+        businessPhotos.map(async (photo) => {
+          let croppedBlobBusiness = photo.preview;
+
+          // Ensure `photo` is a Blob or File
+          if (typeof photo.preview === "string") {
+            const byteString = atob(photo.preview.split(",")[1]);
+            const mimeString = photo.preview
+              .split(",")[0]
+              .split(":")[1]
+              .split(";")[0];
+            const ab = new ArrayBuffer(byteString.length);
+            const ia = new Uint8Array(ab);
+            for (let i = 0; i < byteString.length; i++) {
+              ia[i] = byteString.charCodeAt(i);
+            }
+            croppedBlobBusiness = new Blob([ab], { type: mimeString });
+          } else if (!(photo.preview instanceof Blob)) {
+            throw new Error(
+              "Invalid file type: Photo must be a Blob, File, or Base64 string."
+            );
+          }
+
+          const photoFormData = new FormData();
+          photoFormData.append("files", croppedBlobBusiness);
+
+          const photoResponse = await axiosInstance.post(
+            "/file-upload",
+            photoFormData
+          );
+
+          return photoResponse.data.data.fileURLs;
+        })
+      );
+
+      uploadedUrls = photoUrls.flat();
+    } catch (error) {
+      console.error("Error uploading Feature files:", error);
+      toast.error("Error uploading Feature files. Please try again.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+
+    console.log("uploadedUrls :- ", uploadedUrls);
+    return uploadedUrls;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       setIsLoading(true);
-      // Upload logo image
-      const logoFormData = new FormData();
-      logoFormData.append("files", logoImage);
-      const logoResponse = await axiosInstance.post(
-        "/file-upload",
-        logoFormData
-      );
-      const logoUrl = logoResponse.data.data.fileURLs[0];
-      // Upload business photos
-      const photoUrls = await Promise.all(
-        businessPhotos.map(async (photo) => {
-          const photoFormData = new FormData();
-          photoFormData.append("files", photo.file);
-          const photoResponse = await axiosInstance.post(
-            "/file-upload",
-            photoFormData
-          );
-          return photoResponse.data.data.fileURLs;
-        })
-      );
+      let logoUrl = await uploadLogo();
+      console.log("logoUrl :- ", logoUrl);
+
+      let uploadedUrls = uploadFeatureImage();
+      console.log("uploadedUrls :- ", uploadedUrls);
 
       // Map the form data to the structure expected by the Postman request
       const postData = {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
         description: formData.description,
-        facilities: [selectedFacilities],
+        // facilities: [selectedFacilities],
         business_category: [selectedCategory],
-        business_logo: `${logoUrl}`,
-        business_images: photoUrls.flat(),
-        services: formData.services,
+        business_logo: logoUrl,
+        business_images: (await uploadedUrls).flat(),
+        services: selectedFacilities.map((facilities) => facilities.value),
         tags: formData.tags,
         social_media: socialMediaLinks.map((link) => ({
           social_media_type: link.platform.toLowerCase(),
@@ -431,7 +558,9 @@ const AddListing = () => {
         })),
       };
 
-      await businessListingAxiosInstance.post("/create-listing", postData);
+      console.log("postData :- ", postData);
+
+      // await businessListingAxiosInstance.post("/create-listing", postData);
       setIsLoading(false);
       // Show success toast
       toast.success("Listing created successfully!", {
@@ -698,117 +827,113 @@ const AddListing = () => {
                         </div>
                         <div className="dashboard-list-wraps-body py-3 px-3">
                           <div className="row">
-                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Listing Title</label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter Listing Title"
-                                  value={formData.businessName}
-                                  onChange={(e) =>
-                                    handleInputChange(
-                                      "businessName",
-                                      e.target.value
-                                    )
-                                  }
-                                />
+                            <div className="row">
+                              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Listing Title</label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter Listing Title"
+                                    value={formData.businessName}
+                                    onChange={(e) =>
+                                      handleInputChange(
+                                        "businessName",
+                                        e.target.value
+                                      )
+                                    }
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Categories</label>
-                                <select
-                                  className="form-control"
-                                  value={selectedCategory}
-                                  onChange={(e) =>
-                                    setSelectedCategory(e.target.value)
-                                  }
-                                >
-                                  <option>Select Category</option>
-                                  <option selected value="Personal Trainer">
-                                    Personal Trainer
-                                  </option>
-                                  <option value="General Trainer">
-                                    General Trainer
-                                  </option>
-                                  <option value="Gym">Gym</option>
-                                  <option value="Dietitian">Dietitian</option>
-                                  <option value="Nutritionist">
-                                    Nutritionist
-                                  </option>
-                                </select>
+                              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">About Listing</label>
+                                  <textarea
+                                    className="form-control rounded ht-150"
+                                    placeholder="Describe..."
+                                    defaultValue={""}
+                                    value={formData.description}
+                                    onChange={(e) =>
+                                      handleInputChange(
+                                        "description",
+                                        e.target.value
+                                      )
+                                    }
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Business Type</label>
-                                <select
-                                  className="form-control"
-                                  value={selectedBusinessType}
-                                  onChange={(e) =>
-                                    setSelectedBusinessType(e.target.value)
-                                  }
-                                >
-                                  <option>Select Business Type</option>
-                                  <option value="personal">Personal</option>
-                                  <option selected value="business">
-                                    Business
-                                  </option>
-                                </select>
+                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Categories</label>
+                                  <select
+                                    className="form-control"
+                                    value={selectedCategory}
+                                    onChange={(e) =>
+                                      setSelectedCategory(e.target.value)
+                                    }
+                                  >
+                                    <option>Select Category</option>
+                                    <option selected value="Personal Trainer">
+                                      Personal Trainer
+                                    </option>
+                                    <option value="General Trainer">
+                                      General Trainer
+                                    </option>
+                                    <option value="Gym">Gym</option>
+                                    <option value="Dietitian">Dietitian</option>
+                                    <option value="Nutritionist">
+                                      Nutritionist
+                                    </option>
+                                  </select>
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Facilities </label>
-                                <select
-                                  className="form-control"
-                                  value={selectedFacilities}
-                                  onChange={(e) =>
-                                    setSelectedFacilities(e.target.value)
-                                  }
-                                >
-                                  <option>Select Facilities</option>
-                                  <option selected value="WiFi">
-                                    WiFi
-                                  </option>
-                                  <option value="Steam Bath">Steam Bath</option>
-                                  <option value="Air Conditioner">
-                                    Air Conditioner
-                                  </option>
-                                  <option value="Parking">Parking</option>
-                                  <option value="Locker">Locker</option>
-                                  <option value="Changing room">
-                                    Changing room
-                                  </option>
-                                  <option value="Lounge area">
-                                    Lounge area
-                                  </option>
-                                  <option value="Personal trainers">
-                                    Personal trainers
-                                  </option>
-                                  <option value="Massage">Massage</option>
-                                </select>
+                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Business Type</label>
+                                  <select
+                                    className="form-control"
+                                    value={selectedBusinessType}
+                                    onChange={(e) =>
+                                      setSelectedBusinessType(e.target.value)
+                                    }
+                                  >
+                                    <option>Select Business Type</option>
+                                    <option value="personal">Personal</option>
+                                    <option selected value="business">
+                                      Business
+                                    </option>
+                                  </select>
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">About Listing</label>
-                                <textarea
-                                  className="form-control rounded ht-150"
-                                  placeholder="Describe..."
-                                  defaultValue={""}
-                                  value={formData.description}
-                                  onChange={(e) =>
-                                    handleInputChange(
-                                      "description",
-                                      e.target.value
-                                    )
-                                  }
-                                />
+                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Tags</label>
+                                  <TagInput
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Add Tags"
+                                    value={formData.tags}
+                                    onChange={(value) =>
+                                      handleInputChange("tags", value)
+                                    }
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+
+                              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Facilities</label>
+                                  <Select
+                                    isMulti
+                                    options={facilities}
+                                    value={selectedFacilities}
+                                    onChange={handleSelectChange}
+                                    placeholder="Select Facilities"
+                                  />
+                                </div>
+                              </div>
+
+                              {/* <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Services</label>
                                 <TagInput
@@ -821,20 +946,7 @@ const AddListing = () => {
                                   }
                                 />
                               </div>
-                            </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Tags</label>
-                                <TagInput
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Add Tags"
-                                  value={formData.tags}
-                                  onChange={(value) =>
-                                    handleInputChange("tags", value)
-                                  }
-                                />
-                              </div>
+                            </div> */}
                             </div>
                           </div>
                         </div>
@@ -1101,9 +1213,7 @@ const AddListing = () => {
                             </div>
                             {/* Featured Image */}
                             <div className="col-12 mt-3">
-                              <label className="mb-1">
-                                Featured Image {" "}
-                              </label>
+                              <label className="mb-1">Featured Image </label>
                               {businessPhotos && businessPhotos.length > 0 ? (
                                 <div>
                                   <div
@@ -1168,18 +1278,6 @@ const AddListing = () => {
                                             style={{ display: "none" }}
                                             id={`photoInput-${index}`}
                                           />
-                                          <label
-                                            htmlFor={`photoInput-${index}`}
-                                            style={{
-                                              cursor: "pointer",
-                                              color: "#007bff",
-                                              textDecoration: "underline",
-                                              marginTop: "5px",
-                                              display: "block",
-                                            }}
-                                          >
-                                            Edit
-                                          </label>
                                         </div>
                                       </div>
                                     ))}
@@ -1465,7 +1563,11 @@ const AddListing = () => {
           <Button
             variant="primary"
             onClick={handleCropComplete}
-            style={{ backgroundColor: "#007bff", borderColor: "#007bff", color: 'white' }}
+            style={{
+              backgroundColor: "#007bff",
+              borderColor: "#007bff",
+              color: "white",
+            }}
           >
             Crop Image
           </Button>
@@ -1501,7 +1603,11 @@ const AddListing = () => {
           <Button
             variant="primary"
             onClick={handleBusinessCropComplete}
-            style={{ backgroundColor: "#007bff", borderColor: "#007bff", color: 'white' }}
+            style={{
+              backgroundColor: "#007bff",
+              borderColor: "#007bff",
+              color: "white",
+            }}
           >
             Crop Image
           </Button>

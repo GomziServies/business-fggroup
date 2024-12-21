@@ -19,6 +19,7 @@ import Typography from "@mui/material/Typography";
 import { Modal } from "react-bootstrap";
 import Cropper from "react-easy-crop";
 import Footer from "../components/Footer";
+import Select from "react-select";
 
 const UpdateListing = () => {
   const location = useLocation();
@@ -115,6 +116,25 @@ const UpdateListing = () => {
     }, 1000);
   }, []);
 
+  const facilities = [
+    { value: "WiFi", label: "WiFi" },
+    { value: "Steam Bath", label: "Steam Bath" },
+    { value: "Air Conditioner", label: "Air Conditioner" },
+    { value: "Parking", label: "Parking" },
+    { value: "Locker", label: "Locker" },
+    { value: "Changing room", label: "Changing room" },
+    { value: "Lounge area", label: "Lounge area" },
+    { value: "Personal trainers", label: "Personal trainers" },
+    { value: "Massage", label: "Massage" },
+  ];
+
+  const handleSelectChange = (selectedOptions) => {
+    setSelectedFacilities(selectedOptions);
+    // Map the selected options to only store the value of each selected option
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setFormData({ services: selectedValues });
+  };
+
   // ----------------------------------------------------------------------------------
 
   const [businessPhotos, setBusinessPhotos] = useState([]);
@@ -145,8 +165,75 @@ const UpdateListing = () => {
       try {
         const croppedImg = await getCroppedImg(imageSrc, profilePhoto);
         setLogoPreview(croppedImg);
+        console.log("croppedImg :- ", croppedImg);
         setProfilePhoto(croppedImg);
         setShow(false);
+
+        let croppedBlob = croppedImg;
+        if (typeof croppedImg === "string") {
+          const byteString = atob(croppedImg.split(",")[1]);
+          const mimeString = croppedImg
+            .split(",")[0]
+            .split(":")[1]
+            .split(";")[0];
+          const ab = new ArrayBuffer(byteString.length);
+          const ia = new Uint8Array(ab);
+          for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+          croppedBlob = new Blob([ab], { type: mimeString });
+        }
+
+        if (croppedBlob) {
+          // Read the file and set the logo image
+          const reader = new FileReader();
+
+          reader.onloadend = async () => {
+            setLogoImage(croppedBlob);
+            const updatedFormData = {
+              ...formData,
+              business_logo: reader.result,
+            };
+            setFormData(updatedFormData);
+
+            try {
+              // Upload logo image and update listing data
+              const logoFormData = new FormData();
+              logoFormData.append("files", croppedBlob);
+
+              const localStorage = logoFormData.append("files", croppedBlob);
+
+              const logoResponse = await axiosInstance.post(
+                "/file-upload",
+                logoFormData
+              );
+              const logoUrl = logoResponse.data.data.fileURLs[0];
+
+              const updatedListingData = {
+                listing_id: listing_id,
+                business_logo: logoUrl,
+              };
+              await businessListingAxiosInstance.patch(
+                "/update-listing",
+                updatedListingData
+              );
+
+              toast.success("Logo updated successfully!", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
+            } catch (error) {
+              console.error("Error updating logo and listing data:", error);
+              toast.error(
+                "Error updating logo and listing data. Please try again.",
+                {
+                  position: toast.POSITION.TOP_RIGHT,
+                }
+              );
+            }
+          };
+
+          reader.readAsDataURL(croppedBlob);
+        }
       } catch (error) {
         console.error("Error cropping the image:", error);
       }
@@ -515,6 +602,7 @@ const UpdateListing = () => {
 
       setFormData({
         businessName: fetchedBusinessData.business_name || "",
+        description: fetchedBusinessData.description || "",
         address_line_1: address.address_line_1 || "",
         address_line_2: address.address_line_2 || "",
         area: address.area || "",
@@ -537,6 +625,12 @@ const UpdateListing = () => {
           )?.value || "",
         branch: address.location_name || "",
       });
+      setSelectedFacilities(
+        fetchedBusinessData.facilities?.map((facility) => ({
+          label: facility,
+          value: facility,
+        }))
+      );
       setBusinessHours(businessHoursData);
       setFaqs(faqData);
       setLogoImage(logoImg);
@@ -561,9 +655,9 @@ const UpdateListing = () => {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
         description: formData.description,
-        facilities: [selectedFacilities],
+        // facilities: selectedFacilities.map((facilities) => facilities.value),
         business_category: [selectedCategory],
-        services: formData.services,
+        services: selectedFacilities.map((facilities) => facilities.value),
         tags: formData.tags,
         social_media: socialMediaLinks.map((link) => ({
           social_media_type: link.social_media_type,
@@ -576,7 +670,7 @@ const UpdateListing = () => {
             address_line_2: formData.address_line_2,
             city: formData.city,
             state: formData.state,
-            country: formData.country,
+            country: "India",
             pin_code: formData.pin_code,
             landmark: formData.landmark,
             direction_link: formData.direction_link,
@@ -957,6 +1051,23 @@ const UpdateListing = () => {
                                 />
                               </div>
                             </div>
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">About Listing</label>
+                                <textarea
+                                  className="form-control rounded ht-150"
+                                  placeholder="Describe..."
+                                  defaultValue={""}
+                                  value={formData.description}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "description",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Categories</label>
@@ -1002,70 +1113,6 @@ const UpdateListing = () => {
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
-                                <label className="mb-1">Facilities </label>
-                                <select
-                                  className="form-control"
-                                  value={selectedFacilities}
-                                  onChange={(e) =>
-                                    setSelectedFacilities(e.target.value)
-                                  }
-                                >
-                                  <option>Select Facilities</option>
-                                  <option selected value="WiFi">
-                                    WiFi
-                                  </option>
-                                  <option value="Steam Bath">Steam Bath</option>
-                                  <option value="Air Conditioner">
-                                    Air Conditioner
-                                  </option>
-                                  <option value="Parking">Parking</option>
-                                  <option value="Locker">Locker</option>
-                                  <option value="Changing room">
-                                    Changing room
-                                  </option>
-                                  <option value="Lounge area">
-                                    Lounge area
-                                  </option>
-                                  <option value="Personal trainers">
-                                    Personal trainers
-                                  </option>
-                                  <option value="Massage">Massage</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">About Listing</label>
-                                <textarea
-                                  className="form-control rounded ht-150"
-                                  placeholder="Describe..."
-                                  defaultValue={""}
-                                  value={formData.description}
-                                  onChange={(e) =>
-                                    handleInputChange(
-                                      "description",
-                                      e.target.value
-                                    )
-                                  }
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Services</label>
-                                <TagInput
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Add Services"
-                                  value={formData.services}
-                                  onChange={(value) =>
-                                    handleInputChange("services", value)
-                                  }
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                              <div className="form-group">
                                 <label className="mb-1">Tags</label>
                                 <TagInput
                                   type="text"
@@ -1078,6 +1125,34 @@ const UpdateListing = () => {
                                 />
                               </div>
                             </div>
+
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Facilities</label>
+                                <Select
+                                  isMulti
+                                  options={facilities}
+                                  value={selectedFacilities}
+                                  onChange={handleSelectChange}
+                                  placeholder="Select Facilities"
+                                />
+                              </div>
+                            </div>
+
+                            {/* <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Services</label>
+                                <TagInput
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Add Services"
+                                  value={formData.services}
+                                  onChange={(value) =>
+                                    handleInputChange("services", value)
+                                  }
+                                />
+                              </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>
@@ -1343,9 +1418,7 @@ const UpdateListing = () => {
                             </div>
                             {/* Featured Image */}
                             <div className="col-12 mt-3">
-                              <label className="mb-1">
-                                Featured Image{" "}
-                              </label>
+                              <label className="mb-1">Featured Image </label>
                               {businessPhotos && businessPhotos.length > 0 ? (
                                 <div>
                                   <div
