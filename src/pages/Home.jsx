@@ -342,7 +342,7 @@ const Home = () => {
                       </ul>
                     </div>
                     <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="#"><i className="fas fa-shopping-basket"></i> Purchase Now</a>
+                      <a className="Goodup-price-btn" href="#"><i class="fa-regular fa-eye"></i>View More</a>
                     </div>
                   </div>
                 </div>
@@ -369,7 +369,7 @@ const Home = () => {
                       </ul>
                     </div>
                     <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="#"><i className="fas fa-shopping-basket"></i> Purchase Now</a>
+                      <a className="Goodup-price-btn" href="#"><i class="fa-regular fa-eye"></i>View More</a>
                     </div>
                   </div>
                 </div>
@@ -396,7 +396,7 @@ const Home = () => {
                       </ul>
                     </div>
                     <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="#"><i className="fas fa-shopping-basket"></i> Purchase Now</a>
+                      <a className="Goodup-price-btn" href="#"><i class="fa-regular fa-eye"></i>View More</a>
                     </div>
                   </div>
                 </div>
