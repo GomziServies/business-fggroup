@@ -28,35 +28,36 @@ const AddListing = () => {
   }, []);
 
   const [formData, setFormData] = useState({
-    businessName: "Demo",
-    address_line_1: "aaa",
-    address_line_2: "aaa",
-    area: "aa",
-    landmark: "214561",
-    city: "aaa",
-    state: "aaa",
-    pin_code: "132145",
-    contactNumber: "987654315",
-    whatsappNumber: "9876543215",
+    businessName: "",
+    description: "",
+    address_line_1: "",
+    address_line_2: "",
+    area: "",
+    landmark: "",
+    city: "",
+    state: "",
+    pin_code: "",
+    contactNumber: "",
+    whatsappNumber: "",
     services: [],
     tags: [],
-    website: "demo.url",
-    email: "demo@gmail.com",
-    branch: "demo",
+    website: "",
+    email: "",
+    branch: "",
   });
   const [businessHours, setBusinessHours] = useState([
     { day: "Mon", open: "10:00 AM", close: "07:00 PM" },
   ]);
   const [faqs, setFaqs] = useState([
-    { question: "demo", answer: "demo answer" },
-    { question: "demo1", answer: "demo1 answer" },
+    { question: "", answer: "" },
   ]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([
-    { platform: "Instagram", link: "instagram.com" },
-    { platform: "Facebook", link: "Facebook.com" },
-    { platform: "YouTube", link: "YouTube.com" },
+    { platform: "Instagram", link: "" },
+    { platform: "Facebook", link: "" },
+    { platform: "YouTube", link: "" },
   ]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedFacilities, setSelectedFacilities] = useState("");
   const [selectedBusinessType, setSelectedBusinessType] = useState("");
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -376,6 +377,8 @@ const AddListing = () => {
       const postData = {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
+        description: formData.description,
+        facilities: [selectedFacilities],
         business_category: [selectedCategory],
         business_logo: `${logoUrl}`,
         business_images: photoUrls.flat(),
@@ -732,7 +735,7 @@ const AddListing = () => {
                                 />
                               </div>
                             </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Categories</label>
                                 <select
@@ -757,7 +760,7 @@ const AddListing = () => {
                                 </select>
                               </div>
                             </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Business Type</label>
                                 <select
@@ -772,6 +775,39 @@ const AddListing = () => {
                                   <option selected value="business">
                                     Business
                                   </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Facilities </label>
+                                <select
+                                  className="form-control"
+                                  value={selectedFacilities}
+                                  onChange={(e) =>
+                                    setSelectedFacilities(e.target.value)
+                                  }
+                                >
+                                  <option>Select Facilities</option>
+                                  <option selected value="WiFi">
+                                    WiFi
+                                  </option>
+                                  <option value="Steam Bath">Steam Bath</option>
+                                  <option value="Air Conditioner">
+                                    Air Conditioner
+                                  </option>
+                                  <option value="Parking">Parking</option>
+                                  <option value="Locker">Locker</option>
+                                  <option value="Changing room">
+                                    Changing room
+                                  </option>
+                                  <option value="Lounge area">
+                                    Lounge area
+                                  </option>
+                                  <option value="Personal trainers">
+                                    Personal trainers
+                                  </option>
+                                  <option value="Massage">Massage</option>
                                 </select>
                               </div>
                             </div>
@@ -847,6 +883,20 @@ const AddListing = () => {
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
+                                <label className="mb-1">City</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter city"
+                                  value={formData.city}
+                                  onChange={(e) =>
+                                    handleInputChange("city", e.target.value)
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
                                 <label className="mb-1">State</label>
                                 <input
                                   type="text"
@@ -861,14 +911,14 @@ const AddListing = () => {
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
-                                <label className="mb-1">City</label>
+                                <label className="mb-1">Country</label>
                                 <input
                                   type="text"
                                   className="form-control rounded"
-                                  placeholder="Enter city"
-                                  value={formData.city}
+                                  placeholder="Enter Country"
+                                  value={formData.country}
                                   onChange={(e) =>
-                                    handleInputChange("city", e.target.value)
+                                    handleInputChange("country", e.target.value)
                                   }
                                 />
                               </div>
@@ -884,6 +934,23 @@ const AddListing = () => {
                                   onChange={(e) =>
                                     handleInputChange(
                                       "pin_code",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Address Link</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Address Link"
+                                  value={formData.direction_link}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "direction_link",
                                       e.target.value
                                     )
                                   }
@@ -945,12 +1012,9 @@ const AddListing = () => {
                                   type="text"
                                   className="form-control rounded"
                                   placeholder="Enter Website"
-                                  value={formData.direction_link}
+                                  value={formData.website}
                                   onChange={(e) =>
-                                    handleInputChange(
-                                      "direction_link",
-                                      e.target.value
-                                    )
+                                    handleInputChange("website", e.target.value)
                                   }
                                 />
                               </div>
@@ -1029,7 +1093,9 @@ const AddListing = () => {
                             </div>
                             {/* Featured Image */}
                             <div className="col-12 mt-3">
-                              <label className="mb-1">Featured Image ( You can select multiple image ) </label>
+                              <label className="mb-1">
+                                Featured Image ( You can select multiple image ){" "}
+                              </label>
                               {businessPhotos && businessPhotos.length > 0 ? (
                                 <div>
                                   <div

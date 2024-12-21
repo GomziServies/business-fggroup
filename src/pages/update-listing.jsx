@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
@@ -16,6 +16,8 @@ import { TagInput } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import { useLocation } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+import { Modal } from "react-bootstrap";
+import Cropper from "react-easy-crop";
 
 const UpdateListing = () => {
   const location = useLocation();
@@ -24,6 +26,7 @@ const UpdateListing = () => {
   const [formData, setFormData] = useState({
     listing_id: listing_id,
     businessName: "",
+    description: "",
     address_line_1: "",
     address_line_2: "",
     area: "",
@@ -42,8 +45,6 @@ const UpdateListing = () => {
     business_logo: "",
   });
   const [faqs, setFaqs] = useState([{ question: "", answer: "" }]);
-  const [logoImage, setLogoImage] = useState(null);
-  const [businessPhotos, setBusinessPhotos] = useState([]);
   const [businessPhotoOnlyUrl, setBusinessPhotoOnlyUrl] = useState([]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([
     { platform: "Instagram", link: "" },
@@ -51,17 +52,14 @@ const UpdateListing = () => {
     { platform: "YouTube", link: "" },
   ]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedFacilities, setSelectedFacilities] = useState("");
   const [selectedBusinessType, setSelectedBusinessType] = useState("");
   const [approvedData, setApprovedData] = useState("");
   const [businessHours, setBusinessHours] = useState([
     { day: "Mon", open: "10:00 AM", close: "7:00 PM" },
   ]);
   const [loading, setLoading] = useState(true);
-  const [logoPreview, setLogoPreview] = useState(null);
-  const [featurePreview, setFeaturePreview] = useState(null);
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
-
-  
 
   const [userData, setUserData] = useState({
     first_name: "",
@@ -77,38 +75,38 @@ const UpdateListing = () => {
     profile_image: null,
   });
 
-const getUserData = async () => {
-  try {
-    const response = await axiosInstance.get("/account/profile");
-    const userData = response.data.data;
-    if (userData) {
-      const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
+  const getUserData = async () => {
+    try {
+      const response = await axiosInstance.get("/account/profile");
+      const userData = response.data.data;
+      if (userData) {
+        const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
 
-      setUserData((prevData) => ({
-        ...prevData,
-        first_name: userData.user.first_name || "",
-        last_name: userData.user.last_name || "",
-        mobile: userData.user.mobile || "",
-        email: userData.user.email || "",
-        address_line_1: addressData.address_line_1 || "Enter Address",
-        address_line_2: addressData.address_line_2 || "",
-        city: addressData.city || "",
-        state: addressData.state || "",
-        country: addressData.country || "",
-        pin_code: addressData.pin_code || "",
-        profilePhoto:
-          "https://files.fggroup.in/" + (userData.user.profile_image || ""),
-      }));
+        setUserData((prevData) => ({
+          ...prevData,
+          first_name: userData.user.first_name || "",
+          last_name: userData.user.last_name || "",
+          mobile: userData.user.mobile || "",
+          email: userData.user.email || "",
+          address_line_1: addressData.address_line_1 || "Enter Address",
+          address_line_2: addressData.address_line_2 || "",
+          city: addressData.city || "",
+          state: addressData.state || "",
+          country: addressData.country || "",
+          pin_code: addressData.pin_code || "",
+          profilePhoto:
+            "https://files.fggroup.in/" + (userData.user.profile_image || ""),
+        }));
+      }
+    } catch (error) {
+      console.error("Error in getUserData:", error);
+      toast.error("Error in getUserData");
     }
-  } catch (error) {
-    console.error("Error in getUserData:", error);
-    toast.error("Error in getUserData");
-  }
-};
+  };
 
-useEffect(() => {
-  getUserData();
-}, []);
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -116,14 +114,276 @@ useEffect(() => {
     }, 1000);
   }, []);
 
+  // ----------------------------------------------------------------------------------
+
+  const [businessPhotos, setBusinessPhotos] = useState([]);
+  const [featurePreview, setFeaturePreview] = useState(null);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
+  const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] =
+    useState(null);
+
+  const [logoImage, setLogoImage] = useState(null);
+  const [logoPreview, setLogoPreview] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null);
+  const [businessImageSrc, setBusinessImageSrc] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [businessCrop, setBusinessCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [businessZoom, setBusinessZoom] = useState(1);
+  const [show, setShow] = useState(false);
+  const [businessShow, setBusinessShow] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState(null);
+
+  const onCropComplete = useCallback((croppedArea, profilePhoto) => {
+    setProfilePhoto(profilePhoto);
+    handleLogoChange();
+  }, []);
+
+  const handleCropComplete = async () => {
+    if (imageSrc && profilePhoto) {
+      try {
+        const croppedImg = await getCroppedImg(imageSrc, profilePhoto);
+        setLogoPreview(croppedImg);
+        setProfilePhoto(croppedImg);
+        setShow(false);
+      } catch (error) {
+        console.error("Error cropping the image:", error);
+      }
+    }
+  };
+
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleBusinessClose = () => {
+    setBusinessShow(false);
+  };
+
+  const handleCropLogoChange = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        setShow(true); // Show crop modal if cropping is needed
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleLogoChange = (event) => {
+    const file = profilePhoto;
+    // const file = event.target.files[0];
+
+    if (file instanceof File) {
+      // Ensure the file size is within the limit (2 MB)
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File size exceeds 2 MB!");
+        return;
+      }
+      // Generate a preview URL for the selected file
+      const previewUrl = URL.createObjectURL(file);
+      setLogoPreview(previewUrl);
+    }
+
+    if (file) {
+      // Read the file and set the logo image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogoImage(file);
+        setFormData((prevData) => ({
+          ...prevData,
+          business_logo: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSelectLogo = () => {
     const fileInput = document.getElementById("logoInput");
     fileInput.click();
   };
+
+  const handleBusinessPhotosChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Ensure the file size is within the limit (2 MB)
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File size exceeds 2 MB!");
+        return;
+      }
+      // Generate a preview URL for the selected file
+      const previewUrl = URL.createObjectURL(file);
+      setFeaturePreview(previewUrl);
+    }
+
+    const files = event.target.files;
+
+    if (files.length > 0) {
+      // Read and set the business photos
+      const newPhotos = [...businessPhotos];
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          newPhotos.push({ file, preview: reader.result });
+          setBusinessPhotos([...newPhotos]);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  };
+
+  // Function to handle removing a business photo
+  const handleRemoveBusinessPhoto = async (index) => {
+    const newPhotos = [...businessPhotos];
+    const removedPhoto = newPhotos.splice(index, 1)[0];
+    newPhotos.splice(index, 1);
+    setBusinessPhotos([...newPhotos]);
+
+    try {
+      const updatedRemovedPhoto = removedPhoto.replace(
+        "https://files.fggroup.in/",
+        ""
+      );
+
+      // Update listing data without the removed business photo
+      const updatedListingData = {
+        listing_id: listing_id,
+        business_images: newPhotos.map((url) =>
+          url.replace("https://files.fggroup.in/", "")
+        ),
+      };
+
+      // Make API request to update the listing data
+      await businessListingAxiosInstance.patch(
+        `/update-listing?listing_id=${listing_id}`,
+        updatedListingData
+      );
+
+      toast.success("Business photo removed successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } catch (error) {
+      console.error(
+        "Error removing business photo and updating listing data:",
+        error
+      );
+      toast.error(
+        "Error removing business photo and updating listing data. Please try again.",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+        }
+      );
+    }
+  };
+
   const handleSelectFeature = () => {
     const fileInput = document.getElementById("featureInput");
     fileInput.click();
   };
+
+  const handleCropBusinessPhoto = (event, index) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setBusinessImageSrc(reader.result);
+        setCurrentBusinessPhotoIndex(index);
+        setBusinessShow(true);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleBusinessCropComplete = async () => {
+    if (businessImageSrc && profilePhoto) {
+      try {
+        // Step 1: Crop the image
+        const croppedImg = await getCroppedImg(businessImageSrc, profilePhoto);
+
+        if (!croppedImg) {
+          console.error("Cropped image is not valid.");
+          return;
+        }
+
+        console.log("businessPhotos :- ", businessPhotos);
+        console.log("featurePreview :- ", featurePreview);
+
+        // If croppedImg is a base64 string, convert it to a Blob
+        let croppedBlob = croppedImg;
+        if (typeof croppedImg === "string") {
+          const byteString = atob(croppedImg.split(",")[1]);
+          const mimeString = croppedImg
+            .split(",")[0]
+            .split(":")[1]
+            .split(";")[0];
+          const ab = new ArrayBuffer(byteString.length);
+          const ia = new Uint8Array(ab);
+          for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+          croppedBlob = new Blob([ab], { type: mimeString });
+        }
+
+        // Step 2: Upload the cropped image
+        const photoFormData = new FormData();
+        photoFormData.append("files", croppedBlob);
+
+        const photoResponse = await axiosInstance.post(
+          "/file-upload",
+          photoFormData
+        );
+
+        // Extract the uploaded URL
+        const uploadedUrls = photoResponse.data.data.fileURLs;
+        const processedUrls = uploadedUrls.map((url) =>
+          url.replace("https://files.fggroup.in/", "")
+        );
+
+        console.log("Processed URLs: ", processedUrls);
+
+        // Combine with existing business photo URLs, ensuring only valid URLs are included
+        const validPreviousImages = businessPhotos
+          .filter(
+            (photo) =>
+              typeof photo === "string" && photo.includes("development/")
+          ) // Ensure valid development URLs
+          .map((url) => url.replace("https://files.fggroup.in/", ""));
+
+        // Step 3: Update the listing
+        const updatedListingData = {
+          listing_id: listing_id,
+          business_images: [...processedUrls, ...validPreviousImages],
+        };
+
+        console.log("Updated Listing Data: ", updatedListingData);
+
+        await businessListingAxiosInstance.patch(
+          `/update-listing?listing_id=${listing_id}`,
+          updatedListingData
+        );
+
+        toast.success("Business photo updated successfully!", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+
+        // Optional: Update local state with valid URLs
+        const fullUrls = [...validPreviousImages, ...processedUrls].map(
+          (url) => `https://files.fggroup.in/${url}`
+        );
+        setBusinessPhotos(fullUrls);
+        setBusinessShow(false);
+      } catch (error) {
+        console.error("Error updating business photo:", error);
+        toast.error("Error updating business photo. Please try again.", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    }
+  };
+
+  // ----------------------------------------------------------------------------------
 
   const handleDayChange = (index, selectedDay) => {
     const updatedBusinessHours = [...businessHours];
@@ -180,165 +440,6 @@ useEffect(() => {
     }
   };
 
-  // Function to handle business photos change
-  const handleBusinessPhotosChange = async (event) => {
-    const files = event.target.files;
-
-    if (files.length > 0) {
-      // Read and set the business photos
-      const newPhotos = [...businessPhotos];
-
-      Array.from(files).forEach(async (file) => {
-        const reader = new FileReader();
-
-        reader.onloadend = async () => {
-          // Store only the image path
-          newPhotos.push(reader.result);
-          setBusinessPhotos([...newPhotos]);
-
-          try {
-            // Upload business photo and get the URL
-            const photoFormData = new FormData();
-            photoFormData.append("files", file);
-
-            const photoResponse = await axiosInstance.post(
-              "/file-upload",
-              photoFormData
-            );
-            const photoUrl = photoResponse.data.data.fileURLs;
-
-            // Remove common prefix from the image URL
-            const updatedPhotoUrl = businessPhotos.map((url) =>
-              url.replace("https://files.fggroup.in/", "")
-            );
-            // Update listing data with the new business photo URL
-            const updatedListingData = {
-              listing_id: listing_id,
-              business_images: [...updatedPhotoUrl, ...photoUrl],
-            };
-            await businessListingAxiosInstance.patch(
-              `/update-listing?listing_id=${listing_id}`,
-              updatedListingData
-            );
-
-            toast.success("Business photo updated successfully!", {
-              position: toast.POSITION.TOP_RIGHT,
-            });
-          } catch (error) {
-            console.error(
-              "Error updating business photo and listing data:",
-              error
-            );
-            toast.error(
-              "Error updating business photo and listing data. Please try again.",
-              {
-                position: toast.POSITION.TOP_RIGHT,
-              }
-            );
-          }
-        };
-
-        reader.readAsDataURL(file);
-      });
-    }
-  };
-
-  // Function to handle removing a business photo
-  const handleRemoveBusinessPhoto = async (index) => {
-    const newPhotos = [...businessPhotos];
-    const removedPhoto = newPhotos.splice(index, 1)[0];
-    setBusinessPhotos([...newPhotos]);
-
-    try {
-      const updatedRemovedPhoto = removedPhoto.replace(
-        "https://files.fggroup.in/",
-        ""
-      );
-
-      // Update listing data without the removed business photo
-      const updatedListingData = {
-        listing_id: listing_id,
-        business_images: newPhotos.map((url) =>
-          url.replace("https://files.fggroup.in/", "")
-        ),
-      };
-
-      // Make API request to update the listing data
-      await businessListingAxiosInstance.patch(
-        `/update-listing?listing_id=${listing_id}`,
-        updatedListingData
-      );
-
-      toast.success("Business photo removed successfully!", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    } catch (error) {
-      console.error(
-        "Error removing business photo and updating listing data:",
-        error
-      );
-      toast.error(
-        "Error removing business photo and updating listing data. Please try again.",
-        {
-          position: toast.POSITION.TOP_RIGHT,
-        }
-      );
-    }
-  };
-
-  // Function to handle logo file change
-  const handleLogoChange = async (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      // Read the file and set the logo image
-      const reader = new FileReader();
-
-      reader.onloadend = async () => {
-        setLogoImage(file);
-        const updatedFormData = { ...formData, business_logo: reader.result };
-        setFormData(updatedFormData);
-
-        try {
-          // Upload logo image and update listing data
-          const logoFormData = new FormData();
-          logoFormData.append("files", file);
-
-          const localStorage = logoFormData.append("files", file);
-
-          const logoResponse = await axiosInstance.post(
-            "/file-upload",
-            logoFormData
-          );
-          const logoUrl = logoResponse.data.data.fileURLs[0];
-
-          const updatedListingData = {
-            listing_id: listing_id,
-            business_logo: logoUrl,
-          };
-          await businessListingAxiosInstance.patch(
-            "/update-listing",
-            updatedListingData
-          );
-
-          toast.success("Logo updated successfully!", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-        } catch (error) {
-          console.error("Error updating logo and listing data:", error);
-          toast.error(
-            "Error updating logo and listing data. Please try again.",
-            {
-              position: toast.POSITION.TOP_RIGHT,
-            }
-          );
-        }
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
-
   // Function to handle social media link change
   const handleSocialMediaLinkChange = (index, value) => {
     const newLinks = [...socialMediaLinks];
@@ -363,19 +464,32 @@ useEffect(() => {
       const social_media = fetchedBusinessData.social_media;
       const businessHours = fetchedBusinessData.timings || [];
       const approval_status = fetchedBusinessData.approval_status;
+      const allDays = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ];
       const businessHoursData = businessHours.map((dayData) => ({
         day: dayData.title || "",
         open: dayData.timings.length > 0 ? dayData.timings[0].from_time : "",
         close: dayData.timings.length > 0 ? dayData.timings[0].to_time : "",
       }));
-      const timesData = businessHours.reduce((acc, dayData) => {
-        acc[dayData.title] = {
+      const timesData = allDays.reduce((acc, day) => {
+        // Find data for the current day
+        const dayData = businessHours.find((item) => item.title === day);
+        acc[day] = {
           opening:
-            dayData.timings.length > 0
+            dayData && dayData.timings.length > 0
               ? dayData.timings[0].from_time
               : "Closed",
           closing:
-            dayData.timings.length > 0 ? dayData.timings[0].to_time : "Closed",
+            dayData && dayData.timings.length > 0
+              ? dayData.timings[0].to_time
+              : "Closed",
         };
         return acc;
       }, {});
@@ -445,6 +559,8 @@ useEffect(() => {
         listing_id: listing_id,
         business_type: selectedBusinessType,
         business_name: formData.businessName,
+        description: formData.description,
+        facilities: [selectedFacilities],
         business_category: [selectedCategory],
         services: formData.services,
         tags: formData.tags,
@@ -459,7 +575,7 @@ useEffect(() => {
             address_line_2: formData.address_line_2,
             city: formData.city,
             state: formData.state,
-            country: "india",
+            country: formData.country,
             pin_code: formData.pin_code,
             landmark: formData.landmark,
             direction_link: formData.direction_link,
@@ -861,7 +977,7 @@ useEffect(() => {
                                 />
                               </div>
                             </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Categories</label>
                                 <select
@@ -886,7 +1002,7 @@ useEffect(() => {
                                 </select>
                               </div>
                             </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Business Type</label>
                                 <select
@@ -901,6 +1017,39 @@ useEffect(() => {
                                   <option selected value="business">
                                     Business
                                   </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Facilities </label>
+                                <select
+                                  className="form-control"
+                                  value={selectedFacilities}
+                                  onChange={(e) =>
+                                    setSelectedFacilities(e.target.value)
+                                  }
+                                >
+                                  <option>Select Facilities</option>
+                                  <option selected value="WiFi">
+                                    WiFi
+                                  </option>
+                                  <option value="Steam Bath">Steam Bath</option>
+                                  <option value="Air Conditioner">
+                                    Air Conditioner
+                                  </option>
+                                  <option value="Parking">Parking</option>
+                                  <option value="Locker">Locker</option>
+                                  <option value="Changing room">
+                                    Changing room
+                                  </option>
+                                  <option value="Lounge area">
+                                    Lounge area
+                                  </option>
+                                  <option value="Personal trainers">
+                                    Personal trainers
+                                  </option>
+                                  <option value="Massage">Massage</option>
                                 </select>
                               </div>
                             </div>
@@ -976,6 +1125,20 @@ useEffect(() => {
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
+                                <label className="mb-1">City</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter city"
+                                  value={formData.city}
+                                  onChange={(e) =>
+                                    handleInputChange("city", e.target.value)
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
                                 <label className="mb-1">State</label>
                                 <input
                                   type="text"
@@ -990,14 +1153,14 @@ useEffect(() => {
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
-                                <label className="mb-1">City</label>
+                                <label className="mb-1">Country</label>
                                 <input
                                   type="text"
                                   className="form-control rounded"
-                                  placeholder="Enter city"
-                                  value={formData.city}
+                                  placeholder="Enter Country"
+                                  value={formData.country}
                                   onChange={(e) =>
-                                    handleInputChange("city", e.target.value)
+                                    handleInputChange("country", e.target.value)
                                   }
                                 />
                               </div>
@@ -1013,6 +1176,23 @@ useEffect(() => {
                                   onChange={(e) =>
                                     handleInputChange(
                                       "pin_code",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Address Link</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Address Link"
+                                  value={formData.direction_link}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "direction_link",
                                       e.target.value
                                     )
                                   }
@@ -1074,12 +1254,9 @@ useEffect(() => {
                                   type="text"
                                   className="form-control rounded"
                                   placeholder="Enter Website"
-                                  value={formData.direction_link}
+                                  value={formData.website}
                                   onChange={(e) =>
-                                    handleInputChange(
-                                      "direction_link",
-                                      e.target.value
-                                    )
+                                    handleInputChange("website", e.target.value)
                                   }
                                 />
                               </div>
@@ -1118,19 +1295,6 @@ useEffect(() => {
                                       cursor: "pointer",
                                     }}
                                   />
-
-                                  <IconButton
-                                    onClick={() => setLogoPreview("")}
-                                    style={{
-                                      position: "absolute",
-                                      top: 0,
-                                      right: 0,
-                                      backgroundColor:
-                                        "rgba(255, 255, 255, 0.8)",
-                                    }}
-                                  >
-                                    <DeleteIcon style={{ color: "#ff3838" }} />
-                                  </IconButton>
                                   <div className="mt-2 text-center">
                                     <button
                                       className="btn btn-primary rounded-pill px-3 py-1"
@@ -1165,80 +1329,122 @@ useEffect(() => {
                                 type="file"
                                 className="d-none"
                                 accept="image/*"
-                                onChange={handleLogoChange}
+                                // onChange={handleLogoChange}
+                                onChange={handleCropLogoChange}
                               />
                             </div>
                             {/* Featured Image */}
-                            <div className="col-12">
-                              <label className="mb-1">Featured Image</label>
-                              <div
-                                className="dropzone"
-                                id="featured-image"
-                                onClick={handleSelectFeature}
-                                style={{
-                                  border: "2px dashed #ccc",
-                                  padding: "20px",
-                                  textAlign: "center",
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <i className="fas fa-upload" />
-                                <p>Click to Featured Image</p>
-                              </div>
-
-                              <div className="row">
-                                {businessPhotos.map((photo, index) => (
+                            <div className="col-12 mt-3">
+                              <label className="mb-1">
+                                Featured Image ( You can select multiple image ){" "}
+                              </label>
+                              {businessPhotos && businessPhotos.length > 0 ? (
+                                <div>
                                   <div
-                                    key={index}
-                                    className="col-2"
+                                    className="row"
                                     style={{
-                                      position: "relative",
-                                      marginRight: "10px",
-                                      marginBottom: "10px",
+                                      border: "2px dashed #ccc",
+                                      padding: "20px",
+                                      textAlign: "center",
+                                      cursor: "pointer",
                                     }}
                                   >
-                                    <div
-                                      style={{
-                                        width: "150px",
-                                        height: "150px",
-                                      }}
-                                    >
-                                      <img
-                                        src={photo}
-                                        alt={`Business Photo ${index + 1}`}
+                                    {businessPhotos.map((photo, index) => (
+                                      <div
+                                        key={index}
                                         style={{
-                                          maxWidth: "100%",
-                                          height: "auto",
-                                          marginBottom: "5px",
-                                        }}
-                                      />
-                                      <IconButton
-                                        onClick={() =>
-                                          handleRemoveBusinessPhoto(index)
-                                        }
-                                        style={{
-                                          position: "absolute",
-                                          top: 0,
-                                          right: 0,
-                                          backgroundColor:
-                                            "rgba(255, 255, 255, 0.8)",
+                                          width: "200px",
+                                          position: "relative",
+                                          marginBottom: "10px",
                                         }}
                                       >
-                                        <DeleteIcon
-                                          style={{ color: "#ff3838" }}
-                                        />
-                                      </IconButton>
-                                    </div>
+                                        <div
+                                          style={{
+                                            width: "100%",
+                                            height: "auto",
+                                          }}
+                                        >
+                                          <img
+                                            src={
+                                              photo.preview
+                                                ? photo.preview
+                                                : photo
+                                            }
+                                            alt={`Business Photo ${index + 1}`}
+                                            style={{
+                                              maxWidth: "100%",
+                                              height: "auto",
+                                              marginBottom: "5px",
+                                            }}
+                                          />
+                                          <IconButton
+                                            onClick={() =>
+                                              handleRemoveBusinessPhoto(index)
+                                            }
+                                            className="px-1 py-1"
+                                            style={{
+                                              position: "absolute",
+                                              top: 4,
+                                              right: 15,
+                                              backgroundColor:
+                                                "rgba(255, 255, 255, 0.8)",
+                                            }}
+                                          >
+                                            <DeleteIcon
+                                              style={{ color: "#ff3838" }}
+                                            />
+                                          </IconButton>
+                                          <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={(event) =>
+                                              handleCropBusinessPhoto(
+                                                event,
+                                                index
+                                              )
+                                            }
+                                            style={{ display: "none" }}
+                                            id={`photoInput-${index}`}
+                                          />
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
-                                ))}
-                              </div>
+                                  <div className="mt-2 text-center">
+                                    <button
+                                      className="btn btn-primary rounded-pill px-3 py-1"
+                                      onClick={handleSelectFeature}
+                                    >
+                                      Add Feature Image
+                                    </button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div
+                                  className="dropzone"
+                                  id="featured-image"
+                                  onClick={handleSelectFeature}
+                                  style={{
+                                    border: "2px dashed #ccc",
+                                    padding: "20px",
+                                    textAlign: "center",
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  <i className="fas fa-upload" />
+                                  <p>Click to Featured Image</p>
+                                </div>
+                              )}
+                              <label className="smart-text">
+                                Maximum file size per Image: 2 MB.
+                              </label>
                               <input
                                 id="featureInput"
                                 type="file"
                                 accept="image/*"
                                 className="d-none"
-                                onChange={handleBusinessPhotosChange}
-                                multiple
+                                onChange={handleCropBusinessPhoto}
+                                // multiple
                                 sx={{ mt: 2, mb: 2 }}
                               />
                             </div>
@@ -1327,7 +1533,6 @@ useEffect(() => {
                           ))}
                         </div>
                       </div>
-
                       <div className="dashboard-list-wraps-body py-3 px-3">
                         <div className="row">
                           <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
@@ -1360,7 +1565,6 @@ useEffect(() => {
                           </div>
                         </div>
                       </div>
-
                       <div>
                         <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                           <div className="dashboard-list-wraps-flx">
@@ -1491,8 +1695,108 @@ useEffect(() => {
         </div>
       </>
       <ToastContainer />
+
+      <Modal show={show} onHide={handleClose} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Crop Logo Image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={{ position: "relative", width: "100%", height: 400 }}>
+            <Cropper
+              image={imageSrc}
+              crop={crop}
+              zoom={zoom}
+              aspect={8 / 8}
+              onCropChange={setCrop}
+              onCropComplete={onCropComplete}
+              onZoomChange={setZoom}
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={handleCropComplete}
+            style={{ backgroundColor: "#007bff", borderColor: "#007bff" }}
+          >
+            Crop Image
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={businessShow}
+        onHide={handleBusinessClose}
+        size="lg"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Crop Business Image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={{ position: "relative", width: "100%", height: 400 }}>
+            <Cropper
+              image={businessImageSrc}
+              crop={businessCrop}
+              zoom={businessZoom}
+              aspect={12 / 8}
+              onCropChange={setBusinessCrop}
+              onCropComplete={onCropComplete}
+              onZoomChange={setBusinessZoom}
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleBusinessClose}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={handleBusinessCropComplete}
+            style={{ backgroundColor: "#007bff", borderColor: "#007bff" }}
+          >
+            Crop Image
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 export default UpdateListing;
+
+const createImage = (url) =>
+  new Promise((resolve, reject) => {
+    const image = new Image();
+    image.addEventListener("load", () => resolve(image));
+    image.addEventListener("error", (error) => reject(error));
+    image.src = url;
+  });
+
+async function getCroppedImg(imageSrc, pixelCrop) {
+  const image = await createImage(imageSrc);
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) return null;
+
+  canvas.width = pixelCrop.width;
+  canvas.height = pixelCrop.height;
+
+  ctx.drawImage(
+    image,
+    pixelCrop.x,
+    pixelCrop.y,
+    pixelCrop.width,
+    pixelCrop.height,
+    0,
+    0,
+    pixelCrop.width,
+    pixelCrop.height
+  );
+
+  return canvas.toDataURL("image/jpeg");
+}

@@ -20,7 +20,7 @@ const HomeRecentActivity = () => {
           rating: "desc",
         },
         page: 1,
-        limit: 10,
+        limit: 20,
       };
 
       const response = await businessListingAxiosInstance.post(
