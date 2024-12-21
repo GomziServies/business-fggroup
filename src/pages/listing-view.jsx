@@ -130,21 +130,18 @@ const ListingView = () => {
       });
 
       toast.success(
-        `Business ${
-          isFavorite ? "removed from" : "added to"
+        `Business ${isFavorite ? "removed from" : "added to"
         } favorites successfully`
       );
 
       setIsFavorite(!isFavorite);
     } catch (error) {
       toast.error(
-        `Error Have to login for ${
-          isFavorite ? "removing" : "adding"
+        `Error Have to login for ${isFavorite ? "removing" : "adding"
         } business to favorites`
       );
       console.error(
-        `Error Have to login for ${
-          isFavorite ? "removing" : "adding"
+        `Error Have to login for ${isFavorite ? "removing" : "adding"
         } business to favorites:`,
         error
       );
@@ -752,7 +749,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                              "00:00" &&
+                                            "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -1123,7 +1120,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                        business.review_stats.average_rating
+                                          business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}

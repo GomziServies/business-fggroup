@@ -591,12 +591,6 @@ const AddListing = () => {
             style={{ background: "red url(images/cover.jpg) no-repeat" }}
             data-overlay={3}
           >
-            <div className="abs-list-sec">
-              <a href="dashboard-add-listing.html" className="add-list-btn">
-                <i className="fas fa-plus me-2" />
-                Add Listing
-              </a>
-            </div>
             <div className="container">
               <div className="row">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -648,7 +642,7 @@ const AddListing = () => {
             <div id="MobNav" className="text-start">
               <div className="goodup-dashboard-nav sticky-top">
                 <div className="goodup-dashboard-inner">
-                  <ul data-submenu-title="Main Navigation">
+                  <ul>
                     <li>
                       <Link to="/listing-list">
                         <i className="lni lni-files me-2" />
@@ -684,21 +678,6 @@ const AddListing = () => {
                 <div className="row">
                   <div className="colxl-12 col-lg-12 col-md-12">
                     <h1 className="ft-medium">Add Listing</h1>
-                    <nav aria-label="breadcrumb">
-                      <ol className="breadcrumb">
-                        <li className="breadcrumb-item text-muted">
-                          <a href="#">Home</a>
-                        </li>
-                        <li className="breadcrumb-item text-muted">
-                          <a href="#">Dashboard</a>
-                        </li>
-                        <li className="breadcrumb-item">
-                          <a href="#" className="theme-cl">
-                            Add Listing
-                          </a>
-                        </li>
-                      </ol>
-                    </nav>
                   </div>
                 </div>
               </div>
@@ -824,6 +803,34 @@ const AddListing = () => {
                                       "description",
                                       e.target.value
                                     )
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Services</label>
+                                <TagInput
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Add Services"
+                                  value={formData.services}
+                                  onChange={(value) =>
+                                    handleInputChange("services", value)
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Tags</label>
+                                <TagInput
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Add Tags"
+                                  value={formData.tags}
+                                  onChange={(value) =>
+                                    handleInputChange("tags", value)
                                   }
                                 />
                               </div>
@@ -1094,7 +1101,7 @@ const AddListing = () => {
                             {/* Featured Image */}
                             <div className="col-12 mt-3">
                               <label className="mb-1">
-                                Featured Image ( You can select multiple image ){" "}
+                                Featured Image {" "}
                               </label>
                               {businessPhotos && businessPhotos.length > 0 ? (
                                 <div>
@@ -1299,41 +1306,7 @@ const AddListing = () => {
                           ))}
                         </div>
                       </div>
-
-                      <div className="dashboard-list-wraps-body py-3 px-3">
-                        <div className="row">
-                          <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                            <div className="form-group">
-                              <label className="mb-1">Services</label>
-                              <TagInput
-                                type="text"
-                                className="form-control rounded"
-                                placeholder="Add Services"
-                                value={formData.services}
-                                onChange={(value) =>
-                                  handleInputChange("services", value)
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                            <div className="form-group">
-                              <label className="mb-1">Tags</label>
-                              <TagInput
-                                type="text"
-                                className="form-control rounded"
-                                placeholder="Add Tags"
-                                value={formData.tags}
-                                onChange={(value) =>
-                                  handleInputChange("tags", value)
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div>
+                      <div className="dashboard-list-wraps bg-white rounded mb-4">
                         <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                           <div className="dashboard-list-wraps-flx">
                             <h4 className="mb-0 ft-medium fs-md">
@@ -1488,7 +1461,7 @@ const AddListing = () => {
           <Button
             variant="primary"
             onClick={handleCropComplete}
-            style={{ backgroundColor: "#007bff", borderColor: "#007bff" }}
+            style={{ backgroundColor: "#007bff", borderColor: "#007bff", color: 'white' }}
           >
             Crop Image
           </Button>
@@ -1524,7 +1497,7 @@ const AddListing = () => {
           <Button
             variant="primary"
             onClick={handleBusinessCropComplete}
-            style={{ backgroundColor: "#007bff", borderColor: "#007bff" }}
+            style={{ backgroundColor: "#007bff", borderColor: "#007bff", color: 'white' }}
           >
             Crop Image
           </Button>

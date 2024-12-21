@@ -210,12 +210,6 @@ const Profile = () => {
             style={{ background: "red url(images/cover.jpg) no-repeat" }}
             data-overlay={3}
           >
-            <div className="abs-list-sec">
-              <a href="dashboard-add-listing.html" className="add-list-btn">
-                <i className="fas fa-plus me-2" />
-                Add Listing
-              </a>
-            </div>
             <div className="container">
               <div className="row">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -266,7 +260,7 @@ const Profile = () => {
             <div id="MobNav" className="text-start">
               <div className="goodup-dashboard-nav sticky-top">
                 <div className="goodup-dashboard-inner">
-                  <ul data-submenu-title="Main Navigation">
+                  <ul>
                     <li>
                       <Link to="/listing-list">
                         <i className="lni lni-files me-2" />
@@ -302,18 +296,6 @@ const Profile = () => {
                 <div className="row">
                   <div className="colxl-12 col-lg-12 col-md-12">
                     <h1 className="ft-medium">Profile Info</h1>
-                    <nav aria-label="breadcrumb">
-                      <ol className="breadcrumb">
-                        <li className="breadcrumb-item text-muted">
-                          <a href="#">Home</a>
-                        </li>
-                        <li className="breadcrumb-item">
-                          <a href="#" className="theme-cl">
-                            My Profile
-                          </a>
-                        </li>
-                      </ol>
-                    </nav>
                   </div>
                 </div>
               </div>

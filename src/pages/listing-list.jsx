@@ -256,7 +256,7 @@ const ListingList = () => {
             <div id="MobNav" className="text-start">
               <div className="goodup-dashboard-nav sticky-top">
                 <div className="goodup-dashboard-inner">
-                  <ul data-submenu-title="Main Navigation">
+                  <ul>
                     <li className="active">
                       <Link to="/listing-list">
                         <i className="lni lni-files me-2" />

@@ -49,7 +49,7 @@ const AffordableList = () => {
                   <div className="article_detail_wrapss single_article_wrap format-standard">
                     <div className="article_body_wrap">
                       <div className="article_featured_image">
-                        <img className="img-fluid" src="images/b-1.webp" alt="" />
+                        <img className="img-fluid" src="images/affordable-list.webp" alt="" />
                       </div>
                       <h2 className="post-title">
                         List of Advance Features and Support with Goodup
