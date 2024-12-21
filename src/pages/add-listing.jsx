@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
@@ -15,6 +15,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { IconButton } from "@mui/material";
 import { TagInput } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
+import { Modal } from "react-bootstrap";
+import Cropper from "react-easy-crop";
 
 const AddListing = () => {
   const [loading, setLoading] = useState(true);
@@ -49,8 +51,6 @@ const AddListing = () => {
     { question: "demo", answer: "demo answer" },
     { question: "demo1", answer: "demo1 answer" },
   ]);
-  const [logoImage, setLogoImage] = useState(null);
-  const [businessPhotos, setBusinessPhotos] = useState([]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([
     { platform: "Instagram", link: "instagram.com" },
     { platform: "Facebook", link: "Facebook.com" },
@@ -60,10 +60,175 @@ const AddListing = () => {
   const [selectedBusinessType, setSelectedBusinessType] = useState("");
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [logoPreview, setLogoPreview] = useState(null);
-  const [featurePreview, setFeaturePreview] = useState(null);
 
-  
+  // ----------------------------------------------------------------------------------
+
+  const [businessPhotos, setBusinessPhotos] = useState([]);
+  const [featurePreview, setFeaturePreview] = useState(null);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
+  const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] =
+    useState(null);
+
+  const [logoImage, setLogoImage] = useState(null);
+  const [logoPreview, setLogoPreview] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null);
+  const [businessImageSrc, setBusinessImageSrc] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [businessCrop, setBusinessCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [businessZoom, setBusinessZoom] = useState(1);
+  const [show, setShow] = useState(false);
+  const [businessShow, setBusinessShow] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState(null);
+
+  const onCropComplete = useCallback((croppedArea, profilePhoto) => {
+    setProfilePhoto(profilePhoto);
+    handleLogoChange();
+  }, []);
+
+  const handleCropComplete = async () => {
+    if (imageSrc && profilePhoto) {
+      try {
+        const croppedImg = await getCroppedImg(imageSrc, profilePhoto);
+        setLogoPreview(croppedImg);
+        setProfilePhoto(croppedImg);
+        setShow(false);
+      } catch (error) {
+        console.error("Error cropping the image:", error);
+      }
+    }
+  };
+
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleBusinessClose = () => {
+    setBusinessShow(false);
+  };
+
+  const handleCropLogoChange = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        setShow(true); // Show crop modal if cropping is needed
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleLogoChange = (event) => {
+    const file = profilePhoto;
+    // const file = event.target.files[0];
+
+    if (file) {
+      // Ensure the file size is within the limit (2 MB)
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File size exceeds 2 MB!");
+        return;
+      }
+      // Generate a preview URL for the selected file
+      const previewUrl = URL.createObjectURL(file);
+      setLogoPreview(previewUrl);
+    }
+
+    if (file) {
+      // Read the file and set the logo image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogoImage(file);
+        setFormData((prevData) => ({
+          ...prevData,
+          business_logo: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSelectLogo = () => {
+    const fileInput = document.getElementById("logoInput");
+    fileInput.click();
+  };
+
+  const handleBusinessPhotosChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // Ensure the file size is within the limit (2 MB)
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File size exceeds 2 MB!");
+        return;
+      }
+      // Generate a preview URL for the selected file
+      const previewUrl = URL.createObjectURL(file);
+      setFeaturePreview(previewUrl);
+    }
+
+    const files = event.target.files;
+
+    if (files.length > 0) {
+      // Read and set the business photos
+      const newPhotos = [...businessPhotos];
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          newPhotos.push({ file, preview: reader.result });
+          setBusinessPhotos([...newPhotos]);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  };
+
+  // Function to handle removing a business photo
+  const handleRemoveBusinessPhoto = (index) => {
+    const newPhotos = [...businessPhotos];
+    newPhotos.splice(index, 1);
+    setBusinessPhotos([...newPhotos]);
+  };
+
+  const handleSelectFeature = () => {
+    const fileInput = document.getElementById("featureInput");
+    fileInput.click();
+  };
+
+  const handleCropBusinessPhoto = (event, index) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setBusinessImageSrc(reader.result);
+        setCurrentBusinessPhotoIndex(index);
+        setBusinessShow(true);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleBusinessCropComplete = async () => {
+    if (businessImageSrc && profilePhoto) {
+      try {
+        const croppedImg = await getCroppedImg(businessImageSrc, profilePhoto);
+        const updatedPhotos = [...businessPhotos];
+        if (currentPhotoIndex !== null) {
+          updatedPhotos[currentPhotoIndex] = {
+            file: null, // Set the cropped file if needed
+            preview: croppedImg,
+          };
+        } else {
+          updatedPhotos.push({ file: null, preview: croppedImg });
+        }
+        setBusinessPhotos(updatedPhotos);
+        setFeaturePreview(croppedImg); // Optional: update preview
+        setBusinessShow(false); // Close the modal
+      } catch (error) {
+        console.error("Error cropping the business photo:", error);
+      }
+    }
+  };
+
+  // ----------------------------------------------------------------------------------
 
   const [userData, setUserData] = useState({
     first_name: "",
@@ -79,38 +244,38 @@ const AddListing = () => {
     profile_image: null,
   });
 
-const getUserData = async () => {
-  try {
-    const response = await axiosInstance.get("/account/profile");
-    const userData = response.data.data;
-    if (userData) {
-      const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
+  const getUserData = async () => {
+    try {
+      const response = await axiosInstance.get("/account/profile");
+      const userData = response.data.data;
+      if (userData) {
+        const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
 
-      setUserData((prevData) => ({
-        ...prevData,
-        first_name: userData.user.first_name || "",
-        last_name: userData.user.last_name || "",
-        mobile: userData.user.mobile || "",
-        email: userData.user.email || "",
-        address_line_1: addressData.address_line_1 || "Enter Address",
-        address_line_2: addressData.address_line_2 || "",
-        city: addressData.city || "",
-        state: addressData.state || "",
-        country: addressData.country || "",
-        pin_code: addressData.pin_code || "",
-        profilePhoto:
-          "https://files.fggroup.in/" + (userData.user.profile_image || ""),
-      }));
+        setUserData((prevData) => ({
+          ...prevData,
+          first_name: userData.user.first_name || "",
+          last_name: userData.user.last_name || "",
+          mobile: userData.user.mobile || "",
+          email: userData.user.email || "",
+          address_line_1: addressData.address_line_1 || "Enter Address",
+          address_line_2: addressData.address_line_2 || "",
+          city: addressData.city || "",
+          state: addressData.state || "",
+          country: addressData.country || "",
+          pin_code: addressData.pin_code || "",
+          profilePhoto:
+            "https://files.fggroup.in/" + (userData.user.profile_image || ""),
+        }));
+      }
+    } catch (error) {
+      console.error("Error in getUserData:", error);
+      toast.error("Error in getUserData");
     }
-  } catch (error) {
-    console.error("Error in getUserData:", error);
-    toast.error("Error in getUserData");
-  }
-};
+  };
 
-useEffect(() => {
-  getUserData();
-}, []);
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   const handleDayChange = (index, selectedDay) => {
     const updatedBusinessHours = [...businessHours];
@@ -164,71 +329,6 @@ useEffect(() => {
         ...prevState,
         [field]: value,
       }));
-    }
-  };
-
-  // Function to handle business photos change
-  const handleBusinessPhotosChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Ensure the file size is within the limit (2 MB)
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      // Generate a preview URL for the selected file
-      const previewUrl = URL.createObjectURL(file);
-      setFeaturePreview(previewUrl);
-    }
-
-    const files = event.target.files;
-
-    if (files.length > 0) {
-      // Read and set the business photos
-      const newPhotos = [...businessPhotos];
-      Array.from(files).forEach((file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          newPhotos.push({ file, preview: reader.result });
-          setBusinessPhotos([...newPhotos]);
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-  };
-
-  // Function to handle removing a business photo
-  const handleRemoveBusinessPhoto = (index) => {
-    const newPhotos = [...businessPhotos];
-    newPhotos.splice(index, 1);
-    setBusinessPhotos([...newPhotos]);
-  };
-
-  // Function to handle logo file change
-  const handleLogoChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Ensure the file size is within the limit (2 MB)
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      // Generate a preview URL for the selected file
-      const previewUrl = URL.createObjectURL(file);
-      setLogoPreview(previewUrl);
-    }
-
-    if (file) {
-      // Read the file and set the logo image
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setLogoImage(file);
-        setFormData((prevData) => ({
-          ...prevData,
-          business_logo: reader.result,
-        }));
-      };
-      reader.readAsDataURL(file);
     }
   };
 
@@ -343,15 +443,6 @@ useEffect(() => {
     }
   };
 
-  const handleSelectLogo = () => {
-    const fileInput = document.getElementById("logoInput");
-    fileInput.click();
-  };
-  const handleSelectFeature = () => {
-    const fileInput = document.getElementById("featureInput");
-    fileInput.click();
-  };
-
   const handlebusinessLogoChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -464,8 +555,8 @@ useEffect(() => {
       open: times[day].opening,
       close: times[day].closing,
     }));
-    
-    setBusinessHours(allDaysTime)
+
+    setBusinessHours(allDaysTime);
   };
 
   return (
@@ -508,16 +599,26 @@ useEffect(() => {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="dashboard-head-author-clicl">
                     <div className="dashboard-head-author-thumb">
-                      <img src={`${userData.profilePhoto}`} className="img-fluid" alt="" />
+                      <img
+                        src={`${userData.profilePhoto}`}
+                        className="img-fluid"
+                        alt=""
+                      />
                     </div>
                     <div className="dashboard-head-author-caption">
                       <div className="dashploio">
-                        <h4>{userData.first_name + ' ' + userData.last_name}</h4>
+                        <h4>
+                          {userData.first_name + " " + userData.last_name}
+                        </h4>
                       </div>
                       <div className="dashploio">
                         <span className="agd-location">
                           <i className="lni lni-map-marker me-1" />
-                          {userData?.city + ', ' + userData?.state + ', ' + userData.country}
+                          {userData?.city +
+                            ", " +
+                            userData?.state +
+                            ", " +
+                            userData.country}
                         </span>
                       </div>
                     </div>
@@ -922,80 +1023,128 @@ useEffect(() => {
                                 type="file"
                                 className="d-none"
                                 accept="image/*"
-                                onChange={handleLogoChange}
+                                // onChange={handleLogoChange}
+                                onChange={handleCropLogoChange}
                               />
                             </div>
                             {/* Featured Image */}
-                            <div className="col-12">
-                              <label className="mb-1">Featured Image</label>
-                              <div
-                                className="dropzone"
-                                id="featured-image"
-                                onClick={handleSelectFeature}
-                                style={{
-                                  border: "2px dashed #ccc",
-                                  padding: "20px",
-                                  textAlign: "center",
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <i className="fas fa-upload" />
-                                <p>Click to Featured Image</p>
-                              </div>
-
-                              <div className="row">
-                                {businessPhotos.map((photo, index) => (
+                            <div className="col-12 mt-3">
+                              <label className="mb-1">Featured Image ( You can select multiple image ) </label>
+                              {businessPhotos && businessPhotos.length > 0 ? (
+                                <div>
                                   <div
-                                    key={index}
-                                    className="col-2"
+                                    className="row"
                                     style={{
-                                      position: "relative",
-                                      marginRight: "10px",
-                                      marginBottom: "10px",
+                                      border: "2px dashed #ccc",
+                                      padding: "20px",
+                                      textAlign: "center",
+                                      cursor: "pointer",
                                     }}
                                   >
-                                    <div
-                                      style={{
-                                        width: "150px",
-                                        height: "150px",
-                                      }}
-                                    >
-                                      <img
-                                        src={photo.preview}
-                                        alt={`Business Photo ${index + 1}`}
+                                    {businessPhotos.map((photo, index) => (
+                                      <div
+                                        key={index}
                                         style={{
-                                          maxWidth: "100%",
-                                          height: "auto",
-                                          marginBottom: "5px",
-                                        }}
-                                      />
-                                      <IconButton
-                                        onClick={() =>
-                                          handleRemoveBusinessPhoto(index)
-                                        }
-                                        style={{
-                                          position: "absolute",
-                                          top: 0,
-                                          right: 0,
-                                          backgroundColor:
-                                            "rgba(255, 255, 255, 0.8)",
+                                          width: "200px",
+                                          position: "relative",
+                                          marginBottom: "10px",
                                         }}
                                       >
-                                        <DeleteIcon
-                                          style={{ color: "#ff3838" }}
-                                        />
-                                      </IconButton>
-                                    </div>
+                                        <div
+                                          style={{
+                                            width: "100%",
+                                            height: "auto",
+                                          }}
+                                        >
+                                          <img
+                                            src={photo.preview}
+                                            alt={`Business Photo ${index + 1}`}
+                                            style={{
+                                              maxWidth: "100%",
+                                              height: "auto",
+                                              marginBottom: "5px",
+                                            }}
+                                          />
+                                          <IconButton
+                                            onClick={() =>
+                                              handleRemoveBusinessPhoto(index)
+                                            }
+                                            className="px-1 py-1"
+                                            style={{
+                                              position: "absolute",
+                                              top: 4,
+                                              right: 15,
+                                              backgroundColor:
+                                                "rgba(255, 255, 255, 0.8)",
+                                            }}
+                                          >
+                                            <DeleteIcon
+                                              style={{ color: "#ff3838" }}
+                                            />
+                                          </IconButton>
+                                          <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={(event) =>
+                                              handleCropBusinessPhoto(
+                                                event,
+                                                index
+                                              )
+                                            }
+                                            style={{ display: "none" }}
+                                            id={`photoInput-${index}`}
+                                          />
+                                          <label
+                                            htmlFor={`photoInput-${index}`}
+                                            style={{
+                                              cursor: "pointer",
+                                              color: "#007bff",
+                                              textDecoration: "underline",
+                                              marginTop: "5px",
+                                              display: "block",
+                                            }}
+                                          >
+                                            Edit
+                                          </label>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
-                                ))}
-                              </div>
+                                  <div className="mt-2 text-center">
+                                    <button
+                                      className="btn btn-primary rounded-pill px-3 py-1"
+                                      onClick={handleSelectFeature}
+                                    >
+                                      Add Feature Image
+                                    </button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div
+                                  className="dropzone"
+                                  id="featured-image"
+                                  onClick={handleSelectFeature}
+                                  style={{
+                                    border: "2px dashed #ccc",
+                                    padding: "20px",
+                                    textAlign: "center",
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  <i className="fas fa-upload" />
+                                  <p>Click to Featured Image</p>
+                                </div>
+                              )}
+                              <label className="smart-text">
+                                Maximum file size per Image: 2 MB.
+                              </label>
                               <input
                                 id="featureInput"
                                 type="file"
                                 accept="image/*"
                                 className="d-none"
-                                onChange={handleBusinessPhotosChange}
-                                multiple
+                                onChange={handleCropBusinessPhoto}
+                                // multiple
                                 sx={{ mt: 2, mb: 2 }}
                               />
                             </div>
@@ -1248,8 +1397,108 @@ useEffect(() => {
         </div>
       </>
       <ToastContainer />
+
+      <Modal show={show} onHide={handleClose} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Crop Logo Image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={{ position: "relative", width: "100%", height: 400 }}>
+            <Cropper
+              image={imageSrc}
+              crop={crop}
+              zoom={zoom}
+              aspect={8 / 8}
+              onCropChange={setCrop}
+              onCropComplete={onCropComplete}
+              onZoomChange={setZoom}
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={handleCropComplete}
+            style={{ backgroundColor: "#007bff", borderColor: "#007bff" }}
+          >
+            Crop Image
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={businessShow}
+        onHide={handleBusinessClose}
+        size="lg"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Crop Business Image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={{ position: "relative", width: "100%", height: 400 }}>
+            <Cropper
+              image={businessImageSrc}
+              crop={businessCrop}
+              zoom={businessZoom}
+              aspect={12 / 8}
+              onCropChange={setBusinessCrop}
+              onCropComplete={onCropComplete}
+              onZoomChange={setBusinessZoom}
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleBusinessClose}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={handleBusinessCropComplete}
+            style={{ backgroundColor: "#007bff", borderColor: "#007bff" }}
+          >
+            Crop Image
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 export default AddListing;
+
+const createImage = (url) =>
+  new Promise((resolve, reject) => {
+    const image = new Image();
+    image.addEventListener("load", () => resolve(image));
+    image.addEventListener("error", (error) => reject(error));
+    image.src = url;
+  });
+
+async function getCroppedImg(imageSrc, pixelCrop) {
+  const image = await createImage(imageSrc);
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) return null;
+
+  canvas.width = pixelCrop.width;
+  canvas.height = pixelCrop.height;
+
+  ctx.drawImage(
+    image,
+    pixelCrop.x,
+    pixelCrop.y,
+    pixelCrop.width,
+    pixelCrop.height,
+    0,
+    0,
+    pixelCrop.width,
+    pixelCrop.height
+  );
+
+  return canvas.toDataURL("image/jpeg");
+}
