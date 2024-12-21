@@ -1,28 +1,3 @@
-/*
-* Theme Name: Goodup Business Directory & Listing HTML Template
-* Author: Themezhub
-* Version: 1.1
-* Last Change: 23 Apr 2023
-  Author URI    : https://themezhub.com/
--------------------------------------------------------------------*/
-/*------------- List Of Table -----------
-# CSS Document
-# Fonts
-# Page Loader
-# Global Settings
-# Header  & Navigation Bar Styles
-# Homes Banner Design
-# Listing Elements
-# Goodup Search Options
-# Listing Detail Page
-# General Features Designs
-# GoodUp User Dashboard
-# Blog Designs
-# Footer Design Start   
-# Responsiveness Start
-# Bottom To top Button Design
-------------- List Of Table ----------*/
-
 /* CSS Document */
 @import url(animation.css);
 @import url(bootstrap.min.css);
@@ -1785,7 +1760,7 @@ nav a:hover {
   padding: 23px 18px;
   display: inline-block;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 15px;
   color: #202838;
 }
 .nav-menu.nav-menu-social > li > a {
@@ -8572,6 +8547,7 @@ h3.pa-name {
 .single_widgets.widget_thumb_post ul li .right .feed-title {
   display: block;
   overflow: hidden;
+  color: #34495e;
   letter-spacing: 0;
   font-weight: 600;
   font-size: 15px;
@@ -8730,8 +8706,8 @@ img.img-footer.small {
 }
 h4.widget_title {
   margin-bottom: 10px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: bold;
   text-transform: capitalize;
 }
 .footer_widget ul {
@@ -8750,7 +8726,7 @@ ul.list-inline li {
 }
 .footer_widget ul li a {
   color: #60626a;
-  font-size: 14px;
+  font-size: 16px;
 }
 .light-footer .footer-bottom {
   background: #ffffff;
@@ -9371,4 +9347,23 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 
 .featured-wraps {
   padding: 70px 0 20px !important;
+}
+
+.article_detail_wrapss blockquote {
+  background: #f7f9fc;
+  padding: 28px 28px 28px 100px;
+  margin: 50px 0;
+  position: relative;
+}
+.article_detail_wrapss blockquote .icon {
+  color: #03b97c;
+  position: absolute;
+  font-size: 28px;
+  line-height: 28px;
+  left: 35px;
+  top: 42%;
+}
+.article_detail_wrapss blockquote .name {
+  color: #000c35;
+  margin: 12px 0 0;
 }

@@ -7,7 +7,7 @@ function Footer() {
         <div className="footer-middle">
           <div className="container">
             <div className="row">
-              <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+              <div className="col-xl-4 col-lg-4 col-md-4">
                 <div className="footer_widget">
                   <div className="d-flex align-items-center">
                     <img
@@ -18,39 +18,46 @@ function Footer() {
                     <h5 className="ps-2 mb-0">FG Group</h5>
                   </div>
                   <div className="address mt-2">
-                    7742 Sadar Street Range Road, USA
-                    <br />
-                    United Kingdom GHQ11
+                    <p>2, Abhushan Bunglows, Near Alkapuri Char Rasta, Katargam, Surat-395004</p>
                   </div>
-                  <div className="address mt-3">
-                    40 568 423 6597
-                    <br />
-                    support@Goodup.com
+                  <div className="address mt-2">
+                    <p>+91 63540 51487</p>
                   </div>
+                  <div className="address mt-2">
+                    <p>fitnesswithgomzi@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-2 col-lg-2 col-md-2">
+                <div className="footer_widget">
+                  <h4 className="widget_title">Links</h4>
+                  <ul className="footer-menu">
+                    <li>
+                      <a href="/">Home</a>
+                    </li>
+                    <li>
+                      <a href="/listing-list">Listing</a>
+                    </li>
+                  </ul>
                   <div className="address mt-2">
                     <ul className="list-inline">
                       <li className="list-inline-item">
-                        <a href="#" className="theme-cl">
+                        <a href="https://www.facebook.com/gajani2/" className="theme-cl">
                           <i className="lni lni-facebook-filled" />
                         </a>
                       </li>
                       <li className="list-inline-item">
-                        <a href="#" className="theme-cl">
-                          <i className="lni lni-twitter-filled" />
-                        </a>
-                      </li>
-                      <li className="list-inline-item">
-                        <a href="#" className="theme-cl">
+                        <a href="https://www.youtube.com/channel/UCLyvtq55YZORdV-SN8OQSzQ" className="theme-cl">
                           <i className="lni lni-youtube" />
                         </a>
                       </li>
                       <li className="list-inline-item">
-                        <a href="#" className="theme-cl">
+                        <a href="https://www.instagram.com/fitnesswithgomzi/" className="theme-cl">
                           <i className="lni lni-instagram-filled" />
                         </a>
                       </li>
                       <li className="list-inline-item">
-                        <a href="#" className="theme-cl">
+                        <a href="https://www.linkedin.com/in/dt-gautam-jani-561a50161/" className="theme-cl">
                           <i className="lni lni-linkedin-original" />
                         </a>
                       </li>
@@ -58,89 +65,10 @@ function Footer() {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+              <div className="col-lg-6">
                 <div className="footer_widget">
-                  <h4 className="widget_title">Main Navigation</h4>
-                  <ul className="footer-menu">
-                    <li>
-                      <a href="#">Explore Listings</a>
-                    </li>
-                    <li>
-                      <a href="#">Browse Authors</a>
-                    </li>
-                    <li>
-                      <a href="#">Submit Listings</a>
-                    </li>
-                    <li>
-                      <a href="#">Shortlisted</a>
-                    </li>
-                    <li>
-                      <a href="#">Dashboard</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                <div className="footer_widget">
-                  <h4 className="widget_title">Business Owners</h4>
-                  <ul className="footer-menu">
-                    <li>
-                      <a href="#">Browse Categories</a>
-                    </li>
-                    <li>
-                      <a href="#">Payment Links</a>
-                    </li>
-                    <li>
-                      <a href="#">Saved Places</a>
-                    </li>
-                    <li>
-                      <a href="#">Dashboard</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                <div className="footer_widget">
-                  <h4 className="widget_title">About Company</h4>
-                  <ul className="footer-menu">
-                    <li>
-                      <a href="#">Who We'r?</a>
-                    </li>
-                    <li>
-                      <a href="#">Our Mission</a>
-                    </li>
-                    <li>
-                      <a href="#">Our team</a>
-                    </li>
-                    <li>
-                      <a href="#">Packages</a>
-                    </li>
-                    <li>
-                      <a href="#">Dashboard</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                <div className="footer_widget">
-                  <h4 className="widget_title">Helpful Topics</h4>
-                  <ul className="footer-menu">
-                    <li>
-                      <a href="#">Site Map</a>
-                    </li>
-                    <li>
-                      <a href="#">Security</a>
-                    </li>
-                    <li>
-                      <a href="#">Contact</a>
-                    </li>
-                    <li>
-                      <a href="#">FAQ's Page</a>
-                    </li>
-                    <li>
-                      <a href="#">Privacy</a>
-                    </li>
-                  </ul>
+                  <h4 className="widget_title">location</h4>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d929.8211810783346!2d72.8407405!3d21.2205552!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04ee63694215d%3A0xae1754b1fbc9eab1!2sAbhushan%20Bungalows%2C%20Sharda%20Society%2C%202%2C%20Sumul%20Dairy%20Rd%2C%20near%20alkapuri%2C%20beside%20richi%20xerox%2C%20Old%20Pushpakunj%20Society%2C%20Shraddha%20Society%2C%20Katargam%2C%20Surat%2C%20Gujarat%20395004!5e0!3m2!1sen!2sin!4v1734762696174!5m2!1sen!2sin" width="100%" height="250" style={{ border: 0, borderRadius: '10px' }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
               </div>
             </div>

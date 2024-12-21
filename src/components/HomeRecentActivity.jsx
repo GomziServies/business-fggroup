@@ -131,7 +131,7 @@ const HomeRecentActivity = () => {
                     <div className="Goodup-grid-fl-wrap">
                       <div className="Goodup-caption px-3 py-2">
                         <div className="Goodup-author">
-                          <a href="author-detail.html">
+                          <Link to={`/listing-view?business_id=${business._id}`}>
                             <img
                               src={`https://files.fggroup.in/${business.business_logo}`}
                               className="img-fluid circle"
@@ -140,26 +140,24 @@ const HomeRecentActivity = () => {
                               }}
                               alt={business.business_name}
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div className="Goodup-cates multi">
                           {business.business_category.map((category) => (
-                            <a href="half-map-search-1.html" className="cats-1">
+                            <Link to={`/listing-view?business_id=${business._id}`} className="cats-1">
                               {category}
-                            </a>
+                            </Link>
                           ))}
-                          <a href="half-map-search-1.html">+2</a>
                         </div>
                         <h4 className="mb-0 ft-medium medium">
-                          <a
-                            href="single-listing-detail-3.html"
+                          <Link to={`/listing-view?business_id=${business._id}`}
                             className="text-dark fs-md"
                           >
                             {business.business_name}
                             <span className="verified-badge">
                               <i className="fas fa-check-circle" />
                             </span>
-                          </a>
+                          </Link>
                         </h4>
                         <div className="Goodup-middle-caption mt-2">
                           <p className="fw-normal">

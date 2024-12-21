@@ -7,6 +7,9 @@ import ListingList from './pages/listing-list';
 import AddListing from './pages/add-listing';
 import ListingView from './pages/listing-view';
 import UpdateListing from './pages/update-listing';
+import AffordableList from './pages/affordable-list';
+import StandardList from './pages/standard-list';
+import PremiumList from './pages/premium-list';
 
 function App() {
   return (
@@ -19,15 +22,9 @@ function App() {
         <Route path="/add-listing" element={<AddListing />} />
         <Route path="/listing-view" element={<ListingView />} />
         <Route path="/update-listing" element={<UpdateListing />} />
-        {/* <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/company-listing" element={<CompanyListing />} />
-        <Route path="/company-list" element={<CompanyList />} />
-        <Route path="/company-update" element={<UpdateCompanyData />} />
-        <Route path="/user/profile" element={<UserProfile />} />
-        <Route path="/user/favorites" element={<UserFavorites />} />
-        <Route path="/business/reviews" element={<BusinessReview />} />
-        <Route path="/list/search" element={<ListingBusinessList />} />
-        <Route path="/list/company-view" element={<ListingBusinessView />} /> */}
+        <Route path="/affordable-list" element={<AffordableList />} />
+        <Route path="/standard-list" element={<StandardList />} />
+        <Route path="/premium-list" element={<PremiumList />} />
       </Routes>
     </div>
   );

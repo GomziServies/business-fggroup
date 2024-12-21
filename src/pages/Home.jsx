@@ -62,7 +62,7 @@ const Home = () => {
                         <span className="theme-cl">Gomzi's Gym Network</span>
                       </h1>
                       <p className="fs-lg fw-light">
-                        Welcome to Gomzi—India's premier platform connecting fitness enthusiasts with the best gyms tailored to their needs. Our mission is to empower individuals to transform their lives through fitness by offering a curated network of affiliated gyms, personalized recommendations, and unparalleled support. Whether you're a beginner or a seasoned athlete, Gomzi helps you find the perfect gym to achieve your fitness goals and elevate your lifestyle.
+                        Welcome to Gomzi-India's premier platform connecting fitness enthusiasts with the best gyms tailored to their needs. Our mission is to empower individuals to transform their lives through fitness by offering a curated network of affiliated gyms, personalized recommendations, and unparalleled support. Whether you're a beginner or a seasoned athlete, Gomzi helps you find the perfect gym to achieve your fitness goals and elevate your lifestyle.
                       </p>
                     </div>
                   </div>
@@ -342,7 +342,7 @@ const Home = () => {
                       </ul>
                     </div>
                     <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="#"><i class="fa-regular fa-eye"></i>View More</a>
+                      <a className="Goodup-price-btn" href="/affordable-list"><i class="fa-regular fa-eye"></i>View More</a>
                     </div>
                   </div>
                 </div>
@@ -369,7 +369,7 @@ const Home = () => {
                       </ul>
                     </div>
                     <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="#"><i class="fa-regular fa-eye"></i>View More</a>
+                      <a className="Goodup-price-btn" href="/standard-list"><i class="fa-regular fa-eye"></i>View More</a>
                     </div>
                   </div>
                 </div>
@@ -396,7 +396,7 @@ const Home = () => {
                       </ul>
                     </div>
                     <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="#"><i class="fa-regular fa-eye"></i>View More</a>
+                      <a className="Goodup-price-btn" href="/premium-list"><i class="fa-regular fa-eye"></i>View More</a>
                     </div>
                   </div>
                 </div>
@@ -657,15 +657,12 @@ const Home = () => {
                           </figure>
                         </div>
                         <div className="rev_author">
-                          <h4 className="mb-0 fs-md ft-medium">Mark Jevenue</h4>
-                          <span className="fs-sm theme-cl">CEO of Addle</span>
+                          <span className="fs-sm theme-cl">Jayneel</span>
                         </div>
                         <div className="sng_rev_caption text-center">
                           <div className="rev_desc mb-4">
                             <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit, sed do eiusmod tempor incididunt ut labore
-                              et dolore magna aliqua veniam esse cillum.
+                              I joined FitnessWithGomzi and lost around 12kg in just 1.5 months! I'm incredibly thankful for their guidance and support throughout my fitness journey. The workouts are challenging but effective, and the nutrition advice has made all the difference in achieving my goals. The trainers keep me motivated every step of the way, and I've never felt stronger or more confident.
                             </p>
                           </div>
                         </div>
@@ -684,15 +681,12 @@ const Home = () => {
                           </figure>
                         </div>
                         <div className="rev_author">
-                          <h4 className="mb-0 fs-md ft-medium">Henna Bajaj</h4>
-                          <span className="fs-sm theme-cl">Aqua Founder</span>
+                          <span className="fs-sm theme-cl">Milan Sali</span>
                         </div>
                         <div className="sng_rev_caption text-center">
                           <div className="rev_desc mb-4">
                             <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit, sed do eiusmod tempor incididunt ut labore
-                              et dolore magna aliqua veniam esse cillum.
+                              I came across this amazing nutrition class offered by FitnessWithGomzi, and it has completely transformed the way I approach my health! The class not only provided detailed insights into balanced nutrition but also taught me how to make sustainable, healthy eating choices. The team is incredibly knowledgeable, and their approach is easy to follow yet highly effective.
                             </p>
                           </div>
                         </div>
@@ -711,15 +705,12 @@ const Home = () => {
                           </figure>
                         </div>
                         <div className="rev_author">
-                          <h4 className="mb-0 fs-md ft-medium">John Cenna</h4>
-                          <span className="fs-sm theme-cl">CEO of Plike</span>
+                          <span className="fs-sm theme-cl">Budhadev Sahu</span>
                         </div>
                         <div className="sng_rev_caption text-center">
                           <div className="rev_desc mb-4">
                             <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit, sed do eiusmod tempor incididunt ut labore
-                              et dolore magna aliqua velit esse cillum.
+                              With the incredible support of FitnessWithGomzi, I've been able to compete at state championships! Their personalized training plans and expert guidance have taken my fitness to the next level, preparing me both mentally and physically for competition. The coaches truly understand how to push your limits while keeping the workouts balanced and effective.
                             </p>
                           </div>
                         </div>
@@ -894,14 +885,6 @@ const Home = () => {
           </a>
         </div>
       </>
-
-      {/* <Header />
-      <SectionFirst />
-      <HomeRecentActivity /> */}
-      {/* <HomeBrandsSlider /> */}
-      {/* <HomeBlogs />
-      <HomeAboutUs />
-      <Footer /> */}
     </div>
   );
 };
