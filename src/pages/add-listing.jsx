@@ -17,6 +17,7 @@ import { TagInput } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import { Modal } from "react-bootstrap";
 import Cropper from "react-easy-crop";
+import Footer from "../components/Footer";
 
 const AddListing = () => {
   const [loading, setLoading] = useState(true);
@@ -1424,6 +1425,9 @@ const AddListing = () => {
           </div>
 
           {/* =============================== Section End ========================== */}
+          {/* ============================ Footer Start ================================== */}
+          <Footer />
+          {/* ============================ Footer End ================================== */}
 
           <a
             id="tops-button"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
 import axiosInstance from "../js/api";
+import "../assets/css/style.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -114,9 +115,18 @@ function Header() {
     setCurrentStep("login");
   };
 
+  function openside() {
+    document.getElementById("demo").style.width = "100%";
+  }
+
+  function sideclose() {
+    console.log("Closing side");
+    document.getElementById("demo").style.width = "0px";
+  }
+
   return (
     <>
-      <div
+      {/* <div
         className={`header header-light dark-text ${isFixed ? "header-fixed" : ""
           }`}
       >
@@ -193,6 +203,86 @@ function Header() {
               </ul>
             </div>
           </nav>
+        </div>
+      </div> */}
+      <div className="container-fluid main p-0 m-0">
+        <div className="d-lg-block d-none log">
+          <Link to="/">
+            <div>
+              <img
+                src="images/logo.png"
+                width="80%"
+                alt="Fg Group"
+              />
+            </div>
+          </Link>
+        </div>
+        <div className="d-lg-none d-sm-block t0 log1">
+          <Link to="/">
+            <div>
+              <img
+                src="images/logo.png"
+                width="100%"
+                alt="Fg Group"
+              />
+            </div>
+          </Link>
+        </div>
+        <div className="lang">
+          <ul>
+            <li>
+              <Link to="/">
+                <p className="m-0">Home</p>
+              </Link>
+            </li>
+            <li>
+              <Link to="/listing-list">
+                <p className="m-0">Listing</p>
+              </Link>
+            </li>
+            {isLogin ? (
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+            ) : (
+              ""
+            )}
+          </ul>
+        </div>
+        <div className="side" id="demo">
+          <span className="closebtn" onClick={sideclose}>
+            ×
+          </span>
+          <Link to="/" style={{ marginTop: 50 }}>
+            <img
+              className="lazy mx-auto"
+              src="images/logo.png"
+              width="17%"
+              alt="Fg Group"
+            />
+          </Link>
+          <Link to="/fitnesswithgomzi/weight-loss-programs">Home</Link>
+          <Link to="/fgiit/courses">Listing</Link>
+          {isLogin ? (
+            <Link to="/profile">Profile</Link>
+          ) : (
+            ""
+          )}
+        </div>
+        <span
+          className="d-lg-none d-sm-block btnn"
+          style={{ cursor: "pointer", fontSize: 20, color: "black" }}
+          onClick={openside}
+        >
+          ☰
+        </span>
+        <div className="login d-lg-block d-none">
+          {/* <li className="add-listing">
+            <Link to="/add-listing">
+              <i className="fas fa-plus me-2" />
+              Add Listing
+            </Link>
+          </li> */}
         </div>
       </div>
 

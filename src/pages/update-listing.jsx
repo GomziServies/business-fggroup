@@ -18,6 +18,7 @@ import { useLocation } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import { Modal } from "react-bootstrap";
 import Cropper from "react-easy-crop";
+import Footer from "../components/Footer";
 
 const UpdateListing = () => {
   const location = useLocation();
@@ -1658,6 +1659,9 @@ const UpdateListing = () => {
           </div>
 
           {/* =============================== Section End ========================== */}
+          {/* ============================ Footer Start ================================== */}
+          <Footer />
+          {/* ============================ Footer End ================================== */}
 
           <a
             id="tops-button"
@@ -1695,7 +1699,7 @@ const UpdateListing = () => {
           <Button
             variant="primary"
             onClick={handleCropComplete}
-            style={{ backgroundColor: "#007bff", borderColor: "#007bff" }}
+            style={{ backgroundColor: "#007bff", borderColor: "#007bff", color: 'white' }}
           >
             Crop Image
           </Button>
@@ -1731,7 +1735,7 @@ const UpdateListing = () => {
           <Button
             variant="primary"
             onClick={handleBusinessCropComplete}
-            style={{ backgroundColor: "#007bff", borderColor: "#007bff" }}
+            style={{ backgroundColor: "#007bff", borderColor: "#007bff", color: 'white' }}
           >
             Crop Image
           </Button>

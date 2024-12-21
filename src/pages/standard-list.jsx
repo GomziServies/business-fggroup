@@ -35,7 +35,7 @@ const StandardList = () => {
                                 <div className="col-lg-12 col-md-12">
                                     <div className="breadcrumbs-wrap">
                                         <h2 className="mb-0 ft-medium">
-                                            List of Advance Features and Support with Goodup
+                                            Standard Gym
                                         </h2>
                                     </div>
                                 </div>
@@ -49,77 +49,76 @@ const StandardList = () => {
                                     <div className="article_detail_wrapss single_article_wrap format-standard">
                                         <div className="article_body_wrap">
                                             <div className="article_featured_image">
-                                                <img className="img-fluid" src="images/standard-list.webp" alt="" />
+                                                <img className="img-fluid" src="images/affordable-list.webp" alt="" />
                                             </div>
                                             <h2 className="post-title">
-                                                List of Advance Features and Support with Goodup
+                                                Standard Gym
                                             </h2>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                                irure dolor in reprehenderit in voluptate velit esse cillum
-                                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                                cupidatat non proident, sunt in culpa qui officia deserunt
-                                                mollit anim id est laborum. Sed ut perspiciatis unde omnis
-                                                iste natus error sit voluptatem accusantium doloremque
-                                                laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                                                inventore veritatis et quasi architecto beatae vitae dicta
-                                                sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                                                aspernatur aut odit aut fugit, sed quia consequuntur magni
-                                                dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                                                quisquam est, qui dolorem. <br />
-                                                <br /> Duis aute irure dolor in reprehenderit in voluptate
-                                                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                                                sint occaecat cupidatat non proident, sunt in culpa qui
-                                                officia deserunt mollit anim id est laborum. Sed ut
-                                                perspiciatis unde omnis iste natus error sit voluptatem
-                                                accusantium doloremque laudantium, totam rem aperiam, eaque
-                                                ipsa quae ab illo inventore veritatis et quasi architecto
-                                                beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
-                                                quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                                consequuntur magni dolores eos qui ratione voluptatem.
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Space Requirement :- </b> Moderate facilities spanning 3,000 to 8,000 sq. ft., providing enough space to include multiple fitness zones, equipment areas, and member relaxation spaces, ensuring a balanced experience between functionality and comfort.
                                             </p>
-                                            <blockquote>
-                                                <span className="icon">
-                                                    <i className="fas fa-quote-left" />
-                                                </span>
-                                                <p className="text">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                    sed do eiusmod tem ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud ullamco laboris nisi ut
-                                                    aliquip ex ea commodo onsequat.
-                                                </p>
-                                                <h5 className="name">- Litha K. Mortin</h5>
-                                            </blockquote>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                                irure dolor in reprehenderit in voluptate velit esse cillum
-                                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                                cupidatat non proident, sunt in culpa qui officia deserunt
-                                                mollit anim id est laborum. Sed ut perspiciatis unde omnis
-                                                iste natus error sit voluptatem accusantium doloremque
-                                                laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                                                inventore veritatis et quasi architecto beatae vitae dicta
-                                                sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                                                aspernatur aut odit aut fugit, sed quia consequuntur magni
-                                                dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                                                quisquam est, qui dolorem. <br />
-                                                <br />
-                                                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                                occaecat cupidatat non proident, sunt in culpa qui officia
-                                                deserunt mollit anim id est laborum. Sed ut perspiciatis unde
-                                                omnis iste natus error sit voluptatem accusantium doloremque
-                                                laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                                                inventore veritatis et quasi architecto beatae vitae dicta
-                                                sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                                                aspernatur aut odit aut fugit, sed quia consequuntur magni
-                                                dolores eos qui ratione voluptatem.
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Reception Area :- </b> A thoughtfully organized and spacious reception area that exudes professionalism. This includes ample seating for waiting members or visitors, a dedicated desk for inquiries, and decor that reflects the gym's mid-tier branding.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Strength Equipment :- </b> Includes 8-10 machines covering various muscle groups and free weights ranging from 3-40 kg. This selection caters to intermediate fitness enthusiasts and provides enough diversity to support progressive strength training and muscle toning.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Cardio Equipment :- </b> Features 5-6 treadmills or cycles, with an assortment of moderate-quality machines. This setup caters to varied cardio routines and supports moderate member traffic while ensuring a comfortable workout experience.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Miscellaneous Equipment :- </b> Offers a wider range of equipment including 10-20 mats, several sticks, and 3-4 medicine balls. This variety supports more dynamic workouts such as aerobics and group fitness activities.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Additional Facilities :- </b> Includes enhanced facilities such as a steam room and a group fitness area, providing members with additional relaxation and fitness options. These features cater to a more diverse set of needs beyond basic workouts.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Dietitian Services :- </b> Basic dietary consultations are provided as an add-on service. These consultations often include general tips and guidelines to complement the member's fitness goals but lack personalized meal planning.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Physiotherapist Services :- </b> Physiotherapy services are not included, requiring members to seek external assistance for injury prevention or recovery.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Corporate Structure :- </b> Employs a medium-sized team with department heads overseeing key functions. This structure ensures better service management and enhances member experience through organized operations.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Membership Pricing :- </b> Offers mid-range pricing that reflects a balance between affordability and additional amenities, making it an attractive choice for members seeking value for money.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Hygiene Standards :- </b> Higher hygiene standards are implemented, with regular cleaning schedules and visible maintenance routines. This ensures a cleaner and more inviting atmosphere for members.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Group Classes :- </b> Includes a selection of group fitness classes such as yoga and aerobics, encouraging social interaction and diversified workout options.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Technology Integration :- </b> Introduces partial technological solutions like fitness tracking apps or wearable devices. These tools enhance member engagement and provide moderate insights into fitness progress.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Fire Safety & Licensing :- </b> Implements comprehensive fire safety protocols including fire extinguishers and signage. Additionally, all mandatory licenses are acquired to ensure legal compliance.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Parking Space :- </b> Provides adequate parking facilities that are designed to handle moderate member traffic, ensuring convenience and accessibility during peak hours.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Opening Hours :- </b> Extends operational hours (e.g., 6 AM-11 PM), catering to members who prefer early morning or late-night workout sessions.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Personal Training Services :- </b> Offers regular personal training sessions conducted by trainers with specialized expertise. These programs focus on targeted fitness goals such as weight loss or muscle gain.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Customer Support :- </b> Enhanced customer support through a dedicated team, available during gym hours to address member needs, complaints, and inquiries, ensuring smoother communication and resolution.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Member Engagement :- </b> Regular communication through newsletters, events, and fitness challenges to keep members motivated. These initiatives promote a sense of community and enhance member loyalty.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Branding & Atmosphere :- </b> Modern interiors with a sleek, professional design. The ambiance reflects the gym's mid-tier branding, blending functionality with visual appeal to enhance member experience.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Social Media Presence :- </b> Active social media engagement with regular posts, fitness tips, and member stories. It utilizes platforms to promote services, interact with members, and build an online community.
+                                            </p>
+                                            <p style={{ fontWeight: "400", fontSize: '17px' }}>
+                                                <b>Additional Benefits :- </b> Loyalty programs, referral benefits, and occasional member discounts. These features add value to the membership and encourage long-term engagement.
                                             </p>
                                         </div>
                                     </div>

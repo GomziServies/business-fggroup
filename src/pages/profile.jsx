@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import IconButton from "@mui/material/IconButton";
 import User_img from "../assets/user-profile.png";
+import Footer from "../components/Footer";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
@@ -504,6 +505,9 @@ const Profile = () => {
             </div>
           </div>
           {/* ======================= dashboard Detail End ======================== */}
+          {/* ============================ Footer Start ================================== */}
+          <Footer />
+          {/* ============================ Footer End ================================== */}
           <a
             id="tops-button"
             className="top-scroll"
