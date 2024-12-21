@@ -117,9 +117,8 @@ function Header() {
   return (
     <>
       <div
-        className={`header header-light dark-text ${
-          isFixed ? "header-fixed" : ""
-        }`}
+        className={`header header-light dark-text ${isFixed ? "header-fixed" : ""
+          }`}
       >
         <div className="container">
           <nav id="navigation" className="navigation navigation-landscape">
@@ -160,7 +159,7 @@ function Header() {
               style={{ transitionProperty: "none" }}
             >
               <ul className="nav-menu">
-                <li className="active">
+                <li>
                   <Link to="/">Home</Link>
                 </li>
                 <li>
