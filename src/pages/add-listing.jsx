@@ -54,9 +54,9 @@ const AddListing = () => {
   ]);
   const [faqs, setFaqs] = useState([{ question: "", answer: "" }]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([
-    { platform: "Instagram", link: "" },
-    { platform: "Facebook", link: "" },
-    { platform: "YouTube", link: "" },
+    { platform: "Instagram", link: "Instagram.com" },
+    { platform: "Facebook", link: "Facebook.com" },
+    { platform: "YouTube", link: "YouTube.com" },
   ]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedFacilities, setSelectedFacilities] = useState("");
@@ -90,7 +90,6 @@ const AddListing = () => {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
   const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] =
     useState(null);
-
   const [logoImage, setLogoImage] = useState(null);
   const [logoPreview, setLogoPreview] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
@@ -102,43 +101,17 @@ const AddListing = () => {
   const [show, setShow] = useState(false);
   const [businessShow, setBusinessShow] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState(null);
+  const [businessPhoto, setBusinessPhoto] = useState(null);
 
-  const onCropComplete = useCallback((croppedArea, profilePhoto) => {
-    setProfilePhoto(profilePhoto);
-    handleLogoChange();
+  const onCropComplete = useCallback((croppedArea, profilePhoto, context) => {
+    if (context === "logo") {
+      setProfilePhoto(profilePhoto);
+      handleLogoChange(profilePhoto);
+    } else if (context === "feature") {
+      setBusinessPhoto(profilePhoto);
+      // handleFeatureChange(profilePhoto);
+    }
   }, []);
-
-  const handleCropComplete = async () => {
-    if (imageSrc && profilePhoto) {
-      try {
-        const croppedImg = await getCroppedImg(imageSrc, profilePhoto);
-        setLogoPreview(croppedImg);
-        setProfilePhoto(croppedImg);
-        setShow(false);
-      } catch (error) {
-        console.error("Error cropping the image:", error);
-      }
-    }
-  };
-
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleBusinessClose = () => {
-    setBusinessShow(false);
-  };
-
-  const handleCropLogoChange = (event) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        setShow(true); // Show crop modal if cropping is needed
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleLogoChange = (event) => {
     const file = profilePhoto;
@@ -164,6 +137,57 @@ const AddListing = () => {
           ...prevData,
           business_logo: reader.result,
         }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // const handleCropComplete = async () => {
+  //   if (imageSrc && profilePhoto) {
+  //     try {
+  //       const croppedImg = await getCroppedImg(imageSrc, profilePhoto);
+  //       setLogoPreview(croppedImg);
+  //       setProfilePhoto(croppedImg);
+  //       setShow(false);
+  //     } catch (error) {
+  //       console.error("Error cropping the image:", error);
+  //     }
+  //   }
+  // };
+
+  const handleCropComplete = async (context) => {
+    if (imageSrc && (profilePhoto || businessPhoto)) {
+      try {
+        const croppedImg = await getCroppedImg(imageSrc, profilePhoto);
+        if (context === "logo") {
+          setLogoPreview(croppedImg);
+          setProfilePhoto(croppedImg);
+          setShow(false);
+        } else if (context === "feature") {
+          setFeaturePreview(croppedImg);
+          setBusinessShow(false);
+        }
+      } catch (error) {
+        console.error("Error cropping the image:", error);
+      }
+    }
+  };
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleBusinessClose = () => {
+    setBusinessShow(false);
+  };
+
+  const handleCropLogoChange = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        setShow(true); // Show crop modal if cropping is needed
       };
       reader.readAsDataURL(file);
     }
@@ -229,9 +253,9 @@ const AddListing = () => {
   };
 
   const handleBusinessCropComplete = async () => {
-    if (businessImageSrc && profilePhoto) {
+    if (businessImageSrc && businessPhoto) {
       try {
-        const croppedImg = await getCroppedImg(businessImageSrc, profilePhoto);
+        const croppedImg = await getCroppedImg(businessImageSrc, businessPhoto);
         const updatedPhotos = [...businessPhotos];
         if (currentPhotoIndex !== null) {
           updatedPhotos[currentPhotoIndex] = {
@@ -388,56 +412,25 @@ const AddListing = () => {
       }
 
       if (croppedBlob) {
-        // Read the file and set the logo image
-        const reader = new FileReader();
+        // Upload logo image and update listing data
+        const logoFormData = new FormData();
+        logoFormData.append("files", croppedBlob);
 
-        reader.onloadend = async () => {
-          setLogoImage(croppedBlob);
+        const logoResponse = await axiosInstance.post(
+          "/file-upload",
+          logoFormData
+        );
 
-          const updatedFormData = {
-            ...formData,
-            business_logo: reader.result,
-          };
-          console.log("updatedFormData :- ", updatedFormData);
-
-          setFormData(updatedFormData);
-
-          console.log("updatedFormData :- ", updatedFormData);
-          try {
-            // Upload logo image and update listing data
-            const logoFormData = new FormData();
-            logoFormData.append("files", croppedBlob);
-
-            const logoResponse = await axiosInstance.post(
-              "/file-upload",
-              logoFormData
-            );
-
-            console.log("logoResponse.data.data :- ", logoResponse.data.data);
-
-            // Retrieve the URL of the uploaded file
-            logoUrl = logoResponse.data.data.fileURLs[0];
-
-            console.log("logoUrl 000 :- ", logoUrl);
-            return logoUrl;
-          } catch (error) {
-            console.error("Error updating logo and listing data:", error);
-            toast.error(
-              "Error updating logo and listing data. Please try again.",
-              {
-                position: toast.POSITION.TOP_RIGHT,
-              }
-            );
-          }
-        };
-
-        reader.readAsDataURL(croppedBlob);
+        // Retrieve the URL of the uploaded file
+        const logoUrl = logoResponse.data.data.fileURLs[0];
+        return logoUrl;
       }
     } catch (error) {
       console.error("Error uploading Logo file:", error);
       toast.error("Error uploading Logo file. Please try again.", {
         position: toast.POSITION.TOP_RIGHT,
       });
+      throw error; // Re-throw the error to handle it in the calling function
     }
   };
 
@@ -487,23 +480,18 @@ const AddListing = () => {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
-
-    console.log("uploadedUrls :- ", uploadedUrls);
     return uploadedUrls;
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
 
     try {
-      setIsLoading(true);
-      let logoUrl = await uploadLogo();
-      console.log("logoUrl :- ", logoUrl);
+      const uploadedUrls = await uploadFeatureImage();
 
-      let uploadedUrls = uploadFeatureImage();
-      console.log("uploadedUrls :- ", uploadedUrls);
+      const logoUrl = await uploadLogo();
 
-      // Map the form data to the structure expected by the Postman request
       const postData = {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
@@ -511,7 +499,7 @@ const AddListing = () => {
         // facilities: [selectedFacilities],
         business_category: [selectedCategory],
         business_logo: logoUrl,
-        business_images: (await uploadedUrls).flat(),
+        business_images: uploadedUrls.flat(),
         services: selectedFacilities.map((facilities) => facilities.value),
         tags: formData.tags,
         social_media: socialMediaLinks.map((link) => ({
@@ -544,6 +532,10 @@ const AddListing = () => {
             contact_type: "website",
             value: formData.website,
           },
+          {
+            contact_type: "whatsapp",
+            value: formData.whatsappNumber,
+          },
         ],
         faqs: faqs.map((faq) => ({
           question: faq.question,
@@ -561,18 +553,16 @@ const AddListing = () => {
       };
 
       console.log("postData :- ", postData);
+      await businessListingAxiosInstance.post("/create-listing", postData);
 
-      // await businessListingAxiosInstance.post("/create-listing", postData);
       setIsLoading(false);
-      // Show success toast
       toast.success("Listing created successfully!", {
         position: toast.POSITION.TOP_RIGHT,
       });
     } catch (error) {
       console.error("Error uploading files:", error);
       setIsLoading(false);
-      // Show error toast
-      toast.error("Error creating listing. Please try again.", {
+      toast.error(error?.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
@@ -1551,7 +1541,9 @@ const AddListing = () => {
               zoom={zoom}
               aspect={8 / 8}
               onCropChange={setCrop}
-              onCropComplete={onCropComplete}
+              onCropComplete={(croppedArea, profilePhoto) =>
+                onCropComplete(croppedArea, profilePhoto, "logo")
+              }
               onZoomChange={setZoom}
             />
           </div>
@@ -1562,7 +1554,7 @@ const AddListing = () => {
           </Button>
           <Button
             variant="primary"
-            onClick={handleCropComplete}
+            onClick={() => handleCropComplete("logo")}
             style={{
               backgroundColor: "#007bff",
               borderColor: "#007bff",
@@ -1591,7 +1583,9 @@ const AddListing = () => {
               zoom={businessZoom}
               aspect={12 / 8}
               onCropChange={setBusinessCrop}
-              onCropComplete={onCropComplete}
+              onCropComplete={(croppedArea, profilePhoto) =>
+                onCropComplete(croppedArea, profilePhoto, "feature")
+              }
               onZoomChange={setBusinessZoom}
             />
           </div>
@@ -1602,7 +1596,7 @@ const AddListing = () => {
           </Button>
           <Button
             variant="primary"
-            onClick={handleBusinessCropComplete}
+            onClick={() => handleBusinessCropComplete("feature")}
             style={{
               backgroundColor: "#007bff",
               borderColor: "#007bff",

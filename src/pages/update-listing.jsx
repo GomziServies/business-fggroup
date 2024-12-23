@@ -167,7 +167,6 @@ const UpdateListing = () => {
       try {
         const croppedImg = await getCroppedImg(imageSrc, profilePhoto);
         setLogoPreview(croppedImg);
-        console.log("croppedImg :- ", croppedImg);
         setProfilePhoto(croppedImg);
         setShow(false);
 
@@ -328,7 +327,7 @@ const UpdateListing = () => {
   const handleRemoveBusinessPhoto = async (index) => {
     const newPhotos = [...businessPhotos];
     const removedPhoto = newPhotos.splice(index, 1)[0];
-    newPhotos.splice(index, 1);
+    // newPhotos.splice(index, 1);
     setBusinessPhotos([...newPhotos]);
 
     try {
@@ -397,9 +396,6 @@ const UpdateListing = () => {
           return;
         }
 
-        console.log("businessPhotos :- ", businessPhotos);
-        console.log("featurePreview :- ", featurePreview);
-
         // If croppedImg is a base64 string, convert it to a Blob
         let croppedBlob = croppedImg;
         if (typeof croppedImg === "string") {
@@ -431,8 +427,6 @@ const UpdateListing = () => {
           url.replace("https://files.fggroup.in/", "")
         );
 
-        console.log("Processed URLs: ", processedUrls);
-
         // Combine with existing business photo URLs, ensuring only valid URLs are included
         const validPreviousImages = businessPhotos
           .filter(
@@ -446,8 +440,6 @@ const UpdateListing = () => {
           listing_id: listing_id,
           business_images: [...processedUrls, ...validPreviousImages],
         };
-
-        console.log("Updated Listing Data: ", updatedListingData);
 
         await businessListingAxiosInstance.patch(
           `/update-listing?listing_id=${listing_id}`,
@@ -613,8 +605,15 @@ const UpdateListing = () => {
         state: address.state || "",
         pin_code: address.pin_code || "",
         direction_link: address.direction_link || "",
-        contactNumber: fetchedBusinessData.contacts[0]?.value || "",
-        whatsappNumber: fetchedBusinessData.contacts[1]?.value || "",
+        // contactNumber: fetchedBusinessData.contacts[0]?.value || "",
+        contactNumber:
+          address.contact.contact_type === "mobile"
+            ? address.contact.value
+            : "",
+        whatsappNumber:
+          fetchedBusinessData.contacts.find(
+            (contact) => contact.contact_type === "whatsapp"
+          )?.value || "",
         services: fetchedBusinessData.services || [],
         tags: fetchedBusinessData.tags || [],
         website:
@@ -627,8 +626,13 @@ const UpdateListing = () => {
           )?.value || "",
         branch: address.location_name || "",
       });
+      console.log(
+        "fetchedBusinessData.contacts :- ",
+        fetchedBusinessData.contacts
+      );
+
       setSelectedFacilities(
-        fetchedBusinessData.facilities?.map((facility) => ({
+        fetchedBusinessData.services?.map((facility) => ({
           label: facility,
           value: facility,
         }))
@@ -660,7 +664,7 @@ const UpdateListing = () => {
         // facilities: selectedFacilities.map((facilities) => facilities.value),
         business_category: [selectedCategory],
         services: selectedFacilities.map((facilities) => facilities.value),
-        tags: formData.tags,
+        tags: formData.tags || [],
         social_media: socialMediaLinks.map((link) => ({
           social_media_type: link.social_media_type,
           link: link.link,
@@ -691,6 +695,10 @@ const UpdateListing = () => {
             contact_type: "website",
             value: formData.website,
           },
+          {
+            contact_type: "whatsapp",
+            value: formData.whatsappNumber,
+          },
         ],
         faqs: faqs.map((faq) => ({
           question: faq.question,
@@ -707,7 +715,10 @@ const UpdateListing = () => {
         })),
       };
 
+      console.log("postData :- ", postData);
+
       await businessListingAxiosInstance.patch("/update-listing", postData);
+      getBusinessData();
 
       // Show success toast
       toast.success("Business Data Updated successfully!", {
@@ -1771,7 +1782,11 @@ const UpdateListing = () => {
           <Button
             variant="primary"
             onClick={handleCropComplete}
-            style={{ backgroundColor: "#007bff", borderColor: "#007bff", color: 'white' }}
+            style={{
+              backgroundColor: "#007bff",
+              borderColor: "#007bff",
+              color: "white",
+            }}
           >
             Crop Image
           </Button>
@@ -1807,7 +1822,11 @@ const UpdateListing = () => {
           <Button
             variant="primary"
             onClick={handleBusinessCropComplete}
-            style={{ backgroundColor: "#007bff", borderColor: "#007bff", color: 'white' }}
+            style={{
+              backgroundColor: "#007bff",
+              borderColor: "#007bff",
+              color: "white",
+            }}
           >
             Crop Image
           </Button>
