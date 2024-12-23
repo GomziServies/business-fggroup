@@ -3684,7 +3684,7 @@ span.search-tag i {
 }
 .offerWrap .offerCaps {
   padding: 1rem 0rem 1rem 2rem;
-  max-width: 300px;
+  max-width: 60%;
 }
 .offerWrap .offerCaps .off {
   height: 30px;
@@ -7638,16 +7638,11 @@ button.aps-clone {
 .dashboard-head-author-caption .agd-location {
   color: #ffffff;
 }
-.abs-list-sec .add-list-btn {
-  display: inline-flex;
+.add-list-btn {
   padding: 10px 20px;
   font-weight: 500;
-  height: 50px;
-  color: #fc7e00;
-  background: #ffffff;
-  z-index: 1;
-  align-items: center;
-  justify-content: center;
+  color: #ffffff;
+  background: #fc7e00;
   border-radius: 4px;
 }
 .abs-list-sec {
@@ -9561,4 +9556,34 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   border-radius: 1px !important;
   border-color: #eee !important;
   color: #2b2e30 !important;
+}
+
+.login {
+  position: absolute;
+  right: 20px;
+  top: 58%;
+  transform: translate(0, -50%);
+  z-index: 998;
+}
+
+.login ul {
+  padding: 0;
+  list-style: none;
+}
+
+.login ul li {
+  display: inline-block;
+  margin-right: 20px;
+  color: #000;
+  padding: 7px 10px;
+  border-radius: 3px;
+  font-family: Comfortaa, cursive;
+  font-size: 14px;
+}
+
+.login ul li a {
+  font-size: 14px;
+  color: #000;
+  transition: 0.3s;
+  font-size: 14px;
 }

@@ -17,32 +17,23 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>FG Group Business Listing</title>
-        <meta name="description" content="Your meta description" />
-      </Helmet>
-      <>
-        {/* Meta Data */}
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Goodup - Business Directory &amp; Listing HTML Template</title>
-        {/* Favicon */}
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="images/favicon.png"
+          href="images/favicon.ico"
         />
-        {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
+      </Helmet>
+      <>
         {loading && <div className="preloader" />}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          {/* ============================================================== */}
-          {/* Top header  */}
-          {/* ============================================================== */}
-          {/* ======================= Home Banner ======================== */}
-          <div className="home-banner home-7">
+          <div className="home-banner home-7" style={{ marginTop: '70px' }}>
             <div className="container">
               <div className="row align-items-center justify-content-between">
                 <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -76,9 +67,7 @@ const Home = () => {
               <div className="block2" />
             </div>
           </div>
-          {/* ======================= Home Banner ======================== */}
-          {/* ====================== Start Offers ========================= */}
-          <section className="pt-4 pb-0">
+          <section className="pt-4 pb-0 text-start">
             <div className="container">
               <div className="row justify-content-between g-4">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -114,11 +103,7 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* ====================== End Offers ========================= */}
-          {/* ======================= All Listing ======================== */}
           <HomeRecentActivity />
-          {/* ======================= All Listings ======================== */}
-          {/* ======================= Listing Categories ======================== */}
           <section className="space gray">
             <div className="container">
               <div className="row justify-content-center">
@@ -129,9 +114,8 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              {/* row */}
               <div className="row align-items-center">
-                <div className="col-md-4 col-6">
+                <div className="col-md-4">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -149,7 +133,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 col-6">
+                <div className="col-md-4">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -167,7 +151,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 col-6">
+                <div className="col-md-4">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -185,7 +169,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 col-6">
+                <div className="col-md-4">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -197,31 +181,13 @@ const Home = () => {
                       </div>
                       <div className="Goodup-catg-caption">
                         <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Flexible Membership Options
+                          Flexible Membership
                         </h4>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 col-6">
-                  <div className="cats-wrap text-center">
-                    <div className="Goodup-catg-wrap">
-                      <div className="Goodup-catg-icon">
-                        <img
-                          src="images/building.png"
-                          className="img"
-                          alt="Img Slide"
-                        />
-                      </div>
-                      <div className="Goodup-catg-caption">
-                        <h4 className="fs-md mb-0 ft-medium m-catrio">
-                          Personalized Gym Recommendations
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4 col-6">
+                <div className="col-md-4">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -239,7 +205,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 col-6">
+                <div className="col-md-4">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -257,7 +223,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 col-6">
+                <div className="col-md-4">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -275,7 +241,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 col-6">
+                <div className="col-md-4">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -293,19 +259,34 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                <div className="col-md-4">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/building.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Personalized Gym Recommendations
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              {/* row */}
             </div>
           </section>
-          {/* ======================= Listing Categories ======================== */}
-          {/* ======================= pricing categories ======================== */}
           <section className="space min">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-xl-5 col-lg-7 col-md-9 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
                     <h6 className="theme-cl mb-0">Our Packages</h6>
-                    <h2 className="ft-bold">Gym Pricing Segments</h2>
+                    <h2 className="ft-bold">Gym Pricing</h2>
                   </div>
                 </div>
               </div>
@@ -320,10 +301,11 @@ const Home = () => {
                           </span>
                         </h3>
                       </div>
-                      <div className="Goodup-price-subtitle">Best Choice for Individuals</div>
+                      <div className="Goodup-price-subtitle theme-cl">Rs. 30,000/- annually</div>
                     </div>
                     <div className="Goodup-price-body">
                       <ul className="price__features">
+                        <li><i className="fa fa-angle-right"></i>1,000 to 3,000 sq. ft. area</li>
                         <li><i className="fa fa-angle-right"></i>Basic fitness equipment</li>
                         <li><i className="fa fa-angle-right"></i>Functional training areas</li>
                         <li><i className="fa fa-angle-right"></i>Certified trainers available on request</li>
@@ -347,10 +329,11 @@ const Home = () => {
                           </span>
                         </h3>
                       </div>
-                      <div className="Goodup-price-subtitle">Best Choice for Individuals </div>
+                      <div className="Goodup-price-subtitle theme-cl">Rs. 45,000/- annually</div>
                     </div>
                     <div className="Goodup-price-body">
                       <ul className="price__features">
+                        <li><i className="fa fa-angle-right"></i>3,000 to 8,000 sq. ft. area</li>
                         <li><i className="fa fa-angle-right"></i>Comprehensive gym facilities</li>
                         <li><i className="fa fa-angle-right"></i>advanced fitness equipment</li>
                         <li><i className="fa fa-angle-right"></i>Certified trainers included</li>
@@ -374,10 +357,11 @@ const Home = () => {
                           </span>
                         </h3>
                       </div>
-                      <div className="Goodup-price-subtitle">Best Choice for Individuals </div>
+                      <div className="Goodup-price-subtitle theme-cl">Rs. 90,000/- annually</div>
                     </div>
                     <div className="Goodup-price-body">
                       <ul className="price__features">
+                        <li><i className="fa fa-angle-right"></i>10,000 to 100,000 sq. ft. area</li>
                         <li><i className="fa fa-angle-right"></i>State-of-the-art equipment and luxury facilities</li>
                         <li><i className="fa fa-angle-right"></i>Personal training sessions included</li>
                         <li><i className="fa fa-angle-right"></i>Access to exclusive classes and workshops</li>
@@ -394,8 +378,6 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* ======================= pricing categories ======================== */}
-          {/* ======================= blog section ======================== */}
           <section class="middle">
             <div class="container">
               <div class="row justify-content-center">
@@ -526,8 +508,6 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* ======================= blog section ======================== */}
-          {/* ============================ Tag & Submit listing ============================= */}
           <section className="bg-light-theme">
             <div className="container">
               <div className="row align-items-center justify-content-between text-left g-4">
@@ -618,8 +598,6 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* ============================ Tag & Submit listing End ============================= */}
-          {/* ======================= Customer Review ======================== */}
           <section className="space">
             <div className="container">
               <div className="row justify-content-center">
@@ -635,7 +613,6 @@ const Home = () => {
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="reviews-slide row">
-                    {/* single review */}
                     <div className="single-list col-md-4">
                       <div className="single_review">
                         <div className="sng_rev_thumb">
@@ -659,7 +636,6 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-                    {/* single review */}
                     <div className="single-list col-md-4">
                       <div className="single_review">
                         <div className="sng_rev_thumb">
@@ -683,7 +659,6 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-                    {/* single review */}
                     <div className="single-list col-md-4">
                       <div className="single_review">
                         <div className="sng_rev_thumb">
@@ -712,8 +687,6 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* ======================= Customer Review ======================== */}
-          {/* ======================= Newsletter Start ============================ */}
           <section
             className="space bg-cover"
             style={{
@@ -760,11 +733,7 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* ======================= Newsletter Start ============================ */}
-          {/* ============================ Footer Start ================================== */}
           <Footer />
-          {/* ============================ Footer End ================================== */}
-          {/* Log In Modal */}
           <div
             className="modal fade"
             id="login"
@@ -865,7 +834,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-          {/* End Modal */}
           <a
             id="tops-button"
             className="top-scroll"

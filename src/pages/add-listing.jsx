@@ -19,6 +19,8 @@ import { Modal } from "react-bootstrap";
 import Cropper from "react-easy-crop";
 import Footer from "../components/Footer";
 import Select from "react-select";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const AddListing = () => {
   const [loading, setLoading] = useState(true);
@@ -368,7 +370,7 @@ const AddListing = () => {
 
   const uploadLogo = async () => {
     let logoUrl = "";
-    
+
     try {
       let croppedBlob = profilePhoto;
       if (typeof profilePhoto === "string") {
@@ -385,7 +387,7 @@ const AddListing = () => {
         croppedBlob = new Blob([ab], { type: mimeString });
       }
 
-       if (croppedBlob) {
+      if (croppedBlob) {
         // Read the file and set the logo image
         const reader = new FileReader();
 
@@ -695,10 +697,6 @@ const AddListing = () => {
   return (
     <div>
       <Helmet>
-        <title>FG Group Business Listing</title>
-        <meta name="description" content="Your meta description" />
-      </Helmet>
-      <>
         {/* Meta Data */}
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -708,17 +706,19 @@ const AddListing = () => {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="images/favicon.png"
+          href="images/favicon.ico"
         />
         {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
+      </Helmet>
+      <>
         {loading && <div className="preloader" />}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
           <section
             className="bg-cover position-relative"
-            style={{ background: "red url(images/cover.jpg) no-repeat" }}
+            style={{ background: "red url(images/cover.jpg) no-repeat", marginTop: '70px' }}
             data-overlay={3}
           >
             <div className="container">

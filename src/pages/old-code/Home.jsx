@@ -37,7 +37,7 @@ const Home = () => {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="images/favicon.png"
+          href="images/favicon.ico"
         />
         {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />

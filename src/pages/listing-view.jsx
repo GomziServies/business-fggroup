@@ -517,7 +517,7 @@ const ListingView = () => {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="images/favicon.png"
+          href="images/favicon.ico"
         />
         {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
@@ -525,7 +525,7 @@ const ListingView = () => {
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          <section className="featured-wraps gray text-start">
+          <section className="featured-wraps gray text-start" style={{ marginTop: '70px' }}>
             <div className="container">
               <div className="row">
                 <div className="col-xl-12 col-lg-12 col-md-12">

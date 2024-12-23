@@ -16,20 +16,18 @@ const StandardList = () => {
     return (
         <div>
             <Helmet>
-                <title>FG Group Business Listing</title>
-                <meta name="description" content="Your meta description" />
-            </Helmet>
-            <>
                 <meta charSet="UTF-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <title>Goodup - Business Directory &amp; Listing HTML Template</title>
                 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+            </Helmet>
+            <>
                 {loading && <div className="preloader" />}
                 <div id="main-wrapper">
                     <Header />
                     <div className="clearfix" />
-                    <section className="page-title gray text-start">
+                    <section className="page-title gray text-start" style={{ marginTop: '70px' }}>
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-12 col-md-12">
@@ -45,7 +43,8 @@ const StandardList = () => {
                     <section className="text-start">
                         <div className="container">
                             <div className="row">
-                                <div className="col-lg-8 col-md-12 col-sm-12 col-12">
+                                <div className="col"></div>
+                                <div className="col-md-10 col-12">
                                     <div className="article_detail_wrapss single_article_wrap format-standard">
                                         <div className="article_body_wrap">
                                             <div className="article_featured_image">
@@ -123,109 +122,7 @@ const StandardList = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-4 col-md-12 col-sm-12 col-12">
-                                    <div className="single_widgets widget_thumb_post">
-                                        <h4 className="title mb-3">Trending Posts</h4>
-                                        <ul>
-                                            <li>
-                                                <span className="left">
-                                                    <img src="images/b-1.webp" alt="" className="" />
-                                                </span>
-                                                <span className="right">
-                                                    <a className="feed-title" href="#">
-                                                        Top Hotels in California
-                                                    </a>
-                                                    <span className="post-date">
-                                                        <i className="ti-calendar" />
-                                                        10 Min ago
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span className="left">
-                                                    <img src="images/b-2.webp" alt="" className="" />
-                                                </span>
-                                                <span className="right">
-                                                    <a className="feed-title" href="#">
-                                                        How to get top services in your town?
-                                                    </a>
-                                                    <span className="post-date">
-                                                        <i className="ti-calendar" />2 Hours ago
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span className="left">
-                                                    <img src="images/b-3.webp" alt="" className="" />
-                                                </span>
-                                                <span className="right">
-                                                    <a className="feed-title" href="#">
-                                                        How to connect laptop with your iphone?
-                                                    </a>
-                                                    <span className="post-date">
-                                                        <i className="ti-calendar" />4 Hours ago
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span className="left">
-                                                    <img src="images/b-4.webp" alt="" className="" />
-                                                </span>
-                                                <span className="right">
-                                                    <a className="feed-title" href="#">
-                                                        Search best cafe in your town and city
-                                                    </a>
-                                                    <span className="post-date">
-                                                        <i className="ti-calendar" />7 Hours ago
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span className="left">
-                                                    <img src="images/b-5.webp" alt="" className="" />
-                                                </span>
-                                                <span className="right">
-                                                    <a className="feed-title" href="#">
-                                                        How to photo shoot with local iphone aras
-                                                    </a>
-                                                    <span className="post-date">
-                                                        <i className="ti-calendar" />3 Days ago
-                                                    </span>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="single_widgets widget_category">
-                                        <h4 className="title mb-3">Categories</h4>
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    Lifestyle <span>09</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    Travel <span>12</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    Fashion <span>19</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    Branding <span>17</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    Music <span>10</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <div className="col"></div>
                             </div>
                         </div>
                     </section>

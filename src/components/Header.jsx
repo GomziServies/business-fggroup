@@ -261,8 +261,8 @@ function Header() {
               alt="Fg Group"
             />
           </Link>
-          <Link to="/fitnesswithgomzi/weight-loss-programs">Home</Link>
-          <Link to="/fgiit/courses">Listing</Link>
+          <Link to="/">Home</Link>
+          <Link to="/listing-list">Listing</Link>
           {isLogin ? (
             <Link to="/profile">Profile</Link>
           ) : (
@@ -277,12 +277,11 @@ function Header() {
           ☰
         </span>
         <div className="login d-lg-block d-none">
-          {/* <li className="add-listing">
-            <Link to="/add-listing">
-              <i className="fas fa-plus me-2" />
-              Add Listing
-            </Link>
-          </li> */}
+          <ul>
+            <li className="mx-0" style={{ cursor: "pointer" }}>
+              <a href="/add-listing" class="add-list-btn"><i class="fas fa-plus me-2"></i>Add Listing</a>
+            </li>
+          </ul>
         </div>
       </div>
 

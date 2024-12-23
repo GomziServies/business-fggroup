@@ -105,11 +105,6 @@ const Login = () => {
   return (
     <div>
       <Helmet>
-        <title>FG Group Business Listing</title>
-        <meta name="description" content="Your meta description" />
-      </Helmet>
-      <>
-        {/* Meta Data */}
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -118,15 +113,17 @@ const Login = () => {
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="images/favicon.png"
+          href="images/favicon.ico"
         />
         {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
+      </Helmet>
+      <>
         {loading && <div className="preloader" />}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          <section className="gray text-start">
+          <section className="gray text-start" style={{ marginTop: '70px' }}>
             <div className="container">
               <div className="row align-items-start justify-content-center">
                 <div className="col-xl-5 col-lg-8 col-md-12">

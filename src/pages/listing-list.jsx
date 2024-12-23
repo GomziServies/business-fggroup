@@ -10,6 +10,8 @@ import axiosInstance, { businessListingAxiosInstance } from "../js/api";
 import Dummy_img from "../assets/dummy-image-square.jpg";
 import User_img from "../assets/user-profile.png";
 import Footer from "../components/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const ListingList = () => {
   const [loading, setLoading] = useState(true);
@@ -186,35 +188,25 @@ const ListingList = () => {
   return (
     <div>
       <Helmet>
-        <title>FG Group Business Listing</title>
-        <meta name="description" content="Your meta description" />
-      </Helmet>
-      <>
-        {/* Meta Data */}
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Goodup - Business Directory &amp; Listing HTML Template</title>
-        {/* Favicon */}
         <link
           rel="shortcut icon"
           type="image/x-icon"
-          href="images/favicon.png"
+          href="images/favicon.ico"
         />
-        {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
+      </Helmet>
+      <>
         {loading && <div className="preloader" />}
         <div id="main-wrapper">
           <Header />
-          {/* End Navigation */}
           <div className="clearfix" />
-          {/* ============================================================== */}
-          {/* Top header  */}
-          {/* ============================================================== */}
-          {/* =============================== Dashboard Header ========================== */}
           <section
             className="bg-cover position-relative"
-            style={{ background: "red url(images/cover.jpg) no-repeat" }}
+            style={{ background: "red url(images/cover.jpg) no-repeat", marginTop: '70px' }}
             data-overlay={3}
           >
             <div className="container">
@@ -240,8 +232,6 @@ const ListingList = () => {
               </div>
             </div>
           </section>
-          {/* =============================== Dashboard Header ========================== */}
-          {/* ======================= dashboard Detail ======================== */}
           <div className="goodup-dashboard-wrap gray px-4 py-5">
             <a
               className="mobNavigation"
@@ -270,8 +260,6 @@ const ListingList = () => {
                         Add Listing
                       </Link>
                     </li>
-                    {/* </ul> */}
-                    {/* <ul data-submenu-title="My Accounts"> */}
                     <li>
                       <Link to="/profile">
                         <i className="lni lni-user me-2" />
