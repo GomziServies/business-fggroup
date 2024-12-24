@@ -43,7 +43,7 @@ const Profile = () => {
       const response = await axiosInstance.get("/account/profile");
       const userData = response.data.data;
       if (userData) {
-        const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
+        const addressData = userData.user.address || {};
 
         setFormData((prevData) => ({
           ...prevData,
@@ -80,12 +80,10 @@ const Profile = () => {
   const handlePhotoChange = async (e) => {
     const file = e.target.files[0];
 
-    // Create a FormData object to send the file
     const formDataForUpload = new FormData();
     formDataForUpload.append("files", file);
 
     try {
-      // Make the API request to upload the file
       const response = await axiosInstance.post(
         "/file-upload",
         formDataForUpload
@@ -102,17 +100,14 @@ const Profile = () => {
         profile_image: photoUrl,
       });
 
-      // Show success toast
       toast.success("Profile photo uploaded successfully");
     } catch (error) {
       console.error("Error uploading photo:", error);
-      // Show error toast
       toast.error("Error uploading profile photo");
     }
   };
 
   const handleRemovePhoto = async () => {
-    // Update the state to remove the photo
     setFormData((prevData) => ({
       ...prevData,
       profilePhoto: null,
@@ -138,23 +133,19 @@ const Profile = () => {
       );
       if (response.data.data) {
         getUserData();
-        // Show success toast
         toast.success("User data updated successfully");
       } else {
         console.error("Failed to update user data");
-        // Show error toast
         toast.error("Error updating user data");
       }
     } catch (error) {
       console.error("Error updating user data:", error);
-      // Show error toast
       toast.error("Error updating user data");
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Add any validation or additional logic before updating data
     await updateData();
   };
 
@@ -193,18 +184,15 @@ const Profile = () => {
   return (
     <div>
       <Helmet>
-        {/* Meta Data */}
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Goodup - Business Directory &amp; Listing HTML Template</title>
-        {/* Favicon */}
         <link
           rel="shortcut icon"
           type="image/x-icon"
           href="images/favicon.ico"
         />
-        {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
@@ -253,8 +241,6 @@ const Profile = () => {
               </div>
             </div>
           </section>
-          {/* =============================== Dashboard Header ========================== */}
-          {/* ======================= dashboard Detail ======================== */}
           <div className="goodup-dashboard-wrap gray px-4 py-5">
             <a
               className="mobNavigation"
@@ -295,8 +281,6 @@ const Profile = () => {
                     ) : (
                       ""
                     )}
-                    {/* </ul> */}
-                    {/* <ul data-submenu-title="My Accounts"> */}
                     <li className="active">
                       <Link to="/profile">
                         <i className="lni lni-user me-2" />
@@ -338,11 +322,6 @@ const Profile = () => {
                         className="d-md-flex"
                         style={{ alignItems: "center", marginBottom: "20px" }}
                       >
-                        {/* <Avatar
-                              alt="User Photo"
-                              src={formData.profilePhoto}
-                              sx={{ width: 100, height: 100, marginRight: "20px" }}
-                            /> */}
                         <div>
                           <div className="d-flex rounded px-3 py-3 mb-3">
                             <div className="dash-figure">
@@ -540,7 +519,7 @@ const Profile = () => {
                     <div className="col-12 d-flex flex-column align-items-center">
                       <h4>You have Log in first.</h4>
                       <Link to="/login" class="add-list-btn mt-3">
-                      <i className="lni lni-power-switch me-2" />Log In
+                        <i className="lni lni-power-switch me-2" />Log In
                       </Link>
                     </div>
                   </div>
@@ -548,10 +527,7 @@ const Profile = () => {
               )}
             </div>
           </div>
-          {/* ======================= dashboard Detail End ======================== */}
-          {/* ============================ Footer Start ================================== */}
           <Footer />
-          {/* ============================ Footer End ================================== */}
           <a
             id="tops-button"
             className="top-scroll"

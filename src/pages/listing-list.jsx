@@ -147,7 +147,6 @@ const ListingList = () => {
       </>
     );
   };
-
   const handleDeleteListing = async (businessId) => {
     try {
       const result = await Swal.fire({
@@ -161,7 +160,6 @@ const ListingList = () => {
       });
 
       if (result.isConfirmed) {
-        // User confirmed, proceed with the deletion
         const response = await businessListingAxiosInstance.delete(
           `/delete-listing?listing_id=${businessId}`
         );
@@ -170,7 +168,6 @@ const ListingList = () => {
           Swal.fire("Deleted!", "Your business has been deleted.", "success");
           getBusinessData();
         } else {
-          // Show error message
           Swal.fire("Error!", "Failed to delete the business.", "error");
         }
       }
@@ -424,10 +421,7 @@ const ListingList = () => {
               </div>
             </div>
           </div>
-          {/* ======================= dashboard Detail End ======================== */}
-          {/* ============================ Footer Start ================================== */}
           <Footer />
-          {/* ============================ Footer End ================================== */}
           <a
             id="tops-button"
             className="top-scroll"
@@ -437,15 +431,6 @@ const ListingList = () => {
             <i className="ti-arrow-up" />
           </a>
         </div>
-        {/* ============================================================== */}
-        {/* End Wrapper */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* All Jquery */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* This page plugins */}
-        {/* ============================================================== */}
       </>
     </div>
   );

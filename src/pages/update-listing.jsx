@@ -84,7 +84,7 @@ const UpdateListing = () => {
       const response = await axiosInstance.get("/account/profile");
       const userData = response.data.data;
       if (userData) {
-        const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
+        const addressData = userData.user.address || {};
 
         setUserData((prevData) => ({
           ...prevData,
@@ -131,19 +131,14 @@ const UpdateListing = () => {
 
   const handleSelectChange = (selectedOptions) => {
     setSelectedFacilities(selectedOptions);
-    // Map the selected options to only store the value of each selected option
     const selectedValues = selectedOptions.map((option) => option.value);
     setFormData({ services: selectedValues });
   };
 
-  // ----------------------------------------------------------------------------------
 
   const [businessPhotos, setBusinessPhotos] = useState([]);
   const [featurePreview, setFeaturePreview] = useState(null);
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
-  const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] =
-    useState(null);
-
+  const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] = useState(null);
   const [logoImage, setLogoImage] = useState(null);
   const [logoPreview, setLogoPreview] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
@@ -185,9 +180,7 @@ const UpdateListing = () => {
         }
 
         if (croppedBlob) {
-          // Read the file and set the logo image
           const reader = new FileReader();
-
           reader.onloadend = async () => {
             setLogoImage(croppedBlob);
             const updatedFormData = {
@@ -197,7 +190,6 @@ const UpdateListing = () => {
             setFormData(updatedFormData);
 
             try {
-              // Upload logo image and update listing data
               const logoFormData = new FormData();
               logoFormData.append("files", croppedBlob);
 
@@ -253,7 +245,7 @@ const UpdateListing = () => {
       const reader = new FileReader();
       reader.onload = () => {
         setImageSrc(reader.result);
-        setShow(true); // Show crop modal if cropping is needed
+        setShow(true);
       };
       reader.readAsDataURL(file);
     }
@@ -261,21 +253,16 @@ const UpdateListing = () => {
 
   const handleLogoChange = (event) => {
     const file = profilePhoto;
-    // const file = event.target.files[0];
-
     if (file instanceof File) {
-      // Ensure the file size is within the limit (2 MB)
       if (file.size > 2 * 1024 * 1024) {
         alert("File size exceeds 2 MB!");
         return;
       }
-      // Generate a preview URL for the selected file
       const previewUrl = URL.createObjectURL(file);
       setLogoPreview(previewUrl);
     }
 
     if (file) {
-      // Read the file and set the logo image
       const reader = new FileReader();
       reader.onloadend = () => {
         setLogoImage(file);
@@ -296,12 +283,10 @@ const UpdateListing = () => {
   const handleBusinessPhotosChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      // Ensure the file size is within the limit (2 MB)
       if (file.size > 2 * 1024 * 1024) {
         alert("File size exceeds 2 MB!");
         return;
       }
-      // Generate a preview URL for the selected file
       const previewUrl = URL.createObjectURL(file);
       setFeaturePreview(previewUrl);
     }
@@ -309,7 +294,6 @@ const UpdateListing = () => {
     const files = event.target.files;
 
     if (files.length > 0) {
-      // Read and set the business photos
       const newPhotos = [...businessPhotos];
       Array.from(files).forEach((file) => {
         const reader = new FileReader();
@@ -322,11 +306,9 @@ const UpdateListing = () => {
     }
   };
 
-  // Function to handle removing a business photo
   const handleRemoveBusinessPhoto = async (index) => {
     const newPhotos = [...businessPhotos];
     const removedPhoto = newPhotos.splice(index, 1)[0];
-    // newPhotos.splice(index, 1);
     setBusinessPhotos([...newPhotos]);
 
     try {
@@ -334,16 +316,12 @@ const UpdateListing = () => {
         "https://files.fggroup.in/",
         ""
       );
-
-      // Update listing data without the removed business photo
       const updatedListingData = {
         listing_id: listing_id,
         business_images: newPhotos.map((url) =>
           url.replace("https://files.fggroup.in/", "")
         ),
       };
-
-      // Make API request to update the listing data
       await businessListingAxiosInstance.patch(
         `/update-listing?listing_id=${listing_id}`,
         updatedListingData
@@ -387,15 +365,12 @@ const UpdateListing = () => {
   const handleBusinessCropComplete = async () => {
     if (businessImageSrc && profilePhoto) {
       try {
-        // Step 1: Crop the image
         const croppedImg = await getCroppedImg(businessImageSrc, profilePhoto);
 
         if (!croppedImg) {
           console.error("Cropped image is not valid.");
           return;
         }
-
-        // If croppedImg is a base64 string, convert it to a Blob
         let croppedBlob = croppedImg;
         if (typeof croppedImg === "string") {
           const byteString = atob(croppedImg.split(",")[1]);
@@ -410,8 +385,6 @@ const UpdateListing = () => {
           }
           croppedBlob = new Blob([ab], { type: mimeString });
         }
-
-        // Step 2: Upload the cropped image
         const photoFormData = new FormData();
         photoFormData.append("files", croppedBlob);
 
@@ -419,22 +392,18 @@ const UpdateListing = () => {
           "/file-upload",
           photoFormData
         );
-
-        // Extract the uploaded URL
         const uploadedUrls = photoResponse.data.data.fileURLs;
         const processedUrls = uploadedUrls.map((url) =>
           url.replace("https://files.fggroup.in/", "")
         );
 
-        // Combine with existing business photo URLs, ensuring only valid URLs are included
         const validPreviousImages = businessPhotos
           .filter(
             (photo) =>
               typeof photo === "string" && photo.includes("development/")
-          ) // Ensure valid development URLs
+          )
           .map((url) => url.replace("https://files.fggroup.in/", ""));
 
-        // Step 3: Update the listing
         const updatedListingData = {
           listing_id: listing_id,
           business_images: [...processedUrls, ...validPreviousImages],
@@ -449,7 +418,6 @@ const UpdateListing = () => {
           position: toast.POSITION.TOP_RIGHT,
         });
 
-        // Optional: Update local state with valid URLs
         const fullUrls = [...validPreviousImages, ...processedUrls].map(
           (url) => `https://files.fggroup.in/${url}`
         );
@@ -463,8 +431,6 @@ const UpdateListing = () => {
       }
     }
   };
-
-  // ----------------------------------------------------------------------------------
 
   const handleDayChange = (index, selectedDay) => {
     const updatedBusinessHours = [...businessHours];
@@ -521,14 +487,12 @@ const UpdateListing = () => {
     }
   };
 
-  // Function to handle social media link change
   const handleSocialMediaLinkChange = (index, value) => {
     const newLinks = [...socialMediaLinks];
     newLinks[index].link = value;
     setSocialMediaLinks([...newLinks]);
   };
 
-  // Function to handle removing a social media link
   const handleRemoveSocialMediaLink = (index) => {
     const newLinks = [...socialMediaLinks];
     newLinks.splice(index, 1);
@@ -560,7 +524,6 @@ const UpdateListing = () => {
         close: dayData.timings.length > 0 ? dayData.timings[0].to_time : "",
       }));
       const timesData = allDays.reduce((acc, day) => {
-        // Find data for the current day
         const dayData = businessHours.find((item) => item.title === day);
         acc[day] = {
           opening:
@@ -604,7 +567,6 @@ const UpdateListing = () => {
         state: address.state || "",
         pin_code: address.pin_code || "",
         direction_link: address.direction_link || "",
-        // contactNumber: fetchedBusinessData.contacts[0]?.value || "",
         contactNumber:
           address.contact.contact_type === "mobile"
             ? address.contact.value
@@ -660,7 +622,6 @@ const UpdateListing = () => {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
         description: formData.description,
-        // facilities: selectedFacilities.map((facilities) => facilities.value),
         business_category: [selectedCategory],
         services: selectedFacilities.map((facilities) => facilities.value),
         tags: formData.tags || [],
@@ -714,19 +675,15 @@ const UpdateListing = () => {
         })),
       };
 
-      console.log("postData :- ", postData);
-
       await businessListingAxiosInstance.patch("/update-listing", postData);
       getBusinessData();
 
-      // Show success toast
       toast.success("Business Data Updated successfully!", {
         position: toast.POSITION.TOP_RIGHT,
       });
     } catch (error) {
       console.error("Error uploading files:", error);
 
-      // Show error toast
       toast.error("Error Updating listing. Please try again.", {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -879,13 +836,11 @@ const UpdateListing = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Goodup - Business Directory &amp; Listing HTML Template</title>
-        {/* Favicon */}
         <link
           rel="shortcut icon"
           type="image/x-icon"
           href="images/favicon.ico"
         />
-        {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
@@ -934,9 +889,6 @@ const UpdateListing = () => {
               </div>
             </div>
           </section>
-
-          {/* =============================== Section Start ========================== */}
-
           <div className="goodup-dashboard-wrap gray px-4 py-5">
             <a
               className="mobNavigation"
@@ -971,8 +923,6 @@ const UpdateListing = () => {
                         Update Listing
                       </Link>
                     </li>
-                    {/* </ul> */}
-                    {/* <ul data-submenu-title="My Accounts"> */}
                     <li>
                       <Link to="/profile">
                         <i className="lni lni-user me-2" />
@@ -1001,7 +951,6 @@ const UpdateListing = () => {
                 <div className="row">
                   <div className="col-xl-12 col-lg-2 col-md-12 col-sm-12">
                     <div className="submit-form">
-                      {/* Business Info */}
                       <div className="dashboard-list-wraps bg-white rounded mb-4">
                         <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                           <div className="dashboard-list-wraps-flx">
@@ -1040,7 +989,6 @@ const UpdateListing = () => {
                           </div>
                         </div>
                       </div>
-                      {/* Listing Info */}
                       <div className="dashboard-list-wraps bg-white rounded mb-4">
                         <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                           <div className="dashboard-list-wraps-flx">
@@ -1143,7 +1091,6 @@ const UpdateListing = () => {
                                 />
                               </div>
                             </div>
-
                             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Facilities</label>
@@ -1156,25 +1103,9 @@ const UpdateListing = () => {
                                 />
                               </div>
                             </div>
-
-                            {/* <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Services</label>
-                                <TagInput
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Add Services"
-                                  value={formData.services}
-                                  onChange={(value) =>
-                                    handleInputChange("services", value)
-                                  }
-                                />
-                              </div>
-                            </div> */}
                           </div>
                         </div>
                       </div>
-                      {/* Location Info */}
                       <div className="dashboard-list-wraps bg-white rounded mb-4">
                         <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                           <div className="dashboard-list-wraps-flx">
@@ -1365,7 +1296,6 @@ const UpdateListing = () => {
                           </div>
                         </div>
                       </div>
-                      {/* Image & Gallery Option */}
                       <div className="dashboard-list-wraps bg-white rounded mb-4">
                         <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                           <div className="dashboard-list-wraps-flx">
@@ -1377,7 +1307,6 @@ const UpdateListing = () => {
                         </div>
                         <div className="dashboard-list-wraps-body py-3 px-3">
                           <div className="row">
-                            {/* Logo */}
                             <div className="col-12">
                               <label className="mb-1">Upload Logo</label>
                               {logoPreview ? (
@@ -1430,11 +1359,9 @@ const UpdateListing = () => {
                                 type="file"
                                 className="d-none"
                                 accept="image/*"
-                                // onChange={handleLogoChange}
                                 onChange={handleCropLogoChange}
                               />
                             </div>
-                            {/* Featured Image */}
                             <div className="col-12 mt-3">
                               <label className="mb-1">Featured Image </label>
                               {businessPhotos && businessPhotos.length > 0 ? (
@@ -1543,14 +1470,12 @@ const UpdateListing = () => {
                                 accept="image/*"
                                 className="d-none"
                                 onChange={handleCropBusinessPhoto}
-                                // multiple
                                 sx={{ mt: 2, mb: 2 }}
                               />
                             </div>
                           </div>
                         </div>
                       </div>
-                      {/* Working hours */}
                       <div className="dashboard-list-wraps bg-white rounded mb-4">
                         <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                           <div className="dashboard-list-wraps-flx">
@@ -1709,7 +1634,6 @@ const UpdateListing = () => {
                           </div>
                         </div>
                       </div>
-                      {/* Social Links */}
                       <div className="dashboard-list-wraps bg-white rounded mb-4">
                         <div className="dashboard-list-wraps-body py-3 px-3">
                           <div className="row">
@@ -1748,11 +1672,7 @@ const UpdateListing = () => {
               </div>
             </div>
           </div>
-
-          {/* =============================== Section End ========================== */}
-          {/* ============================ Footer Start ================================== */}
           <Footer />
-          {/* ============================ Footer End ================================== */}
 
           <a
             id="tops-button"
@@ -1765,7 +1685,6 @@ const UpdateListing = () => {
         </div>
       </>
       <ToastContainer />
-
       <Modal show={show} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>Crop Logo Image</Modal.Title>

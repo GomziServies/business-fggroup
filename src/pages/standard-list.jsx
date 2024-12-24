@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import WhatsappBtn from "../components/WhatsappBtn";
 
 const StandardList = () => {
   const [loading, setLoading] = useState(true);
@@ -55,7 +56,7 @@ const StandardList = () => {
                       <div className="article_featured_image">
                         <img
                           className="img-fluid"
-                          src="images/affordable-list.webp"
+                          src="images/standard-list.webp"
                           alt=""
                         />
                       </div>
@@ -225,13 +226,12 @@ const StandardList = () => {
                     <div className="row no-gutters justify-content-center">
                       <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
                         <div className="form-group mb-0">
-                          <button
-                            className="full-width btn-height dark-theme-bg whatsapp-btn text-light fs-md"
-                            type="button"
-                          >
-                            <i className="lni lni-whatsapp mr-2" />
-                            WhatsApp
-                          </button>
+                          <WhatsappBtn
+                            message={
+                              "Hello, I wanted to know more about Business Listing."
+                            }
+                            options={{ pageRef: true }}
+                          />
                         </div>
                       </div>
                     </div>

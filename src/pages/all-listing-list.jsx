@@ -54,7 +54,7 @@ const AllListingList = () => {
       const response = await axiosInstance.get("/account/profile");
       const userData = response.data.data;
       if (userData) {
-        const addressData = userData.user.address || {}; // Access the address object, use an empty object if undefined
+        const addressData = userData.user.address || {};
 
         setFormData((prevData) => ({
           ...prevData,
@@ -108,9 +108,7 @@ const AllListingList = () => {
       const requestData = {
         filter: {
           business_type: ["personal", "business"],
-          // services: services,
           tags: tags,
-          // city: city,
           rating: rating,
         },
         sort: {
@@ -235,7 +233,6 @@ const AllListingList = () => {
       });
 
       if (result.isConfirmed) {
-        // User confirmed, proceed with the deletion
         const response = await businessListingAxiosInstance.delete(
           `/delete-listing?listing_id=${businessId}`
         );
@@ -244,7 +241,6 @@ const AllListingList = () => {
           Swal.fire("Deleted!", "Your business has been deleted.", "success");
           getBusinessData();
         } else {
-          // Show error message
           Swal.fire("Error!", "Failed to delete the business.", "error");
         }
       }
@@ -417,7 +413,7 @@ const AllListingList = () => {
                     <div className="dashboard-list-wraps bg-white rounded mb-4">
                       <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                         <div className="row">
-                          <div className="col-md-4">
+                          <div className="col-md-6">
                             <div className="form-group">
                               <label className="mb-1">Categories</label>
                               <select
@@ -442,20 +438,7 @@ const AllListingList = () => {
                               </select>
                             </div>
                           </div>
-                          <div className="col-md-4">
-                            <div className="form-group">
-                              <label className="mb-1">Facilities</label>
-                              <Select
-                                isMulti
-                                options={facilities}
-                                value={selectedFacilities}
-                                onChange={handleSelectChange}
-                                placeholder="Select Facilities"
-                                style={{ zIndex: "99999 !important" }}
-                              />
-                            </div>
-                          </div>
-                          <div className="col-md-4">
+                          <div className="col-md-6">
                             <div className="form-group">
                               <label className="mb-1">City</label>
                               <input
@@ -479,7 +462,7 @@ const AllListingList = () => {
                                   ? description?.substring(0, 65) + "..."
                                   : description;
 
-                              const facilityLimit = 5;
+                              const facilityLimit = 3;
                               const validFacilities = business.services
                                 .map((service) => {
                                   switch (service) {
@@ -574,7 +557,7 @@ const AllListingList = () => {
                                         </li>
                                       );
                                     default:
-                                      return null; // If no matching service, return null
+                                      return null;
                                   }
                                 })
                                 .filter((item) => item !== null);
@@ -631,8 +614,8 @@ const AllListingList = () => {
                                                 style={{
                                                   color:
                                                     index <
-                                                    business.review_stats
-                                                      .average_rating
+                                                      business.review_stats
+                                                        .average_rating
                                                       ? "#F09000"
                                                       : "#ccc",
                                                 }}
@@ -684,7 +667,13 @@ const AllListingList = () => {
                                             to={`/listing-view?business_id=${business._id}`}
                                             className="text-dark fs-md"
                                           >
-                                            {business.business_name}
+                                            {business.business_name &&
+                                              business.business_name.length > 30
+                                              ? business.business_name.substring(
+                                                0,
+                                                30
+                                              ) + "..."
+                                              : business.business_name}
                                             <span className="verified-badge">
                                               <i className="fas fa-check-circle" />
                                             </span>
@@ -722,15 +711,6 @@ const AllListingList = () => {
                                               business.locations[0].state}
                                           </div>
                                         </div>
-                                        <div className="Goodup-ft-last">
-                                          <div className="Goodup-inline">
-                                            <div className="Goodup-bookmark-btn">
-                                              <button type="button">
-                                                <i className="lni lni-phone position-absolute" />
-                                              </button>
-                                            </div>
-                                          </div>
-                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -750,10 +730,7 @@ const AllListingList = () => {
               </div>
             </div>
           </div>
-          {/* ======================= dashboard Detail End ======================== */}
-          {/* ============================ Footer Start ================================== */}
           <Footer />
-          {/* ============================ Footer End ================================== */}
           <a
             id="tops-button"
             className="top-scroll"
@@ -763,15 +740,6 @@ const AllListingList = () => {
             <i className="ti-arrow-up" />
           </a>
         </div>
-        {/* ============================================================== */}
-        {/* End Wrapper */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* All Jquery */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* This page plugins */}
-        {/* ============================================================== */}
       </>
     </div>
   );

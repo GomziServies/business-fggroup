@@ -23,6 +23,7 @@ import Slider from "react-slick";
 import { Col, Row } from "react-bootstrap";
 import CircleIcon from "@mui/icons-material/Circle";
 import StarIcon from "@mui/icons-material/Star";
+import WhatsappBtn from "../components/WhatsappBtn";
 
 const ListingView = () => {
   const location = useLocation();
@@ -130,21 +131,18 @@ const ListingView = () => {
       });
 
       toast.success(
-        `Business ${
-          isFavorite ? "removed from" : "added to"
+        `Business ${isFavorite ? "removed from" : "added to"
         } favorites successfully`
       );
 
       setIsFavorite(!isFavorite);
     } catch (error) {
       toast.error(
-        `Error Have to login for ${
-          isFavorite ? "removing" : "adding"
+        `Error Have to login for ${isFavorite ? "removing" : "adding"
         } business to favorites`
       );
       console.error(
-        `Error Have to login for ${
-          isFavorite ? "removing" : "adding"
+        `Error Have to login for ${isFavorite ? "removing" : "adding"
         } business to favorites:`,
         error
       );
@@ -755,7 +753,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                              "00:00" &&
+                                            "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -1128,7 +1126,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                        business.review_stats.average_rating
+                                          business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}
@@ -1222,15 +1220,6 @@ const ListingView = () => {
                                   business.locations[0].state}
                               </div>
                             </div>
-                            <div className="Goodup-ft-last">
-                              <div className="Goodup-inline">
-                                <div className="Goodup-bookmark-btn">
-                                  <button type="button">
-                                    <i className="lni lni-phone position-absolute" />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -1238,11 +1227,8 @@ const ListingView = () => {
                   );
                 })}
               </div>
-              {/* row */}
             </div>
           </section>
-          {/* ======================= Related Listings ======================== */}
-          {/* ======================= Newsletter Start ============================ */}
           <section
             className="space bg-cover text-start"
             style={{
@@ -1266,13 +1252,12 @@ const ListingView = () => {
                     <div className="row no-gutters justify-content-center">
                       <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
                         <div className="form-group mb-0">
-                          <button
-                            className="full-width btn-height dark-theme-bg whatsapp-btn text-light fs-md"
-                            type="button"
-                          >
-                            <i className="lni lni-whatsapp mr-2" />
-                            WhatsApp
-                          </button>
+                          <WhatsappBtn
+                            message={
+                              "Hello, I wanted to know more about Business Listing."
+                            }
+                            options={{ pageRef: true }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -1282,7 +1267,6 @@ const ListingView = () => {
             </div>
           </section>
           <Footer />
-          {/* Log In Modal */}
           <div
             className="modal fade"
             id="login"
@@ -1383,7 +1367,6 @@ const ListingView = () => {
               </div>
             </div>
           </div>
-          {/* End Modal */}
           <a
             id="tops-button"
             className="top-scroll"

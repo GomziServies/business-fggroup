@@ -75,7 +75,7 @@ const HomeRecentActivity = () => {
                   ? description?.substring(0, 65) + "..."
                   : description;
 
-              const facilityLimit = 5;
+              const facilityLimit = 3;
               const validFacilities = business.services
                 .map((service) => {
                   switch (service) {
@@ -170,7 +170,7 @@ const HomeRecentActivity = () => {
                         </li>
                       );
                     default:
-                      return null; // If no matching service, return null
+                      return null;
                   }
                 })
                 .filter((item) => item !== null);
@@ -265,7 +265,7 @@ const HomeRecentActivity = () => {
                             className="text-dark fs-md"
                           >
                             {business.business_name &&
-                            business.business_name.length > 30
+                              business.business_name.length > 30
                               ? business.business_name.substring(0, 30) + "..."
                               : business.business_name}
 
@@ -304,22 +304,12 @@ const HomeRecentActivity = () => {
                               business.locations[0].state}
                           </div>
                         </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-phone position-absolute" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               );
             })}
-
             <div className="col-12 d-flex justify-content-center mt-3">
               <Link to="/all-listing" class="add-list-btn">
                 <i class="fas fa-eye me-2"></i>View More

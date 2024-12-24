@@ -53,10 +53,8 @@ function Header() {
       if (response.data && response.data.data && response.data.data.OTP) {
         setOtpDialogOpen(true);
         setCurrentStep("otp");
-        // Automatically set OTP in the state
         setOtpCode(response.data.data.OTP);
 
-        // Show success toast
         toast.success("OTP Sent! You will receive an OTP shortly.");
       } else {
         setOtpDialogOpen(true);
@@ -82,22 +80,18 @@ function Header() {
       const auth = response.data.data.authorization;
 
       if (response.status === 200) {
-        // Save data to localStorage
         localStorage.setItem("authorization", auth);
         getUserData();
         setOtpDialogOpen(false);
         toast.success("OTP Verified!");
         const activeServices = response.data.data.active_services;
-        // Check for BUSINESS-LISTING within the array
         if (activeServices.includes("BUSINESS-LISTING")) {
           toast.success("Login Successful!");
         }
       } else {
-        // Handle error scenario if needed
         toast.error("Failed to verify OTP. Please try again.");
       }
     } catch (error) {
-      // Handle errors here
       console.error("Error in handleOtpSubmit:", error);
     }
   };
@@ -126,85 +120,6 @@ function Header() {
 
   return (
     <>
-      {/* <div
-        className={`header header-light dark-text ${isFixed ? "header-fixed" : ""
-          }`}
-      >
-        <div className="container">
-          <nav id="navigation" className="navigation navigation-landscape">
-            <div className="nav-header">
-              <a className="nav-brand d-flex align-items-center" href="#">
-                <img src="images/logo.png" className="logo" alt="" />
-                <h5 className="ps-2 mb-0">FG Group</h5>
-              </a>
-              <div className="nav-toggle" />
-              <div className="mobile_nav">
-                <ul>
-                  <li>
-                    <a
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#login"
-                      className="theme-cl fs-lg"
-                    >
-                      <i className="lni lni-user" />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="add-listing.html"
-                      className="crs_yuo12 w-auto text-white theme-bg"
-                    >
-                      <span className="embos_45">
-                        <i className="fas fa-plus me-2" />
-                        Add Listing
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div
-              className="nav-menus-wrapper"
-              style={{ transitionProperty: "none" }}
-            >
-              <ul className="nav-menu">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/listing-list">Listings</Link>
-                </li>
-                {isLogin ? (
-                  <li>
-                    <Link to="/profile">Profile</Link>
-                  </li>
-                ) : (
-                  ""
-                )}
-              </ul>
-              <ul className="nav-menu nav-menu-social align-to-right">
-                {isLogin ? (
-                  ""
-                ) : (
-                  <li>
-                    <a href="#" onClick={handleShow} className="ft-bold">
-                      <i className="fas fa-sign-in-alt me-1 theme-cl" />
-                      Sign In
-                    </a>
-                  </li>
-                )}
-                <li className="add-listing">
-                  <Link to="/add-listing">
-                    <i className="fas fa-plus me-2" />
-                    Add Listing
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div> */}
       <div className="container-fluid main p-0 m-0">
         <div className="d-lg-block d-none log">
           <Link to="/">
@@ -371,7 +286,6 @@ function Header() {
                 onChange={(e) => setOtpCode(e.target.value)}
               />
             </Form.Group>
-
             <div className="text-center row justify-content-center mt-4 my-3">
               <div className="col-5">
                 <Button

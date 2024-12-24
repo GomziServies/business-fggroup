@@ -8,6 +8,7 @@ import { Button, Form } from "react-bootstrap";
 import axiosInstance from "../js/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import WhatsappBtn from "../components/WhatsappBtn";
 
 const Login = () => {
   const [loading, setLoading] = useState(true);
@@ -39,10 +40,8 @@ const Login = () => {
       if (response.data && response.data.data && response.data.data.OTP) {
         setOtpDialogOpen(true);
         setCurrentStep("otp");
-        // Automatically set OTP in the state
         setOtpCode(response.data.data.OTP);
 
-        // Show success toast
         toast.success("OTP Sent! You will receive an OTP shortly.");
       } else {
         setOtpDialogOpen(true);
@@ -68,23 +67,19 @@ const Login = () => {
       const auth = response.data.data.authorization;
 
       if (response.status === 200) {
-        // Save data to localStorage
         localStorage.setItem("authorization", auth);
         getUserData();
         setOtpDialogOpen(false);
         toast.success("OTP Verified!");
         const activeServices = response.data.data.active_services;
-        // Check for BUSINESS-LISTING within the array
         if (activeServices.includes("BUSINESS-LISTING")) {
           toast.success("Login Successful!");
         }
         window.location.href = "/";
       } else {
-        // Handle error scenario if needed
         toast.error("Failed to verify OTP. Please try again.");
       }
     } catch (error) {
-      // Handle errors here
       console.error("Error in handleOtpSubmit:", error);
     }
   };
@@ -109,13 +104,11 @@ const Login = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Goodup - Business Directory &amp; Listing HTML Template</title>
-        {/* Favicon */}
         <link
           rel="shortcut icon"
           type="image/x-icon"
           href="images/favicon.ico"
         />
-        {/* Custom CSS */}
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
@@ -123,7 +116,7 @@ const Login = () => {
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          <section className="gray text-start" style={{ marginTop: '70px' }}>
+          <section className="gray text-start" style={{ marginTop: "70px" }}>
             <div className="container">
               <div className="row align-items-start justify-content-center">
                 <div className="col-xl-5 col-lg-8 col-md-12">
@@ -189,12 +182,11 @@ const Login = () => {
                               onChange={(e) => setOtpCode(e.target.value)}
                             />
                           </Form.Group>
-
                           <div className="text-center row justify-content-center mt-4 my-3">
                             <div className="col-5">
                               <Button
                                 variant="primary"
-                                className="w-100 theme-bg text-light rounded ft-medium"
+                                className="w-100 bg-dark text-light rounded ft-medium"
                                 onClick={handleGoBack}
                               >
                                 Back
@@ -231,8 +223,6 @@ const Login = () => {
               </div>
             </div>
           </section>
-          {/* ======================= Login End ======================== */}
-          {/* ======================= Newsletter Start ============================ */}
           <section
             className="space bg-cover text-start"
             style={{
@@ -256,13 +246,12 @@ const Login = () => {
                     <div className="row no-gutters justify-content-center">
                       <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
                         <div className="form-group mb-0">
-                          <button
-                            className="full-width btn-height dark-theme-bg whatsapp-btn text-light fs-md"
-                            type="button"
-                          >
-                            <i className="lni lni-whatsapp mr-2" />
-                            WhatsApp
-                          </button>
+                          <WhatsappBtn
+                            message={
+                              "Hello, I wanted to know more about Business Listing."
+                            }
+                            options={{ pageRef: true }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -271,11 +260,7 @@ const Login = () => {
               </div>
             </div>
           </section>
-          {/* ======================= Newsletter Start ============================ */}
-          {/* ============================ Footer Start ================================== */}
           <Footer />
-          {/* ============================ Footer End ================================== */}
-          {/* Log In Modal */}
           <div
             className="modal fade"
             id="login"
@@ -376,7 +361,6 @@ const Login = () => {
               </div>
             </div>
           </div>
-          {/* End Modal */}
           <a
             id="tops-button"
             className="top-scroll"
@@ -386,15 +370,6 @@ const Login = () => {
             <i className="ti-arrow-up" />
           </a>
         </div>
-        {/* ============================================================== */}
-        {/* End Wrapper */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* All Jquery */}
-        {/* ============================================================== */}
-        {/* ============================================================== */}
-        {/* This page plugins */}
-        {/* ============================================================== */}
       </>
     </div>
   );
