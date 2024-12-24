@@ -126,7 +126,12 @@ const AffordableList = () => {
               </div>
             </div>
           </section>
-          <section className="space bg-cover text-start" style={{ background: "rgb(3, 52, 59) url(images/landing-bg.png) no-repeat" }}>
+          <section
+            className="space bg-cover text-start"
+            style={{
+              background: "#03343b url(images/landing-bg.png) no-repeat",
+            }}
+          >
             <div className="container py-5">
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -140,24 +145,16 @@ const AffordableList = () => {
               </div>
               <div className="row align-items-center justify-content-center">
                 <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
-                  <form className="bg-white rounded p-1">
-                    <div className="row no-gutters">
-                      <div className="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-8">
-                        <div className="form-group mb-0 position-relative">
-                          <input
-                            type="text"
-                            className="form-control b-0"
-                            placeholder="Enter Your Email Address"
-                          />
-                        </div>
-                      </div>
+                  <form className="rounded p-1">
+                    <div className="row no-gutters justify-content-center">
                       <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                        <div className="form-group mb-0 position-relative">
+                        <div className="form-group mb-0">
                           <button
-                            className="btn full-width btn-height theme-bg text-light fs-md"
+                            className="full-width btn-height dark-theme-bg whatsapp-btn text-light fs-md"
                             type="button"
                           >
-                            Subscribe
+                            <i className="lni lni-whatsapp mr-2" />
+                            WhatsApp
                           </button>
                         </div>
                       </div>

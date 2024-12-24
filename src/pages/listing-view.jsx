@@ -130,18 +130,21 @@ const ListingView = () => {
       });
 
       toast.success(
-        `Business ${isFavorite ? "removed from" : "added to"
+        `Business ${
+          isFavorite ? "removed from" : "added to"
         } favorites successfully`
       );
 
       setIsFavorite(!isFavorite);
     } catch (error) {
       toast.error(
-        `Error Have to login for ${isFavorite ? "removing" : "adding"
+        `Error Have to login for ${
+          isFavorite ? "removing" : "adding"
         } business to favorites`
       );
       console.error(
-        `Error Have to login for ${isFavorite ? "removing" : "adding"
+        `Error Have to login for ${
+          isFavorite ? "removing" : "adding"
         } business to favorites:`,
         error
       );
@@ -525,7 +528,10 @@ const ListingView = () => {
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          <section className="featured-wraps gray text-start" style={{ marginTop: '70px' }}>
+          <section
+            className="featured-wraps gray text-start"
+            style={{ marginTop: "70px" }}
+          >
             <div className="container">
               <div className="row">
                 <div className="col-xl-12 col-lg-12 col-md-12">
@@ -749,7 +755,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                            "00:00" &&
+                                              "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -788,7 +794,9 @@ const ListingView = () => {
                                   </a>
                                   <span className="reviews-comments-item-date">
                                     <i className="ti-calendar theme-cl me-1" />
-                                    {new Date(review.createdAt).toLocaleDateString()}
+                                    {new Date(
+                                      review.createdAt
+                                    ).toLocaleDateString()}
                                   </span>
                                 </h4>
                                 <span className="agd-location">
@@ -1120,7 +1128,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                          business.review_stats.average_rating
+                                        business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}
@@ -1254,24 +1262,16 @@ const ListingView = () => {
               </div>
               <div className="row align-items-center justify-content-center">
                 <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
-                  <form className="bg-white rounded p-1">
-                    <div className="row no-gutters">
-                      <div className="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-8">
-                        <div className="form-group mb-0 position-relative">
-                          <input
-                            type="text"
-                            className="form-control b-0"
-                            placeholder="Enter Your Email Address"
-                          />
-                        </div>
-                      </div>
+                  <form className="rounded p-1">
+                    <div className="row no-gutters justify-content-center">
                       <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                        <div className="form-group mb-0 position-relative">
+                        <div className="form-group mb-0">
                           <button
-                            className="btn full-width btn-height theme-bg text-light fs-md"
+                            className="full-width btn-height dark-theme-bg whatsapp-btn text-light fs-md"
                             type="button"
                           >
-                            Subscribe
+                            <i className="lni lni-whatsapp mr-2" />
+                            WhatsApp
                           </button>
                         </div>
                       </div>

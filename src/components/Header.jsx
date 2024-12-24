@@ -209,22 +209,14 @@ function Header() {
         <div className="d-lg-block d-none log">
           <Link to="/">
             <div>
-              <img
-                src="images/logo.png"
-                width="80%"
-                alt="Fg Group"
-              />
+              <img src="images/logo.png" width="80%" alt="Fg Group" />
             </div>
           </Link>
         </div>
         <div className="d-lg-none d-sm-block t0 log1">
           <Link to="/">
             <div>
-              <img
-                src="images/logo.png"
-                width="100%"
-                alt="Fg Group"
-              />
+              <img src="images/logo.png" width="100%" alt="Fg Group" />
             </div>
           </Link>
         </div>
@@ -236,7 +228,7 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link to="/listing-list">
+              <Link to="/all-listing">
                 <p className="m-0">Listing</p>
               </Link>
             </li>
@@ -263,11 +255,7 @@ function Header() {
           </Link>
           <Link to="/">Home</Link>
           <Link to="/listing-list">Listing</Link>
-          {isLogin ? (
-            <Link to="/profile">Profile</Link>
-          ) : (
-            ""
-          )}
+          {isLogin ? <Link to="/profile">Profile</Link> : ""}
         </div>
         <span
           className="d-lg-none d-sm-block btnn"
@@ -278,8 +266,26 @@ function Header() {
         </span>
         <div className="login d-lg-block d-none">
           <ul>
+            {isLogin ? (
+              ""
+            ) : (
+              <li>
+                <a href="#" onClick={handleShow} className="ft-bold">
+                  <i className="fas fa-sign-in-alt me-2 theme-cl" />
+                  Sign In
+                </a>
+              </li>
+            )}
             <li className="mx-0" style={{ cursor: "pointer" }}>
-              <a href="/add-listing" class="add-list-btn"><i class="fas fa-plus me-2"></i>Add Listing</a>
+              {isLogin ? (
+                <Link to="/add-listing" class="add-list-btn">
+                  <i class="fas fa-plus me-2"></i>Add Listing
+                </Link>
+              ) : (
+                <Link to="/login" class="add-list-btn">
+                  <i class="fas fa-plus me-2"></i>Add Listing
+                </Link>
+              )}
             </li>
           </ul>
         </div>

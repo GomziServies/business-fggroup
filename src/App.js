@@ -10,6 +10,7 @@ import UpdateListing from './pages/update-listing';
 import AffordableList from './pages/affordable-list';
 import StandardList from './pages/standard-list';
 import PremiumList from './pages/premium-list';
+import AllListingList from './pages/all-listing-list';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/all-listing" element={<AllListingList />} />
         <Route path="/listing-list" element={<ListingList />} />
         <Route path="/add-listing" element={<AddListing />} />
         <Route path="/listing-view" element={<ListingView />} />

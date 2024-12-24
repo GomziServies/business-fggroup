@@ -36,6 +36,8 @@ const Profile = () => {
     profile_image: null,
   });
 
+  const [isLogin, setIsLogin] = useState(false);
+
   const getUserData = async () => {
     try {
       const response = await axiosInstance.get("/account/profile");
@@ -61,7 +63,6 @@ const Profile = () => {
       }
     } catch (error) {
       console.error("Error in getUserData:", error);
-      toast.error("Error in getUserData");
     }
   };
 
@@ -182,6 +183,13 @@ const Profile = () => {
     }
   };
 
+  useEffect(() => {
+    const LoginToken = localStorage.getItem("authorization");
+    if (LoginToken) {
+      setIsLogin(true);
+    }
+  }, []);
+
   return (
     <div>
       <Helmet>
@@ -206,7 +214,10 @@ const Profile = () => {
           <div className="clearfix" />
           <section
             className="bg-cover position-relative"
-            style={{ background: "red url(images/cover.jpg) no-repeat", marginTop: '70px' }}
+            style={{
+              background: "red url(images/cover.jpg) no-repeat",
+              marginTop: "70px",
+            }}
             data-overlay={3}
           >
             <div className="container">
@@ -261,17 +272,29 @@ const Profile = () => {
                 <div className="goodup-dashboard-inner">
                   <ul>
                     <li>
-                      <Link to="/listing-list">
+                      <Link to="/all-listing">
                         <i className="lni lni-files me-2" />
-                        My Listings
+                        All Listings
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/add-listing">
-                        <i className="lni lni-add-files me-2" />
-                        Add Listing
-                      </Link>
-                    </li>
+                    {isLogin ? (
+                      <>
+                        <li>
+                          <Link to="/listing-list">
+                            <i className="lni lni-files me-2" />
+                            My Listings
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/add-listing">
+                            <i className="lni lni-add-files me-2" />
+                            Add Listing
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      ""
+                    )}
                     {/* </ul> */}
                     {/* <ul data-submenu-title="My Accounts"> */}
                     <li className="active">
@@ -280,12 +303,21 @@ const Profile = () => {
                         My Profile{" "}
                       </Link>
                     </li>
-                    <li role="button" onClick={handleLogout}>
-                      <a href="#">
-                        <i className="lni lni-power-switch me-2" />
-                        Log Out
-                      </a>
-                    </li>
+                    {isLogin ? (
+                      <li role="button" onClick={handleLogout}>
+                        <Link to="#">
+                          <i className="lni lni-power-switch me-2" />
+                          Log Out
+                        </Link>
+                      </li>
+                    ) : (
+                      <li>
+                        <Link to="/login">
+                          <i className="lni lni-power-switch me-2" />
+                          Log In
+                        </Link>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </div>
@@ -298,208 +330,222 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <div className="dashboard-widg-bar d-block">
-                <div className="row">
-                  <div className="col-xl-3 col-lg-3 col-md-4 col-sm-12 order-xl-last order-lg-last order-md-last">
-                    <div
-                      className="d-md-flex"
-                      style={{ alignItems: "center", marginBottom: "20px" }}
-                    >
-                      {/* <Avatar
-                        alt="User Photo"
-                        src={formData.profilePhoto}
-                        sx={{ width: 100, height: 100, marginRight: "20px" }}
-                      /> */}
-                      <div>
-                        <div className="d-flex rounded px-3 py-3 mb-3">
-                          <div className="dash-figure">
-                            <div className="dash-figure-thumb">
-                              <img
-                                src={formData.profilePhoto}
-                                className="img-fluid rounded"
-                                alt=""
-                                onError={(e) => {
-                                  e.target.src = User_img;
-                                }}
-                              />
-                            </div>
-                            <input
-                              accept="image/*"
-                              style={{ display: "none" }}
-                              id="profile-photo-upload"
-                              type="file"
-                              onChange={handlePhotoChange}
-                            />
-                            <label
-                              className="upload-photo-btn"
-                              htmlFor="profile-photo-upload"
-                            >
-                              <div className="Uploadphoto">
-                                <span>
-                                  <i className="fas fa-upload" /> Upload Photo
-                                </span>
+              {isLogin ? (
+                <div className="dashboard-widg-bar d-block">
+                  <div className="row">
+                    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-12 order-xl-last order-lg-last order-md-last">
+                      <div
+                        className="d-md-flex"
+                        style={{ alignItems: "center", marginBottom: "20px" }}
+                      >
+                        {/* <Avatar
+                              alt="User Photo"
+                              src={formData.profilePhoto}
+                              sx={{ width: 100, height: 100, marginRight: "20px" }}
+                            /> */}
+                        <div>
+                          <div className="d-flex rounded px-3 py-3 mb-3">
+                            <div className="dash-figure">
+                              <div className="dash-figure-thumb">
+                                <img
+                                  src={formData.profilePhoto}
+                                  className="img-fluid rounded"
+                                  alt=""
+                                  onError={(e) => {
+                                    e.target.src = User_img;
+                                  }}
+                                />
                               </div>
-                            </label>
+                              <input
+                                accept="image/*"
+                                style={{ display: "none" }}
+                                id="profile-photo-upload"
+                                type="file"
+                                onChange={handlePhotoChange}
+                              />
+                              <label
+                                className="upload-photo-btn"
+                                htmlFor="profile-photo-upload"
+                              >
+                                <div className="Uploadphoto">
+                                  <span>
+                                    <i className="fas fa-upload" /> Upload Photo
+                                  </span>
+                                </div>
+                              </label>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="col-xl-9 col-lg-9 col-md-8 col-sm-12">
-                    <form className="submit-form">
-                      <div className="dashboard-list-wraps bg-white rounded mb-4">
-                        <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
-                          <div className="dashboard-list-wraps-flx">
-                            <h4 className="mb-0 ft-medium fs-md">
-                              <i className="fa fa-user-check me-2 theme-cl fs-sm" />
-                              My Profile
-                            </h4>
-                          </div>
-                        </div>
-                        <div className="dashboard-list-wraps-body py-3 px-3">
-                          <div className="row">
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">First Name</label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter First Name"
-                                  name="first_name"
-                                  value={formData.first_name}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Last Name</label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter Last Name"
-                                  name="last_name"
-                                  value={formData.last_name}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Email ID</label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter Email ID"
-                                  name="email"
-                                  value={formData.email}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Mobile</label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter Mobile"
-                                  name="mobile"
-                                  value={formData.mobile}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">
-                                  Block No/Building No
-                                </label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter Block No/Building No"
-                                  name="address_line_1"
-                                  value={formData.address_line_1}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">
-                                  Street/Colony Name
-                                </label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter Street/Colony Name"
-                                  name="address_line_2"
-                                  value={formData.address_line_2}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">City</label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter City"
-                                  name="city"
-                                  value={formData.city}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">State</label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter State"
-                                  name="state"
-                                  value={formData.state}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                              <div className="form-group">
-                                <label className="mb-1">Pin Code</label>
-                                <input
-                                  type="text"
-                                  className="form-control rounded"
-                                  placeholder="Enter Pin Code"
-                                  name="pin_code"
-                                  value={formData.pin_code}
-                                  onChange={handleChange}
-                                />
-                              </div>
+                    <div className="col-xl-9 col-lg-9 col-md-8 col-sm-12">
+                      <form className="submit-form">
+                        <div className="dashboard-list-wraps bg-white rounded mb-4">
+                          <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
+                            <div className="dashboard-list-wraps-flx">
+                              <h4 className="mb-0 ft-medium fs-md">
+                                <i className="fa fa-user-check me-2 theme-cl fs-sm" />
+                                My Profile
+                              </h4>
                             </div>
                           </div>
-                          <div className="row">
-                            <div className="col-4">
-                              <div
-                                className="upload-photo-btn"
-                                onClick={handleSubmit}
-                              >
-                                <div className="Uploadphoto">
-                                  <span>
-                                    <i className="fas fa-pencil me-1" /> Update
-                                  </span>
+                          <div className="dashboard-list-wraps-body py-3 px-3">
+                            <div className="row">
+                              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">First Name</label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter First Name"
+                                    name="first_name"
+                                    value={formData.first_name}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Last Name</label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter Last Name"
+                                    name="last_name"
+                                    value={formData.last_name}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Email ID</label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter Email ID"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Mobile</label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter Mobile"
+                                    name="mobile"
+                                    value={formData.mobile}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">
+                                    Block No/Building No
+                                  </label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter Block No/Building No"
+                                    name="address_line_1"
+                                    value={formData.address_line_1}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">
+                                    Street/Colony Name
+                                  </label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter Street/Colony Name"
+                                    name="address_line_2"
+                                    value={formData.address_line_2}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">City</label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter City"
+                                    name="city"
+                                    value={formData.city}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">State</label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter State"
+                                    name="state"
+                                    value={formData.state}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div className="form-group">
+                                  <label className="mb-1">Pin Code</label>
+                                  <input
+                                    type="text"
+                                    className="form-control rounded"
+                                    placeholder="Enter Pin Code"
+                                    name="pin_code"
+                                    value={formData.pin_code}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="col-4">
+                                <div
+                                  className="upload-photo-btn"
+                                  onClick={handleSubmit}
+                                >
+                                  <div className="Uploadphoto">
+                                    <span>
+                                      <i className="fas fa-pencil me-1" />{" "}
+                                      Update
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </form>
+                      </form>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="dashboard-widg-bar d-block">
+                  <div className="row">
+                    <div className="col-12 d-flex flex-column align-items-center">
+                      <h4>You have Log in first.</h4>
+                      <Link to="/login" class="add-list-btn mt-3">
+                      <i className="lni lni-power-switch me-2" />Log In
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           {/* ======================= dashboard Detail End ======================== */}

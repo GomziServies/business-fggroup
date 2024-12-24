@@ -104,7 +104,6 @@ const UpdateListing = () => {
       }
     } catch (error) {
       console.error("Error in getUserData:", error);
-      toast.error("Error in getUserData");
     }
   };
 
@@ -896,7 +895,10 @@ const UpdateListing = () => {
           <div className="clearfix" />
           <section
             className="bg-cover position-relative"
-            style={{ background: "red url(images/cover.jpg) no-repeat", marginTop: '70px' }}
+            style={{
+              background: "red url(images/cover.jpg) no-repeat",
+              marginTop: "70px",
+            }}
             data-overlay={3}
           >
             <div className="container">
@@ -951,6 +953,12 @@ const UpdateListing = () => {
               <div className="goodup-dashboard-nav sticky-top">
                 <div className="goodup-dashboard-inner">
                   <ul>
+                    <li>
+                      <Link to="/all-listing">
+                        <i className="lni lni-files me-2" />
+                        All Listings
+                      </Link>
+                    </li>
                     <li>
                       <Link to="/listing-list">
                         <i className="lni lni-files me-2" />

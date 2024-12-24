@@ -315,7 +315,6 @@ const AddListing = () => {
       }
     } catch (error) {
       console.error("Error in getUserData:", error);
-      toast.error("Error in getUserData");
     }
   };
 
@@ -763,6 +762,12 @@ const AddListing = () => {
               <div className="goodup-dashboard-nav sticky-top">
                 <div className="goodup-dashboard-inner">
                   <ul>
+                    <li>
+                      <Link to="/all-listing">
+                        <i className="lni lni-files me-2" />
+                        All Listings
+                      </Link>
+                    </li>
                     <li>
                       <Link to="/listing-list">
                         <i className="lni lni-files me-2" />

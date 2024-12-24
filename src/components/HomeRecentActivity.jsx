@@ -5,7 +5,6 @@ import User_img from "../assets/user-profile.png";
 import "../index.css";
 import { Link } from "react-router-dom";
 
-
 const HomeRecentActivity = () => {
   const [businessData, setBusinessData] = useState([]);
 
@@ -16,11 +15,11 @@ const HomeRecentActivity = () => {
           business_type: ["personal", "business"],
         },
         sort: {
-          business_name: "asc",
+          business_name: "desc",
           rating: "desc",
         },
         page: 1,
-        limit: 20,
+        limit: 8,
       };
 
       const response = await businessListingAxiosInstance.post(
@@ -56,7 +55,6 @@ const HomeRecentActivity = () => {
 
   return (
     <>
-
       <section className="space">
         <div className="container">
           <div className="row justify-content-center">
@@ -71,6 +69,118 @@ const HomeRecentActivity = () => {
           </div>
           <div className="row justify-content-center text-start">
             {businessData.map((business) => {
+              const description = business?.description;
+              const truncatedDescription =
+                description?.length > 65
+                  ? description?.substring(0, 65) + "..."
+                  : description;
+
+              const facilityLimit = 5;
+              const validFacilities = business.services
+                .map((service) => {
+                  switch (service) {
+                    case "WiFi":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/wi-fi.png"
+                            alt="WiFi"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    case "Steam Bath":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/steam-bath.png"
+                            alt="Steam Bath"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    case "Air Conditioner":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/air-conditioner.png"
+                            alt="Air Conditioner"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    case "Parking":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/parking.png"
+                            alt="Parking"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    case "Locker":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/locker.png"
+                            alt="Locker"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    case "Changing room":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/changing-room.png"
+                            alt="Changing Room"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    case "Lounge area":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/waiting-room.png"
+                            alt="Lounge Area"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    case "Personal trainers":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/personal-trainer.png"
+                            alt="Personal Trainers"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    case "Massage":
+                      return (
+                        <li key={service}>
+                          <img
+                            src="/images/service/massage.png"
+                            alt="Massage"
+                            className="service-img"
+                          />
+                        </li>
+                      );
+                    default:
+                      return null; // If no matching service, return null
+                  }
+                })
+                .filter((item) => item !== null);
+
+              const displayedFacilities = validFacilities.slice(
+                0,
+                facilityLimit
+              );
+              const remainingCount = validFacilities.length - facilityLimit;
+
               return (
                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
@@ -126,7 +236,9 @@ const HomeRecentActivity = () => {
                     <div className="Goodup-grid-fl-wrap">
                       <div className="Goodup-caption px-3 py-2">
                         <div className="Goodup-author">
-                          <Link to={`/listing-view?business_id=${business._id}`}>
+                          <Link
+                            to={`/listing-view?business_id=${business._id}`}
+                          >
                             <img
                               src={`https://files.fggroup.in/${business.business_logo}`}
                               className="img-fluid circle"
@@ -139,25 +251,32 @@ const HomeRecentActivity = () => {
                         </div>
                         <div className="Goodup-cates multi">
                           {business.business_category.map((category) => (
-                            <Link to={`/listing-view?business_id=${business._id}`} className="cats-1">
+                            <Link
+                              to={`/listing-view?business_id=${business._id}`}
+                              className="cats-1"
+                            >
                               {category}
                             </Link>
                           ))}
                         </div>
                         <h4 className="mb-0 ft-medium medium">
-                          <Link to={`/listing-view?business_id=${business._id}`}
+                          <Link
+                            to={`/listing-view?business_id=${business._id}`}
                             className="text-dark fs-md"
                           >
-                            {business.business_name}
+                            {business.business_name &&
+                            business.business_name.length > 30
+                              ? business.business_name.substring(0, 30) + "..."
+                              : business.business_name}
+
                             <span className="verified-badge">
                               <i className="fas fa-check-circle" />
                             </span>
                           </Link>
                         </h4>
-                        <div className="Goodup-middle-caption mt-2">
-                          <p className="fw-normal">
-                            At vero eos et accusamus et iusto odio dignissimos
-                            ducimus
+                        <div className="Goodup-middle-caption">
+                          <p className="fw-normal mb-1">
+                            {truncatedDescription}
                           </p>
                           <div className="Goodup-facilities-wrap mb-0">
                             <div className="Goodup-facility-title">
@@ -165,24 +284,12 @@ const HomeRecentActivity = () => {
                             </div>
                             <div className="Goodup-facility-list">
                               <ul className="no-list-style">
-                                <li
-                                  data-microtip-position="top"
-                                  data-tooltip="Free WiFi"
-                                >
-                                  <i className="fas fa-wifi" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-swimming-pool" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-parking" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-dog" />
-                                </li>
-                                <li>
-                                  <i className="fas fa-fan" />
-                                </li>
+                                {displayedFacilities}
+                                {remainingCount > 0 && (
+                                  <li className="remaining-service">
+                                    <span>+{remainingCount}</span>
+                                  </li>
+                                )}
                               </ul>
                             </div>
                           </div>
@@ -212,6 +319,12 @@ const HomeRecentActivity = () => {
                 </div>
               );
             })}
+
+            <div className="col-12 d-flex justify-content-center mt-3">
+              <Link to="/all-listing" class="add-list-btn">
+                <i class="fas fa-eye me-2"></i>View More
+              </Link>
+            </div>
           </div>
         </div>
       </section>

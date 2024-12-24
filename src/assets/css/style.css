@@ -267,6 +267,10 @@ html body .db {
   border-radius: 100%;
 }
 
+.whatsapp-btn:hover .dark-theme-bg{
+  background: #023a25 !important;
+}
+
 .theme-bg {
   background: #fc7e00 !important;
 }
@@ -7641,7 +7645,7 @@ button.aps-clone {
 .add-list-btn {
   padding: 10px 20px;
   font-weight: 500;
-  color: #ffffff;
+  color: #ffffff !important;
   background: #fc7e00;
   border-radius: 4px;
 }
@@ -9586,4 +9590,21 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   color: #000;
   transition: 0.3s;
   font-size: 14px;
+}
+
+.css-1nmdiq5-menu {
+  background-color: white !important;
+  z-index: 99 !important;
+}
+
+.service-img {
+  width: 17px;
+}
+
+.remaining-service {
+  padding: 2px 3px;
+  border-radius: 4px;
+  background-color: #fc7e0054;
+  margin-left: 5px;
+  font-size: 9px;
 }
