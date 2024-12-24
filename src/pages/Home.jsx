@@ -21,7 +21,8 @@ const Home = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Welcome to Our Platform - Explore Listings &amp; Grow Your Business</title>
+        <meta name="description" content="Discover top business listings and services. Add your business, connect with customers, and explore opportunities to grow your brand on our platform!" />
         <link
           rel="shortcut icon"
           type="image/x-icon"

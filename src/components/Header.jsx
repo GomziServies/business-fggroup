@@ -114,7 +114,6 @@ function Header() {
   }
 
   function sideclose() {
-    console.log("Closing side");
     document.getElementById("demo").style.width = "0px";
   }
 

@@ -187,7 +187,8 @@ const Profile = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>User Profile Page - Manage Your Information &amp; Settings Easily</title>
+        <meta name="description" content="Access and update your profile information. Manage settings, preferences, and activity history all in one place for a seamless user experience." />
         <link
           rel="shortcut icon"
           type="image/x-icon"

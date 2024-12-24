@@ -516,7 +516,6 @@ const AddListing = () => {
         })),
       };
 
-      console.log("postData :- ", postData);
       await businessListingAxiosInstance.post("/create-listing", postData);
 
       setIsLoading(false);
@@ -648,7 +647,8 @@ const AddListing = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Add Your Business Listing - Promote Your Brand &amp; Reach More Customers</title>
+        <meta name="description" content="Add your business to our listing page and boost visibility. Reach new customers, enhance brand presence, and grow your business with our easy listing process!" />
         <link
           rel="shortcut icon"
           type="image/x-icon"

@@ -513,7 +513,8 @@ const ListingView = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Business Listing View - Explore Details &amp; Connect with Brands</title>
+        <meta name="description" content="View detailed business listings to learn more about products, services, and offers. Connect with brands and discover opportunities to grow your business." />
         {/* Favicon */}
         <link
           rel="shortcut icon"

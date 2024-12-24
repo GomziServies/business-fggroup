@@ -587,10 +587,6 @@ const UpdateListing = () => {
           )?.value || "",
         branch: address.location_name || "",
       });
-      console.log(
-        "fetchedBusinessData.contacts :- ",
-        fetchedBusinessData.contacts
-      );
 
       setSelectedFacilities(
         fetchedBusinessData.services?.map((facility) => ({
@@ -835,7 +831,8 @@ const UpdateListing = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Update Your Business Listing - Keep Your Information Current</title>
+        <meta name="description" content="Keep your business details up-to-date in our directory. Update your listing easily to maintain accuracy and attract the right audience today!" />
         <link
           rel="shortcut icon"
           type="image/x-icon"

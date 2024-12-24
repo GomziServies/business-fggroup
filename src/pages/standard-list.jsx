@@ -20,7 +20,8 @@ const StandardList = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Standard Gym Listings - Promote Your Fitness Center Today</title>
+        <meta name="description" content="List your gym in our standard directory to boost visibility. Attract fitness enthusiasts, grow memberships, and showcase your services effectively!" />
         <link
           rel="shortcut icon"
           type="image/x-icon"

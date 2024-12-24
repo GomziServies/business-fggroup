@@ -20,7 +20,8 @@ const PremiumList = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Premium Business Listings - Get Featured for Free</title>
+        <meta name="description" content="Upgrade your business visibility with a premium listing at no cost. Stand out, attract more customers, and enhance your brand's presence for free!" />
         <link
           rel="shortcut icon"
           type="image/x-icon"

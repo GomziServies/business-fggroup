@@ -20,7 +20,8 @@ const AffordableList = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Free Business Listings - Promote Your Brand Without Any Cost</title>
+        <meta name="description" content="List your business for free on our platform. Boost your visibility, connect with new customers, and grow your brand with no cost or hassle. Start now!" />
         <link
           rel="shortcut icon"
           type="image/x-icon"

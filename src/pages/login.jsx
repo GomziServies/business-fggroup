@@ -103,7 +103,8 @@ const Login = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Login to Your Account - Access Your Business Dashboard</title>
+        <meta name="description" content="Login to manage your business listings, update information, and access personalized features. Stay connected and in control of your business profile." />
         <link
           rel="shortcut icon"
           type="image/x-icon"

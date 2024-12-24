@@ -187,7 +187,8 @@ const ListingList = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Comprehensive Listing Directory - Add Your Business Today</title>
+        <meta name="description" content="Explore our detailed listing directory or add your own business. Connect with a larger audience and increase your visibility with our easy-to-use platform!" />
         <link
           rel="shortcut icon"
           type="image/x-icon"
@@ -202,7 +203,10 @@ const ListingList = () => {
           <div className="clearfix" />
           <section
             className="bg-cover position-relative"
-            style={{ background: "red url(images/cover.jpg) no-repeat", marginTop: '70px' }}
+            style={{
+              background: "red url(images/cover.jpg) no-repeat",
+              marginTop: "70px",
+            }}
             data-overlay={3}
           >
             <div className="container">
@@ -210,16 +214,26 @@ const ListingList = () => {
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="dashboard-head-author-clicl">
                     <div className="dashboard-head-author-thumb">
-                      <img src={`${formData.profilePhoto}`} className="img-fluid" alt="" />
+                      <img
+                        src={`${formData.profilePhoto}`}
+                        className="img-fluid"
+                        alt=""
+                      />
                     </div>
                     <div className="dashboard-head-author-caption">
                       <div className="dashploio">
-                        <h4>{formData.first_name + ' ' + formData.last_name}</h4>
+                        <h4>
+                          {formData.first_name + " " + formData.last_name}
+                        </h4>
                       </div>
                       <div className="dashploio">
                         <span className="agd-location">
                           <i className="lni lni-map-marker me-1" />
-                          {formData?.city + ', ' + formData?.state + ', ' + formData.country}
+                          {formData?.city +
+                            ", " +
+                            formData?.state +
+                            ", " +
+                            formData.country}
                         </span>
                       </div>
                     </div>
@@ -308,7 +322,7 @@ const ListingList = () => {
                                     <div className="Goodup-grid-upper">
                                       <div className="Goodup-pos ab-left">
                                         {business.approval_status.status ==
-                                          "APPROVED" ? (
+                                        "APPROVED" ? (
                                           <div className="Goodup-status open me-2">
                                             APPROVED
                                           </div>
@@ -345,7 +359,9 @@ const ListingList = () => {
                                     <div className="Goodup-grid-fl-wrap">
                                       <div className="Goodup-caption px-3 py-2">
                                         <div className="Goodup-author bg-light">
-                                          <Link to={`/update-listing?business_id=${business._id}`}>
+                                          <Link
+                                            to={`/update-listing?business_id=${business._id}`}
+                                          >
                                             <img
                                               src={`https://files.fggroup.in/${business.business_logo}`}
                                               className="img-fluid circle"
@@ -393,7 +409,10 @@ const ListingList = () => {
                                         </div>
                                       </div>
                                       <div className="Goodup-grid-footer py-2 px-3">
-                                        <Link to={`/update-listing?business_id=${business._id}`} className="list-listing view">
+                                        <Link
+                                          to={`/update-listing?business_id=${business._id}`}
+                                          className="list-listing view"
+                                        >
                                           <i className="fas fa-eye me-2" />
                                           View
                                         </Link>
@@ -412,6 +431,19 @@ const ListingList = () => {
                                 </div>
                               );
                             })}
+                            {businessData.length === 0 && (
+                              <div className="col-12 d-flex flex-column align-items-center">
+                                <img
+                                  src="/images/listing-not-found.webp"
+                                  alt=""
+                                  width="30%"
+                                />
+                                <h4>No Listing Data Found</h4>
+                                <Link to="/add-listing" class="add-list-btn mt-2">
+                                  <i class="fas fa-plus me-2"></i>Add Listing
+                                </Link>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>

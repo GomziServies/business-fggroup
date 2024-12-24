@@ -93,10 +93,18 @@ const AllListingList = () => {
   const [debouncedCity, setDebouncedCity] = useState("");
 
   const [isLogin, setIsLogin] = useState(false);
+  const [limit, setLimit] = useState(9);
+  const [prevDataLength, setPrevDataLength] = useState(0);
+  const [sameDataCount, setSameDataCount] = useState(0);
+
+  const loadMore = async () => {
+    setPrevDataLength(businessData.length);
+    setLimit((prevLimit) => prevLimit + 8);
+    await getBusinessData();
+  };
 
   const handleSelectChange = (selectedOptions) => {
     const data = selectedOptions.map((service) => service.value);
-    console.log("data :- ", data);
 
     setSelectedServices(data);
     setSelectedFacilities(selectedOptions);
@@ -116,7 +124,7 @@ const AllListingList = () => {
           rating: "desc",
         },
         page: 1,
-        limit: 20,
+        limit: limit,
       };
 
       const response = await businessListingAxiosInstance.post(
@@ -146,9 +154,15 @@ const AllListingList = () => {
         });
       }
 
-      console.log("fetchedBusinessData :- ", fetchedBusinessData);
-
       setBusinessData(fetchedBusinessData);
+
+      if (fetchedBusinessData.length === prevDataLength) {
+        setSameDataCount((count) => count + 1);
+      } else {
+        setSameDataCount(0);
+      }
+
+      setPrevDataLength(fetchedBusinessData.length);
     } catch (error) {
       console.error("Error in Getting Business Data:", error);
     }
@@ -279,7 +293,8 @@ const AllListingList = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Goodup - Business Directory &amp; Listing HTML Template</title>
+        <title>Explore All Business Listings - Discover Top Brands &amp; Services</title>
+        <meta name="description" content="Browse our comprehensive list of businesses. Discover top brands, services, and opportunities in various categories. Find the right business for your needs!" />
         <link
           rel="shortcut icon"
           type="image/x-icon"
@@ -717,6 +732,16 @@ const AllListingList = () => {
                                 </div>
                               );
                             })}
+                            {businessData.length > 0 && sameDataCount < 2 && (
+                              <div className="col-12 d-flex flex-column align-items-center">
+                                <button
+                                  onClick={loadMore}
+                                  className="add-list-btn mt-2"
+                                >
+                                  <i className="fas fa-plus me-2"></i>Load More
+                                </button>
+                              </div>
+                            )}
                             {loadingData && <h6>Loading...</h6>}
                             {businessData?.length === 0 && !loadingData && (
                               <h5>No data Found</h5>
