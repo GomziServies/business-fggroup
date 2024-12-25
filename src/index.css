@@ -124,3 +124,191 @@ code {
 .my-float {
   margin-top: 16px;
 }
+
+
+
+.free-listing-steps {
+  padding: 80px 20px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.free-listing-steps .title {
+  font-size: 36px;
+  margin-bottom: 50px;
+  text-transform: capitalize;
+  letter-spacing: 1.5px;
+}
+
+.free-listing-steps .steps-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.free-listing-steps .step-item {
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.free-listing-steps .step-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.free-listing-steps .step-item img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.free-listing-steps .step-number {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff249c;
+  margin-bottom: 10px;
+}
+
+.free-listing-steps .step-title {
+  font-size: 28px;
+  color: #444;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.free-listing-steps .step-description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .free-listing-steps .title {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  .free-listing-steps .step-item {
+    padding: 20px;
+  }
+
+  .free-listing-steps .step-title {
+    font-size: 22px;
+  }
+
+  .free-listing-steps .step-description {
+    font-size: 14px;
+  }
+}
+
+
+.grow-business-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.grow-business-item {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+/* Reverse Layout for Items */
+/* .grow-business-item.reverse {
+  flex-direction: row-reverse;
+} */
+
+.grow-business-item .grow-business-image {
+  flex: 1;
+  max-width: 45%;
+}
+
+.grow-business-item .grow-business-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Content Styling */
+.grow-business-item .grow-business-content {
+  flex: 1;
+  max-width: 45%;
+  padding-left: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Heading Styling */
+.grow-business-item .grow-business-content h3 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  letter-spacing: 1px; /* Add letter-spacing for the heading */
+  text-transform: uppercase; /* Optional: Makes the heading more dynamic */
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+/* Paragraph Styling */
+.grow-business-item .grow-business-content p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.7;
+  letter-spacing: 0.5px; /* Add slight letter-spacing to the paragraph */
+}
+
+/* List Styling */
+.grow-business-item .grow-business-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.grow-business-item .grow-business-content ul li {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px; /* Add letter-spacing to list items */
+  transition: color 0.3s ease;
+}
+
+
+@media (max-width: 768px) {
+  .grow-business-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .grow-business-item .grow-business-image,
+  .grow-business-item .grow-business-content {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .grow-business-item .grow-business-content {
+    margin-top: 20px;
+  }
+
+  .grow-business-item .grow-business-content h3 {
+    font-size: 24px;
+  }
+
+  .grow-business-item .grow-business-content p,
+  .grow-business-item .grow-business-content ul li {
+    font-size: 14px;
+  }
+}
