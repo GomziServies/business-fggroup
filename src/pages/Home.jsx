@@ -18,7 +18,7 @@ const Home = () => {
       setLoading(false);
     }, 1000);
   }, []);
-  
+
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
 
@@ -332,8 +332,8 @@ const Home = () => {
               <div className="row justify-content-center">
                 <div className="col-xl-5 col-lg-7 col-md-9 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="theme-cl mb-0">Our Packages</h6>
-                    <h2 className="ft-bold">Gym Criteria</h2>
+                    <h6 className="theme-cl mb-0">Our Auditing on</h6>
+                    <h2 className="ft-bold">Gym Classification</h2>
                   </div>
                 </div>
               </div>
@@ -500,12 +500,12 @@ const Home = () => {
               </div>
             </div>
           </section>
-      <ModalVideo
-        channel="youtube"
-        isOpen={isVideoOpen}
-        videoId={videoUrl}
-        onClose={closeVideoModal}
-      />
+          <ModalVideo
+            channel="youtube"
+            isOpen={isVideoOpen}
+            videoId={videoUrl}
+            onClose={closeVideoModal}
+          />
           <VideoReview openVideoModal={openVideoModal} />
           <section className="bg-light-theme text-start">
             <div className="container">
@@ -611,7 +611,7 @@ const Home = () => {
               </div>
             </div>
           </section>
-          <section className="middle">
+          <section className="middle text-start">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -1017,11 +1017,11 @@ const Home = () => {
                       Join GOMZI Today and Discover Exclusive Deals - Connect
                       with Us Instantly!
                     </h2>
-                    <h6 className="text-light mb-0 d-md-block d-none">Unlock Success with GOMZI - Connect Now over whatsapp for
-                    Advance Perks!</h6>
-                    <p className="ft-bold text-light mt-4">
-                      
-                    </p>
+                    <h6 className="text-light mb-0 d-md-block d-none">
+                      Unlock Success with GOMZI - Connect Now over whatsapp for
+                      Advance Perks!
+                    </h6>
+                    <p className="ft-bold text-light mt-4"></p>
                   </div>
                 </div>
               </div>
