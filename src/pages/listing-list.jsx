@@ -436,7 +436,7 @@ const ListingList = () => {
                                 <img
                                   src="/images/listing-not-found.webp"
                                   alt=""
-                                  width="30%"
+                                  className="list-img"
                                 />
                                 <h4>No Listing Data Found</h4>
                                 <Link to="/add-listing" class="add-list-btn mt-2">

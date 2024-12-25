@@ -265,7 +265,7 @@ const HomeRecentActivity = () => {
                             className="text-dark fs-md"
                           >
                             {business.business_name &&
-                              business.business_name.length > 30
+                            business.business_name.length > 30
                               ? business.business_name.substring(0, 30) + "..."
                               : business.business_name}
 
@@ -284,11 +284,20 @@ const HomeRecentActivity = () => {
                             </div>
                             <div className="Goodup-facility-list">
                               <ul className="no-list-style">
-                                {displayedFacilities}
-                                {remainingCount > 0 && (
+                                {business.services.length === 0 ? (
                                   <li className="remaining-service">
-                                    <span>+{remainingCount}</span>
+                                    <span>No Facilities Found</span>
                                   </li>
+                                ) : (
+                                  <>
+                                    {displayedFacilities}
+
+                                    {remainingCount > 0 && (
+                                      <li className="remaining-service">
+                                        <span>+{remainingCount}</span>
+                                      </li>
+                                    )}
+                                  </>
                                 )}
                               </ul>
                             </div>
@@ -304,6 +313,15 @@ const HomeRecentActivity = () => {
                               business.locations[0].state}
                           </div>
                         </div>
+                        <div className="Goodup-ft-last">
+                          <div className="Goodup-inline">
+                            <div className="Goodup-bookmark-btn">
+                              <button type="button">
+                                <i className="lni lni-phone position-absolute" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -311,7 +329,7 @@ const HomeRecentActivity = () => {
               );
             })}
             <div className="col-12 d-flex justify-content-center mt-3">
-              <Link to="/all-listing" class="add-list-btn">
+              <Link to="/all-listing" class="view-list-btn me-2">
                 <i class="fas fa-eye me-2"></i>View More
               </Link>
             </div>

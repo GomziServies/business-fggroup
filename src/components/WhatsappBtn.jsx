@@ -30,7 +30,7 @@ function WhatsappBtn({ message, options }) {
       rel="noopener noreferrer"
       className="full-width btn-height dark-theme-bg whatsapp-btn text-light fs-md"
     >
-      <i className="lni lni-whatsapp mr-2" />
+      <i className="lni lni-whatsapp me-2" />
       WhatsApp
     </a>
   );

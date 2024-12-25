@@ -6,6 +6,9 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HomeRecentActivity from "../components/HomeRecentActivity";
 import WhatsappBtn from "../components/WhatsappBtn";
+import WhatsappBtnMain from "../components/WhatsappBtnMain";
+import VideoReview from "../components/VideoReview";
+import ModalVideo from "react-modal-video";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -15,14 +18,33 @@ const Home = () => {
       setLoading(false);
     }, 1000);
   }, []);
+  
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [videoUrl, setVideoUrl] = useState("");
+
+  const openVideoModal = (url) => {
+    setIsVideoOpen(true);
+    setVideoUrl(url);
+  };
+
+  const closeVideoModal = () => {
+    setIsVideoOpen(false);
+    setVideoUrl("");
+  };
+
   return (
     <div>
       <Helmet>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Welcome to Our Platform - Explore Listings &amp; Grow Your Business</title>
-        <meta name="description" content="Discover top business listings and services. Add your business, connect with customers, and explore opportunities to grow your brand on our platform!" />
+        <title>
+          Welcome to Our Platform - Explore Listings &amp; Grow Your Business
+        </title>
+        <meta
+          name="description"
+          content="Discover top business listings and services. Add your business, connect with customers, and explore opportunities to grow your brand on our platform!"
+        />
         <link
           rel="shortcut icon"
           type="image/x-icon"
@@ -30,6 +52,10 @@ const Home = () => {
         />
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
+      <WhatsappBtnMain
+        message={"Hello, I wanted to know more about Clinical Diets details. "}
+        options={{ pageRef: true }}
+      />
       <>
         {loading && <div className="preloader" />}
         <div id="main-wrapper">
@@ -41,20 +67,18 @@ const Home = () => {
                 <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                   <div className="pe-3">
                     <div className="banner_caption text-left">
-                      <h1 className="banner_title ft-normal mb-1">
-                        Transform Your Life with{" "}
+                      <h1 className="banner_title ft-normal mb-md-1 mb-2">
+                        Transform Your GYM with{" "}
                         <span className="theme-cl">Gomzi's Gym Network</span>
                       </h1>
-                      <p className="fs-lg fw-light">
-                        Welcome to Gomzi-India's premier platform connecting
-                        fitness enthusiasts with the best gyms tailored to their
-                        needs. Our mission is to empower individuals to
-                        transform their lives through fitness by offering a
-                        curated network of affiliated gyms, personalized
-                        recommendations, and unparalleled support. Whether
-                        you're a beginner or a seasoned athlete, Gomzi helps you
-                        find the perfect gym to achieve your fitness goals and
-                        elevate your lifestyle.
+                      <p className="fs-lg fw-light banner_decription">
+                        Transform your gym with GOMZI's Gym Network!
+                        Revolutionize fitness management with cutting-edge
+                        technology, streamlined operations, and an unmatched
+                        member experience. GOMZI's network empowers gym owners
+                        to optimize resources, connect seamlessly, and drive
+                        success like never before. Take your gym to the next
+                        level today!
                       </p>
                     </div>
                   </div>
@@ -83,11 +107,13 @@ const Home = () => {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                   <div className="offerWrap">
                     <div className="offerCaps">
-                      <h4 className="title">Building a Healthier You</h4>
+                      <h4 className="title">
+                        Building a Wealthier and Healthier You
+                      </h4>
                       <p>
-                        At Gomzi, we're more than just a fitness directory-we're
-                        your partner in health and transformation. Explore our
-                        extensive list of affiliated gyms across the country.
+                        At GOMZI, Boost your revenue! Empowering gym owners with
+                        innovative tools to attract members, grow income, and
+                        achieve financial success while promoting wellness.
                       </p>
                     </div>
                     <div className="slice">
@@ -103,12 +129,13 @@ const Home = () => {
                   <div className="offerWrap offer-02">
                     <div className="offerCaps">
                       <h4 className="title">
-                        Explore Top Gyms, Tailored to You
+                        Become a Top Gym in your locality
                       </h4>
                       <p>
-                        Discover a world of fitness tailored to your needs. At
-                        Gomzi, we connect you with the finest gyms that match
-                        your fitness goals and lifestyle preferences.
+                        Rise to the top in your locality with GOMZI's Top Build
+                        Marketing ! Enhance your gym's appeal, attract more
+                        members, and dominate the fitness scene with innovative
+                        solutions tailored for your success.
                       </p>
                     </div>
                     <div className="slice">
@@ -135,7 +162,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="row align-items-center">
-                <div className="col-md-4">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -153,7 +180,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -171,7 +198,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -189,7 +216,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -207,7 +234,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -225,7 +252,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -243,7 +270,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -261,7 +288,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-6">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -279,7 +306,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-6 d-md-block d-none">
                   <div className="cats-wrap text-center">
                     <div className="Goodup-catg-wrap">
                       <div className="Goodup-catg-icon">
@@ -306,7 +333,7 @@ const Home = () => {
                 <div className="col-xl-5 col-lg-7 col-md-9 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
                     <h6 className="theme-cl mb-0">Our Packages</h6>
-                    <h2 className="ft-bold">Gym Pricing</h2>
+                    <h2 className="ft-bold">Gym Criteria</h2>
                   </div>
                 </div>
               </div>
@@ -359,7 +386,7 @@ const Home = () => {
                     </div>
                     <div className="Goodup-price-bottom">
                       <a className="Goodup-price-btn" href="/affordable-list">
-                        <i class="fa-regular fa-eye"></i>View More
+                        <i className="fa-regular fa-eye"></i>View More
                       </a>
                     </div>
                   </div>
@@ -412,7 +439,7 @@ const Home = () => {
                     </div>
                     <div className="Goodup-price-bottom">
                       <a className="Goodup-price-btn" href="/standard-list">
-                        <i class="fa-regular fa-eye"></i>View More
+                        <i className="fa-regular fa-eye"></i>View More
                       </a>
                     </div>
                   </div>
@@ -465,7 +492,7 @@ const Home = () => {
                     </div>
                     <div className="Goodup-price-bottom">
                       <a className="Goodup-price-btn" href="/premium-list">
-                        <i class="fa-regular fa-eye"></i>View More
+                        <i className="fa-regular fa-eye"></i>View More
                       </a>
                     </div>
                   </div>
@@ -473,273 +500,14 @@ const Home = () => {
               </div>
             </div>
           </section>
-          <section class="middle">
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                  <div class="sec_title position-relative text-center mb-5">
-                    <h6 class="theme-cl mb-0">Latest Updates</h6>
-                    <h2 class="ft-bold">View Recent Updates</h2>
-                  </div>
-                </div>
-              </div>
-              <div class="row justify-content-center">
-                <div class="col-lg-6 text-left">
-                  <div class="gup_blg_grid_box">
-                    <div class="gup_blg_grid_thumb">
-                      <a href="https://fggroup.in/blogs/ignite-your-nutrition-journey-explore-the-power-of-a-nutrition-course">
-                        <img src="images/b-1.webp" class="img-fluid" alt="" />
-                      </a>
-                    </div>
-                    <div class="gup_blg_grid_caption">
-                      <div class="blg_tag">
-                        <span>Nutrition</span>
-                      </div>
-                      <div class="blg_title">
-                        <h4>
-                          <a href="https://fggroup.in/blogs/ignite-your-nutrition-journey-explore-the-power-of-a-nutrition-course">
-                            Fuel Your Passion for Nutrition
-                          </a>
-                        </h4>
-                      </div>
-                      <div class="blg_desc">
-                        <p>
-                          Learn how to nourish your body and fuel your passion
-                          for a healthier life.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="crs_grid_foot">
-                      <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                        <div class="crs_fl_first">
-                          <div class="crs_tutor">
-                            <div class="crs_tutor_thumb">
-                              <a href="javascript:void(0);">
-                                <img
-                                  src="images/team-2.jpg"
-                                  class="img-fluid circle"
-                                  width="35"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="crs_fl_last">
-                          <div class="foot_list_info">
-                            <ul>
-                              <li>
-                                <div class="elsio_ic">
-                                  <i class="fa fa-eye text-success"></i>
-                                </div>
-                                <div class="elsio_tx">10k Views</div>
-                              </li>
-                              <li>
-                                <div class="elsio_ic">
-                                  <i class="fa fa-clock text-warning"></i>
-                                </div>
-                                <div class="elsio_tx">March 27, 2018</div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 text-left">
-                  <div class="gup_blg_grid_box">
-                    <div class="gup_blg_grid_thumb">
-                      <a href="https://fggroup.in/blogs/choosing-the-right-fitness-certification-program-in-India">
-                        <img src="images/b-2.webp" class="img-fluid" alt="" />
-                      </a>
-                    </div>
-                    <div class="gup_blg_grid_caption">
-                      <div class="blg_tag">
-                        <span>Fitness</span>
-                      </div>
-                      <div class="blg_title">
-                        <h4>
-                          <a href="https://fggroup.in/blogs/choosing-the-right-fitness-certification-program-in-India">
-                            Choosing the Right Fitness Certification
-                          </a>
-                        </h4>
-                      </div>
-                      <div class="blg_desc">
-                        <p>
-                          Discover the best fitness certifications to kickstart
-                          your career.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="crs_grid_foot">
-                      <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                        <div class="crs_fl_first">
-                          <div class="crs_tutor">
-                            <div class="crs_tutor_thumb">
-                              <a href="javascript:void(0);">
-                                <img
-                                  src="images/team-3.jpg"
-                                  class="img-fluid circle"
-                                  width="35"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="crs_fl_last">
-                          <div class="foot_list_info">
-                            <ul>
-                              <li>
-                                <div class="elsio_ic">
-                                  <i class="fa fa-eye text-success"></i>
-                                </div>
-                                <div class="elsio_tx">10k Views</div>
-                              </li>
-                              <li>
-                                <div class="elsio_ic">
-                                  <i class="fa fa-clock text-warning"></i>
-                                </div>
-                                <div class="elsio_tx">March 27, 2018</div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 text-left">
-                  <div class="gup_blg_grid_box">
-                    <div class="gup_blg_grid_thumb">
-                      <a href="https://fggroup.in/blogs/the-importance-of-fitness-education-in-todays-world">
-                        <img src="images/b-3.webp" class="img-fluid" alt="" />
-                      </a>
-                    </div>
-                    <div class="gup_blg_grid_caption">
-                      <div class="blg_tag">
-                        <span>Health</span>
-                      </div>
-                      <div class="blg_title">
-                        <h4>
-                          <a href="https://fggroup.in/blogs/the-importance-of-fitness-education-in-todays-world">
-                            The Importance Of Fitness Education
-                          </a>
-                        </h4>
-                      </div>
-                      <div class="blg_desc">
-                        <p>
-                          Understand the significance of proper fitness
-                          education for lasting health.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="crs_grid_foot">
-                      <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                        <div class="crs_fl_first">
-                          <div class="crs_tutor">
-                            <div class="crs_tutor_thumb">
-                              <a href="javascript:void(0);">
-                                <img
-                                  src="images/team-5.jpg"
-                                  class="img-fluid circle"
-                                  width="35"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="crs_fl_last">
-                          <div class="foot_list_info">
-                            <ul>
-                              <li>
-                                <div class="elsio_ic">
-                                  <i class="fa fa-eye text-success"></i>
-                                </div>
-                                <div class="elsio_tx">10k Views</div>
-                              </li>
-                              <li>
-                                <div class="elsio_ic">
-                                  <i class="fa fa-clock text-warning"></i>
-                                </div>
-                                <div class="elsio_tx">March 27, 2018</div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 text-left">
-                  <div class="gup_blg_grid_box">
-                    <div class="gup_blg_grid_thumb">
-                      <a href="https://fggroup.in/blogs/fatloss-vs-weightloss">
-                        <img src="images/b-4.webp" class="img-fluid" alt="" />
-                      </a>
-                    </div>
-                    <div class="gup_blg_grid_caption">
-                      <div class="blg_tag">
-                        <span>Wellness</span>
-                      </div>
-                      <div class="blg_title">
-                        <h4>
-                          <a href="https://fggroup.in/blogs/fatloss-vs-weightloss">
-                            Weight Loss VS Fat Loss
-                          </a>
-                        </h4>
-                      </div>
-                      <div class="blg_desc">
-                        <p>
-                          Explore the difference between weight loss and fat
-                          loss, and find the best approach for you.
-                        </p>
-                      </div>
-                    </div>
-                    <div class="crs_grid_foot">
-                      <div class="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
-                        <div class="crs_fl_first">
-                          <div class="crs_tutor">
-                            <div class="crs_tutor_thumb">
-                              <a href="javascript:void(0);">
-                                <img
-                                  src="images/team-2.jpg"
-                                  class="img-fluid circle"
-                                  width="35"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="crs_fl_last">
-                          <div class="foot_list_info">
-                            <ul>
-                              <li>
-                                <div class="elsio_ic">
-                                  <i class="fa fa-eye text-success"></i>
-                                </div>
-                                <div class="elsio_tx">10k Views</div>
-                              </li>
-                              <li>
-                                <div class="elsio_ic">
-                                  <i class="fa fa-clock text-warning"></i>
-                                </div>
-                                <div class="elsio_tx">March 27, 2018</div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className="bg-light-theme">
+      <ModalVideo
+        channel="youtube"
+        isOpen={isVideoOpen}
+        videoId={videoUrl}
+        onClose={closeVideoModal}
+      />
+          <VideoReview openVideoModal={openVideoModal} />
+          <section className="bg-light-theme text-start">
             <div className="container">
               <div className="row align-items-center justify-content-between text-left g-4">
                 <div className="col-lg-6">
@@ -843,7 +611,289 @@ const Home = () => {
               </div>
             </div>
           </section>
-          <section className="space">
+          <section className="middle">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                  <div className="sec_title position-relative text-center mb-5">
+                    <h6 className="theme-cl mb-0">Latest Updates</h6>
+                    <h2 className="ft-bold">View Recent Updates</h2>
+                  </div>
+                </div>
+              </div>
+              <div className="row justify-content-center">
+                <div className="col-lg-6 text-left">
+                  <div className="gup_blg_grid_box">
+                    <div className="gup_blg_grid_thumb">
+                      <a href="https://fggroup.in/blogs/ignite-your-nutrition-journey-explore-the-power-of-a-nutrition-course">
+                        <img
+                          src="images/b-1.webp"
+                          className="img-fluid"
+                          alt=""
+                        />
+                      </a>
+                    </div>
+                    <div className="gup_blg_grid_caption">
+                      <div className="blg_tag">
+                        <span>Nutrition</span>
+                      </div>
+                      <div className="blg_title">
+                        <h4>
+                          <a href="https://fggroup.in/blogs/ignite-your-nutrition-journey-explore-the-power-of-a-nutrition-course">
+                            Fuel Your Passion for Nutrition
+                          </a>
+                        </h4>
+                      </div>
+                      <div className="blg_desc">
+                        <p>
+                          Learn how to nourish your body and fuel your passion
+                          for a healthier life.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="crs_grid_foot">
+                      <div className="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                        <div className="crs_fl_first">
+                          <div className="crs_tutor">
+                            <div className="crs_tutor_thumb">
+                              <a href="javascript:void(0);">
+                                <img
+                                  src="images/team-2.jpg"
+                                  className="img-fluid circle"
+                                  width="35"
+                                  alt=""
+                                />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="crs_fl_last">
+                          <div className="foot_list_info">
+                            <ul>
+                              <li>
+                                <div className="elsio_ic">
+                                  <i className="fa fa-eye text-success"></i>
+                                </div>
+                                <div className="elsio_tx">10k Views</div>
+                              </li>
+                              <li>
+                                <div className="elsio_ic">
+                                  <i className="fa fa-clock text-warning"></i>
+                                </div>
+                                <div className="elsio_tx">March 27, 2018</div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 text-left">
+                  <div className="gup_blg_grid_box">
+                    <div className="gup_blg_grid_thumb">
+                      <a href="https://fggroup.in/blogs/choosing-the-right-fitness-certification-program-in-India">
+                        <img
+                          src="images/b-2.webp"
+                          className="img-fluid"
+                          alt=""
+                        />
+                      </a>
+                    </div>
+                    <div className="gup_blg_grid_caption">
+                      <div className="blg_tag">
+                        <span>Fitness</span>
+                      </div>
+                      <div className="blg_title">
+                        <h4>
+                          <a href="https://fggroup.in/blogs/choosing-the-right-fitness-certification-program-in-India">
+                            Choosing the Right Fitness Certification
+                          </a>
+                        </h4>
+                      </div>
+                      <div className="blg_desc">
+                        <p>
+                          Discover the best fitness certifications to kickstart
+                          your career.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="crs_grid_foot">
+                      <div className="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                        <div className="crs_fl_first">
+                          <div className="crs_tutor">
+                            <div className="crs_tutor_thumb">
+                              <a href="javascript:void(0);">
+                                <img
+                                  src="images/team-3.jpg"
+                                  className="img-fluid circle"
+                                  width="35"
+                                  alt=""
+                                />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="crs_fl_last">
+                          <div className="foot_list_info">
+                            <ul>
+                              <li>
+                                <div className="elsio_ic">
+                                  <i className="fa fa-eye text-success"></i>
+                                </div>
+                                <div className="elsio_tx">10k Views</div>
+                              </li>
+                              <li>
+                                <div className="elsio_ic">
+                                  <i className="fa fa-clock text-warning"></i>
+                                </div>
+                                <div className="elsio_tx">March 27, 2018</div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 text-left">
+                  <div className="gup_blg_grid_box">
+                    <div className="gup_blg_grid_thumb">
+                      <a href="https://fggroup.in/blogs/the-importance-of-fitness-education-in-todays-world">
+                        <img
+                          src="images/b-3.webp"
+                          className="img-fluid"
+                          alt=""
+                        />
+                      </a>
+                    </div>
+                    <div className="gup_blg_grid_caption">
+                      <div className="blg_tag">
+                        <span>Health</span>
+                      </div>
+                      <div className="blg_title">
+                        <h4>
+                          <a href="https://fggroup.in/blogs/the-importance-of-fitness-education-in-todays-world">
+                            The Importance Of Fitness Education
+                          </a>
+                        </h4>
+                      </div>
+                      <div className="blg_desc">
+                        <p>
+                          Understand the significance of proper fitness
+                          education for lasting health.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="crs_grid_foot">
+                      <div className="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                        <div className="crs_fl_first">
+                          <div className="crs_tutor">
+                            <div className="crs_tutor_thumb">
+                              <a href="javascript:void(0);">
+                                <img
+                                  src="images/team-5.jpg"
+                                  className="img-fluid circle"
+                                  width="35"
+                                  alt=""
+                                />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="crs_fl_last">
+                          <div className="foot_list_info">
+                            <ul>
+                              <li>
+                                <div className="elsio_ic">
+                                  <i className="fa fa-eye text-success"></i>
+                                </div>
+                                <div className="elsio_tx">10k Views</div>
+                              </li>
+                              <li>
+                                <div className="elsio_ic">
+                                  <i className="fa fa-clock text-warning"></i>
+                                </div>
+                                <div className="elsio_tx">March 27, 2018</div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 text-left">
+                  <div className="gup_blg_grid_box">
+                    <div className="gup_blg_grid_thumb">
+                      <a href="https://fggroup.in/blogs/fatloss-vs-weightloss">
+                        <img
+                          src="images/b-4.webp"
+                          className="img-fluid"
+                          alt=""
+                        />
+                      </a>
+                    </div>
+                    <div className="gup_blg_grid_caption">
+                      <div className="blg_tag">
+                        <span>Wellness</span>
+                      </div>
+                      <div className="blg_title">
+                        <h4>
+                          <a href="https://fggroup.in/blogs/fatloss-vs-weightloss">
+                            Weight Loss VS Fat Loss
+                          </a>
+                        </h4>
+                      </div>
+                      <div className="blg_desc">
+                        <p>
+                          Explore the difference between weight loss and fat
+                          loss, and find the best approach for you.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="crs_grid_foot">
+                      <div className="crs_flex d-flex align-items-center justify-content-between br-top px-3 py-2">
+                        <div className="crs_fl_first">
+                          <div className="crs_tutor">
+                            <div className="crs_tutor_thumb">
+                              <a href="javascript:void(0);">
+                                <img
+                                  src="images/team-2.jpg"
+                                  className="img-fluid circle"
+                                  width="35"
+                                  alt=""
+                                />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="crs_fl_last">
+                          <div className="foot_list_info">
+                            <ul>
+                              <li>
+                                <div className="elsio_ic">
+                                  <i className="fa fa-eye text-success"></i>
+                                </div>
+                                <div className="elsio_tx">10k Views</div>
+                              </li>
+                              <li>
+                                <div className="elsio_ic">
+                                  <i className="fa fa-clock text-warning"></i>
+                                </div>
+                                <div className="elsio_tx">March 27, 2018</div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* <section className="space">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -952,7 +1002,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
           <section
             className="space bg-cover text-start"
             style={{
@@ -963,26 +1013,29 @@ const Home = () => {
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="text-light mb-0">Subscribr Now</h6>
-                    <h2 className="ft-bold text-light">
-                      Get All Updates &amp; Advance Offers
+                    <h2 className="ft-bold text-light whastapp-title">
+                      Join GOMZI Today and Discover Exclusive Deals - Connect
+                      with Us Instantly!
                     </h2>
+                    <h6 className="text-light mb-0 d-md-block d-none">Unlock Success with GOMZI - Connect Now over whatsapp for
+                    Advance Perks!</h6>
+                    <p className="ft-bold text-light mt-4">
+                      
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="row align-items-center justify-content-center">
                 <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
                   <form className="rounded p-1">
-                    <div className="row no-gutters justify-content-center">
-                      <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                        <div className="form-group mb-0">
-                          <WhatsappBtn
-                            message={
-                              "Hello, I wanted to know more about Business Listing."
-                            }
-                            options={{ pageRef: true }}
-                          />
-                        </div>
+                    <div className="d-flex justify-content-center">
+                      <div className="form-group mb-0">
+                        <WhatsappBtn
+                          message={
+                            "Hello, I wanted to know more about Business Listing."
+                          }
+                          options={{ pageRef: true }}
+                        />
                       </div>
                     </div>
                   </form>

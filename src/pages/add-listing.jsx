@@ -86,7 +86,8 @@ const AddListing = () => {
   const [businessPhotos, setBusinessPhotos] = useState([]);
   const [featurePreview, setFeaturePreview] = useState(null);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(null);
-  const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] = useState(null);
+  const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] =
+    useState(null);
   const [logoImage, setLogoImage] = useState(null);
   const [logoPreview, setLogoPreview] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
@@ -647,8 +648,14 @@ const AddListing = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Add Your Business Listing - Promote Your Brand &amp; Reach More Customers</title>
-        <meta name="description" content="Add your business to our listing page and boost visibility. Reach new customers, enhance brand presence, and grow your business with our easy listing process!" />
+        <title>
+          Add Your Business Listing - Promote Your Brand &amp; Reach More
+          Customers
+        </title>
+        <meta
+          name="description"
+          content="Add your business to our listing page and boost visibility. Reach new customers, enhance brand presence, and grow your business with our easy listing process!"
+        />
         <link
           rel="shortcut icon"
           type="image/x-icon"
@@ -663,7 +670,10 @@ const AddListing = () => {
           <div className="clearfix" />
           <section
             className="bg-cover position-relative"
-            style={{ background: "red url(images/cover.jpg) no-repeat", marginTop: '70px' }}
+            style={{
+              background: "red url(images/cover.jpg) no-repeat",
+              marginTop: "70px",
+            }}
             data-overlay={3}
           >
             <div className="container">
@@ -772,110 +782,108 @@ const AddListing = () => {
                         </div>
                         <div className="dashboard-list-wraps-body py-3 px-3">
                           <div className="row">
-                            <div className="row">
-                              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                <div className="form-group">
-                                  <label className="mb-1">Listing Title</label>
-                                  <input
-                                    type="text"
-                                    className="form-control rounded"
-                                    placeholder="Enter Listing Title"
-                                    value={formData.businessName}
-                                    onChange={(e) =>
-                                      handleInputChange(
-                                        "businessName",
-                                        e.target.value
-                                      )
-                                    }
-                                  />
-                                </div>
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Listing Title</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Listing Title"
+                                  value={formData.businessName}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "businessName",
+                                      e.target.value
+                                    )
+                                  }
+                                />
                               </div>
-                              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                <div className="form-group">
-                                  <label className="mb-1">About Listing</label>
-                                  <textarea
-                                    className="form-control rounded ht-150"
-                                    placeholder="Describe..."
-                                    defaultValue={""}
-                                    value={formData.description}
-                                    onChange={(e) =>
-                                      handleInputChange(
-                                        "description",
-                                        e.target.value
-                                      )
-                                    }
-                                  />
-                                </div>
+                            </div>
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">About Listing</label>
+                                <textarea
+                                  className="form-control rounded ht-150"
+                                  placeholder="Describe..."
+                                  defaultValue={""}
+                                  value={formData.description}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "description",
+                                      e.target.value
+                                    )
+                                  }
+                                />
                               </div>
-                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                <div className="form-group">
-                                  <label className="mb-1">Categories</label>
-                                  <select
-                                    className="form-control"
-                                    value={selectedCategory}
-                                    onChange={(e) =>
-                                      setSelectedCategory(e.target.value)
-                                    }
-                                  >
-                                    <option>Select Category</option>
-                                    <option selected value="Personal Trainer">
-                                      Personal Trainer
-                                    </option>
-                                    <option value="General Trainer">
-                                      General Trainer
-                                    </option>
-                                    <option value="Gym">Gym</option>
-                                    <option value="Dietitian">Dietitian</option>
-                                    <option value="Nutritionist">
-                                      Nutritionist
-                                    </option>
-                                  </select>
-                                </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Categories</label>
+                                <select
+                                  className="form-control"
+                                  value={selectedCategory}
+                                  onChange={(e) =>
+                                    setSelectedCategory(e.target.value)
+                                  }
+                                >
+                                  <option>Select Category</option>
+                                  <option selected value="Personal Trainer">
+                                    Personal Trainer
+                                  </option>
+                                  <option value="General Trainer">
+                                    General Trainer
+                                  </option>
+                                  <option value="Gym">Gym</option>
+                                  <option value="Dietitian">Dietitian</option>
+                                  <option value="Nutritionist">
+                                    Nutritionist
+                                  </option>
+                                </select>
                               </div>
-                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                <div className="form-group">
-                                  <label className="mb-1">Business Type</label>
-                                  <select
-                                    className="form-control"
-                                    value={selectedBusinessType}
-                                    onChange={(e) =>
-                                      setSelectedBusinessType(e.target.value)
-                                    }
-                                  >
-                                    <option>Select Business Type</option>
-                                    <option value="personal">Personal</option>
-                                    <option selected value="business">
-                                      Business
-                                    </option>
-                                  </select>
-                                </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Business Type</label>
+                                <select
+                                  className="form-control"
+                                  value={selectedBusinessType}
+                                  onChange={(e) =>
+                                    setSelectedBusinessType(e.target.value)
+                                  }
+                                >
+                                  <option>Select Business Type</option>
+                                  <option value="personal">Personal</option>
+                                  <option selected value="business">
+                                    Business
+                                  </option>
+                                </select>
                               </div>
-                              <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                <div className="form-group">
-                                  <label className="mb-1">Tags</label>
-                                  <TagInput
-                                    type="text"
-                                    className="form-control rounded"
-                                    placeholder="Add Tags"
-                                    value={formData.tags}
-                                    onChange={(value) =>
-                                      handleInputChange("tags", value)
-                                    }
-                                  />
-                                </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Tags</label>
+                                <TagInput
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Add Tags"
+                                  value={formData.tags}
+                                  onChange={(value) =>
+                                    handleInputChange("tags", value)
+                                  }
+                                />
                               </div>
+                            </div>
 
-                              <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                <div className="form-group">
-                                  <label className="mb-1">Facilities</label>
-                                  <Select
-                                    isMulti
-                                    options={facilities}
-                                    value={selectedFacilities}
-                                    onChange={handleSelectChange}
-                                    placeholder="Select Facilities"
-                                  />
-                                </div>
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Facilities</label>
+                                <Select
+                                  isMulti
+                                  options={facilities}
+                                  value={selectedFacilities}
+                                  onChange={handleSelectChange}
+                                  placeholder="Select Facilities"
+                                />
                               </div>
                             </div>
                           </div>
