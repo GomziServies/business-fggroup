@@ -10,6 +10,7 @@ import WhatsappBtnMain from "../components/WhatsappBtnMain";
 import VideoReview from "../components/VideoReview";
 import ModalVideo from "react-modal-video";
 import { Link } from "react-router-dom";
+import ExploreGomzi from "../components/ExploreGomzi";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -62,7 +63,7 @@ const Home = () => {
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          <div className="home-banner home-7" style={{ marginTop: "70px" }}>
+          {/* <div className="home-banner home-7" style={{ marginTop: "70px" }}>
             <div className="container">
               <div className="row align-items-center justify-content-between">
                 <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -101,7 +102,16 @@ const Home = () => {
               <div className="block" />
               <div className="block2" />
             </div>
-          </div>
+          </div> */}
+          <section className="container-fluid p-0 text-start" style={{ marginTop: "70px" }}>
+            <img
+              src="images/banner-affiliation.webp"
+              className="img"
+              alt=""
+              width="100%"
+            />
+          </section>
+          <ExploreGomzi />
           <section className="pt-4 pb-0 text-start">
             <div className="container">
               <div className="row justify-content-between g-4">
@@ -851,8 +861,8 @@ const Home = () => {
                       </div>
                       <div className="blg_desc">
                         <p>
-                        Transitioning a gym from a local establishment to a
-                        thriving national or global...
+                          Transitioning a gym from a local establishment to a
+                          thriving national or global...
                         </p>
                       </div>
                     </div>

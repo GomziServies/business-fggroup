@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../index.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -21,7 +21,7 @@ const VideoReview = ({ openVideoModal }) => {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-xl-5 col-lg-7 col-md-9 col-sm-12">
-                <div className="sec_title position-relative text-center mb-5">
+                <div className="sec_title position-relative text-center">
                   <h6 className="theme-cl mb-0">What Our</h6>
                   <h2 className="ft-bold">Clients Are Saying</h2>
                 </div>

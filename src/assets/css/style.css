@@ -268,11 +268,11 @@ html body .db {
   border-radius: 100%;
 }
 
-.whatsapp-btn:hover .dark-theme-bg{
+.whatsapp-btn:hover .dark-theme-bg {
   background: #023a25 !important;
 }
 
-.whatsapp-btn{
+.whatsapp-btn {
   padding: 15px 25px !important;
 }
 
@@ -6241,6 +6241,7 @@ select.form-control {
   border-radius: 1px;
   border-color: #eee;
   color: #2b2e30;
+  background-color: #f7f7f7 !important;
 }
 .form-control.sm {
   height: 40px !important;
@@ -9646,38 +9647,38 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
     font-size: 35px;
     line-height: 52px;
   }
-  
+
   .banner_decription {
     line-height: 1.5;
   }
-  
+
   .home-banner {
     min-height: 350px;
     padding: 18px 16px 48px;
   }
-  
+
   .offerWrap {
     height: 310px;
   }
-  
+
   .offerWrap .offerCaps {
     padding: 16px 12px 16px 20px;
   }
-  
+
   .Goodup-catg-icon {
     width: 70px;
     height: 70px;
   }
-  
+
   .featuresGroups .singleFeatured .ico {
     margin-top: -6px;
   }
-  
+
   .whastapp-title {
     font-size: 27px;
     line-height: 1.3;
   }
-  
+
   .video-rating {
     padding: 10px 0px;
   }
@@ -9697,7 +9698,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 @media (max-width: 575px) {
-  .inquiry-css{
+  .inquiry-css {
     right: 20px;
     bottom: 30px;
     font-size: 30px;
@@ -9735,7 +9736,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 @media (max-width: 575px) {
-  .add-inquiry-css{
+  .add-inquiry-css {
     right: 20px;
     bottom: 94px;
     font-size: 30px;
@@ -9827,7 +9828,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   overflow: hidden;
 }
 
-.student-space .slider-box{
+.student-space .slider-box {
   margin: 10px;
 }
 
@@ -9863,13 +9864,14 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   color: #4e4a67;
   margin-bottom: 30px;
   line-height: 1.5em;
-  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, STXihei, sans-serif;
   text-transform: capitalize !important;
   text-align: left;
 }
 
 .review-box-btn a {
-  background-image: linear-gradient(147deg, #6439fe 0%, #3878fd 74%);
+  background-image: linear-gradient(147deg, #f44336 0%, #fc7e00 74%);
   padding: 15px 35px;
   border-radius: 50px;
   color: #fff !important;
@@ -9960,7 +9962,6 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   z-index: -1;
 }
 
-
 @-webkit-keyframes effct {
   0% {
     opacity: 0;
@@ -9997,7 +9998,6 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   }
 }
 
-
 .newthing::before {
   animation-delay: 0.4s;
   -webkit-animation-delay: 0.4s;
@@ -10018,7 +10018,6 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
     font-size: 22px;
     text-align: start;
     line-height: 1;
-
   }
 
   .review-box-text span {
@@ -10112,12 +10111,12 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   }
 }
 
-.black-before{
+.black-before {
   position: sticky !important;
   top: 50px;
 }
 
-.black-before img{
+.black-before img {
   position: relative;
 }
 
@@ -10127,7 +10126,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   content: "";
   height: 100%;
   left: 0;
-  opacity: .4;
+  opacity: 0.4;
   position: absolute !important;
   right: 0;
   top: 0;
@@ -10255,4 +10254,16 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   .tabata-one b {
     font-size: 18px;
   }
+}
+
+.rs-picker-input.rs-picker-tag .rs-picker-toggle.rs-btn {
+  background-color: transparent !important;
+}
+
+.css-13cymwt-control {
+  background-color: #f7f7f7 !important;
+}
+
+.rs-tag {
+  background-color: hsl(0, 0%, 90%) !important;
 }
