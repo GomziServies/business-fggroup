@@ -10134,3 +10134,125 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   width: 100%;
   z-index: 1;
 }
+
+.text-orange-color {
+  color: #fc7e00 !important;
+}
+
+.blog-ul-li ul li {
+  list-style: inside;
+  padding: 10px;
+}
+
+.describe h1,
+.describe .h1-fs,
+.describe span {
+  font-size: 37px;
+  font-family: Nunito, sans-serif;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-left: 10px;
+  text-transform: capitalize !important;
+  margin-top: 40px;
+}
+
+.describe p {
+  font-size: 16px;
+  font-family: Comfortaa, cursive;
+  color: #6e6d6d;
+  font-weight: 700;
+  line-height: 37px;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  margin-left: 10px;
+  text-transform: capitalize !important;
+}
+
+.describe li {
+  font-size: 16px;
+  font-family: Comfortaa, cursive;
+  color: #6e6d6d;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: capitalize !important;
+}
+
+@media (max-width: 991.98px) {
+  .describe .h1-fs,
+  .describe h1 {
+    margin-left: 0;
+  }
+
+  .describe p {
+    line-height: 33px;
+    margin-left: 0;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .describe .h1-fs,
+  .describe h1 {
+    font-size: 30px !important;
+    margin-left: 0;
+  }
+
+  .describe span {
+    font-size: 30px;
+  }
+
+  .describe p {
+    line-height: 30px;
+    margin-left: 0;
+  }
+}
+
+.thm-bg-clr {
+  background-color: #f71e70 !important;
+}
+
+.new-section-corporate .thm-bg-clr {
+  width: 80px;
+  height: 5px;
+  margin: 10px auto;
+  background-color: #007bff;
+}
+
+.tabata-one img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.tabata-one p a {
+  color: #00afef;
+}
+
+.tabata-one p a:hover {
+  color: #ff249c;
+}
+
+.tabata-one p:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .tabata-one {
+    padding: 10px;
+  }
+
+  .tabata-one .h2-fs {
+    font-size: 24px;
+  }
+
+  .tabata-one p {
+    font-size: 16px;
+  }
+
+  .tabata-one b {
+    font-size: 18px;
+  }
+}
