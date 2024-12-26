@@ -53,7 +53,7 @@ const ScalableGym = () => {
                 <div className="thm-bg-clr dector mb-5"></div>
               </div>
               <div className="container">
-                <div className="row">
+                <div className="row justify-content-center">
                   <div className="col-lg-8 mt-4">
                     <div
                       style={{

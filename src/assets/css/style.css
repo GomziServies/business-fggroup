@@ -9431,7 +9431,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .lang ul li a p {
-  font-family: Nunito, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
   text-transform: capitalize !important;
 }
 
@@ -9495,7 +9495,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   display: block;
   transition: 0.3s;
   text-align: center;
-  font-family: Nunito, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
   letter-spacing: 2px;
   font-weight: 600;
   text-transform: capitalize !important;
@@ -9658,7 +9658,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   }
 
   .offerWrap {
-    height: 310px;
+    height: 354px;
   }
 
   .offerWrap .offerCaps {
@@ -9763,7 +9763,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .covid .h2-fs,
 .covid span {
   font-size: 37px;
-  font-family: Nunito, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
   text-transform: capitalize !important;
   font-weight: 800;
   letter-spacing: 2px;
@@ -9853,7 +9853,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .review-box-text .h2-fs {
-  font-family: Nunito, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
   font-size: 24px;
   font-weight: bold;
   color: #fc7e00;
@@ -10147,7 +10147,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .describe .h1-fs,
 .describe span {
   font-size: 37px;
-  font-family: Nunito, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
   font-weight: 800;
   letter-spacing: 2px;
   margin-left: 10px;
@@ -10266,4 +10266,10 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 
 .rs-tag {
   background-color: hsl(0, 0%, 90%) !important;
+}
+
+.delete-button {
+  padding: 11.25px 20px;
+  background-color: red;
+  border-radius: 4px;
 }

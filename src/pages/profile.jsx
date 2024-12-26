@@ -202,7 +202,7 @@ const Profile = () => {
           <Header />
           <div className="clearfix" />
           <section
-            className="bg-cover position-relative"
+            className="bg-cover py-5 position-relative"
             style={{
               background: "red url(images/cover.jpg) no-repeat",
               marginTop: "70px",
@@ -252,7 +252,7 @@ const Profile = () => {
               aria-controls="MobNav"
             >
               <i className="fas fa-bars me-2" />
-              Dashboard Navigation
+              Menu
             </a>
             <div id="MobNav" className="text-start">
               <div className="goodup-dashboard-nav sticky-top">

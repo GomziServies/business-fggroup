@@ -308,7 +308,7 @@ const AllListingList = () => {
           <Header />
           <div className="clearfix" />
           <section
-            className="bg-cover position-relative"
+            className="bg-cover py-5 position-relative"
             style={{
               background: "red url(images/cover.jpg) no-repeat",
               marginTop: "70px",
@@ -358,7 +358,7 @@ const AllListingList = () => {
               aria-controls="MobNav"
             >
               <i className="fas fa-bars me-2" />
-              Dashboard Navigation
+              Menu
             </a>
             <div id="MobNav" className="text-start">
               <div className="goodup-dashboard-nav sticky-top">
@@ -428,7 +428,7 @@ const AllListingList = () => {
                     <div className="dashboard-list-wraps bg-white rounded mb-4">
                       <div className="dashboard-list-wraps-head br-bottom py-3 px-3">
                         <div className="row">
-                          <div className="col-md-6">
+                          <div className="col-6">
                             <div className="form-group">
                               <label className="mb-1">Categories</label>
                               <select
@@ -453,7 +453,7 @@ const AllListingList = () => {
                               </select>
                             </div>
                           </div>
-                          <div className="col-md-6">
+                          <div className="col-6">
                             <div className="form-group">
                               <label className="mb-1">City</label>
                               <input

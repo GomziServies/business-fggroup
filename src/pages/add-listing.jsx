@@ -78,7 +78,10 @@ const AddListing = () => {
   const handleSelectChange = (selectedOptions) => {
     setSelectedFacilities(selectedOptions);
     const selectedValues = selectedOptions.map((option) => option.value);
-    setFormData({ services: selectedValues });
+    setFormData((prevState) => ({
+      ...prevState,
+      services: selectedValues,
+    }));
   };
 
   // ----------------------------------------------------------------------------------
@@ -178,32 +181,6 @@ const AddListing = () => {
     fileInput.click();
   };
 
-  const handleBusinessPhotosChange = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      const previewUrl = URL.createObjectURL(file);
-      setFeaturePreview(previewUrl);
-    }
-
-    const files = event.target.files;
-
-    if (files.length > 0) {
-      const newPhotos = [...businessPhotos];
-      Array.from(files).forEach((file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          newPhotos.push({ file, preview: reader.result });
-          setBusinessPhotos([...newPhotos]);
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-  };
-
   const handleRemoveBusinessPhoto = (index) => {
     const newPhotos = [...businessPhotos];
     newPhotos.splice(index, 1);
@@ -298,31 +275,6 @@ const AddListing = () => {
     getUserData();
   }, []);
 
-  const handleDayChange = (index, selectedDay) => {
-    const updatedBusinessHours = [...businessHours];
-    updatedBusinessHours[index].day = selectedDay;
-    setBusinessHours(updatedBusinessHours);
-  };
-
-  // const handleTimeChange = (index, field, value) => {
-  //   const updatedBusinessHours = [...businessHours];
-  //   updatedBusinessHours[index][field] = value;
-  //   setBusinessHours(updatedBusinessHours);
-  // };
-
-  const handleAddTimeSlot = () => {
-    setBusinessHours([
-      ...businessHours,
-      { day: "Mon", open: "10:00 AM", close: "06:00 PM" },
-    ]);
-  };
-
-  const handleRemoveTimeSlot = (index) => {
-    const updatedBusinessHours = [...businessHours];
-    updatedBusinessHours.splice(index, 1);
-    setBusinessHours(updatedBusinessHours);
-  };
-
   const handleAddFaq = () => {
     setFaqs([...faqs, { question: "", answer: "" }]);
   };
@@ -351,18 +303,6 @@ const AddListing = () => {
         [field]: value,
       }));
     }
-  };
-
-  const handleSocialMediaLinkChange = (index, value) => {
-    const newLinks = [...socialMediaLinks];
-    newLinks[index].link = value;
-    setSocialMediaLinks([...newLinks]);
-  };
-
-  const handleRemoveSocialMediaLink = (index) => {
-    const newLinks = [...socialMediaLinks];
-    newLinks.splice(index, 1);
-    setSocialMediaLinks([...newLinks]);
   };
 
   const uploadLogo = async () => {
@@ -532,30 +472,6 @@ const AddListing = () => {
     }
   };
 
-  const handlebusinessLogoChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      const previewUrl = URL.createObjectURL(file);
-      setLogoPreview(previewUrl);
-    }
-  };
-
-  const handlebusinessFeatureChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size exceeds 2 MB!");
-        return;
-      }
-      const previewUrl = URL.createObjectURL(file);
-      setFeaturePreview(previewUrl);
-    }
-  };
-
   const handleLogout = async () => {
     try {
       localStorage.removeItem("authorization");
@@ -669,7 +585,7 @@ const AddListing = () => {
           <Header />
           <div className="clearfix" />
           <section
-            className="bg-cover position-relative"
+            className="bg-cover py-5 position-relative"
             style={{
               background: "red url(images/cover.jpg) no-repeat",
               marginTop: "70px",
@@ -719,7 +635,7 @@ const AddListing = () => {
               aria-controls="MobNav"
             >
               <i className="fas fa-bars me-2" />
-              Dashboard Navigation
+              Menu
             </a>
             <div id="MobNav" className="text-start">
               <div className="goodup-dashboard-nav sticky-top">
@@ -1349,7 +1265,7 @@ const AddListing = () => {
                           <div className="row">
                             {faqs.map((faq, index) => (
                               <>
-                                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
                                   <div className="form-group">
                                     <label className="mb-1">Question</label>
                                     <input
@@ -1385,16 +1301,14 @@ const AddListing = () => {
                                     />
                                   </div>
                                 </div>
-                                <div className="col-xl-1 col-lg-1 col-md-1 col-sm-12">
-                                  <div className="form-group">
-                                    <Button
+                                <div className="col-xl-1 col-lg-1 col-md-1 col-sm-12 d-flex align-items-center">
+                                  <div className="form-group mb-0">
+                                    <button
                                       onClick={() => handleRemoveFaq(index)}
-                                      variant="contained"
-                                      color="secondary"
-                                      sx={{ mt: 2, background: "red" }}
                                     >
-                                      <DeleteIcon />
-                                    </Button>
+                                      {/* <DeleteIcon /> */}
+                                      <i className="fa fa-trash text-white delete-button" />
+                                    </button>
                                   </div>
                                 </div>
                               </>
