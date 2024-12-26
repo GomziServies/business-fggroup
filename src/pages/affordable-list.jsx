@@ -20,7 +20,7 @@ const AffordableList = () => {
       title: "Create Account",
       description: "Enter your mobile number to get started",
       imgSrc:
-        "https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/createaccount@2x.png",
+        "images/step-1.webp",
       imgAlt: "Step 1: Create Account",
       imgWidth: 242,
       imgHeight: 195,
@@ -30,7 +30,7 @@ const AffordableList = () => {
       title: "Enter Business Details",
       description: "Add name, address, business hours and photos",
       imgSrc:
-        "https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/enterbusinessdetails@2x.png",
+        "images/step-2.webp",
       imgAlt: "Step 2: Enter Business Details",
       imgWidth: 230,
       imgHeight: 204,
@@ -40,7 +40,7 @@ const AffordableList = () => {
       title: "Select Categories",
       description: "Add relevant categories to your free listing page",
       imgSrc:
-        "https://akam.cdn.jdmagicbox.com/images/icontent/listingbusiness/selectcat@2x.png",
+        "images/step-3.webp",
       imgAlt: "Step 3: Select Categories",
       imgWidth: 277,
       imgHeight: 164,
@@ -255,172 +255,414 @@ const AffordableList = () => {
             </div>
           </section> */}
           <section>
-            <div class="container text-start">
-              <div class="grow-business-section mt-5">
-                <div class="grow-business-item reverse">
-                  <div class="grow-business-image d-block d-md-none">
+            <div class="container text-start mt-5">
+              <h2 className="title text-center affordable-h2 mb-3">
+                Affordable Plans Use For You
+              </h2>
+              <div class="grow-business-section">
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
                     <img
-                      src="images/banner-affiliation-service.webp"
-                      alt="Free Business Listing"
+                      src="images/space-requirement.webp"
+                      alt="Space Requirement"
                     />
                   </div>
-                  <div class="grow-business-content mt-5">
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Space Requirement :- </b> Compact spaces ranging from
-                      1,000 to 3,000 sq. ft., typically suitable for small-scale
-                      fitness centers or startups. These spaces are often
-                      designed with a focus on maximizing functionality within
-                      limited square footage, making efficient use of the area
-                      for essential fitness activities.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Reception Area :- </b> A basic and straightforward
-                      reception setup that includes a small desk and minimal
-                      seating. Designed to prioritize utility, this area is
-                      usually managed by one person, catering to the core needs
-                      of member inquiries and check-ins without any elaborate
-                      features.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Strength Equipment :- </b> Equipped with 5 foundational
-                      machines and free weights up to 20 kg, these setups cater
-                      to beginners and individuals focusing on basic
-                      strength-building exercises. The equipment is limited in
-                      variety but sufficient for foundational fitness needs.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Cardio Equipment :- </b> Provides 2-3 basic treadmills
-                      or cycles, suitable for beginners or light cardio
-                      routines. These options are functional but limited, ideal
-                      for users looking for minimal cardio solutions within an
-                      economical budget.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Miscellaneous Equipment :- </b> Includes essential
-                      fitness accessories such as mats, jump ropes, and one
-                      medicine ball, catering to basic workout routines. These
-                      tools are ideal for fundamental exercises like stretching,
-                      light resistance, and core strengthening.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Additional Facilities :- </b> Basic amenities like a
-                      single washroom, a small dressing room, and minimal
-                      ventilation systems are available, prioritizing essential
-                      comfort and hygiene for members.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Dietitian Services :- </b> Dietitian services are not
-                      offered, with the gym focusing exclusively on physical
-                      fitness routines. Members are encouraged to manage their
-                      nutritional needs independently or seek external guidance.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Physiotherapist Services :- </b> Physiotherapy services
-                      are absent, reflecting the gym's focus on fitness without
-                      medical or rehabilitative offerings.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Corporate Structure :- </b> Operates with a lean team
-                      structure comprising 1-2 trainers and a receptionist. This
-                      minimalist approach is designed to keep operational costs
-                      low while maintaining a basic level of service.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Membership Pricing :- </b> Positioned at an affordable
-                      price point, providing essential gym services that cater
-                      to individuals looking for budget-friendly fitness
-                      solutions.
-                    </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Hygiene Standards :- </b> Basic hygiene is maintained
-                      through periodic cleaning, ensuring an acceptable
-                      environment for members. While sufficient for essential
-                      needs, it lacks advanced cleaning measures.
+                  <div class="grow-business-content">
+                    <h3>Space Requirement</h3>
+                    <p>
+                      Compact spaces ranging from 1,000 to 3,000 sq. ft.,
+                      typically suitable for small-scale fitness centers or
+                      startups. These spaces are often designed with a focus on
+                      maximizing functionality within limited square footage,
+                      making efficient use of the area for essential fitness
+                      activities.
                     </p>
                   </div>
-                  <div class="grow-business-image d-none d-md-block black-before">
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
                     <img
-                      src="images/banner-affiliation-service.webp"
-                      alt="Free Business Listing"
+                      src="images/reception-area.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Reception Area</h3>
+                    <p>
+                      A basic and straightforward reception setup that includes
+                      a small desk and minimal seating. Designed to prioritize
+                      utility, this area is usually managed by one person,
+                      catering to the core needs of member inquiries and
+                      check-ins without any elaborate features.
+                    </p>
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img
+                      src="images/reception-area.webp"
+                      alt="Reception Area"
                     />
                   </div>
                 </div>
                 <div class="grow-business-item">
-                  <div class="grow-business-image black-before">
+                  <div class="grow-business-image">
                     <img
-                      src="images/banner-affiliation-service-2.webp"
-                      alt="Justdial Ads"
+                      src="images/affordable-list.webp"
+                      alt="Space Requirement"
                     />
                   </div>
                   <div class="grow-business-content">
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Group Classes :- </b> Group classes are not available,
-                      emphasizing self-guided workouts and individual training
-                      routines.
+                    <h3>Strength Equipment </h3>
+                    <p>
+                      Equipped with 5 foundational machines and free weights up
+                      to 20 kg, these setups cater to beginners and individuals
+                      focusing on basic strength-building exercises. The
+                      equipment is limited in variety but sufficient for
+                      foundational fitness needs.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Technology Integration :- </b> Relies on manual
-                      processes for operations such as record-keeping and
-                      workout tracking, reflecting minimal integration of
-                      technology in member management.
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img
+                      src="images/cardio-equipment.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Cardio Equipment </h3>
+                    <p>
+                      Provides 2-3 basic treadmills or cycles, suitable for
+                      beginners or light cardio routines. These options are
+                      functional but limited, ideal for users looking for
+                      minimal cardio solutions within an economical budget.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Fire Safety & Licensing :- </b> Adheres to basic
-                      government-mandated fire safety measures and licensing
-                      requirements, ensuring fundamental compliance.
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img
+                      src="images/cardio-equipment.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/miscellaneous-equipment.webp"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Miscellaneous Equipment </h3>
+                    <p>
+                      Includes essential fitness accessories such as mats, jump
+                      ropes, and one medicine ball, catering to basic workout
+                      routines. These tools are ideal for fundamental exercises
+                      like stretching, light resistance, and core strengthening.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Parking Space :- </b> Offers limited parking spaces,
-                      often catering to a small number of members. Parking is
-                      typically uncovered and shared with other establishments.
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img
+                      src="images/additional-facilities.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Additional Facilities </h3>
+                    <p>
+                      Basic amenities like a single washroom, a small dressing
+                      room, and minimal ventilation systems are available,
+                      prioritizing essential comfort and hygiene for members.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Opening Hours :- </b> Operates during standard hours
-                      (e.g., 7 AM-9 PM), which align with the schedules of the
-                      majority of members.
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img
+                      src="images/additional-facilities.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/dietitian-services.webp"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Dietitian Services </h3>
+                    <p>
+                      Dietitian services are not offered, with the gym focusing
+                      exclusively on physical fitness routines. Members are
+                      encouraged to manage their nutritional needs independently
+                      or seek external guidance.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Personal Training Services :- </b> Limited to
-                      occasional sessions focused on basic fitness guidance.
-                      These services cater to members with foundational fitness
-                      goals and are not heavily personalized.
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img
+                      src="images/physiotherapist-services.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Physiotherapist Services </h3>
+                    <p>
+                      Physiotherapy services are absent, reflecting the gym's
+                      focus on fitness without medical or rehabilitative
+                      offerings.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Customer Support :- </b> Basic support provided through
-                      email or phone during working hours. It is limited to
-                      resolving essential member queries, offering a
-                      straightforward and no-frills approach.
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img
+                      src="images/physiotherapist-services.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/corporate-structure.webp"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Corporate Structure </h3>
+                    <p>
+                      Operates with a lean team structure comprising 1-2
+                      trainers and a receptionist. This minimalist approach is
+                      designed to keep operational costs low while maintaining a
+                      basic level of service.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Member Engagement :- </b> Minimal engagement with
-                      occasional emails or promotions, mostly focused on
-                      transactional communication. Member interaction is limited
-                      to essential updates or offers.
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img src="images/membership.webp" alt="Reception Area" />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Membership Pricing </h3>
+                    <p>
+                      Positioned at an affordable price point, providing
+                      essential gym services that cater to individuals looking
+                      for budget-friendly fitness solutions.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Branding & Atmosphere :- </b> Functional and
-                      straightforward design with no emphasis on aesthetic
-                      appeal. The atmosphere is utilitarian, focusing solely on
-                      essential fitness activities.
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img src="images/membership.webp" alt="Reception Area" />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/hygiene-standards.webp"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Hygiene Standards </h3>
+                    <p>
+                      Basic hygiene is maintained through periodic cleaning,
+                      ensuring an acceptable environment for members. While
+                      sufficient for essential needs, it lacks advanced cleaning
+                      measures.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Social Media Presence :- </b> Limited to occasional
-                      local promotions or updates about the gym's services. The
-                      focus is primarily on attracting nearby members through
-                      direct communication.
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img src="images/group-class.webp" alt="Reception Area" />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Group Classes </h3>
+                    <p>
+                      Group classes are not available, emphasizing self-guided
+                      workouts and individual training routines.
                     </p>
-                    <p style={{ fontWeight: "400", fontSize: "17px" }}>
-                      <b>Additional Benefits :- </b> Basic perks like occasional
-                      discounts or offers to attract budget-conscious members.
-                      The focus is on affordability rather than exclusive
-                      benefits.
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img src="images/group-class.webp" alt="Reception Area" />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/technology -integration.webp"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Technology Integration </h3>
+                    <p>
+                      Relies on manual processes for operations such as
+                      record-keeping and workout tracking, reflecting minimal
+                      integration of technology in member management.
                     </p>
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img src="images/fire-safety.jpg" alt="Reception Area" />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Fire Safety & Licensing </h3>
+                    <p>
+                      Adheres to basic government-mandated fire safety measures
+                      and licensing requirements, ensuring fundamental
+                      compliance.
+                    </p>
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img src="images/fire-safety.jpg" alt="Reception Area" />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/parking-space.webp"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Parking Space </h3>
+                    <p>
+                      Offers limited parking spaces, often catering to a small
+                      number of members. Parking is typically uncovered and
+                      shared with other establishments.
+                    </p>
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img src="images/opening-hours.webp" alt="Reception Area" />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Opening Hours </h3>
+                    <p>
+                      Operates during standard hours (e.g., 7 AM-9 PM), which
+                      align with the schedules of the majority of members.
+                    </p>
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img src="images/opening-hours.webp" alt="Reception Area" />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/personal-training.jpg"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Personal Training Services </h3>
+                    <p>
+                      Limited to occasional sessions focused on basic fitness
+                      guidance. These services cater to members with
+                      foundational fitness goals and are not heavily
+                      personalized.
+                    </p>
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img
+                      src="images/customer-support.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Customer Support </h3>
+                    <p>
+                      Basic support provided through email or phone during
+                      working hours. It is limited to resolving essential member
+                      queries, offering a straightforward and no-frills
+                      approach.
+                    </p>
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img
+                      src="images/customer-support.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/member-engagement.webp"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Member Engagement </h3>
+                    <p>
+                      Minimal engagement with occasional emails or promotions,
+                      mostly focused on transactional communication. Member
+                      interaction is limited to essential updates or offers.
+                    </p>
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img src="images/branding.webp" alt="Reception Area" />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Branding & Atmosphere </h3>
+                    <p>
+                      Functional and straightforward design with no emphasis on
+                      aesthetic appeal. The atmosphere is utilitarian, focusing
+                      solely on essential fitness activities.
+                    </p>
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img src="images/branding.webp" alt="Reception Area" />
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image">
+                    <img
+                      src="images/social-media.webp"
+                      alt="Space Requirement"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Social Media Presence </h3>
+                    <p>
+                      Limited to occasional local promotions or updates about
+                      the gym's services. The focus is primarily on attracting
+                      nearby members through direct communication.
+                    </p>
+                  </div>
+                </div>
+                <div class="grow-business-item">
+                  <div class="grow-business-image d-block d-md-none">
+                    <img
+                      src="images/additional-benefits.webp"
+                      alt="Reception Area"
+                    />
+                  </div>
+                  <div class="grow-business-content">
+                    <h3>Additional Benefits </h3>
+                    <p>
+                      Basic perks like occasional discounts or offers to attract
+                      budget-conscious members. The focus is on affordability
+                      rather than exclusive benefits.
+                    </p>
+                  </div>
+                  <div class="grow-business-image grow-mt d-none d-md-block">
+                    <img
+                      src="images/additional-benefits.webp"
+                      alt="Reception Area"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </section>
-
           <section style={{ marginTop: "50px" }}>
             <div className="article_featured_image mt-2">
               <img
@@ -431,7 +673,6 @@ const AffordableList = () => {
               />
             </div>
           </section>
-
           <section className="free-listing-steps">
             <div className="container">
               <h2 className="title">

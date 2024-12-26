@@ -190,7 +190,9 @@ code {
   color: #666;
   line-height: 1.6;
 }
-
+.affordable-h2{
+  font-size: 34px;
+}
 @media (max-width: 768px) {
   .free-listing-steps .title {
     font-size: 20px;
@@ -208,107 +210,111 @@ code {
   .free-listing-steps .step-description {
     font-size: 14px;
   }
+  .affordable-h2{
+    font-size: 22px;
+    line-height: 0px;
+  }
 }
 
-
 .grow-business-section {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  padding: 50px 20px;
 }
 
 .grow-business-item {
   display: flex;
-  align-items: start;
-  justify-content: space-between;
-  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #ff9800;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Reverse Layout for Items */
-/* .grow-business-item.reverse {
-  flex-direction: row-reverse;
-} */
-
-.grow-business-item .grow-business-image {
-  flex: 1;
-  max-width: 45%;
+.grow-business-image {
+  margin-bottom: 25px;
+  width: 250px;
+  height: 250px;
+  border: 8px solid #ffffff;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.grow-business-item .grow-business-image img {
+.grow-business-image.grow-mt {
+  margin-top: 25px;
+}
+
+.grow-business-image img {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-/* Content Styling */
-.grow-business-item .grow-business-content {
-  flex: 1;
-  max-width: 45%;
-  padding-left: 20px;
-  transition: all 0.3s ease;
+.grow-business-item:hover .grow-business-image img {
+  transform: scale(1.03);
 }
 
-/* Heading Styling */
-.grow-business-item .grow-business-content h3 {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
-  line-height: 1.4;
-  letter-spacing: 1px; /* Add letter-spacing for the heading */
-  text-transform: uppercase; /* Optional: Makes the heading more dynamic */
-  transition: color 0.3s ease, letter-spacing 0.3s ease;
+.grow-business-content {
+  padding: 15px 20px;
 }
 
-/* Paragraph Styling */
-.grow-business-item .grow-business-content p {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 20px;
-  line-height: 1.7;
-  letter-spacing: 0.5px; /* Add slight letter-spacing to the paragraph */
+.grow-business-content h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  position: relative;
 }
 
-/* List Styling */
-.grow-business-item .grow-business-content ul {
-  list-style-type: none;
-  padding-left: 0;
+.grow-business-content h3::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: #ff9800;
 }
 
-.grow-business-item .grow-business-content ul li {
-  font-size: 16px;
-  color: #444;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px; /* Add letter-spacing to list items */
-  transition: color 0.3s ease;
+.grow-business-content p {
+  font-size: 17px;
+  color: #7f8c8d;
+  line-height: 1.6;
 }
-
 
 @media (max-width: 768px) {
-  .grow-business-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .grow-business-section {
+    grid-template-columns: 1fr;
     padding: 20px;
   }
 
-  .grow-business-item .grow-business-image,
-  .grow-business-item .grow-business-content {
-    max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
+  .grow-business-item {
+    max-width: 350px;
   }
 
-  .grow-business-item .grow-business-content {
-    margin-top: 20px;
+  .grow-business-image {
+    width: 200px;
+    height: 200px;
   }
 
-  .grow-business-item .grow-business-content h3 {
-    font-size: 24px;
+  .grow-business-content h3 {
+    font-size: 20px;
   }
 
-  .grow-business-item .grow-business-content p,
-  .grow-business-item .grow-business-content ul li {
+  .grow-business-content p {
     font-size: 14px;
+  }
+  
+  .grow-business-content {
+    padding: 0px;
   }
 }
