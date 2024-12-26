@@ -104,7 +104,10 @@ const Login = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Login to Your Account - Access Your Business Dashboard</title>
-        <meta name="description" content="Login to manage your business listings, update information, and access personalized features. Stay connected and in control of your business profile." />
+        <meta
+          name="description"
+          content="Login to manage your business listings, update information, and access personalized features. Stay connected and in control of your business profile."
+        />
         <link
           rel="shortcut icon"
           type="image/x-icon"
@@ -234,26 +237,29 @@ const Login = () => {
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="text-light mb-0">Subscribr Now</h6>
-                    <h2 className="ft-bold text-light">
-                      Get All Updates &amp; Advance Offers
+                    <h2 className="ft-bold text-light whastapp-title">
+                      Join GOMZI Today and Discover Exclusive Deals - Connect
+                      with Us Instantly!
                     </h2>
+                    <h6 className="text-light mb-0 d-md-block d-none">
+                      Unlock Success with GOMZI - Connect Now over whatsapp for
+                      Advance Perks!
+                    </h6>
+                    <p className="ft-bold text-light mt-4"></p>
                   </div>
                 </div>
               </div>
               <div className="row align-items-center justify-content-center">
                 <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
                   <form className="rounded p-1">
-                    <div className="row no-gutters justify-content-center">
-                      <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                        <div className="form-group mb-0">
-                          <WhatsappBtn
-                            message={
-                              "Hello, I wanted to know more about Business Listing."
-                            }
-                            options={{ pageRef: true }}
-                          />
-                        </div>
+                    <div className="d-flex justify-content-center">
+                      <div className="form-group mb-0">
+                        <WhatsappBtn
+                          message={
+                            "Hello, I wanted to know more about Business Listing."
+                          }
+                          options={{ pageRef: true }}
+                        />
                       </div>
                     </div>
                   </form>

@@ -131,18 +131,21 @@ const ListingView = () => {
       });
 
       toast.success(
-        `Business ${isFavorite ? "removed from" : "added to"
+        `Business ${
+          isFavorite ? "removed from" : "added to"
         } favorites successfully`
       );
 
       setIsFavorite(!isFavorite);
     } catch (error) {
       toast.error(
-        `Error Have to login for ${isFavorite ? "removing" : "adding"
+        `Error Have to login for ${
+          isFavorite ? "removing" : "adding"
         } business to favorites`
       );
       console.error(
-        `Error Have to login for ${isFavorite ? "removing" : "adding"
+        `Error Have to login for ${
+          isFavorite ? "removing" : "adding"
         } business to favorites:`,
         error
       );
@@ -513,8 +516,13 @@ const ListingView = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Business Listing View - Explore Details &amp; Connect with Brands</title>
-        <meta name="description" content="View detailed business listings to learn more about products, services, and offers. Connect with brands and discover opportunities to grow your business." />
+        <title>
+          Business Listing View - Explore Details &amp; Connect with Brands
+        </title>
+        <meta
+          name="description"
+          content="View detailed business listings to learn more about products, services, and offers. Connect with brands and discover opportunities to grow your business."
+        />
         {/* Favicon */}
         <link
           rel="shortcut icon"
@@ -754,7 +762,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                            "00:00" &&
+                                              "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -1127,7 +1135,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                          business.review_stats.average_rating
+                                        business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}
@@ -1240,26 +1248,29 @@ const ListingView = () => {
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="text-light mb-0">Subscribr Now</h6>
-                    <h2 className="ft-bold text-light">
-                      Get All Updates &amp; Advance Offers
+                    <h2 className="ft-bold text-light whastapp-title">
+                      Join GOMZI Today and Discover Exclusive Deals - Connect
+                      with Us Instantly!
                     </h2>
+                    <h6 className="text-light mb-0 d-md-block d-none">
+                      Unlock Success with GOMZI - Connect Now over whatsapp for
+                      Advance Perks!
+                    </h6>
+                    <p className="ft-bold text-light mt-4"></p>
                   </div>
                 </div>
               </div>
               <div className="row align-items-center justify-content-center">
                 <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
                   <form className="rounded p-1">
-                    <div className="row no-gutters justify-content-center">
-                      <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                        <div className="form-group mb-0">
-                          <WhatsappBtn
-                            message={
-                              "Hello, I wanted to know more about Business Listing."
-                            }
-                            options={{ pageRef: true }}
-                          />
-                        </div>
+                    <div className="d-flex justify-content-center">
+                      <div className="form-group mb-0">
+                        <WhatsappBtn
+                          message={
+                            "Hello, I wanted to know more about Business Listing."
+                          }
+                          options={{ pageRef: true }}
+                        />
                       </div>
                     </div>
                   </form>

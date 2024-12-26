@@ -259,7 +259,10 @@ const AffordableList = () => {
               <div class="grow-business-section mt-5">
                 <div class="grow-business-item reverse">
                   <div class="grow-business-image d-block d-md-none">
-                    <img src="images/banner-affiliation-service.webp" alt="Free Business Listing" />
+                    <img
+                      src="images/banner-affiliation-service.webp"
+                      alt="Free Business Listing"
+                    />
                   </div>
                   <div class="grow-business-content mt-5">
                     <p style={{ fontWeight: "400", fontSize: "17px" }}>
@@ -336,12 +339,18 @@ const AffordableList = () => {
                     </p>
                   </div>
                   <div class="grow-business-image d-none d-md-block black-before">
-                    <img src="images/banner-affiliation-service.webp" alt="Free Business Listing" />
+                    <img
+                      src="images/banner-affiliation-service.webp"
+                      alt="Free Business Listing"
+                    />
                   </div>
                 </div>
                 <div class="grow-business-item">
                   <div class="grow-business-image black-before">
-                    <img src="images/banner-affiliation-service-2.webp" alt="Justdial Ads" />
+                    <img
+                      src="images/banner-affiliation-service-2.webp"
+                      alt="Justdial Ads"
+                    />
                   </div>
                   <div class="grow-business-content">
                     <p style={{ fontWeight: "400", fontSize: "17px" }}>
@@ -448,7 +457,6 @@ const AffordableList = () => {
               </ul>
             </div>
           </section>
-
           <section
             className="space bg-cover text-start"
             style={{
@@ -459,26 +467,29 @@ const AffordableList = () => {
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="text-light mb-0">Subscribr Now</h6>
-                    <h2 className="ft-bold text-light">
-                      Get All Updates &amp; Advance Offers
+                    <h2 className="ft-bold text-light whastapp-title">
+                      Join GOMZI Today and Discover Exclusive Deals - Connect
+                      with Us Instantly!
                     </h2>
+                    <h6 className="text-light mb-0 d-md-block d-none">
+                      Unlock Success with GOMZI - Connect Now over whatsapp for
+                      Advance Perks!
+                    </h6>
+                    <p className="ft-bold text-light mt-4"></p>
                   </div>
                 </div>
               </div>
               <div className="row align-items-center justify-content-center">
                 <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
                   <form className="rounded p-1">
-                    <div className="row no-gutters justify-content-center">
-                      <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                        <div className="form-group mb-0">
-                          <WhatsappBtn
-                            message={
-                              "Hello, I wanted to know more about Business Listing."
-                            }
-                            options={{ pageRef: true }}
-                          />
-                        </div>
+                    <div className="d-flex justify-content-center">
+                      <div className="form-group mb-0">
+                        <WhatsappBtn
+                          message={
+                            "Hello, I wanted to know more about Business Listing."
+                          }
+                          options={{ pageRef: true }}
+                        />
                       </div>
                     </div>
                   </form>

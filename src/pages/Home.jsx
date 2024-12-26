@@ -9,6 +9,7 @@ import WhatsappBtn from "../components/WhatsappBtn";
 import WhatsappBtnMain from "../components/WhatsappBtnMain";
 import VideoReview from "../components/VideoReview";
 import ModalVideo from "react-modal-video";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -625,29 +626,30 @@ const Home = () => {
                 <div className="col-lg-6 text-left">
                   <div className="gup_blg_grid_box">
                     <div className="gup_blg_grid_thumb">
-                      <a href="https://fggroup.in/blogs/ignite-your-nutrition-journey-explore-the-power-of-a-nutrition-course">
+                      <Link to="/revolutionizing-gyms">
                         <img
                           src="images/b-1.webp"
                           className="img-fluid"
                           alt=""
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="gup_blg_grid_caption">
-                      <div className="blg_tag">
+                      {/* <div className="blg_tag">
                         <span>Nutrition</span>
-                      </div>
+                      </div> */}
                       <div className="blg_title">
                         <h4>
-                          <a href="https://fggroup.in/blogs/ignite-your-nutrition-journey-explore-the-power-of-a-nutrition-course">
-                            Fuel Your Passion for Nutrition
-                          </a>
+                          <Link to="/revolutionizing-gyms">
+                            The Future of Fitness: How Technology is
+                            Revolutionizing Gyms
+                          </Link>
                         </h4>
                       </div>
                       <div className="blg_desc">
                         <p>
-                          Learn how to nourish your body and fuel your passion
-                          for a healthier life.
+                          The fitness industry is undergoing a seismic shift
+                          thanks to rapid advancements in...
                         </p>
                       </div>
                     </div>
@@ -692,29 +694,29 @@ const Home = () => {
                 <div className="col-lg-6 text-left">
                   <div className="gup_blg_grid_box">
                     <div className="gup_blg_grid_thumb">
-                      <a href="https://fggroup.in/blogs/choosing-the-right-fitness-certification-program-in-India">
+                      <Link to="/strategies-for-modern-gyms">
                         <img
                           src="images/b-2.webp"
                           className="img-fluid"
                           alt=""
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="gup_blg_grid_caption">
-                      <div className="blg_tag">
+                      {/* <div className="blg_tag">
                         <span>Fitness</span>
-                      </div>
+                      </div> */}
                       <div className="blg_title">
                         <h4>
-                          <a href="https://fggroup.in/blogs/choosing-the-right-fitness-certification-program-in-India">
-                            Choosing the Right Fitness Certification
-                          </a>
+                          <Link to="/strategies-for-modern-gyms">
+                            Top Revenue-Boosting Strategies for Modern Gyms
+                          </Link>
                         </h4>
                       </div>
                       <div className="blg_desc">
                         <p>
-                          Discover the best fitness certifications to kickstart
-                          your career.
+                          In an industry as dynamic and competitive as fitness,
+                          increasing revenue is crucial...
                         </p>
                       </div>
                     </div>
@@ -759,29 +761,30 @@ const Home = () => {
                 <div className="col-lg-6 text-left">
                   <div className="gup_blg_grid_box">
                     <div className="gup_blg_grid_thumb">
-                      <a href="https://fggroup.in/blogs/the-importance-of-fitness-education-in-todays-world">
+                      <Link to="/scalable-gym">
                         <img
                           src="images/b-3.webp"
                           className="img-fluid"
                           alt=""
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="gup_blg_grid_caption">
-                      <div className="blg_tag">
+                      {/* <div className="blg_tag">
                         <span>Health</span>
-                      </div>
+                      </div> */}
                       <div className="blg_title">
                         <h4>
-                          <a href="https://fggroup.in/blogs/the-importance-of-fitness-education-in-todays-world">
-                            The Importance Of Fitness Education
-                          </a>
+                          <Link to="/scalable-gym">
+                            From Local to Global: Building a Scalable Gym
+                            Business Model
+                          </Link>
                         </h4>
                       </div>
                       <div className="blg_desc">
                         <p>
-                          Understand the significance of proper fitness
-                          education for lasting health.
+                          Transitioning a gym from a local establishment to a
+                          thriving national or...
                         </p>
                       </div>
                     </div>
@@ -826,29 +829,30 @@ const Home = () => {
                 <div className="col-lg-6 text-left">
                   <div className="gup_blg_grid_box">
                     <div className="gup_blg_grid_thumb">
-                      <a href="https://fggroup.in/blogs/fatloss-vs-weightloss">
+                      <Link to="/member-engagement">
                         <img
                           src="images/b-4.webp"
                           className="img-fluid"
                           alt=""
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="gup_blg_grid_caption">
-                      <div className="blg_tag">
+                      {/* <div className="blg_tag">
                         <span>Wellness</span>
-                      </div>
+                      </div> */}
                       <div className="blg_title">
                         <h4>
-                          <a href="https://fggroup.in/blogs/fatloss-vs-weightloss">
-                            Weight Loss VS Fat Loss
-                          </a>
+                          <Link to="/member-engagement">
+                            The Power of Community: How Gyms Can Thrive with
+                            Member Engagement
+                          </Link>
                         </h4>
                       </div>
                       <div className="blg_desc">
                         <p>
-                          Explore the difference between weight loss and fat
-                          loss, and find the best approach for you.
+                        Transitioning a gym from a local establishment to a
+                        thriving national or global...
                         </p>
                       </div>
                     </div>
@@ -893,116 +897,6 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* <section className="space">
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                  <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="text-muted mb-0">Our Reviews</h6>
-                    <h2 className="ft-bold">
-                      What Our Customer <span className="theme-cl">Saying</span>
-                    </h2>
-                  </div>
-                </div>
-              </div>
-              <div className="row justify-content-center">
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                  <div className="reviews-slide row">
-                    <div className="single-list col-md-4">
-                      <div className="single_review">
-                        <div className="sng_rev_thumb">
-                          <figure>
-                            <img
-                              src="images/t-1.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </figure>
-                        </div>
-                        <div className="rev_author">
-                          <span className="fs-sm theme-cl">Jayneel</span>
-                        </div>
-                        <div className="sng_rev_caption text-center">
-                          <div className="rev_desc mb-4">
-                            <p>
-                              I joined FitnessWithGomzi and lost around 12kg in
-                              just 1.5 months! I'm incredibly thankful for their
-                              guidance and support throughout my fitness
-                              journey. The workouts are challenging but
-                              effective, and the nutrition advice has made all
-                              the difference in achieving my goals. The trainers
-                              keep me motivated every step of the way, and I've
-                              never felt stronger or more confident.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="single-list col-md-4">
-                      <div className="single_review">
-                        <div className="sng_rev_thumb">
-                          <figure>
-                            <img
-                              src="images/t-2.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </figure>
-                        </div>
-                        <div className="rev_author">
-                          <span className="fs-sm theme-cl">Milan Sali</span>
-                        </div>
-                        <div className="sng_rev_caption text-center">
-                          <div className="rev_desc mb-4">
-                            <p>
-                              I came across this amazing nutrition class offered
-                              by FitnessWithGomzi, and it has completely
-                              transformed the way I approach my health! The
-                              class not only provided detailed insights into
-                              balanced nutrition but also taught me how to make
-                              sustainable, healthy eating choices. The team is
-                              incredibly knowledgeable, and their approach is
-                              easy to follow yet highly effective.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="single-list col-md-4">
-                      <div className="single_review">
-                        <div className="sng_rev_thumb">
-                          <figure>
-                            <img
-                              src="images/t-3.png"
-                              className="img-fluid circle"
-                              alt=""
-                            />
-                          </figure>
-                        </div>
-                        <div className="rev_author">
-                          <span className="fs-sm theme-cl">Budhadev Sahu</span>
-                        </div>
-                        <div className="sng_rev_caption text-center">
-                          <div className="rev_desc mb-4">
-                            <p>
-                              With the incredible support of FitnessWithGomzi,
-                              I've been able to compete at state championships!
-                              Their personalized training plans and expert
-                              guidance have taken my fitness to the next level,
-                              preparing me both mentally and physically for
-                              competition. The coaches truly understand how to
-                              push your limits while keeping the workouts
-                              balanced and effective.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> */}
           <section
             className="space bg-cover text-start"
             style={{
