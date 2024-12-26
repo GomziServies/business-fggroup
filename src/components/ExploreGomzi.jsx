@@ -70,7 +70,7 @@ const ExploreGomzi = ({ openVideoModal }) => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                    "Join OYO" button pe click karein, apne basic details share karein and sign up in just 30 minutes.
+                                                    "Join Gomzi" button pe click karein, apne basic details share karein and sign up in just 30 minutes.
                                                 </p>
                                             </div>
                                         </div>

@@ -103,7 +103,10 @@ const Home = () => {
               <div className="block2" />
             </div>
           </div> */}
-          <section className="container-fluid p-0 text-start" style={{ marginTop: "70px" }}>
+          <section
+            className="container-fluid p-0 text-start"
+            style={{ marginTop: "70px" }}
+          >
             <img
               src="images/banner-affiliation.webp"
               className="img"
@@ -112,15 +115,336 @@ const Home = () => {
             />
           </section>
           <ExploreGomzi />
+          <section className="space min">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-12">
+                  <div className="sec_title position-relative text-center mb-5">
+                    <h6 className="theme-cl mb-0">Our Auditing on</h6>
+                    <h2 className="ft-bold">Gym Classification</h2>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div className="Goodup-price-wrap">
+                    <div className="Goodup-author-header">
+                      <div className="Goodup-price-currency">
+                        <h3 className="text-center mb-3">
+                          <span className="Goodup-new-price">
+                            <del className="w-100 text-center">Affordable</del>
+                          </span>
+                        </h3>
+                      </div>
+                      <div className="Goodup-price-subtitle theme-cl">
+                        Rs. 30,000/- annually
+                      </div>
+                    </div>
+                    <div className="Goodup-price-body">
+                      <ul className="price__features">
+                        <li>
+                          <i className="fa fa-angle-right"></i>1,000 to 3,000
+                          sq. ft. area
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Basic fitness
+                          equipment
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Functional
+                          training areas
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Certified
+                          trainers available on request
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Access to group
+                          fitness classes (limited)
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Ideal for
+                          beginners
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Casual fitness
+                          enthusiasts
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="Goodup-price-bottom">
+                      <a className="Goodup-price-btn" href="/affordable-list">
+                        <i className="fa-regular fa-eye"></i>View More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div className="Goodup-price-wrap">
+                    <div className="Goodup-author-header">
+                      <div className="Goodup-price-currency">
+                        <h3 className="text-center mb-3">
+                          <span className="Goodup-new-price">
+                            <del className="w-100 text-center">Standard</del>
+                          </span>
+                        </h3>
+                      </div>
+                      <div className="Goodup-price-subtitle theme-cl">
+                        Rs. 45,000/- annually
+                      </div>
+                    </div>
+                    <div className="Goodup-price-body">
+                      <ul className="price__features">
+                        <li>
+                          <i className="fa fa-angle-right"></i>3,000 to 8,000
+                          sq. ft. area
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Comprehensive gym
+                          facilities
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>advanced fitness
+                          equipment
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Certified
+                          trainers included
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Access to a wide
+                          variety of group fitness classes
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Locker and shower
+                          facilities
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Moderate pricing
+                          with flexible membership plans
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="Goodup-price-bottom">
+                      <a className="Goodup-price-btn" href="/standard-list">
+                        <i className="fa-regular fa-eye"></i>View More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div className="Goodup-price-wrap">
+                    <div className="Goodup-author-header">
+                      <div className="Goodup-price-currency">
+                        <h3 className="text-center mb-3">
+                          <span className="Goodup-new-price">
+                            <del className="w-100 text-center">Premium</del>
+                          </span>
+                        </h3>
+                      </div>
+                      <div className="Goodup-price-subtitle theme-cl">
+                        Rs. 90,000/- annually
+                      </div>
+                    </div>
+                    <div className="Goodup-price-body">
+                      <ul className="price__features">
+                        <li>
+                          <i className="fa fa-angle-right"></i>10,000 to 100,000
+                          sq. ft. area
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>State-of-the-art
+                          equipment and luxury facilities
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Personal training
+                          sessions included
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Access to
+                          exclusive classes and workshops
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Spa, sauna, and
+                          wellness zones
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Tailored diet and
+                          fitness programs
+                        </li>
+                        <li>
+                          <i className="fa fa-angle-right"></i>Concierge-level
+                          customer service
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="Goodup-price-bottom">
+                      <a className="Goodup-price-btn" href="/premium-list">
+                        <i className="fa-regular fa-eye"></i>View More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
           <HomeRecentActivity />
-          <ModalVideo
-            channel="youtube"
-            isOpen={isVideoOpen}
-            videoId={videoUrl}
-            onClose={closeVideoModal}
-          />
-          <VideoReview openVideoModal={openVideoModal} />
-          <section className="pt-4 pb-0 text-start">
+          <section className="bg-light-theme text-start pb-5">
+            <div className="container">
+              <div className="row align-items-center justify-content-between text-left g-4">
+                <div className="col-lg-6">
+                  <div className="capsTextwrap">
+                    <h2 className="mb-3">Gomzi kyun join karein?</h2>
+                    <div className="featuresGroups">
+                      <div className="singleFeatured">
+                        <div className="ico">
+                          <i className="fa-solid fa-circle-check" />
+                        </div>
+                        <div className="caps">
+                          <h4>Headline Options</h4>
+                          <p>
+                            - The Gomzi Advantage: Redefining Fitness
+                            Experiences.
+                          </p>
+                          <p>
+                            - Why Thousands Trust Gomzi for Their Fitness
+                            Journey.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="singleFeatured">
+                        <div className="ico">
+                          <i className="fa-solid fa-circle-check" />
+                        </div>
+                        <div className="caps">
+                          <h4>Core Features</h4>
+                          <p>
+                            - Nationwide Gym Network: Partnered with leading
+                            gyms across India to bring you the best options.
+                          </p>
+                          <p>
+                            - Unmatched Affiliation Standards: Each gym is
+                            thoroughly vetted to ensure the highest quality.
+                          </p>
+                          <p>
+                            - Personalized Recommendations: AI-based tools to
+                            find the perfect gym for your goals and location.
+                          </p>
+                          <p>
+                            - Transparent Pricing: Clear and competitive pricing
+                            for all gyms.
+                          </p>
+                          <p>
+                            - 24/7 Customer Support: Dedicated support team to
+                            assist with all your queries.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="singleFeatured">
+                        <div className="ico">
+                          <i className="fa-solid fa-circle-check" />
+                        </div>
+                        <div className="caps">
+                          <h4>Additional Features to Highlight</h4>
+                          <p>
+                            - Customized Fitness Roadmaps: Begin your journey
+                            with expert-created fitness plans.
+                          </p>
+                          <p>
+                            - Exclusive Discounts: Get the best deals and offers
+                            on gym memberships.
+                          </p>
+                          <p>
+                            - Flexible Payment Plans: Affordable EMI options
+                            available.
+                          </p>
+                          <p>
+                            - Regular Updates: Stay informed about new gyms,
+                            features, and fitness trends.
+                          </p>
+                          <p>
+                            - Holistic Wellness Approach: Beyond fitness, we
+                            focus on nutrition, mental health, and overall
+                            well-being.
+                          </p>
+                          <p>
+                            - Cutting-edge Technology: Virtual tours, online
+                            booking, and app integration for a seamless
+                            experience.
+                          </p>
+                          <p>
+                            - Community Building: Join fitness groups and events
+                            to stay motivated.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6">
+                  <div className="imgBox">
+                    <img
+                      src="images/custom-img.png"
+                      className="img-fluid"
+                      alt="Image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="space text-start">
+            <div className="container">
+              <div className="row align-items-center justify-content-between text-left g-4">
+                <div className="col-lg-6  position-relative">
+                  <div className="imgBox border-r-10">
+                    <img
+                      src="images/commission-charges.webp"
+                      className="img-fluid"
+                      alt="Image"
+                    />
+                  </div>
+                  <div className="how-video-btn how-play-btn">
+                    <a
+                      onClick={() => openVideoModal("m_GpoDeW1QU")}
+                      data-flashy-type="video"
+                      className="custom clickof"
+                      aria-label="Fg Group"
+                    >
+                      <span className="how-newthing">
+                        <i className="fas fa-play"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div className="col-lg-6">
+                  <div className="capsTextwrap">
+                    <h2 className="mb-3 fw-md-bolder fw-bold listing-title">
+                      Apna business list kaise karein
+                    </h2>
+                    <div className="featuresGroups">
+                      <div className="singleFeatured">
+                        <div className="ico">
+                          <i class="fa-solid fa-circle-arrow-right"></i>
+                        </div>
+                        <div className="caps">
+                          <h4 className="fw-md-bolder fw-bold">
+                            Join us. Hum ensure karenge poora support taki apka
+                            business badhta rahe.
+                          </h4>
+                          {/* <p>
+                            - Nationwide Gym Network: Partnered with leading
+                            gyms across India to bring you the best options.
+                          </p> */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* <section className="pt-4 pb-0 text-start">
             <div className="container">
               <div className="row justify-content-between g-4">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -168,8 +492,8 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </section>
-          <section className="space gray">
+          </section> */}
+          <section className="space pb-mb-5 pb-4 gray">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -345,283 +669,13 @@ const Home = () => {
               </div>
             </div>
           </section>
-          <section className="space min">
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-xl-5 col-lg-7 col-md-9 col-sm-12">
-                  <div className="sec_title position-relative text-center mb-5">
-                    <h6 className="theme-cl mb-0">Our Auditing on</h6>
-                    <h2 className="ft-bold">Gym Classification</h2>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div className="Goodup-price-wrap">
-                    <div className="Goodup-author-header">
-                      <div className="Goodup-price-currency">
-                        <h3 className="text-center mb-3">
-                          <span className="Goodup-new-price">
-                            <del className="w-100 text-center">Affordable</del>
-                          </span>
-                        </h3>
-                      </div>
-                      <div className="Goodup-price-subtitle theme-cl">
-                        Rs. 30,000/- annually
-                      </div>
-                    </div>
-                    <div className="Goodup-price-body">
-                      <ul className="price__features">
-                        <li>
-                          <i className="fa fa-angle-right"></i>1,000 to 3,000
-                          sq. ft. area
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Basic fitness
-                          equipment
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Functional
-                          training areas
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Certified
-                          trainers available on request
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Access to group
-                          fitness classes (limited)
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Ideal for
-                          beginners
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Casual fitness
-                          enthusiasts
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="/affordable-list">
-                        <i className="fa-regular fa-eye"></i>View More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div className="Goodup-price-wrap">
-                    <div className="Goodup-author-header">
-                      <div className="Goodup-price-currency">
-                        <h3 className="text-center mb-3">
-                          <span className="Goodup-new-price">
-                            <del className="w-100 text-center">Standard</del>
-                          </span>
-                        </h3>
-                      </div>
-                      <div className="Goodup-price-subtitle theme-cl">
-                        Rs. 45,000/- annually
-                      </div>
-                    </div>
-                    <div className="Goodup-price-body">
-                      <ul className="price__features">
-                        <li>
-                          <i className="fa fa-angle-right"></i>3,000 to 8,000
-                          sq. ft. area
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Comprehensive gym
-                          facilities
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>advanced fitness
-                          equipment
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Certified
-                          trainers included
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Access to a wide
-                          variety of group fitness classes
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Locker and shower
-                          facilities
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Moderate pricing
-                          with flexible membership plans
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="/standard-list">
-                        <i className="fa-regular fa-eye"></i>View More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div className="Goodup-price-wrap">
-                    <div className="Goodup-author-header">
-                      <div className="Goodup-price-currency">
-                        <h3 className="text-center mb-3">
-                          <span className="Goodup-new-price">
-                            <del className="w-100 text-center">Premium</del>
-                          </span>
-                        </h3>
-                      </div>
-                      <div className="Goodup-price-subtitle theme-cl">
-                        Rs. 90,000/- annually
-                      </div>
-                    </div>
-                    <div className="Goodup-price-body">
-                      <ul className="price__features">
-                        <li>
-                          <i className="fa fa-angle-right"></i>10,000 to 100,000
-                          sq. ft. area
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>State-of-the-art
-                          equipment and luxury facilities
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Personal training
-                          sessions included
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Access to
-                          exclusive classes and workshops
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Spa, sauna, and
-                          wellness zones
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Tailored diet and
-                          fitness programs
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Concierge-level
-                          customer service
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="Goodup-price-bottom">
-                      <a className="Goodup-price-btn" href="/premium-list">
-                        <i className="fa-regular fa-eye"></i>View More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className="bg-light-theme text-start">
-            <div className="container">
-              <div className="row align-items-center justify-content-between text-left g-4">
-                <div className="col-lg-6">
-                  <div className="capsTextwrap">
-                    <h2 className="mb-3">Why Choose Gomzi</h2>
-                    <div className="featuresGroups">
-                      <div className="singleFeatured">
-                        <div className="ico">
-                          <i className="fa-solid fa-circle-check" />
-                        </div>
-                        <div className="caps">
-                          <h4>Headline Options</h4>
-                          <p>
-                            - The Gomzi Advantage: Redefining Fitness
-                            Experiences.
-                          </p>
-                          <p>
-                            - Why Thousands Trust Gomzi for Their Fitness
-                            Journey.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="singleFeatured">
-                        <div className="ico">
-                          <i className="fa-solid fa-circle-check" />
-                        </div>
-                        <div className="caps">
-                          <h4>Core Features</h4>
-                          <p>
-                            - Nationwide Gym Network: Partnered with leading
-                            gyms across India to bring you the best options.
-                          </p>
-                          <p>
-                            - Unmatched Affiliation Standards: Each gym is
-                            thoroughly vetted to ensure the highest quality.
-                          </p>
-                          <p>
-                            - Personalized Recommendations: AI-based tools to
-                            find the perfect gym for your goals and location.
-                          </p>
-                          <p>
-                            - Transparent Pricing: Clear and competitive pricing
-                            for all gyms.
-                          </p>
-                          <p>
-                            - 24/7 Customer Support: Dedicated support team to
-                            assist with all your queries.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="singleFeatured">
-                        <div className="ico">
-                          <i className="fa-solid fa-circle-check" />
-                        </div>
-                        <div className="caps">
-                          <h4>Additional Features to Highlight</h4>
-                          <p>
-                            - Customized Fitness Roadmaps: Begin your journey
-                            with expert-created fitness plans.
-                          </p>
-                          <p>
-                            - Exclusive Discounts: Get the best deals and offers
-                            on gym memberships.
-                          </p>
-                          <p>
-                            - Flexible Payment Plans: Affordable EMI options
-                            available.
-                          </p>
-                          <p>
-                            - Regular Updates: Stay informed about new gyms,
-                            features, and fitness trends.
-                          </p>
-                          <p>
-                            - Holistic Wellness Approach: Beyond fitness, we
-                            focus on nutrition, mental health, and overall
-                            well-being.
-                          </p>
-                          <p>
-                            - Cutting-edge Technology: Virtual tours, online
-                            booking, and app integration for a seamless
-                            experience.
-                          </p>
-                          <p>
-                            - Community Building: Join fitness groups and events
-                            to stay motivated.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6">
-                  <div className="imgBox">
-                    <img
-                      src="images/custom-img.png"
-                      className="img-fluid"
-                      alt="Image"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <ModalVideo
+            channel="youtube"
+            isOpen={isVideoOpen}
+            videoId={videoUrl}
+            onClose={closeVideoModal}
+          />
+          <VideoReview openVideoModal={openVideoModal} />
           <section className="middle text-start">
             <div className="container">
               <div className="row justify-content-center">

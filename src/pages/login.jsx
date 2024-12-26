@@ -202,7 +202,7 @@ const Login = () => {
                                 className="w-100 theme-bg text-light rounded ft-medium"
                                 onClick={handleOtpSubmit}
                               >
-                                Submit OTP
+                                Submit
                               </Button>
                             </div>
                           </div>

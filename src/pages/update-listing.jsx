@@ -838,7 +838,7 @@ const UpdateListing = () => {
               <i className="fas fa-bars me-2" />
               Menu
             </a>
-            <div id="MobNav" className="text-start">
+            <div id="MobNav" className="collapse text-start">
               <div className="goodup-dashboard-nav sticky-top">
                 <div className="goodup-dashboard-inner">
                   <ul>
@@ -877,10 +877,10 @@ const UpdateListing = () => {
               </div>
             </div>
             <div className="goodup-dashboard-content text-start">
-              <div className="dashboard-tlbar d-block mb-5">
+              <div className="dashboard-tlbar d-block mb-md-5 mb-3">
                 <div className="row">
                   <div className="colxl-12 col-lg-12 col-md-12">
-                    <h1 className="ft-medium">Update Listing</h1>
+                    <h1 className="ft-medium listing-title">Update Listing</h1>
                   </div>
                 </div>
               </div>

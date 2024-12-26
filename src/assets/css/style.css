@@ -10102,6 +10102,10 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   .video-btn a {
     left: 53%;
   }
+
+  .listing-title {
+    font-size: 30px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -10272,4 +10276,128 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   padding: 11.25px 20px;
   background-color: red;
   border-radius: 4px;
+}
+
+
+.how-video-btn a {
+  position: absolute;
+  right: 0;
+  display: table;
+  left: 55%;
+  top: 50%;
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  text-align: center;
+  z-index: 3;
+}
+
+.how-video-btn a {
+  left: 52%;
+}
+
+@media (min-width: 320px) and (max-width: 575px) {
+  .how-play-btn a {
+    top: 50%;
+    left: 55%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .how-play-btn a {
+    left: 52%;
+    top: 45%;
+  }
+}
+
+.how-newthing i {
+  margin-left: 3px;
+  color: #fc7e00 !important;
+}
+
+.how-newthing {
+  background-color: #ffffff;
+  border-radius: 100%;
+  color: #00afef;
+  position: relative;
+  display: flex;
+  margin-right: 25px;
+  line-height: 50px;
+  font-size: 18px !important;
+  align-items: center;
+  margin-left: 0;
+  height: 50px;
+  width: 50px;
+  justify-content: center;
+}
+
+.how-newthing::before,
+.how-newthing::after {
+  -webkit-animation: how-effct 1.8s infinite;
+  -moz-animation: how-effct 1.8s infinite;
+  -o-animation: how-effct 1.8s infinite;
+  animation: how-effct 1.8s infinite;
+  background-color: #fc7e00;
+  border-radius: 100%;
+  margin: -20px;
+  bottom: 0px;
+  content: "";
+  display: block;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+@-webkit-keyframes how-effct {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes how-effct {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.how-newthing::before {
+  animation-delay: 0.4s;
+  -webkit-animation-delay: 0.4s;
+}
+
+.how-newthing::after {
+  animation-delay: 1s;
+  -webkit-animation-delay: 1s;
+}
+
+.border-r-10 {
+  border-radius: 10px;
+  overflow: hidden;
 }
