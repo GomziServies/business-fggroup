@@ -170,6 +170,20 @@ function Header() {
           <Link to="/">Home</Link>
           <Link to="/listing-list">Listing</Link>
           {isLogin ? <Link to="/profile">Profile</Link> : ""}
+          <div className="d-flex justify-content-center mt-3">
+            {isLogin ? (
+              <Link
+                to="/add-listing"
+                class="add-list-btn w-75 d-md-none d-block"
+              >
+                <i class="fas fa-plus me-2"></i>Add Listing
+              </Link>
+            ) : (
+              <Link to="/login" class="add-list-btn w-75 d-md-none d-block">
+                <i class="fas fa-plus me-2"></i>Add Listing
+              </Link>
+            )}
+          </div>
         </div>
         <span
           className="d-lg-none d-sm-block btnn"
