@@ -55,32 +55,16 @@ const ScalableGym = () => {
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-lg-8 mt-4">
-                    <div
-                      style={{
-                        position: "relative",
-                        paddingBottom: "56.25%",
-                        height: "0",
-                        overflow: "hidden",
-                        maxWidth: "100%",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      <iframe
-                        src="https://www.youtube.com/embed/kwx2qSk_g5A?si=iMNC5vyXuJ5OmBzH"
-                        title="FG Group Video"
-                        frameBorder="0"
-                        style={{
-                          position: "absolute",
-                          top: "0",
-                          left: "0",
-                          width: "100%",
-                          height: "100%",
-                          borderRadius: "10px",
-                        }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
+                    <img
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/scalable-gym.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
 
                     <div className="tabata-one mt-5">
                       <p>
@@ -99,6 +83,16 @@ const ScalableGym = () => {
 
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. Franchising Opportunities</h2>
+                      <img
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/scalable-gym-1.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Franchising is a proven method for expanding into new
                         markets without heavy capital investment. It enables
@@ -120,6 +114,16 @@ const ScalableGym = () => {
                       <h2 className="h2-fs">
                         2. Investing in a Strong Brand Identity
                       </h2>
+                      <img
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/scalable-gym-2.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         A recognizable brand identity fosters trust and loyalty,
                         laying the groundwork for successful scalability.
@@ -140,6 +144,16 @@ const ScalableGym = () => {
                       <h2 className="h2-fs">
                         3. Leveraging Technology for Expansion
                       </h2>
+                      <img
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/scalable-gym-3.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Cloud-based solutions streamline operations across
                         branches, allowing for efficient management of
@@ -160,6 +174,16 @@ const ScalableGym = () => {
                       <h2 className="h2-fs">
                         4. Establishing Strategic Partnerships
                       </h2>
+                      <img
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/scalable-gym-4.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Collaborating with businesses, schools, or wellness
                         organizations increases visibility and broadens member
@@ -180,6 +204,16 @@ const ScalableGym = () => {
                       <h2 className="h2-fs">
                         5. Creating a Global Online Presence
                       </h2>
+                      <img
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/scalable-gym-5.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Digital platforms enable gyms to connect with audiences
                         worldwide, breaking geographical barriers.
@@ -205,7 +239,6 @@ const ScalableGym = () => {
                       </p>
                     </div>
                   </div>
-                  {/* <BlogsGuides /> */}
                 </div>
               </div>
             </div>

@@ -19,8 +19,7 @@ const StandardList = () => {
       step: "Step 1",
       title: "Create Account",
       description: "Enter your mobile number to get started",
-      imgSrc:
-        "images/step-1.webp",
+      imgSrc: "images/step-1.webp",
       imgAlt: "Step 1: Create Account",
       imgWidth: 242,
       imgHeight: 195,
@@ -29,8 +28,7 @@ const StandardList = () => {
       step: "Step 2",
       title: "Enter Business Details",
       description: "Add name, address, business hours and photos",
-      imgSrc:
-        "images/step-2.webp",
+      imgSrc: "images/step-2.webp",
       imgAlt: "Step 2: Enter Business Details",
       imgWidth: 230,
       imgHeight: 204,
@@ -39,8 +37,7 @@ const StandardList = () => {
       step: "Step 3",
       title: "Select Categories",
       description: "Add relevant categories to your free listing page",
-      imgSrc:
-        "images/step-3.webp",
+      imgSrc: "images/step-3.webp",
       imgAlt: "Step 3: Select Categories",
       imgWidth: 277,
       imgHeight: 164,
@@ -68,11 +65,21 @@ const StandardList = () => {
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          <section style={{ marginTop: "50px" }}>
-            <div className="article_featured_image mt-2">
+          <section style={{ marginTop: "50px" }} className="d-none d-md-block">
+            <div className="mt-2">
               <img
                 className="img-fluid"
-                src="images/banner-affiliation.webp"
+                src="images/standerd-banner.webp"
+                width={"100%"}
+                alt=""
+              />
+            </div>
+          </section>
+          <section style={{ marginTop: "70px" }} className="d-block d-md-none">
+            <div className="mt-2">
+              <img
+                className="img-fluid"
+                src="images/standard-mobile.webp"
                 width={"100%"}
                 alt=""
               />
@@ -650,11 +657,21 @@ const StandardList = () => {
               </div>
             </div>
           </section>
-          <section style={{ marginTop: "50px" }}>
-            <div className="article_featured_image mt-2">
+          <section style={{ marginTop: "50px" }} className="d-none d-md-block">
+            <div className="mt-2">
               <img
                 className="img-fluid"
-                src="images/banner-affiliation-2.webp"
+                src="images/standard-banner-small.webp"
+                alt=""
+                width="100%"
+              />
+            </div>
+          </section>
+          <section style={{ marginTop: "50px" }} className="d-block d-md-none">
+            <div className="mt-2">
+              <img
+                className="img-fluid"
+                src="images/standard-mobile-2.webp"
                 alt=""
                 width="100%"
               />

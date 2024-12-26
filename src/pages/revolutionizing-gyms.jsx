@@ -55,32 +55,16 @@ const RevolutionizingGyms = () => {
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-lg-8 mt-4">
-                    <div
-                      style={{
-                        position: "relative",
-                        paddingBottom: "56.25%",
-                        height: "0",
-                        overflow: "hidden",
-                        maxWidth: "100%",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      <iframe
-                        src="https://www.youtube.com/embed/kwx2qSk_g5A?si=iMNC5vyXuJ5OmBzH"
-                        title="FG Group Video"
-                        frameBorder="0"
-                        style={{
-                          position: "absolute",
-                          top: "0",
-                          left: "0",
-                          width: "100%",
-                          height: "100%",
-                          borderRadius: "10px",
-                        }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
+                    <img
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/revolutionizing-gyms.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
 
                     <div className="tabata-one mt-5">
                       <p>
@@ -102,15 +86,15 @@ const RevolutionizingGyms = () => {
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. AI-Powered Personal Trainers</h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Nutrition-Science.jpg"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Nutrition Science"
-                      />
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/revolutionizing-gyms-1.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Artificial intelligence is reshaping personal training
                         by delivering highly customized workout plans tailored
@@ -120,150 +104,192 @@ const RevolutionizingGyms = () => {
                         programs.
                       </p>
                       <p className="mt-3">
-                        <strong>Example:</strong> Apps like Freeletics and MyFitnessPal use AI
-                        algorithms to adapt workout regimens in real-time,
-                        ensuring continual improvement and engagement.
+                        <strong>Example:</strong> Apps like Freeletics and
+                        MyFitnessPal use AI algorithms to adapt workout regimens
+                        in real-time, ensuring continual improvement and
+                        engagement.
                       </p>
                       <p className="mt-3">
                         For gym owners, these AI tools reduce dependency on
                         human trainers while providing members with accessible,
                         high-quality guidance at any time.
-                      
                       </p>
                       <p className="mt-3">
-                      <strong>Impact:</strong> This
-                        innovation democratizes personal training, providing
-                        affordable and effective support to enhance member
-                        satisfaction and retention.
+                        <strong>Impact:</strong> This innovation democratizes
+                        personal training, providing affordable and effective
+                        support to enhance member satisfaction and retention.
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
                       <h2
                         className="mt-5 h4-fs"
                         style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
+                          fontFamily:
+                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
                           fontWeight: "700",
                         }}
                       >
                         2. Smart Equipment and Wearables :{" "}
                       </h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Research-Trend.webp"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="lack-of-time"
-                      />
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/revolutionizing-gyms-2.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
-                      Smart gym equipment, like Peloton bikes and NordicTrack treadmills, integrates sensors to monitor user performance and provide real-time feedback. Similarly, wearable devices like Fitbit and Apple Watch help track metrics such as heart rate, calorie burn, and workout intensity.
+                        Smart gym equipment, like Peloton bikes and NordicTrack
+                        treadmills, integrates sensors to monitor user
+                        performance and provide real-time feedback. Similarly,
+                        wearable devices like Fitbit and Apple Watch help track
+                        metrics such as heart rate, calorie burn, and workout
+                        intensity.
                       </p>
                       <p className="mt-3">
-                      <strong>Example:</strong> Gym-goers can sync their devices with equipment to achieve seamless tracking, set specific goals, and receive immediate feedback.
+                        <strong>Example:</strong> Gym-goers can sync their
+                        devices with equipment to achieve seamless tracking, set
+                        specific goals, and receive immediate feedback.
                       </p>
                       <p className="mt-3">
-                      <strong>Impact:</strong> This data-driven approach improves the workout experience while enabling gyms to collect actionable insights to enhance services and engage members more effectively.
+                        <strong>Impact:</strong> This data-driven approach
+                        improves the workout experience while enabling gyms to
+                        collect actionable insights to enhance services and
+                        engage members more effectively.
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
                       <h2
                         className="mt-5 h4-fs"
                         style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
+                          fontFamily:
+                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
                           fontWeight: "700",
                         }}
                       >
                         3. Virtual and Augmented Reality Workouts: :-
                       </h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Career-Opportunities.webp"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Career Opportunities"
-                      />
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/revolutionizing-gyms-3.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
-                      VR and AR technologies are turning fitness routines into immersive, gamified experiences that are as entertaining as they are effective.
+                        VR and AR technologies are turning fitness routines into
+                        immersive, gamified experiences that are as entertaining
+                        as they are effective.
                       </p>
-                      <p className="mt-3"><strong>Example:</strong> Supernatural, a VR fitness platform, transports users to stunning virtual environments for engaging cardio sessions.
+                      <p className="mt-3">
+                        <strong>Example:</strong> Supernatural, a VR fitness
+                        platform, transports users to stunning virtual
+                        environments for engaging cardio sessions.
                       </p>
-                      <p className="mt-3"><strong>Impact:</strong> By incorporating these technologies, gyms can attract a younger demographic, stand out from competitors, and elevate the workout experience to a new level.
+                      <p className="mt-3">
+                        <strong>Impact:</strong> By incorporating these
+                        technologies, gyms can attract a younger demographic,
+                        stand out from competitors, and elevate the workout
+                        experience to a new level.
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
                       <h2
                         className="mt-5 h4-fs"
                         style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
+                          fontFamily:
+                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
                           fontWeight: "700",
                         }}
                       >
                         4. Streamlined Operations with Management Software :-
                       </h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Nutrition-Guidance.webp"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Nutrition Guidance"
-                      />
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/revolutionizing-gyms-4.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
-                      Advanced gym management software, like Glofox and Mindbody, automates crucial operations such as membership tracking, class scheduling, and billing.
+                        Advanced gym management software, like Glofox and
+                        Mindbody, automates crucial operations such as
+                        membership tracking, class scheduling, and billing.
                       </p>
-                      <p className="mt-3"><strong>Example:</strong> Automated reminders for upcoming classes or membership renewals help streamline administrative efforts.
+                      <p className="mt-3">
+                        <strong>Example:</strong> Automated reminders for
+                        upcoming classes or membership renewals help streamline
+                        administrative efforts.
                       </p>
-                      <p className="mt-3"><strong>Impact:</strong> These tools boost operational efficiency, reduce manual workload, and improve member satisfaction through seamless interactions.
+                      <p className="mt-3">
+                        <strong>Impact:</strong> These tools boost operational
+                        efficiency, reduce manual workload, and improve member
+                        satisfaction through seamless interactions.
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
                       <h2
                         className="mt-5 h4-fs"
                         style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
+                          fontFamily:
+                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
                           fontWeight: "700",
                         }}
                       >
                         5. The Rise of Hybrid Fitness Models :-
                       </h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Network-Professionals.webp"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Network Professionals"
-                      />
-                      <p className="mt-3">The pandemic accelerated the shift to hybrid fitness models, combining in-person and online workouts to meet diverse preferences.
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/revolutionizing-gyms-5.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
+                      <p className="mt-3">
+                        The pandemic accelerated the shift to hybrid fitness
+                        models, combining in-person and online workouts to meet
+                        diverse preferences.
                       </p>
                       <p className="mt-3">
-                      <strong>Example:</strong> Brands like Equinox offer both physical classes and on-demand virtual sessions, allowing members flexibility.
+                        <strong>Example:</strong> Brands like Equinox offer both
+                        physical classes and on-demand virtual sessions,
+                        allowing members flexibility.
                       </p>
                       <p className="mt-3">
-                      <strong>Impact:</strong> This approach broadens gym reach, appealing to a wider audience and opening additional revenue streams.
+                        <strong>Impact:</strong> This approach broadens gym
+                        reach, appealing to a wider audience and opening
+                        additional revenue streams.
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
                       <h2
                         className="mt-5 h4-fs"
                         style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
+                          fontFamily:
+                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
                           fontWeight: "700",
                         }}
                       >
                         Conclusion
                       </h2>
                       <p className="mt-3">
-                      Technology is redefining the fitness landscape, providing innovative tools to benefit both gym owners and members. By embracing these advancements, gyms can enhance their services, achieve profitability, and stay ahead in a rapidly evolving industry.
+                        Technology is redefining the fitness landscape,
+                        providing innovative tools to benefit both gym owners
+                        and members. By embracing these advancements, gyms can
+                        enhance their services, achieve profitability, and stay
+                        ahead in a rapidly evolving industry.
                       </p>
                     </div>
                   </div>

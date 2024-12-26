@@ -69,7 +69,8 @@ const PremiumList = () => {
             <div className="article_featured_image mt-2">
               <img
                 className="img-fluid"
-                src="images/banner-affiliation.webp"
+                src="images/prime-banner.webp"
+                width={"100%"}
                 alt=""
               />
             </div>
@@ -695,7 +696,7 @@ const PremiumList = () => {
             <div className="article_featured_image mt-2">
               <img
                 className="img-fluid"
-                src="images/banner-affiliation-2.webp"
+                src="images/prime-banner-small.webp"
                 alt=""
                 width="100%"
               />

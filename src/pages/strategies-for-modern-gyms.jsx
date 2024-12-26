@@ -55,32 +55,13 @@ const StrategiesforModernGyms = () => {
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-lg-8 mt-4">
-                    <div
-                      style={{
-                        position: "relative",
-                        paddingBottom: "56.25%",
-                        height: "0",
-                        overflow: "hidden",
-                        maxWidth: "100%",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      <iframe
-                        src="https://www.youtube.com/embed/kwx2qSk_g5A?si=iMNC5vyXuJ5OmBzH"
-                        title="FG Group Video"
-                        frameBorder="0"
-                        style={{
-                          position: "absolute",
-                          top: "0",
-                          left: "0",
-                          width: "100%",
-                          height: "100%",
-                          borderRadius: "10px",
-                        }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
+                    <img
+                      className="lazy my-3"
+                      src={process.env.PUBLIC_URL + "/images/modern-gyms.webp"}
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
 
                     <div className="tabata-one mt-5">
                       <p>
@@ -101,15 +82,12 @@ const StrategiesforModernGyms = () => {
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. Membership Tiering:</h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Nutrition-Science.jpg"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Nutrition Science"
-                      />
+                      className="lazy my-3"
+                      src={process.env.PUBLIC_URL + "/images/modern-gyms-1.webp"}
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Offering tiered memberships accommodates a wide range of
                         clients, from budget-conscious individuals to those
@@ -132,25 +110,17 @@ const StrategiesforModernGyms = () => {
                     </div>
 
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="h4-fs"
-                        style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
+                      <h2 className="h2-fs"
                       >
                         2. Personal Training and Specialized Classes:
                       </h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Research-Trend.webp"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Specialized Classes"
-                      />
+                      className="lazy my-3"
+                      src={process.env.PUBLIC_URL + "/images/modern-gyms-2.webp"}
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Tailored training sessions and niche fitness programs
                         appeal to members seeking targeted results or unique
@@ -169,25 +139,17 @@ const StrategiesforModernGyms = () => {
                     </div>
 
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="h4-fs"
-                        style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
+                      <h2 className="h2-fs"
                       >
                         3. Selling Merchandise and Supplements:
                       </h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Career-Opportunities.webp"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Merchandise"
-                      />
+                      className="lazy my-3"
+                      src={process.env.PUBLIC_URL + "/images/modern-gyms-3.webp"}
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Retailing branded apparel, fitness gear, and supplements
                         strengthens the gym’s brand identity and creates
@@ -206,25 +168,17 @@ const StrategiesforModernGyms = () => {
                     </div>
 
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="h4-fs"
-                        style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
+                      <h2 className="h2-fs"
                       >
                         4. Hosting Events and Challenges:
                       </h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Nutrition-Guidance.webp"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Events and Challenges"
-                      />
+                      className="lazy my-3"
+                      src={process.env.PUBLIC_URL + "/images/modern-gyms-4.webp"}
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Community-driven activities, such as fitness challenges,
                         workshops, or charity events, boost engagement and
@@ -243,25 +197,17 @@ const StrategiesforModernGyms = () => {
                     </div>
 
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="h4-fs"
-                        style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
+                      <h2 className="h2-fs"
                       >
                         5. Expanding Digital Offerings:
                       </h2>
                       <img
-                        className="lazy my-3"
-                        src={
-                          process.env.PUBLIC_URL +
-                          "/assets/images/blog/Network-Professionals.webp"
-                        }
-                        width="100%"
-                        style={{ borderRadius: "10px" }}
-                        alt="Digital Offerings"
-                      />
+                      className="lazy my-3"
+                      src={process.env.PUBLIC_URL + "/images/modern-gyms-5.webp"}
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                       <p className="mt-3">
                         Virtual classes, on-demand workout libraries, and
                         fitness apps help gyms extend their reach beyond
@@ -280,12 +226,7 @@ const StrategiesforModernGyms = () => {
                     </div>
 
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="mt-5 h4-fs"
-                        style={{
-                          fontFamily: "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
+                      <h2 className="h2-fs mt-5"
                       >
                         Conclusion
                       </h2>
