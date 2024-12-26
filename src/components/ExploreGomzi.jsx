@@ -21,8 +21,8 @@ const ExploreGomzi = ({ openVideoModal }) => {
                     <div className="row justify-content-center">
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <div className="sec_title position-relative text-center mb-5">
-                                <h6 className="theme-cl mb-0">Latest Updates</h6>
-                                <h2 className="ft-bold">View Recent Updates</h2>
+                                <h6 className="theme-cl mb-0">Aapki Business Growth ke liye transparent policies aur easy payments, hamesha!</h6>
+                                <h2 className="ft-bold">Gomzi ki duniya ko explore karein!</h2>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@ const ExploreGomzi = ({ openVideoModal }) => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    Sign-up Process
+                                                    <b>Sign-up Process</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
@@ -64,7 +64,7 @@ const ExploreGomzi = ({ openVideoModal }) => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    Commission Charges
+                                                    <b>Commission Charges</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
@@ -87,7 +87,7 @@ const ExploreGomzi = ({ openVideoModal }) => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    Payment Frequency
+                                                    <b>Payment Frequency</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
@@ -110,7 +110,7 @@ const ExploreGomzi = ({ openVideoModal }) => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    Photography
+                                                    <b>Photography</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
@@ -133,7 +133,7 @@ const ExploreGomzi = ({ openVideoModal }) => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    Pricing Policy
+                                                    <b>Pricing Policy</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">

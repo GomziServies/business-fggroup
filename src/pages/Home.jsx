@@ -112,6 +112,14 @@ const Home = () => {
             />
           </section>
           <ExploreGomzi />
+          <HomeRecentActivity />
+          <ModalVideo
+            channel="youtube"
+            isOpen={isVideoOpen}
+            videoId={videoUrl}
+            onClose={closeVideoModal}
+          />
+          <VideoReview openVideoModal={openVideoModal} />
           <section className="pt-4 pb-0 text-start">
             <div className="container">
               <div className="row justify-content-between g-4">
@@ -161,7 +169,6 @@ const Home = () => {
               </div>
             </div>
           </section>
-          <HomeRecentActivity />
           <section className="space gray">
             <div className="container">
               <div className="row justify-content-center">
@@ -511,13 +518,6 @@ const Home = () => {
               </div>
             </div>
           </section>
-          <ModalVideo
-            channel="youtube"
-            isOpen={isVideoOpen}
-            videoId={videoUrl}
-            onClose={closeVideoModal}
-          />
-          <VideoReview openVideoModal={openVideoModal} />
           <section className="bg-light-theme text-start">
             <div className="container">
               <div className="row align-items-center justify-content-between text-left g-4">
