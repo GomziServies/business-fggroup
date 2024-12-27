@@ -295,7 +295,7 @@ const AffordableList = () => {
                     />
                   </div>
                   <div class="grow-business-content">
-                    <h3>Reception Area</h3>
+                    <h3>Basic Reception Area</h3>
                     <p>
                       A basic and straightforward reception setup that includes
                       a small desk and minimal seating. Designed to prioritize
@@ -322,7 +322,7 @@ const AffordableList = () => {
                     <h3>Strength Equipment </h3>
                     <p>
                       Equipped with 5 foundational machines and free weights up
-                      to 20 kg, these setups cater to beginners and individuals
+                      to 200 kg, these setups cater to beginners and individuals
                       focusing on basic strength-building exercises. The
                       equipment is limited in variety but sufficient for
                       foundational fitness needs.
@@ -391,7 +391,7 @@ const AffordableList = () => {
                     />
                   </div>
                 </div>
-                <div class="grow-business-item">
+                {/* <div class="grow-business-item">
                   <div class="grow-business-image">
                     <img
                       src="images/dietitian-services.webp"
@@ -407,8 +407,8 @@ const AffordableList = () => {
                       or seek external guidance.
                     </p>
                   </div>
-                </div>
-                <div class="grow-business-item">
+                </div> */}
+                {/* <div class="grow-business-item">
                   <div class="grow-business-image d-block d-md-none">
                     <img
                       src="images/physiotherapist-services.webp"
@@ -429,7 +429,7 @@ const AffordableList = () => {
                       alt="Reception Area"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div class="grow-business-item">
                   <div class="grow-business-image">
                     <img
@@ -480,7 +480,7 @@ const AffordableList = () => {
                     </p>
                   </div>
                 </div>
-                <div class="grow-business-item">
+                {/* <div class="grow-business-item">
                   <div class="grow-business-image d-block d-md-none">
                     <img src="images/group-class.webp" alt="Reception Area" />
                   </div>
@@ -494,7 +494,7 @@ const AffordableList = () => {
                   <div class="grow-business-image grow-mt d-none d-md-block">
                     <img src="images/group-class.webp" alt="Reception Area" />
                   </div>
-                </div>
+                </div> */}
                 <div class="grow-business-item">
                   <div class="grow-business-image">
                     <img
@@ -550,7 +550,7 @@ const AffordableList = () => {
                   <div class="grow-business-content">
                     <h3>Opening Hours </h3>
                     <p>
-                      Operates during standard hours (e.g., 7 AM-9 PM), which
+                      Operates during standard hours (e.g., 6 AM-10 AM & 5 PM-11PM), which
                       align with the schedules of the majority of members.
                     </p>
                   </div>

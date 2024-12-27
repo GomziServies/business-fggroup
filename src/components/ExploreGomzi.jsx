@@ -65,12 +65,12 @@ const ExploreGomzi = () => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    <b>Sign-up Process</b>
+                                                    <b>Easy Sign-Up Process</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                    "Join Gomzi" button pe click karein, apne basic details share karein and sign up in just 30 minutes.
+                                                "Join Gomzi" Button:* Click karein, basic details fill karein aur sirf 30 minutes mein registration complete karein.
                                                 </p>
                                             </div>
                                         </div>
@@ -88,12 +88,12 @@ const ExploreGomzi = () => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    <b>Commission Charges</b>
+                                                    <b>Transparent Commission Model</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                    Flat 29% service fee aur Rs 40 har check-in pe. GST as applicable.
+                                                Har check-in par sirf *₹40, aur flat **29% service fee*—bilkul clear aur simple. GST alag se lagu hoga.
                                                 </p>
                                             </div>
                                         </div>
@@ -111,12 +111,12 @@ const ExploreGomzi = () => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    <b>Payment Frequency</b>
+                                                    <b>Daily Payments Made Easy</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                    Sare daily pending dues aapke bank account me automatically credit ho jate hai.
+                                                Aapke *roz ke pending dues* automatically aapke bank account mein transfer ho jate hain—no extra effort!
                                                 </p>
                                             </div>
                                         </div>
@@ -134,12 +134,12 @@ const ExploreGomzi = () => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    <b>Photography</b>
+                                                    <b>Professional Photography Included</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                    Property ka professional photo shoot kiya jata hai T&C applied
+                                                Aapke gym ka *professional photo shoot* kiya jata hai, jo naye clients ko attract karne mein madad karega (T&C apply).
                                                 </p>
                                             </div>
                                         </div>
@@ -149,7 +149,7 @@ const ExploreGomzi = () => {
                                     <div className="gup_blg_grid_box">
                                         <div className="gup_blg_grid_thumb">
                                             <img
-                                                src="images/pricing-policy.webp"
+                                                src="images/ai-powered.webp"
                                                 className="img-fluid"
                                                 alt=""
                                             />
@@ -157,12 +157,81 @@ const ExploreGomzi = () => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    <b>Pricing Policy</b>
+                                                    <b>AI-Powered Revenue Growth</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                    AI ki madad se dynamic pricing mechanism taki aapka revenue maximise ho sake.
+                                                *Dynamic pricing system* se aapka revenue barhane ke liye AI ka use hota hai, jo hamesha aapke profit ko maximize karega.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="px-2">
+                                    <div className="gup_blg_grid_box">
+                                        <div className="gup_blg_grid_thumb">
+                                            <img
+                                                src="images/gomzi-nutrition.webp"
+                                                className="img-fluid"
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div className="gup_blg_grid_caption">
+                                            <div className="blg_title">
+                                                <h4>
+                                                    <b>GN Supplements</b>
+                                                </h4>
+                                            </div>
+                                            <div className="blg_desc">
+                                                <p>
+                                                Apne gym clients ko Gomzi Nutrition supplements refer karke extra revenue earn karein. Har sale par aapko commission milega!
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="px-2">
+                                    <div className="gup_blg_grid_box">
+                                        <div className="gup_blg_grid_thumb">
+                                            <img
+                                                src="images/fgiit-academy-class.webp"
+                                                className="img-fluid"
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div className="gup_blg_grid_caption">
+                                            <div className="blg_title">
+                                                <h4>
+                                                    <b>FGIIT Academy Classes</b>
+                                                </h4>
+                                            </div>
+                                            <div className="blg_desc">
+                                                <p>
+                                                Apne gym me FGIIT Academy ke fitness aur nutrition classes run karke commission earn karein. Knowledge share karein aur income bhi badhayein!
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="px-2">
+                                    <div className="gup_blg_grid_box">
+                                        <div className="gup_blg_grid_thumb">
+                                            <img
+                                                src="images/ready-to-go.webp"
+                                                className="img-fluid"
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div className="gup_blg_grid_caption">
+                                            <div className="blg_title">
+                                                <h4>
+                                                    <b>Ready to Grow</b>
+                                                </h4>
+                                            </div>
+                                            <div className="blg_desc">
+                                                <p>
+                                                Abhi join karein aur apne gym ke naye clients aur revenue mein boost dekhein!
                                                 </p>
                                             </div>
                                         </div>

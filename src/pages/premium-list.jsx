@@ -292,7 +292,7 @@ const PremiumList = () => {
                     />
                   </div>
                   <div class="grow-business-content">
-                    <h3>Reception Area </h3>
+                    <h3>Grand Reception Area </h3>
                     <p>
                       An opulent and grand reception area that creates a strong
                       first impression with luxurious seating, high-end

@@ -4658,8 +4658,8 @@ ul.doc.ratting-view li i.filled {
   -webkit-box-shadow: 0 8px 16px rgb(146 152 198 / 8%);
 }
 .Goodup-catg-icon {
-  width: 60px;
-  height: 60px;
+  width: 90px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6737,7 +6737,7 @@ div#myTabContent {
 .accordion .card-body {
   padding-top: 0px;
 }
-.collapsible-link:before,
+/* .collapsible-link:before,
 .accordion .btn-link:before {
   content: "";
   width: 14px;
@@ -6748,10 +6748,10 @@ div#myTabContent {
   right: 1rem;
   display: block;
   transition: all 0.3s;
-}
+} */
 
 /* Vertical line */
-.collapsible-link:after,
+/* .collapsible-link:after,
 .accordion .btn-link:after {
   content: "";
   width: 2px;
@@ -6762,12 +6762,12 @@ div#myTabContent {
   right: calc(1rem + 6px);
   display: block;
   transition: all 0.3s;
-}
+} */
 
-.collapsible-link[aria-expanded="true"]:after,
+/* .collapsible-link[aria-expanded="true"]:after,
 .accordion .btn-link[aria-expanded="true"]:after {
   transform: rotate(90deg) translateX(1px);
-}
+} */
 
 .collapsible-link[aria-expanded="true"]:before,
 .accordion .btn-link[aria-expanded="true"]:before {
@@ -8013,9 +8013,9 @@ span._user_status.busy {
   background: #006cff;
 }
 .blg_title h4 {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.4;
-  font-weight: 600;
+  font-weight: bold;
 }
 .blg_title h4 a {
   color: #30384e;
@@ -8023,7 +8023,8 @@ span._user_status.busy {
 .blg_desc p {
   font-size: 14px;
   line-height: 1.8;
-  color: #4e6579;
+  margin-top: 5px;
+  color: #6c757d;
   margin: 0;
 }
 .blg_more {

@@ -55,33 +55,16 @@ const MemberEngagement = () => {
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-lg-8 mt-4">
-                    <div
-                      style={{
-                        position: "relative",
-                        paddingBottom: "56.25%",
-                        height: "0",
-                        overflow: "hidden",
-                        maxWidth: "100%",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      <iframe
-                        src="https://www.youtube.com/embed/kwx2qSk_g5A?si=iMNC5vyXuJ5OmBzH"
-                        title="FG Group Video"
-                        frameBorder="0"
-                        style={{
-                          position: "absolute",
-                          top: "0",
-                          left: "0",
-                          width: "100%",
-                          height: "100%",
-                          borderRadius: "10px",
-                        }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-
+                    <img
+                      className="lazy my-3"
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/images/member-engagement-blog.webp"
+                      }
+                      width="100%"
+                      style={{ borderRadius: "10px" }}
+                      alt="Nutrition Science"
+                    />
                     <div className="tabata-one mt-5">
                       <p>
                         <b>Introduction:</b>
@@ -96,9 +79,18 @@ const MemberEngagement = () => {
                       </p>
                       <br />
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. Creating Social Spaces:</h2>
+                      <img
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/member-engagement-1.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Design gym areas that encourage interaction, such as
                         lounges or juice bars, to promote member connections.
@@ -113,9 +105,18 @@ const MemberEngagement = () => {
                         among members, enhancing loyalty and retention.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">2. Hosting Group Activities:</h2>
+                      <img
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/member-engagement-2.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Group classes and team-based challenges encourage
                         camaraderie and make workouts enjoyable.
@@ -130,11 +131,20 @@ const MemberEngagement = () => {
                         for the gym.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">
                         3. Personalized Member Experiences:
                       </h2>
+                      <img
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/member-engagement-3.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Tailoring services based on member preferences enhances
                         their experience and fosters loyalty.
@@ -148,9 +158,18 @@ const MemberEngagement = () => {
                         members feel valued and encourage long-term commitment.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">4. Encouraging Member Feedback:</h2>
+                      <img
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/member-engagement-4.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Regular surveys and open forums help gyms address member
                         needs and make informed improvements.
@@ -164,11 +183,20 @@ const MemberEngagement = () => {
                         trust and a sense of ownership within the community.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">
                         5. Leveraging Social Media and Online Communities:
                       </h2>
+                      <img
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/member-engagement-5.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Social platforms enable members to share achievements
                         and connect outside the gym.
@@ -182,7 +210,6 @@ const MemberEngagement = () => {
                         the sense of community and attracts referrals.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">Conclusion</h2>
                       <p className="mt-3">
@@ -193,7 +220,6 @@ const MemberEngagement = () => {
                       </p>
                     </div>
                   </div>
-                  {/* <BlogsGuides /> */}
                 </div>
               </div>
             </div>

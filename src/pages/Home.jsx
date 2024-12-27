@@ -55,7 +55,7 @@ const Home = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <WhatsappBtnMain
-        message={"Hello, I wanted to know more about Business Listing. "}
+        message={"Hello, I wanted to know more about Business Listing."}
         options={{ pageRef: true }}
       />
       <>
@@ -104,11 +104,22 @@ const Home = () => {
             </div>
           </div> */}
           <section
-            className="container-fluid p-0 text-start"
+            className="container-fluid p-0 text-start d-none d-md-block"
             style={{ marginTop: "70px" }}
           >
             <img
-              src="images/banner-affiliation.webp"
+              src="images/main-page-banner.webp"
+              className="img"
+              alt=""
+              width="100%"
+            />
+          </section>
+          <section
+            className="container-fluid p-0 text-start d-block d-md-none"
+            style={{ marginTop: "70px" }}
+          >
+            <img
+              src="images/main-page-banner-mobile.webp"
               className="img"
               alt=""
               width="100%"
@@ -148,27 +159,15 @@ const Home = () => {
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>Basic fitness
-                          equipment
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Functional
-                          training areas
+                          equipment, functional training
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>Certified
-                          trainers available on request
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Access to group
-                          fitness classes (limited)
+                          trainers on request
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>Ideal for
-                          beginners
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Casual fitness
-                          enthusiasts
+                          beginners and casual fitness enthusiasts
                         </li>
                       </ul>
                     </div>
@@ -201,27 +200,19 @@ const Home = () => {
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>Comprehensive gym
-                          facilities
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>advanced fitness
-                          equipment
+                          facilities, advanced equipment
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>Certified
                           trainers included
                         </li>
                         <li>
-                          <i className="fa fa-angle-right"></i>Access to a wide
-                          variety of group fitness classes
+                          <i className="fa fa-angle-right"></i>Wide variety of
+                          group fitness classes
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>Locker and shower
-                          facilities
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Moderate pricing
-                          with flexible membership plans
+                          facilities, flexible plans
                         </li>
                       </ul>
                     </div>
@@ -254,27 +245,23 @@ const Home = () => {
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>State-of-the-art
-                          equipment and luxury facilities
+                          equipment and luxury amenities
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>Personal training
                           sessions included
                         </li>
                         <li>
-                          <i className="fa fa-angle-right"></i>Access to
-                          exclusive classes and workshops
+                          <i className="fa fa-angle-right"></i>Exclusive classes
+                          and workshops
                         </li>
                         <li>
-                          <i className="fa fa-angle-right"></i>Spa, sauna, and
-                          wellness zones
+                          <i className="fa fa-angle-right"></i>Spa, sauna,
+                          wellness zones, concierge-level service
                         </li>
                         <li>
                           <i className="fa fa-angle-right"></i>Tailored diet and
                           fitness programs
-                        </li>
-                        <li>
-                          <i className="fa fa-angle-right"></i>Concierge-level
-                          customer service
                         </li>
                       </ul>
                     </div>
@@ -302,13 +289,10 @@ const Home = () => {
                         </div>
                         <div className="caps">
                           <h4>Headline Options</h4>
+                          <p>Gomzi: Aapka Fitness Partner!</p>
                           <p>
-                            - The Gomzi Advantage: Redefining Fitness
-                            Experiences.
-                          </p>
-                          <p>
-                            - Why Thousands Trust Gomzi for Their Fitness
-                            Journey.
+                            Hazaron Logon Ka Bharosa, Ab Aapki Fitness Journey
+                            Ke Liye.
                           </p>
                         </div>
                       </div>
@@ -319,24 +303,24 @@ const Home = () => {
                         <div className="caps">
                           <h4>Core Features</h4>
                           <p>
-                            - Nationwide Gym Network: Partnered with leading
-                            gyms across India to bring you the best options.
+                            Nationwide Gym Network: Pure India ke top gyms ka
+                            access.
                           </p>
                           <p>
-                            - Unmatched Affiliation Standards: Each gym is
-                            thoroughly vetted to ensure the highest quality.
+                            Strict Quality Checks: Har gym ka quality assurance
+                            ke saath selection.
                           </p>
                           <p>
-                            - Personalized Recommendations: AI-based tools to
-                            find the perfect gym for your goals and location.
+                            Smart Gym Matching: AI tools se aapke goals aur
+                            location ke hisaab se best gym suggestion.
                           </p>
                           <p>
-                            - Transparent Pricing: Clear and competitive pricing
-                            for all gyms.
+                            Clear Pricing: Transparent aur affordable membership
+                            plans.
                           </p>
                           <p>
-                            - 24/7 Customer Support: Dedicated support team to
-                            assist with all your queries.
+                            24/7 Support: Koi bhi query ho, hum hamesha
+                            available hain.
                           </p>
                         </div>
                       </div>
@@ -347,34 +331,32 @@ const Home = () => {
                         <div className="caps">
                           <h4>Additional Features to Highlight</h4>
                           <p>
-                            - Customized Fitness Roadmaps: Begin your journey
-                            with expert-created fitness plans.
+                            Customized Fitness Plans: Expert-designed fitness
+                            roadmaps ke saath shuruaat karein.
                           </p>
                           <p>
-                            - Exclusive Discounts: Get the best deals and offers
-                            on gym memberships.
+                            Special Discounts: Gym memberships par exclusive
+                            offers aur deals.
                           </p>
                           <p>
-                            - Flexible Payment Plans: Affordable EMI options
-                            available.
+                            Easy Payment Options: EMI plans ke saath easy aur
+                            hassle-free payments.
                           </p>
                           <p>
-                            - Regular Updates: Stay informed about new gyms,
-                            features, and fitness trends.
+                            Latest Updates: Nai gyms, features aur fitness
+                            trends ke baare mein regular updates.
                           </p>
                           <p>
-                            - Holistic Wellness Approach: Beyond fitness, we
-                            focus on nutrition, mental health, and overall
-                            well-being.
+                            Wellness Beyond Fitness: Sirf fitness hi nahi,
+                            nutrition aur mental health par bhi focus.
                           </p>
                           <p>
-                            - Cutting-edge Technology: Virtual tours, online
-                            booking, and app integration for a seamless
-                            experience.
+                            Advanced Technology: Virtual tours, online bookings
+                            aur app integration for convenience.
                           </p>
                           <p>
-                            - Community Building: Join fitness groups and events
-                            to stay motivated.
+                            Fitness Community: Fitness groups aur events ke
+                            saath motivated rahiye.
                           </p>
                         </div>
                       </div>
@@ -692,7 +674,7 @@ const Home = () => {
                     <div className="gup_blg_grid_thumb">
                       <Link to="/revolutionizing-gyms">
                         <img
-                          src="images/b-1.webp"
+                          src="images/revolutionizing-gyms.webp"
                           className="img-fluid"
                           alt=""
                         />
@@ -740,13 +722,13 @@ const Home = () => {
                                 <div className="elsio_ic">
                                   <i className="fa fa-eye text-success"></i>
                                 </div>
-                                <div className="elsio_tx">10k Views</div>
+                                <div className="elsio_tx">20k Views</div>
                               </li>
                               <li>
                                 <div className="elsio_ic">
                                   <i className="fa fa-clock text-warning"></i>
                                 </div>
-                                <div className="elsio_tx">March 27, 2018</div>
+                                <div className="elsio_tx">March 11, 2019</div>
                               </li>
                             </ul>
                           </div>
@@ -760,7 +742,7 @@ const Home = () => {
                     <div className="gup_blg_grid_thumb">
                       <Link to="/strategies-for-modern-gyms">
                         <img
-                          src="images/b-2.webp"
+                          src="images/modern-gyms.webp"
                           className="img-fluid"
                           alt=""
                         />
@@ -807,13 +789,13 @@ const Home = () => {
                                 <div className="elsio_ic">
                                   <i className="fa fa-eye text-success"></i>
                                 </div>
-                                <div className="elsio_tx">10k Views</div>
+                                <div className="elsio_tx">15k Views</div>
                               </li>
                               <li>
                                 <div className="elsio_ic">
                                   <i className="fa fa-clock text-warning"></i>
                                 </div>
-                                <div className="elsio_tx">March 27, 2018</div>
+                                <div className="elsio_tx">March 15, 2019</div>
                               </li>
                             </ul>
                           </div>
@@ -827,7 +809,7 @@ const Home = () => {
                     <div className="gup_blg_grid_thumb">
                       <Link to="/scalable-gym">
                         <img
-                          src="images/b-3.webp"
+                          src="images/scalable-gym.webp"
                           className="img-fluid"
                           alt=""
                         />
@@ -875,13 +857,13 @@ const Home = () => {
                                 <div className="elsio_ic">
                                   <i className="fa fa-eye text-success"></i>
                                 </div>
-                                <div className="elsio_tx">10k Views</div>
+                                <div className="elsio_tx">12k Views</div>
                               </li>
                               <li>
                                 <div className="elsio_ic">
                                   <i className="fa fa-clock text-warning"></i>
                                 </div>
-                                <div className="elsio_tx">March 27, 2018</div>
+                                <div className="elsio_tx">March 23, 2019</div>
                               </li>
                             </ul>
                           </div>
@@ -895,7 +877,7 @@ const Home = () => {
                     <div className="gup_blg_grid_thumb">
                       <Link to="/member-engagement">
                         <img
-                          src="images/b-4.webp"
+                          src="images/member-engagement-blog.webp"
                           className="img-fluid"
                           alt=""
                         />
@@ -949,7 +931,7 @@ const Home = () => {
                                 <div className="elsio_ic">
                                   <i className="fa fa-clock text-warning"></i>
                                 </div>
-                                <div className="elsio_tx">March 27, 2018</div>
+                                <div className="elsio_tx">March 26, 2019</div>
                               </li>
                             </ul>
                           </div>

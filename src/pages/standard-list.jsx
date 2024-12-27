@@ -273,7 +273,7 @@ const StandardList = () => {
                     />
                   </div>
                   <div class="grow-business-content">
-                    <h3>Reception Area </h3>
+                    <h3>Good Reception Area </h3>
                     <p>
                       A thoughtfully organized and spacious reception area that
                       exudes professionalism. This includes ample seating for
@@ -300,7 +300,7 @@ const StandardList = () => {
                     <h3>Strength Equipment </h3>
                     <p>
                       Includes 8-10 machines covering various muscle groups and
-                      free weights ranging from 3-40 kg. This selection caters
+                      free weights ranging from 300-400 kg. This selection caters
                       to intermediate fitness enthusiasts and provides enough
                       diversity to support progressive strength training and
                       muscle toning.
@@ -387,7 +387,7 @@ const StandardList = () => {
                     </p>
                   </div>
                 </div>
-                <div class="grow-business-item">
+                {/* <div class="grow-business-item">
                   <div class="grow-business-image d-block d-md-none">
                     <img
                       src="images/physiotherapist-services.webp"
@@ -408,7 +408,7 @@ const StandardList = () => {
                       alt="Reception Area"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div class="grow-business-item">
                   <div class="grow-business-image">
                     <img
@@ -532,7 +532,7 @@ const StandardList = () => {
                   <div class="grow-business-content">
                     <h3>Opening Hours </h3>
                     <p>
-                      Extends operational hours (e.g., 6 AM-11 PM), catering to
+                      Extends operational hours (e.g., 6 AM-11 AM & 4 PM-11PM), catering to
                       members who prefer early morning or late-night workout
                       sessions.
                     </p>
