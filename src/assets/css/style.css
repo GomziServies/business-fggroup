@@ -7656,6 +7656,8 @@ button.aps-clone {
   color: #ffffff !important;
   background: #fc7e00;
   border-radius: 4px;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, STXihei, sans-serif;
 }
 .view-list-btn {
   padding: 10px 20px;
@@ -9416,6 +9418,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .lang ul {
   padding: 0;
   list-style: none;
+  font-family: system-ui !important;
 }
 
 .lang ul li {
@@ -9429,6 +9432,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   color: #000;
   font-size: 14px;
   transition: 0.3s;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, STXihei, sans-serif;
 }
 
 .lang ul li a p {

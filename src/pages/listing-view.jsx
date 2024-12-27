@@ -921,7 +921,7 @@ const ListingView = () => {
                               ))}
                               <a href="half-map-search-1.html">+2</a>
                             </div>
-                            <h4 className="mb-0 ft-medium medium">
+                            <h4 className="mb-0 medium text-bold">
                               <a
                                 href="single-listing-detail-3.html"
                                 className="text-dark fs-md"

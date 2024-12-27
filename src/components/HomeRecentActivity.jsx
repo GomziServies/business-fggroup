@@ -259,7 +259,7 @@ const HomeRecentActivity = () => {
                             </Link>
                           ))}
                         </div>
-                        <h4 className="mb-0 ft-medium medium">
+                        <h4 className="mb-0 medium text-bold">
                           <Link
                             to={`/listing-view?business_id=${business._id}`}
                             className="text-dark fs-md"

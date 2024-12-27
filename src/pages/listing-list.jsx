@@ -322,7 +322,7 @@ const ListingList = () => {
                                     <div className="Goodup-grid-upper">
                                       <div className="Goodup-pos ab-left">
                                         {business.approval_status.status ==
-                                        "APPROVED" ? (
+                                          "APPROVED" ? (
                                           <div className="Goodup-status open me-2">
                                             APPROVED
                                           </div>
@@ -372,7 +372,7 @@ const ListingList = () => {
                                             />
                                           </Link>
                                         </div>
-                                        <h4 className="mb-0 ft-medium medium">
+                                        <h4 className="mb-0 medium text-bold">
                                           <Link
                                             to={`/update-listing?business_id=${business._id}`}
                                             className="text-dark fs-md"
