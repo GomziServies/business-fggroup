@@ -516,7 +516,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                              "00:00" &&
+                                            "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -845,14 +845,9 @@ const ListingView = () => {
                     >
                       <div className="Goodup-grid-wrap">
                         <div className="Goodup-grid-upper">
-                          <div className="Goodup-bookmark-btn">
-                            <button type="button">
-                              <i className="lni lni-heart-filled position-absolute" />
-                            </button>
-                          </div>
                           <div className="Goodup-pos ab-left">
                             <div className="Goodup-status open me-2">Open</div>
-                            <div className="Goodup-featured-tag">Featured</div>
+                            <div className="Goodup-status bg-danger">Featured</div>
                           </div>
                           <div className="Goodup-grid-thumb">
                             <Link
@@ -886,7 +881,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                        business.review_stats.average_rating
+                                          business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}

@@ -9431,7 +9431,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .lang ul li a p {
-  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, STXihei, sans-serif;
   text-transform: capitalize !important;
 }
 
@@ -9495,7 +9496,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   display: block;
   transition: 0.3s;
   text-align: center;
-  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, STXihei, sans-serif;
   letter-spacing: 2px;
   font-weight: 600;
   text-transform: capitalize !important;
@@ -9763,7 +9765,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .covid .h2-fs,
 .covid span {
   font-size: 37px;
-  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, STXihei, sans-serif;
   text-transform: capitalize !important;
   font-weight: 800;
   letter-spacing: 2px;
@@ -9853,7 +9856,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .review-box-text .h2-fs {
-  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, STXihei, sans-serif;
   font-size: 24px;
   font-weight: bold;
   color: #fc7e00;
@@ -10151,7 +10155,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .describe .h1-fs,
 .describe span {
   font-size: 37px;
-  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif;
+  font-family: Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, STXihei, sans-serif;
   font-weight: 800;
   letter-spacing: 2px;
   margin-left: 10px;
@@ -10278,7 +10283,6 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   border-radius: 4px;
 }
 
-
 .how-video-btn a {
   position: absolute;
   right: 0;
@@ -10400,4 +10404,9 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .border-r-10 {
   border-radius: 10px;
   overflow: hidden;
+}
+
+.modal-video-close-btn::after,
+.modal-video-close-btn::before {
+  background-color: #000 !important;
 }

@@ -55,7 +55,7 @@ const Home = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <WhatsappBtnMain
-        message={"Hello, I wanted to know more about Clinical Diets details. "}
+        message={"Hello, I wanted to know more about Business Listing. "}
         options={{ pageRef: true }}
       />
       <>

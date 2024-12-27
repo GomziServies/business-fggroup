@@ -265,7 +265,7 @@ const HomeRecentActivity = () => {
                             className="text-dark fs-md"
                           >
                             {business.business_name &&
-                            business.business_name.length > 30
+                              business.business_name.length > 30
                               ? business.business_name.substring(0, 30) + "..."
                               : business.business_name}
 
@@ -311,15 +311,6 @@ const HomeRecentActivity = () => {
                             {business.locations[0].city +
                               ", " +
                               business.locations[0].state}
-                          </div>
-                        </div>
-                        <div className="Goodup-ft-last">
-                          <div className="Goodup-inline">
-                            <div className="Goodup-bookmark-btn">
-                              <button type="button">
-                                <i className="lni lni-phone position-absolute" />
-                              </button>
-                            </div>
                           </div>
                         </div>
                       </div>
