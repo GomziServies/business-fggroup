@@ -30,14 +30,12 @@ const ListingView = () => {
   const searchParams = new URLSearchParams(location.search);
   const business_id = searchParams.get("business_id");
   const [businessData, setBusinessData] = useState([]);
-  const [listNumber, setListNumber] = useState("");
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [helpfulCount, setHelpfulCount] = useState(0);
-  const [replyInputVisible, setReplyInputVisible] = useState(false);
+  // const [listNumber, setListNumber] = useState("");
+  // const [lightboxOpen, setLightboxOpen] = useState(false);
+  // const [selectedImage, setSelectedImage] = useState(null);
   const [locationData, setLocationData] = useState([]);
   const [contactData, setContactData] = useState([]);
-  const [reviewData, setReviewData] = useState([]);
+  // const [reviewData, setReviewData] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [timings, setTimings] = useState([]);
   const [services, setServices] = useState([]);
@@ -47,20 +45,11 @@ const ListingView = () => {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [userReviewsData, setUserReviewData] = useState([]);
-  const [replyInput, setReplyInput] = useState([]);
-  const [replyInputsVisible, setReplyInputsVisible] = useState(
-    new Array(userReviewsData.length).fill(false)
-  );
-  const [replyInputs, setReplyInputs] = useState(
-    new Array(userReviewsData.length).fill("")
-  );
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [favoriteList, setFavoriteList] = useState([]);
-  const [userData, setUserData] = useState();
+  // const [isFavorite, setIsFavorite] = useState(false);
+  // const [favoriteList, setFavoriteList] = useState([]);
+  // const [userData, setUserData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
   const [loading, setLoading] = useState(true);
-
   const [allBusinessData, setAllBusinessData] = useState([]);
 
   const fetchAllBusinessData = async () => {
@@ -102,69 +91,25 @@ const ListingView = () => {
     return validator.isURL(website, { require_protocol: true });
   };
 
-  const getUserData = async () => {
-    const getData = JSON.parse(localStorage.getItem("user_info")) || "";
-    const userData = getData.user || "";
-    setUserData(userData);
-  };
+  // const getUserData = async () => {
+  //   const getData = JSON.parse(localStorage.getItem("user_info")) || "";
+  //   const userData = getData.user || "";
+  //   setUserData(userData);
+  // };
 
-  const handleAddFavoriteClick = async () => {
-    try {
-      let requestData;
+  // const fetchFavData = async () => {
+  //   try {
+  //     const response = await businessListingAxiosInstance.get("/get-favorite");
+  //     setFavoriteList(response.data.data);
 
-      if (isFavorite) {
-        requestData = {
-          business_listing_id: business_id,
-        };
-      } else {
-        requestData = {
-          business_listing_id: business_id,
-        };
-      }
-
-      const apiEndpoint = isFavorite ? "/remove-favorite" : "/add-favorite";
-
-      const response = await businessListingAxiosInstance({
-        method: isFavorite ? "delete" : "post",
-        url: apiEndpoint,
-        data: requestData,
-      });
-
-      toast.success(
-        `Business ${
-          isFavorite ? "removed from" : "added to"
-        } favorites successfully`
-      );
-
-      setIsFavorite(!isFavorite);
-    } catch (error) {
-      toast.error(
-        `Error Have to login for ${
-          isFavorite ? "removing" : "adding"
-        } business to favorites`
-      );
-      console.error(
-        `Error Have to login for ${
-          isFavorite ? "removing" : "adding"
-        } business to favorites:`,
-        error
-      );
-    }
-  };
-
-  const fetchFavData = async () => {
-    try {
-      const response = await businessListingAxiosInstance.get("/get-favorite");
-      setFavoriteList(response.data.data);
-
-      const isBusinessInFavorites = response.data.data.some(
-        (favorite) => favorite._id === business_id
-      );
-      setIsFavorite(isBusinessInFavorites);
-    } catch (error) {
-      console.error("Error in Getting Favorite Data:", error);
-    }
-  };
+  //     const isBusinessInFavorites = response.data.data.some(
+  //       (favorite) => favorite._id === business_id
+  //     );
+  //     setIsFavorite(isBusinessInFavorites);
+  //   } catch (error) {
+  //     console.error("Error in Getting Favorite Data:", error);
+  //   }
+  // };
 
   const settings = {
     dots: false,
@@ -232,8 +177,8 @@ const ListingView = () => {
       setBusinessData(fetchedBusinessData);
       setLocationData(fetchedLocationData);
       setContactData(fetchedLocationData.contact);
-      setReviewData(fetchedBusinessData.review_stats);
-      setListNumber(data.pagination.total);
+      // setReviewData(fetchedBusinessData.review_stats);
+      // setListNumber(data.pagination.total);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -254,37 +199,14 @@ const ListingView = () => {
   };
 
   useEffect(() => {
-    getUserData();
+    // getUserData();
     fetchBusinessData();
     fetchReviewsData();
-    fetchFavData();
+    // fetchFavData();
   }, []);
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
-  };
-
-  const handleCall = (number) => {
-    window.location.href = `tel:${number}`;
-  };
-
-  const handleInquiry = (business) => {
-    // Implement your logic for sending an email inquiry
-    const email = business.contacts.find(
-      (contact) => contact.contact_type === "email"
-    )?.value;
-    if (email) {
-      window.location.href = `mailto:${email}?subject=Inquiry&body=I want to know more about your services.`;
-    }
-  };
-
-  const handleChat = (number) => {
-    // Implement your logic for opening WhatsApp chat
-    const whatsappNumber = number;
-    if (whatsappNumber) {
-      const message = encodeURIComponent("I want to know about your services.");
-      window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
-    }
   };
 
   const slides = businessImages.map((image, index) => ({
@@ -292,115 +214,9 @@ const ListingView = () => {
     caption: `Image ${index + 1}`,
   }));
 
-  const handleHelpfulClick = async (reviewId) => {
-    try {
-      const requestData = {
-        business_listing_id: business_id,
-        review_id: reviewId,
-        is_helpful: true,
-      };
-      const response = await businessListingAxiosInstance.patch(
-        "/mark-review-helpful",
-        requestData
-      );
-
-      fetchReviewsData();
-      toast.success("Review marked as helpful successfully");
-    } catch (error) {
-      console.error("Error marking review as helpful:", error);
-      toast.error("Error marking review as helpful");
-    }
-  };
-
-  const handleReplyClick = (index) => {
-    const updatedReplyInputsVisible = [...replyInputsVisible];
-    updatedReplyInputsVisible[index] = true;
-    setReplyInputsVisible(updatedReplyInputsVisible);
-  };
-
-  const handleCancelReply = (index) => {
-    const updatedReplyInputsVisible = [...replyInputsVisible];
-    updatedReplyInputsVisible[index] = false;
-    setReplyInputsVisible(updatedReplyInputsVisible);
-    setReplyInputs(new Array(userReviewsData.length).fill(""));
-  };
-
-  const handleReplySubmit = async (index, reviewId) => {
-    try {
-      if (!replyInputs[index].trim()) {
-        console.error("Please provide a non-empty reply.");
-        return;
-      }
-
-      const requestData = {
-        business_listing_id: business_id,
-        reply_to: reviewId || null,
-        comment: replyInputs[index],
-      };
-      const response = await businessListingAxiosInstance.post(
-        "/create-review",
-        requestData
-      );
-      toast.success("Reply submitted successfully");
-
-      const updatedReplyInputsVisible = [...replyInputsVisible];
-      updatedReplyInputsVisible[index] = false;
-      setReplyInputsVisible(updatedReplyInputsVisible);
-      setReplyInputs(new Array(userReviewsData.length).fill(""));
-      fetchReviewsData();
-    } catch (error) {
-      console.error("Error submitting reply:", error);
-      toast.error("Error submitting reply");
-    }
-  };
-
-  const breadcrumbs = [
-    <Link key="1" color="inherit" sx={{ textDecoration: "none" }}>
-      {locationData.city}
-    </Link>,
-    <Link key="2" color="inherit" sx={{ textDecoration: "none" }}>
-      {businessData.business_name}
-    </Link>,
-    <Typography key="3" color="text.primary">
-      {listNumber} Listing
-    </Typography>,
-  ];
-
   const openLightbox = (index) => {
-    setSelectedImage(index);
-    setLightboxOpen(true);
-  };
-
-  const handleShare = async (locationLink) => {
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: "Share Location",
-          text: "Check out this location!",
-          url: locationLink,
-        });
-      } else {
-        alert(`Share this location: ${locationLink}`);
-      }
-    } catch (error) {
-      console.error("Error sharing location:", error);
-    }
-  };
-
-  const handleDetailsShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: "Share Details",
-          text: "Check out This!",
-          url: window.location.href,
-        });
-      } else {
-        alert(`Share Details: ${window.location.href}`);
-      }
-    } catch (error) {
-      console.error("Error Sharing Details:", error);
-    }
+    // setSelectedImage(index);
+    // setLightboxOpen(true);
   };
 
   const handleSubmitReview = async () => {
@@ -432,8 +248,8 @@ const ListingView = () => {
         "/create-review",
         requestData
       );
-      // fetchBusinessData();
-      // fetchReviewsData();
+      fetchBusinessData();
+      fetchReviewsData();
       toast.success("Review submitted successfully");
       setReview("");
       setRating(0);
@@ -441,68 +257,6 @@ const ListingView = () => {
       console.error("Error submitting review:", error);
       toast.error("Error submitting review. Please try again.");
     }
-  };
-  const handleDeleteComment = async (commentId) => {
-    // Show confirmation dialog
-    const isConfirmed = await Swal.fire({
-      title: "Are you sure?",
-      text: "Once deleted, nobody can see your review!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    });
-
-    // If user confirms, proceed with deletion
-    if (isConfirmed.isConfirmed) {
-      try {
-        await businessListingAxiosInstance.delete(
-          `/delete-review?business_listing_id=${business_id}&review_id=${commentId}`
-        );
-        toast.success("Review Deleted Successfully");
-        fetchReviewsData();
-        fetchBusinessData();
-      } catch (error) {
-        toast.error("Error deleting comment");
-      }
-    }
-  };
-
-  const handleDeleteReply = async (replyId) => {
-    // Show confirmation dialog
-    const isConfirmed = await Swal.fire({
-      title: "Are you sure?",
-      text: "Once deleted, nobody can see your reply!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    });
-
-    // If user confirms, proceed with deletion
-    if (isConfirmed.isConfirmed) {
-      try {
-        await businessListingAxiosInstance.delete(
-          `/delete-review?business_listing_id=${business_id}&review_id=${replyId}`
-        );
-        toast.success("Reply Deleted Successfully");
-        fetchReviewsData();
-        fetchBusinessData();
-      } catch (error) {
-        toast.error("Error deleting Reply");
-      }
-    }
-  };
-
-  const generateMetaKeywords = (businessData) => {
-    // Combine tags and services into a comma-separated string
-    const tags = businessData?.tags?.join(", ") || "";
-    const services = businessData?.services?.join(", ") || "";
-
-    // Combine tags and services and return as keywords
-    return `${tags}, ${services}`;
   };
 
   return (
@@ -667,7 +421,7 @@ const ListingView = () => {
                     <div className="d-block mt-3">
                       <div className="list-lioe">
                         <div className="list-lioe-single">
-                          <span className="ft-medium text-info">Category</span>
+                          <span className="ft-medium fw-bold">Category</span>
                         </div>
                         <div className="list-lioe-single ms-2 ps-3 seperate">
                           <a
@@ -682,7 +436,7 @@ const ListingView = () => {
                     <div className="d-block mt-1">
                       <div className="list-lioe">
                         <div className="list-lioe-single">
-                          <span className="ft-medium text-danger">Type</span>
+                          <span className="ft-medium fw-bold">Type</span>
                         </div>
                         <div className="list-lioe-single ms-2 ps-3 seperate">
                           <a
@@ -853,9 +607,6 @@ const ListingView = () => {
                             <div className="row">
                               <div className="col-lg-12 col-md-12 col-sm-12">
                                 <div className="form-group mb-3">
-                                  <label className="ft-medium small mb-1">
-                                    Review
-                                  </label>
                                   <textarea
                                     className="form-control rounded ht-140"
                                     placeholder="Review"
@@ -958,7 +709,7 @@ const ListingView = () => {
                                     <div className="d-flex align-items-center">
                                       <Link
                                         key={index}
-                                        href={contact.value}
+                                        to={contact.value}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         underline="none"

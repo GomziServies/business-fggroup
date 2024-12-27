@@ -425,7 +425,7 @@ const Home = () => {
                     <div className="featuresGroups">
                       <div className="singleFeatured">
                         <div className="ico">
-                          <i class="fa-solid fa-circle-arrow-right"></i>
+                          <i className="fa-solid fa-circle-arrow-right"></i>
                         </div>
                         <div className="caps">
                           <h4 className="fw-md-bolder fw-bold">
@@ -1051,7 +1051,7 @@ const Home = () => {
                             className="checkbox-custom"
                             name="dd"
                             type="checkbox"
-                            defaultChecked=""
+                            // defaultChecked=""
                           />
                           <label htmlFor="dd" className="checkbox-custom-label">
                             Remember Me
