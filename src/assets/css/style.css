@@ -10416,3 +10416,12 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .modal-video-close-btn::before {
   background-color: #000 !important;
 }
+
+.accordion .card-header button {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.accordion .card-body {
+  font-weight: 500;
+}

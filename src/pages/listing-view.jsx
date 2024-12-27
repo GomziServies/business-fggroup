@@ -415,7 +415,6 @@ const ListingView = () => {
                       </div>
                     </div>
                   )}
-
                   <div className="sep-devider" />
                   <div>
                     <div className="d-block mt-3">
@@ -449,7 +448,6 @@ const ListingView = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="sep-devider" />
                   {/* {timings.length > 0 && (
                     <div className="d-block">
@@ -500,7 +498,6 @@ const ListingView = () => {
                       </div>
                     </div>
                   )} */}
-
                   <div className="d-block">
                     <div className="jbd-01">
                       <div className="jbd-details">
@@ -516,7 +513,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                            "00:00" &&
+                                              "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -560,12 +557,12 @@ const ListingView = () => {
                                     ).toLocaleDateString()}
                                   </span>
                                 </h4>
-                                <span className="agd-location">
+                                {/* <span className="agd-location">
                                   {review.helpful_count}{" "}
                                   {review.helpful_count === 1
                                     ? "Review"
                                     : "Reviews"}
-                                </span>
+                                </span> */}
                                 <div className="listing-rating high">
                                   {Array.from({ length: review.rating }).map(
                                     (_, starIndex) => (
@@ -603,51 +600,49 @@ const ListingView = () => {
                       <div className="jbd-details">
                         <h5 className="ft-bold fs-lg">Drop Your Review</h5>
                         <div className="review-form-box form-submit mt-3">
-                          <form>
-                            <div className="row">
-                              <div className="col-lg-12 col-md-12 col-sm-12">
-                                <div className="form-group mb-3">
-                                  <textarea
-                                    className="form-control rounded ht-140"
-                                    placeholder="Review"
-                                    defaultValue={""}
-                                    value={review}
-                                    onChange={(e) => setReview(e.target.value)}
-                                  />
-                                </div>
+                          <div className="row">
+                            <div className="col-lg-12 col-md-12 col-sm-12">
+                              <div className="form-group mb-3">
+                                <textarea
+                                  className="form-control rounded ht-140"
+                                  placeholder="Review"
+                                  defaultValue={""}
+                                  value={review}
+                                  onChange={(e) => setReview(e.target.value)}
+                                />
                               </div>
-                              <div className="col-lg-12 col-md-12 col-sm-12">
-                                <div className="form-group mb-3">
-                                  <label className="ft-medium small mb-1">
-                                    Select Rating
-                                  </label>
-                                  <div className="d-flex mb-2">
-                                    {[1, 2, 3, 4, 5].map((star) => (
-                                      <StarIcon
-                                        key={star}
-                                        sx={{
-                                          fontSize: "25px",
-                                          color:
-                                            rating >= star ? "#FFAE11" : "#000",
-                                        }}
-                                        onClick={() => handleRatingChange(star)}
-                                      />
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-lg-12 col-md-12 col-sm-12">
-                                <div className="form-group">
-                                  <button
-                                    onClick={handleSubmitReview}
-                                    className="btn theme-bg text-light rounded"
-                                  >
-                                    Submit Review
-                                  </button>
+                            </div>
+                            <div className="col-lg-12 col-md-12 col-sm-12">
+                              <div className="form-group mb-3">
+                                <label className="ft-medium small mb-1">
+                                  Select Rating
+                                </label>
+                                <div className="d-flex mb-2">
+                                  {[1, 2, 3, 4, 5].map((star) => (
+                                    <StarIcon
+                                      key={star}
+                                      sx={{
+                                        fontSize: "25px",
+                                        color:
+                                          rating >= star ? "#FFAE11" : "#000",
+                                      }}
+                                      onClick={() => handleRatingChange(star)}
+                                    />
+                                  ))}
                                 </div>
                               </div>
                             </div>
-                          </form>
+                            <div className="col-lg-12 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <button
+                                  onClick={handleSubmitReview}
+                                  className="btn theme-bg text-light rounded"
+                                >
+                                  Submit Review
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -847,7 +842,9 @@ const ListingView = () => {
                         <div className="Goodup-grid-upper">
                           <div className="Goodup-pos ab-left">
                             <div className="Goodup-status open me-2">Open</div>
-                            <div className="Goodup-status bg-danger">Featured</div>
+                            <div className="Goodup-status bg-danger">
+                              Featured
+                            </div>
                           </div>
                           <div className="Goodup-grid-thumb">
                             <Link
@@ -881,7 +878,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                          business.review_stats.average_rating
+                                        business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}

@@ -19,6 +19,7 @@ import MemberEngagement from './pages/member-engagement';
 import RevolutionizingGyms from './pages/revolutionizing-gyms';
 import StrategiesforModernGyms from './pages/strategies-for-modern-gyms';
 import ScalableGym from './pages/scalable-gym';
+import ScrollRestoration from './components/ScrollRestoration';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/scalable-gym" element={<ScalableGym />} />
         <Route path="/member-engagement" element={<MemberEngagement />} />
       </Routes>
+      <ScrollRestoration />
     </div>
   );
 }
