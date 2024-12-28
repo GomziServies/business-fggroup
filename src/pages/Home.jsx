@@ -348,7 +348,7 @@ const Home = () => {
                   </div>
                   <div className="how-video-btn how-play-btn">
                     <a
-                      onClick={() => openVideoModal("m_GpoDeW1QU")}
+                      onClick={() => openVideoModal("cF59Y0giN5E")}
                       data-flashy-type="video"
                       className="custom clickof"
                       aria-label="Fg Group"
