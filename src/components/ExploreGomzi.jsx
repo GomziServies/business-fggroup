@@ -180,7 +180,7 @@ const ExploreGomzi = () => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    <b>GN Supplements</b>
+                                                    <b>GN Supplements Income</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">
@@ -203,7 +203,7 @@ const ExploreGomzi = () => {
                                         <div className="gup_blg_grid_caption">
                                             <div className="blg_title">
                                                 <h4>
-                                                    <b>FGIIT Academy Classes</b>
+                                                    <b>FGIIT Academy Classes Income</b>
                                                 </h4>
                                             </div>
                                             <div className="blg_desc">

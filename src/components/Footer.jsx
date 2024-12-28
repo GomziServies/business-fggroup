@@ -18,13 +18,13 @@ function Footer() {
                     <h5 className="ps-2 mb-0">FG Group</h5>
                   </div>
                   <div className="address mt-2">
-                    <p>2, Abhushan Bunglows, Near Alkapuri Char Rasta, Katargam, Surat-395004</p>
+                    <p>2-Gomzi, Abhushan, Near Alkapuri Char Rasta, Katargam, Surat-395004</p>
                   </div>
                   <div className="address mt-2">
                     <p>+91 63540 51487</p>
                   </div>
                   <div className="address mt-2">
-                    <p>fitnesswithgomzi@gmail.com</p>
+                    <p>gomziconsultingservices@gmail.com</p>
                   </div>
                 </div>
               </div>

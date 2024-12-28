@@ -210,7 +210,7 @@ const UpdateListing = () => {
               };
               await businessListingAxiosInstance.patch(
                 "/update-listing",
-                updatedListingData
+                {description: formData.description, ...updatedListingData},
               );
 
               toast.success("Logo updated successfully!", {
@@ -301,7 +301,7 @@ const UpdateListing = () => {
       };
       await businessListingAxiosInstance.patch(
         `/update-listing?listing_id=${listing_id}`,
-        updatedListingData
+        {description: formData.description, ...updatedListingData}
       );
 
       toast.success("Business photo removed successfully!", {
@@ -388,7 +388,7 @@ const UpdateListing = () => {
 
         await businessListingAxiosInstance.patch(
           `/update-listing?listing_id=${listing_id}`,
-          updatedListingData
+          {description: formData.description, ...updatedListingData}
         );
 
         toast.success("Business photo updated successfully!", {
