@@ -63,46 +63,6 @@ const Home = () => {
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          {/* <div className="home-banner home-7" style={{ marginTop: "70px" }}>
-            <div className="container">
-              <div className="row align-items-center justify-content-between">
-                <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                  <div className="pe-3">
-                    <div className="banner_caption text-left">
-                      <h1 className="banner_title ft-normal mb-md-1 mb-2">
-                        Transform Your GYM with{" "}
-                        <span className="theme-cl">Gomzi's Gym Network</span>
-                      </h1>
-                      <p className="fs-lg fw-light banner_decription">
-                        Transform your gym with GOMZI's Gym Network!
-                        Revolutionize fitness management with cutting-edge
-                        technology, streamlined operations, and an unmatched
-                        member experience. GOMZI's network empowers gym owners
-                        to optimize resources, connect seamlessly, and drive
-                        success like never before. Take your gym to the next
-                        level today!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-lg-5 col-md-12 col-sm-12 col-12">
-                  <div className="imgSlide">
-                    <div className="singleSlide">
-                      <img
-                        src="images/imgSlide-01.png"
-                        className="img"
-                        alt="Img Slide"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="blockWrap">
-              <div className="block" />
-              <div className="block2" />
-            </div>
-          </div> */}
           <section
             className="container-fluid p-0 text-start d-none d-md-block"
             style={{ marginTop: "70px" }}
@@ -426,55 +386,6 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* <section className="pt-4 pb-0 text-start">
-            <div className="container">
-              <div className="row justify-content-between g-4">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <div className="offerWrap">
-                    <div className="offerCaps">
-                      <h4 className="title">
-                        Building a Wealthier and Healthier You
-                      </h4>
-                      <p>
-                        At GOMZI, Boost your revenue! Empowering gym owners with
-                        innovative tools to attract members, grow income, and
-                        achieve financial success while promoting wellness.
-                      </p>
-                    </div>
-                    <div className="slice">
-                      <img
-                        src="images/imgSlide-04.png"
-                        className="img"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <div className="offerWrap offer-02">
-                    <div className="offerCaps">
-                      <h4 className="title">
-                        Become a Top Gym in your locality
-                      </h4>
-                      <p>
-                        Rise to the top in your locality with GOMZI's Top Build
-                        Marketing ! Enhance your gym's appeal, attract more
-                        members, and dominate the fitness scene with innovative
-                        solutions tailored for your success.
-                      </p>
-                    </div>
-                    <div className="slice">
-                      <img
-                        src="images/imgSlide-03.png"
-                        className="img"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> */}
           <section className="space pb-mb-5 pb-4 gray">
             <div className="container">
               <div className="row justify-content-center">
@@ -1033,7 +944,7 @@ const Home = () => {
                             className="checkbox-custom"
                             name="dd"
                             type="checkbox"
-                            // defaultChecked=""
+                          // defaultChecked=""
                           />
                           <label htmlFor="dd" className="checkbox-custom-label">
                             Remember Me

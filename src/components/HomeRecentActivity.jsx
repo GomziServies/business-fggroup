@@ -182,7 +182,7 @@ const HomeRecentActivity = () => {
               const remainingCount = validFacilities.length - facilityLimit;
 
               return (
-                <div className="col-xl-3 col-md-6 col-sm-12">
+                <div className="col-xl-4 col-md-6 col-sm-12">
                   <div className="Goodup-grid-wrap">
                     <div className="Goodup-grid-upper">
                       <div className="Goodup-pos ab-left">

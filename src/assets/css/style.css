@@ -8810,8 +8810,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
     border-right: 1px solid #ebedf1 !important;
   }
   .Goodup-grid-thumb a img {
-    min-height: 200px;
-    max-height: 200px;
+    min-height: 300px;
+    max-height: 300px;
     object-fit: cover;
   }
 }
@@ -10269,6 +10269,11 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   .tabata-one b {
     font-size: 18px;
   }
+}
+
+.tabata-one b {
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .rs-picker-input.rs-picker-tag .rs-picker-toggle.rs-btn {
