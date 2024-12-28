@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import WhatsappBtn from "../components/WhatsappBtn";
 
 const RevolutionizingGyms = () => {
   const [loading, setLoading] = useState(true);
@@ -65,7 +64,6 @@ const RevolutionizingGyms = () => {
                       style={{ borderRadius: "10px" }}
                       alt="Nutrition Science"
                     />
-
                     <div className="tabata-one mt-5">
                       <p>
                         <b>Introduction:</b>
@@ -82,19 +80,18 @@ const RevolutionizingGyms = () => {
                       </p>
                       <br />
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. AI-Powered Personal Trainers</h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/revolutionizing-gyms-1.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/revolutionizing-gyms-1.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Artificial intelligence is reshaping personal training
                         by delivering highly customized workout plans tailored
@@ -132,15 +129,15 @@ const RevolutionizingGyms = () => {
                         2. Smart Equipment and Wearables :{" "}
                       </h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/revolutionizing-gyms-2.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/revolutionizing-gyms-2.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Smart gym equipment, like Peloton bikes and NordicTrack
                         treadmills, integrates sensors to monitor user
@@ -173,15 +170,15 @@ const RevolutionizingGyms = () => {
                         3. Virtual and Augmented Reality Workouts: :-
                       </h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/revolutionizing-gyms-3.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/revolutionizing-gyms-3.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         VR and AR technologies are turning fitness routines into
                         immersive, gamified experiences that are as entertaining
@@ -211,15 +208,15 @@ const RevolutionizingGyms = () => {
                         4. Streamlined Operations with Management Software :-
                       </h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/revolutionizing-gyms-4.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/revolutionizing-gyms-4.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Advanced gym management software, like Glofox and
                         Mindbody, automates crucial operations such as
@@ -248,15 +245,15 @@ const RevolutionizingGyms = () => {
                         5. The Rise of Hybrid Fitness Models :-
                       </h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/revolutionizing-gyms-5.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/revolutionizing-gyms-5.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         The pandemic accelerated the shift to hybrid fitness
                         models, combining in-person and online workouts to meet
@@ -293,7 +290,6 @@ const RevolutionizingGyms = () => {
                       </p>
                     </div>
                   </div>
-                  {/* <BlogsGuides /> */}
                 </div>
               </div>
             </div>

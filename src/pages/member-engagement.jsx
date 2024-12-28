@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import WhatsappBtn from "../components/WhatsappBtn";
 
 const MemberEngagement = () => {
   const [loading, setLoading] = useState(true);
@@ -85,7 +84,7 @@ const MemberEngagement = () => {
                         className="lazy my-3"
                         src={
                           process.env.PUBLIC_URL +
-                          "/images/member-engagement-1.webp"
+                          "/images/scalable-gym.webp"
                         }
                         width="100%"
                         style={{ borderRadius: "10px" }}
@@ -111,7 +110,7 @@ const MemberEngagement = () => {
                         className="lazy my-3"
                         src={
                           process.env.PUBLIC_URL +
-                          "/images/member-engagement-2.webp"
+                          "/images/modern-gyms-4.webp"
                         }
                         width="100%"
                         style={{ borderRadius: "10px" }}
@@ -164,7 +163,7 @@ const MemberEngagement = () => {
                         className="lazy my-3"
                         src={
                           process.env.PUBLIC_URL +
-                          "/images/member-engagement-4.webp"
+                          "/images/modern-gyms-1.webp"
                         }
                         width="100%"
                         style={{ borderRadius: "10px" }}

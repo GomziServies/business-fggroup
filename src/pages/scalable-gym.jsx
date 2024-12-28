@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import WhatsappBtn from "../components/WhatsappBtn";
 
 const ScalableGym = () => {
   const [loading, setLoading] = useState(true);
@@ -57,15 +56,11 @@ const ScalableGym = () => {
                   <div className="col-lg-8 mt-4">
                     <img
                       className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/scalable-gym.webp"
-                      }
+                      src={process.env.PUBLIC_URL + "/images/scalable-gym.webp"}
                       width="100%"
                       style={{ borderRadius: "10px" }}
                       alt="Nutrition Science"
                     />
-
                     <div className="tabata-one mt-5">
                       <p>
                         <b>Introduction:</b>
@@ -80,19 +75,17 @@ const ScalableGym = () => {
                       </p>
                       <br />
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. Franchising Opportunities</h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/scalable-gym-1.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL + "/images/scalable-gym-1.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Franchising is a proven method for expanding into new
                         markets without heavy capital investment. It enables
@@ -109,27 +102,26 @@ const ScalableGym = () => {
                         across locations.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">
                         2. Investing in a Strong Brand Identity
                       </h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/scalable-gym-2.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/revolutionizing-gyms-2.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         A recognizable brand identity fosters trust and loyalty,
                         laying the groundwork for successful scalability.
                       </p>
                       <p className="mt-3">
-                        <strong>Example:</strong> CrossFit’s emphasis on
+                        <strong>Example:</strong> CrossFit's emphasis on
                         community and functional fitness has driven its global
                         appeal.
                       </p>
@@ -139,21 +131,19 @@ const ScalableGym = () => {
                         ensures coherence across multiple locations.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">
                         3. Leveraging Technology for Expansion
                       </h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/scalable-gym-3.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL + "/images/scalable-gym-3.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Cloud-based solutions streamline operations across
                         branches, allowing for efficient management of
@@ -169,21 +159,19 @@ const ScalableGym = () => {
                         business.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">
                         4. Establishing Strategic Partnerships
                       </h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/scalable-gym-4.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL + "/images/scalable-gym-4.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Collaborating with businesses, schools, or wellness
                         organizations increases visibility and broadens member
@@ -199,27 +187,25 @@ const ScalableGym = () => {
                         community.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">
                         5. Creating a Global Online Presence
                       </h2>
                       <img
-                      className="lazy my-3"
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/images/scalable-gym-5.webp"
-                      }
-                      width="100%"
-                      style={{ borderRadius: "10px" }}
-                      alt="Nutrition Science"
-                    />
+                        className="lazy my-3"
+                        src={
+                          process.env.PUBLIC_URL + "/images/scalable-gym-5.webp"
+                        }
+                        width="100%"
+                        style={{ borderRadius: "10px" }}
+                        alt="Nutrition Science"
+                      />
                       <p className="mt-3">
                         Digital platforms enable gyms to connect with audiences
                         worldwide, breaking geographical barriers.
                       </p>
                       <p className="mt-3">
-                        <strong>Example:</strong> Peloton’s subscription-based
+                        <strong>Example:</strong> Peloton's subscription-based
                         service offers on-demand workouts to millions globally.
                       </p>
                       <p className="mt-3">
@@ -227,7 +213,6 @@ const ScalableGym = () => {
                         build brand recognition, and diversify income sources.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">Conclusion</h2>
                       <p className="mt-3">

@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import WhatsappBtn from "../components/WhatsappBtn";
 
 const StrategiesforModernGyms = () => {
   const [loading, setLoading] = useState(true);
@@ -62,7 +61,6 @@ const StrategiesforModernGyms = () => {
                       style={{ borderRadius: "10px" }}
                       alt="Nutrition Science"
                     />
-
                     <div className="tabata-one mt-5">
                       <p>
                         <b>Introduction:</b>
@@ -78,7 +76,6 @@ const StrategiesforModernGyms = () => {
                       </p>
                       <br />
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. Membership Tiering:</h2>
                       <img
@@ -108,7 +105,6 @@ const StrategiesforModernGyms = () => {
                         and goals.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs"
                       >
@@ -137,7 +133,6 @@ const StrategiesforModernGyms = () => {
                         generate additional revenue streams.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs"
                       >
@@ -152,11 +147,11 @@ const StrategiesforModernGyms = () => {
                     />
                       <p className="mt-3">
                         Retailing branded apparel, fitness gear, and supplements
-                        strengthens the gym’s brand identity and creates
+                        strengthens the gym's brand identity and creates
                         supplementary income.
                       </p>
                       <p className="mt-3">
-                        <strong>Example:</strong> Gold’s Gym successfully
+                        <strong>Example:</strong> Gold's Gym successfully
                         promotes branded merchandise and nutritional products,
                         building loyalty while driving profit.
                       </p>
@@ -166,7 +161,6 @@ const StrategiesforModernGyms = () => {
                         reliable revenue booster.
                       </p>
                     </div>
-
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs"
                       >
@@ -214,7 +208,7 @@ const StrategiesforModernGyms = () => {
                         physical locations.
                       </p>
                       <p className="mt-3">
-                        <strong>Example:</strong> Barry’s Bootcamp’s global
+                        <strong>Example:</strong> Barry's Bootcamp's global
                         digital platform allows members to access workouts
                         anytime, anywhere.
                       </p>
