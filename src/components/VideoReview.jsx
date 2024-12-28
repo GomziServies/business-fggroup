@@ -208,7 +208,7 @@ const VideoReview = ({ openVideoModal }) => {
                                   <div className="video-btn play-btn">
                                     <a
                                       onClick={() =>
-                                        openVideoModal("m_GpoDeW1QU")
+                                        openVideoModal("WvdYvliY4mQ")
                                       }
                                       className="custom clickof"
                                       aria-label="Fg Group"
@@ -223,15 +223,9 @@ const VideoReview = ({ openVideoModal }) => {
                             </div>
                             <div className="col-md-8 text-center">
                               <div className="review-box-text">
-                                <h2 className="h2-fs">Dt.Chirag Pandey</h2>
+                                <h2 className="h2-fs">Satish Nishad</h2>
                                 <p>
-                                  Dt. Chirag Pandey, a nutrition
-                                  educator highlighted how our support enriched
-                                  his career. Through our platform, he
-                                  successfully transitioned to teaching
-                                  nutrition. His video testimonial reflects his
-                                  appreciation for the growth opportunities
-                                  we've provided.
+                                  As a gym owner from the Vesu area in Surat, I'm genuinely impressed with how Gomzi helped grow my business. Their strategies brought in more members, improved client retention, and increased revenue significantly. Their hands-on approach and understanding of the fitness industry made all the difference. Highly grateful for their support.
                                 </p>
                               </div>
                             </div>
@@ -251,7 +245,7 @@ const VideoReview = ({ openVideoModal }) => {
                                   <div className="video-btn play-btn">
                                     <a
                                       onClick={() =>
-                                        openVideoModal("fDjDB87BhR0")
+                                        openVideoModal("osxa02hizNQ")
                                       }
                                       className="custom clickof"
                                       aria-label="Fg Group"
@@ -266,14 +260,9 @@ const VideoReview = ({ openVideoModal }) => {
                             </div>
                             <div className="col-md-8 text-center">
                               <div className="review-box-text">
-                                <h2 className="h2-fs">Mr. Hiren Jogiya</h2>
+                                <h2 className="h2-fs">Pathik Patel</h2>
                                 <p>
-                                  Mr. Hiren Jogiya, the proud owner of Bossman
-                                  Clothings, shared his heartfelt appreciation
-                                  for our support in growing his clothing
-                                  business. With our assistance, his brand has
-                                  reached new heights, he expressed his
-                                  gratitude for the positive impact we've made.
+                                  As a manager overseeing operations at a gym in Adajan, Surat, I can truly say Gomzi transformed our business approach. Their insights helped us streamline operations, attract new members, and improve retention. The increase in revenue was remarkable, and their ability to understand our unique challenges set them apart. Gomzi's expertise is unmatched in the fitness industry!
                                 </p>
                               </div>
                             </div>
@@ -293,7 +282,7 @@ const VideoReview = ({ openVideoModal }) => {
                                   <div className="video-btn play-btn">
                                     <a
                                       onClick={() =>
-                                        openVideoModal("AljwdDjKUw0")
+                                        openVideoModal("HJ900jPFTeA")
                                       }
                                       className="custom clickof"
                                       aria-label="Fg Group"
@@ -308,58 +297,9 @@ const VideoReview = ({ openVideoModal }) => {
                             </div>
                             <div className="col-md-8 text-center">
                               <div className="review-box-text">
-                                <h2 className="h2-fs">Dr. Milan Modi</h2>
+                                <h2 className="h2-fs">Chirag Chandleker</h2>
                                 <p>
-                                  Dr. Milan Modi, a dedicated professional
-                                  running a successful clinic, acknowledged our
-                                  contribution to the growth of his practice. In
-                                  his video feedback, he expressed gratitude for
-                                  the tailored solutions that have helped him
-                                  better serve his patients and expand his
-                                  reach.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="px-0">
-                          <div className="video-rating row align-items-center">
-                            <div className="col-md-4">
-                              <div className="review-box position-relative">
-                                <div>
-                                  <img
-                                    src="/images/video-review-4.webp"
-                                    className="img-fluid"
-                                    alt="FG Group"
-                                    width="100%"
-                                  />
-                                  <div className="video-btn play-btn">
-                                    <a
-                                      onClick={() =>
-                                        openVideoModal("g2wzrJRz7ec")
-                                      }
-                                      className="custom clickof"
-                                      aria-label="Fg Group"
-                                    >
-                                      <span className="newthing">
-                                        <i className="fas fa-play"></i>
-                                      </span>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-md-8 text-center">
-                              <div className="review-box-text">
-                                <h2 className="h2-fs">Asha Koshiya</h2>
-                                <p>
-                                  Asha Koshiya, the founder of Fire Cook, runs a
-                                  thriving cooking business that has grown
-                                  significantly with our help. In her video
-                                  review, she thanked us for the strategies and
-                                  support that enabled her to take her passion
-                                  for cooking to the next level, turning it into
-                                  a successful venture.
+                                  Mainne Gomzi ke business development services ka use kiya aur unki strategies se hamare gym kaafi grow hua. Naye members attract hue, revenue badha, aur overall satisfaction improve hui. Simple aur effective solutions ke saath, unhone kaam kaafi asaan kar diya. Bahut hi accha experience raha! #BusinessGrowth #GymSuccess #GomziEffect.
                                 </p>
                               </div>
                             </div>
