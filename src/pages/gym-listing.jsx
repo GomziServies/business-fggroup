@@ -2,16 +2,11 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
-import HomeRecentActivity from "../components/HomeRecentActivity";
 import WhatsappBtn from "../components/WhatsappBtn";
 import WhatsappBtnMain from "../components/WhatsappBtnMain";
-import VideoReview from "../components/VideoReview";
-import ModalVideo from "react-modal-video";
-import { Link } from "react-router-dom";
-import ExploreGomzi from "../components/ExploreGomzi";
 import GymMainActivity from "../components/GymMainActivity";
+import SimpleHeader from "../components/SimpleHeader";
 
 const GymListing = () => {
     const [loading, setLoading] = useState(true);
@@ -62,20 +57,20 @@ const GymListing = () => {
             <>
                 {loading && <div className="preloader" />}
                 <div id="main-wrapper">
-                    <Header />
+                    <SimpleHeader />
                     <div className="clearfix" />
-                    <div className="home-banner margin-bottom-0" style={{ background: "#f41b3b url(images/main-page-banner.webp) no-repeat", marginTop: '70px' }} data-overlay="5">
+                    <div className="home-banner margin-bottom-0" style={{ background: "#f41b3b url(images/gym-listing-banner.webp) no-repeat", marginTop: '70px' }} data-overlay="5">
                         <div className="container">
                             <div className="row justify-content-center">
                                 <div className="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div className="banner_caption text-center">
-                                        <h1 className="banner_title ft-bold mb-1">Explore Great Place in Your Town</h1>
-                                        <p className="fs-lg ft-light">Explore wonderful place to stay, salon, shoping, massage or visit local areas.</p>
+                                        <h1 className="banner_title ft-bold mb-1">Find the Best Gyms and Fitness Centers Near You</h1>
+                                        <p className="fs-lg ft-light">Looking for a top-rated gym, fitness center, or studio in your area? Discover the best places to stay fit, stay healthy, and reach your fitness goals.</p>
                                     </div>
                                     <form className="main-search-wrap fl-wrap half-column mt-5">
                                         <div className="main-search-item">
                                             <span className="search-tag">Find</span>
-                                            <input type="text" className="form-control radius" placeholder="Nail salons, plumbers, takeout..." />
+                                            <input type="text" className="form-control radius" placeholder="Gym Search By city...." />
                                         </div>
                                         <div className="main-search-button">
                                             <button className="btn full-width theme-bg text-white" type="button">Search<i className="fas fa-search"></i></button>
@@ -106,60 +101,50 @@ const GymListing = () => {
                             <div className="row justify-content-center">
                                 <div className="col-xl-5 col-lg-7 col-md-9 col-sm-12">
                                     <div className="sec_title position-relative text-center mb-5">
-                                        <h6 className="text-muted mb-0">Our Partners</h6>
-                                        <h2 className="ft-bold">We Have Worked with <span className="theme-cl">10,000+</span> Trusted Companies</h2>
+                                        <h6 className="text-muted mb-0">Why Choose GOMZI Fitness Centers?</h6>
+                                        <h2 className="ft-bold">We partner with <span className="theme-cl">3,000+</span> Trusted Gyms and Fitness Studios</h2>
                                     </div>
                                 </div>
                             </div>
                             <div className="row justify-content-center">
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
                                         <img src="images/l-1.webp" className="img-fluid mx-auto" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
                                         <img src="images/l-2.webp" className="img-fluid mx-auto" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
                                         <img src="images/l-3.webp" className="img-fluid mx-auto" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
                                         <img src="images/l-4.webp" className="img-fluid mx-auto" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
                                         <img src="images/l-5.webp" className="img-fluid mx-auto" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
                                         <img src="images/l-6.webp" className="img-fluid mx-auto" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
                                         <img src="images/l-7.webp" className="img-fluid mx-auto" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                                <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
                                         <img src="images/l-8.webp" className="img-fluid mx-auto" alt="" />
-                                    </div>
-                                </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                                    <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-9.webp" className="img-fluid mx-auto" alt="" />
-                                    </div>
-                                </div>
-                                <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-                                    <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-10.webp" className="img-fluid mx-auto" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -170,20 +155,85 @@ const GymListing = () => {
                             <div className="row justify-content-center">
                                 <div className="col-lg-7 col-md-10 text-center">
                                     <div className="sec-heading center">
-                                        <h2 className="text-light ft-bold">Best In Canada</h2>
-                                        <h3 className="text-light ft-medium mb-4">Visit The Best Spa & Hotels in California</h3>
-                                        <p className="text-light mb-4">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                                        <h2 className="text-light ft-bold">Start Your Fitness Journey with GOMZI Today</h2>
+                                        <h3 className="text-light ft-medium my-4">Find the best gyms and fitness centers, book a visit, and start achieving your fitness goals.</h3>
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-lg-12 col-md-12 col-sm-12">
-                                    <div className="counter-link">
-                                        <a href="#" className="btn btn-md text-dark ft-medium btn-light">Explore & Submit Listings</a>
+                                    <div className="counter-link my-5">
+                                        <WhatsappBtn
+                                            message={
+                                                "Hello, I wanted to know more about Business Listing."
+                                            }
+                                            options={{ pageRef: true }}
+                                        />
                                     </div>
                                 </div>
                             </div>
 
+                        </div>
+                    </section>
+                    <section className="my-5">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-xl-12 col-lg-12 col-md-12 col-12">
+                                    <div className="sec_title position-relative text-center mb-5">
+                                        <h6 className="text-muted mb-0">Ask Questions</h6>
+                                        <h2 className="ft-bold">Frequently Asked Questions</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row justify-content-center">
+                                <div className="col-xl-10 col-lg-11 col-md-12 col-12">
+                                    <div id="accordion2" className="accordion">
+                                        <div className="card">
+                                            <div className="card-header" id="h7">
+                                                <h5 className="mb-0">
+                                                    <button className="btn btn-link" data-bs-toggle="collapse" data-bs-target="#ord7" aria-expanded="true" aria-controls="ord7">
+                                                        How can I find the best gym near me?
+                                                    </button>
+                                                </h5>
+                                            </div>
+
+                                            <div id="ord7" className="collapse show" aria-labelledby="h7" data-parent="#accordion2">
+                                                <div className="card-body">
+                                                    You can easily search our platform by location, rating, and available facilities to find the best gym near you.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="card">
+                                            <div className="card-header" id="h8">
+                                                <h5 className="mb-0">
+                                                    <button className="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#ord8" aria-expanded="false" aria-controls="ord8">
+                                                        What facilities are typically available at GOMZI-listed gyms?
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="ord8" className="collapse" aria-labelledby="h8" data-parent="#accordion2">
+                                                <div className="card-body">
+                                                    Most gyms on GOMZI provide essential fitness amenities such as WiFi, air conditioning, steam baths, lockers, and more. Check the specific gym details for more information.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="card">
+                                            <div className="card-header" id="h9">
+                                                <h5 className="mb-0">
+                                                    <button className="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#ord9" aria-expanded="false" aria-controls="ord9">
+                                                        How do I contact a gym or book a membership?
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="ord9" className="collapse" aria-labelledby="h9" data-parent="#accordion2">
+                                                <div className="card-body">
+                                                    Each gym listing provides contact details, including phone numbers, email, and WhatsApp links for easy communication.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
                     <section className="py-5 gray">
@@ -195,26 +245,24 @@ const GymListing = () => {
                                             <div className="sec-title light text-start">
                                                 <p className="theme-cl px-3 py-1 rounded bg-light-danger d-inline-flex">Download apps
                                                 </p>
-                                                <h2 className="ft-bold">Download the Goodup App<br />For Easy Use</h2>
+                                                <h2 className="ft-bold">Download the GOMZI App for Easy Access</h2>
                                             </div>
                                             <div className="text mb-3 text-start">
-                                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                                    praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
-                                                    excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
-                                                    officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+                                                <p>Get the GOMZI app to discover gyms, fitness centers, and exclusive offers with just a tap. Explore gyms in your area, compare facilities, and connect directly from your phone.
+                                                </p>
                                             </div>
                                             <div className="position-relative text-start row">
                                                 <div className="col-lg-4 col-md-4 col-4">
+                                                    <h3 className="ft-bold theme-cl mb-0"><span className="count">3</span>k+</h3>
+                                                    <p className="ft-medium">Active Gyms</p>
+                                                </div>
+                                                <div className="col-lg-4 col-md-4 col-4">
+                                                    <h3 className="ft-bold theme-cl mb-0"><span className="count">7</span>k+</h3>
+                                                    <p className="ft-medium">Fitness Plans</p>
+                                                </div>
+                                                <div className="col-lg-4 col-md-4 col-4">
                                                     <h3 className="ft-bold theme-cl mb-0"><span className="count">10</span>k+</h3>
-                                                    <p className="ft-medium">Active Jobs</p>
-                                                </div>
-                                                <div className="col-lg-4 col-md-4 col-4">
-                                                    <h3 className="ft-bold theme-cl mb-0"><span className="count">12</span>k+</h3>
-                                                    <p className="ft-medium">Resumes</p>
-                                                </div>
-                                                <div className="col-lg-4 col-md-4 col-4">
-                                                    <h3 className="ft-bold theme-cl mb-0"><span className="count">07</span>k+</h3>
-                                                    <p className="ft-medium">Employers</p>
+                                                    <p className="ft-medium">Trainers</p>
                                                 </div>
                                             </div>
                                             <div className="btn-box clearfix mt-5">
@@ -230,6 +278,46 @@ const GymListing = () => {
                                     <div className="image-box">
                                         <figure className="image"><img src="images/app.webp" className="img-fluid" alt="" /></figure>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section
+                        className="space bg-cover text-start"
+                        style={{
+                            background: "#03343b url(images/landing-bg.png) no-repeat",
+                        }}
+                    >
+                        <div className="container py-5">
+                            <div className="row justify-content-center">
+                                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div className="sec_title position-relative text-center mb-5">
+                                        <h2 className="ft-bold text-light whastapp-title">
+                                            Join GOMZI Today and Discover Exclusive Deals - Connect
+                                            with Us Instantly!
+                                        </h2>
+                                        <h6 className="text-light mb-0 d-md-block d-none">
+                                            Unlock Success with GOMZI - Connect Now over whatsapp for
+                                            Advance Perks!
+                                        </h6>
+                                        <p className="ft-bold text-light mt-4"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row align-items-center justify-content-center">
+                                <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
+                                    <form className="rounded p-1">
+                                        <div className="d-flex justify-content-center">
+                                            <div className="form-group mb-0">
+                                                <WhatsappBtn
+                                                    message={
+                                                        "Hello, I wanted to know more about Business Listing."
+                                                    }
+                                                    options={{ pageRef: true }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
