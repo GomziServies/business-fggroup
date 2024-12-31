@@ -4,6 +4,8 @@ import "../assets/css/style.css";
 import Header from "../components/Header";
 import WhatsappBtnMain from "../components/WhatsappBtnMain";
 import Slider from "react-slick";
+import Footer from "../components/Footer";
+import SimpleHeader from "../components/SimpleHeader";
 
 const ViewGymListing = () => {
   const images = [
@@ -79,7 +81,7 @@ const ViewGymListing = () => {
         options={{ pageRef: true }}
       />
       <>
-        <Header />
+        <SimpleHeader />
         <section
           className="view-gym-listing text-start"
           style={{ marginTop: "70px" }}
@@ -814,6 +816,7 @@ const ViewGymListing = () => {
             </div>
           </div>
         </section>
+        <Footer />
       </>
     </div>
   );

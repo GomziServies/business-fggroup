@@ -18,6 +18,7 @@ import ScalableGym from './pages/scalable-gym';
 import ScrollRestoration from './components/ScrollRestoration';
 import GymListing from './pages/gym-listing';
 import ViewGymListing from './pages/view-gym-listing';
+import AllGymListing from './pages/all-gym-listing';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/all-listing" element={<AllListingList />} />
+        <Route path="/all-gym-listing" element={<AllGymListing />} />
         <Route path="/listing-list" element={<ListingList />} />
         <Route path="/add-listing" element={<AddListing />} />
         <Route path="/listing-view" element={<ListingView />} />
