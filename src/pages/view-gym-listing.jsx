@@ -771,23 +771,39 @@ const ViewGymListing = () => {
                     <h5>Classic</h5>
                     <p className="text-green">WELCOME75 coupon applied</p>
                   </div>
-                  <div className="offers-details">
-                    <p>
-                      <strong>More offers:</strong> -₹1542
-                    </p>
-                    <p>
-                      <strong>Your savings:</strong> ₹1542
-                    </p>
-                    <p className="fs-5 text-dark">
-                      <strong>Total price:</strong> ₹1237
-                    </p>
-                    <p>
-                      <strong>Including taxes & fees</strong>
-                    </p>
+                  <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <h6 className="ft-medium">Price &amp; Taxes</h6>
+                    <div className="_adv_features">
+                      <ul>
+                        <li>
+                          I Night<span>$170</span>
+                        </li>
+                        <li>
+                          Discount 25$<span>-$210</span>
+                        </li>
+                        <li>
+                          Service Fee<span>$13</span>
+                        </li>
+                        <li>
+                          Breakfast Per Adult<span>$24</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <button className="btn btn-md rounded theme-bg text-light ft-medium fs-sm full-width mt-3">
-                    Continue to Book
-                  </button>
+                  <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <div className="Goodup-boo-space-foot mb-3">
+                      <span className="Goodup-boo-space-left">Total Payment</span>
+                      <h4 className="ft-bold theme-cl">$218</h4>
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <a
+                      href="#"
+                      className="btn text-light rounded full-width theme-bg"
+                    >
+                      Book It Now
+                    </a>
+                  </div>
                   <div className="cancellation-policy mt-3">
                     <h5>Cancellation Policy</h5>
                     <p>Follow safety measures advised at the hotel</p>
