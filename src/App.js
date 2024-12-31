@@ -11,15 +11,12 @@ import AffordableList from './pages/affordable-list';
 import StandardList from './pages/standard-list';
 import PremiumList from './pages/premium-list';
 import AllListingList from './pages/all-listing-list';
-import FirstBlog from './pages/revolutionizing-gyms';
-import TwoBlog from './pages/strategies-for-modern-gyms';
-import ThreeBlog from './pages/scalable-gym';
-import FourBlog from './pages/member-engagement';
 import MemberEngagement from './pages/member-engagement';
 import RevolutionizingGyms from './pages/revolutionizing-gyms';
 import StrategiesforModernGyms from './pages/strategies-for-modern-gyms';
 import ScalableGym from './pages/scalable-gym';
 import ScrollRestoration from './components/ScrollRestoration';
+import GymListing from './pages/gym-listing';
 
 function App() {
   return (
@@ -40,6 +37,7 @@ function App() {
         <Route path="/strategies-for-modern-gyms" element={<StrategiesforModernGyms />} />
         <Route path="/scalable-gym" element={<ScalableGym />} />
         <Route path="/member-engagement" element={<MemberEngagement />} />
+        <Route path="/gym-listing" element={<GymListing />} />
       </Routes>
       <ScrollRestoration />
     </div>

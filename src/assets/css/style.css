@@ -4572,6 +4572,11 @@ ul.doc.ratting-view li i.filled {
 }
 .vrt-list-content h4 {
   line-height: 1.2;
+  font-size: 17px;
+}
+.vrt-list-content h4 a {
+  line-height: 1.2;
+  font-size: 20px !important;
 }
 .vrt-list-features ul {
   margin: 0;
@@ -10429,4 +10434,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 
 .accordion .card-body {
   font-weight: 500;
+}
+
+.vrt-list-desc {
+  font-size: 15px;
 }
