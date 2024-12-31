@@ -17,6 +17,7 @@ import StrategiesforModernGyms from './pages/strategies-for-modern-gyms';
 import ScalableGym from './pages/scalable-gym';
 import ScrollRestoration from './components/ScrollRestoration';
 import GymListing from './pages/gym-listing';
+import ViewGymListing from './pages/view-gym-listing';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/scalable-gym" element={<ScalableGym />} />
         <Route path="/member-engagement" element={<MemberEngagement />} />
         <Route path="/gym-listing" element={<GymListing />} />
+        <Route path="/view-gym-listing" element={<ViewGymListing />} />
       </Routes>
       <ScrollRestoration />
     </div>
