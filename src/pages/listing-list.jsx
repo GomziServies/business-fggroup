@@ -315,7 +315,7 @@ const ListingList = () => {
                       <div className="dashboard-list-wraps-body py-3 px-3">
                         <div className="dashboard-listing-wraps">
                           <div className="row">
-                            {businessData.map((business) => {
+                            {businessData?.map((business) => {
                               return (
                                 <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                                   <div className="Goodup-grid-wrap">
@@ -385,7 +385,7 @@ const ListingList = () => {
                                         </h4>
                                         <div className="Goodup-middle-caption mt-2">
                                           Category :{" "}
-                                          {business.business_category.map(
+                                          {business.business_category?.map(
                                             (category) => (
                                               <span className="text-dark">
                                                 {category}

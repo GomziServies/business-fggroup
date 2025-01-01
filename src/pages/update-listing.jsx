@@ -55,7 +55,8 @@ const UpdateListing = () => {
     { platform: "Facebook", link: "" },
     { platform: "YouTube", link: "" },
   ]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedListingCategory, setSelectedListingCategory] = useState("");
+  const [selectedBusinessCategory, setSelectedBusinessCategory] = useState("");
   const [selectedFacilities, setSelectedFacilities] = useState("");
   const [selectedBusinessType, setSelectedBusinessType] = useState("");
   const [approvedData, setApprovedData] = useState("");
@@ -138,10 +139,10 @@ const UpdateListing = () => {
     }));
   };
 
-
   const [businessPhotos, setBusinessPhotos] = useState([]);
   const [featurePreview, setFeaturePreview] = useState(null);
-  const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] = useState(null);
+  const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] =
+    useState(null);
   const [logoImage, setLogoImage] = useState(null);
   const [logoPreview, setLogoPreview] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
@@ -208,10 +209,10 @@ const UpdateListing = () => {
                 listing_id: listing_id,
                 business_logo: logoUrl,
               };
-              await businessListingAxiosInstance.patch(
-                "/update-listing",
-                {description: formData.description, ...updatedListingData},
-              );
+              await businessListingAxiosInstance.patch("/update-listing", {
+                description: formData.description,
+                ...updatedListingData,
+              });
 
               toast.success("Logo updated successfully!", {
                 position: toast.POSITION.TOP_RIGHT,
@@ -301,7 +302,7 @@ const UpdateListing = () => {
       };
       await businessListingAxiosInstance.patch(
         `/update-listing?listing_id=${listing_id}`,
-        {description: formData.description, ...updatedListingData}
+        { description: formData.description, ...updatedListingData }
       );
 
       toast.success("Business photo removed successfully!", {
@@ -388,7 +389,7 @@ const UpdateListing = () => {
 
         await businessListingAxiosInstance.patch(
           `/update-listing?listing_id=${listing_id}`,
-          {description: formData.description, ...updatedListingData}
+          { description: formData.description, ...updatedListingData }
         );
 
         toast.success("Business photo updated successfully!", {
@@ -538,7 +539,8 @@ const UpdateListing = () => {
       setFaqs(faqData);
       setLogoImage(logoImg);
       setLogoPreview(logoImg);
-      setSelectedCategory(fetchedBusinessData.business_category[0]);
+      setSelectedListingCategory(fetchedBusinessData.listing_category);
+      setSelectedBusinessCategory(fetchedBusinessData.business_category[0]);
       setSelectedBusinessType(fetchedBusinessData.business_type);
     } catch (error) {
       console.error("Error in Getting Business Data:", error);
@@ -558,13 +560,18 @@ const UpdateListing = () => {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
         description: formData.description,
-        business_category: [selectedCategory],
+        listing_category: selectedListingCategory.length > 0 ? selectedListingCategory : [selectedListingCategory],
+        business_category: selectedBusinessCategory,
         services: selectedFacilities.map((facilities) => facilities.value),
         tags: formData.tags || [],
         social_media: socialMediaLinks.map((link) => ({
           social_media_type: link.social_media_type,
           link: link.link,
         })),
+        amount: {
+          paid_amount: formData.paid_amount,
+          discount_amount: formData.discount_amount,
+        },
         locations: [
           {
             location_name: formData.branch,
@@ -765,14 +772,55 @@ const UpdateListing = () => {
     setBusinessHours(allDaysTime);
   };
 
+  const categoryAmounts = {
+    Affordable: 30000,
+    Standard: 45000,
+    Premium: 90000,
+  };
+
+  useEffect(() => {
+    if (selectedBusinessCategory && categoryAmounts[selectedBusinessCategory]) {
+      setFormData((prev) => ({
+        ...prev,
+        paid_amount: categoryAmounts[selectedBusinessCategory].toString(),
+        discount_amount: "",
+        discount_percent: "",
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        paid_amount: "",
+        discount_amount: "",
+        discount_percent: "",
+      }));
+    }
+  }, [selectedBusinessCategory]);
+
+  useEffect(() => {
+    const amount = parseFloat(formData.paid_amount);
+    const discountAmount = parseFloat(formData.discount_amount);
+    if (!isNaN(amount) && !isNaN(discountAmount)) {
+      const discountPercent = ((discountAmount / amount) * 100).toFixed(2);
+      setFormData((prev) => ({
+        ...prev,
+        discount_percent: discountPercent,
+      }));
+    }
+  }, [formData.discount_amount]);
+
   return (
     <div>
       <Helmet>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Update Your Business Listing - Keep Your Information Current</title>
-        <meta name="description" content="Keep your business details up-to-date in our directory. Update your listing easily to maintain accuracy and attract the right audience today!" />
+        <title>
+          Update Your Business Listing - Keep Your Information Current
+        </title>
+        <meta
+          name="description"
+          content="Keep your business details up-to-date in our directory. Update your listing easily to maintain accuracy and attract the right audience today!"
+        />
         <link
           rel="shortcut icon"
           type="image/x-icon"
@@ -973,15 +1021,17 @@ const UpdateListing = () => {
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
-                                <label className="mb-1">Categories</label>
+                                <label className="mb-1">
+                                  Listing Categories
+                                </label>
                                 <select
                                   className="form-control"
-                                  value={selectedCategory}
+                                  value={selectedListingCategory}
                                   onChange={(e) =>
-                                    setSelectedCategory(e.target.value)
+                                    setSelectedListingCategory(e.target.value)
                                   }
                                 >
-                                  <option>Select Category</option>
+                                  <option>Select Listing Category</option>
                                   <option selected value="Personal Trainer">
                                     Personal Trainer
                                   </option>
@@ -1028,7 +1078,7 @@ const UpdateListing = () => {
                                 />
                               </div>
                             </div>
-                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Facilities</label>
                                 <Select
@@ -1037,6 +1087,80 @@ const UpdateListing = () => {
                                   value={selectedFacilities}
                                   onChange={handleSelectChange}
                                   placeholder="Select Facilities"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="col-xl-6 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">
+                                  Business Categories
+                                </label>
+                                <select
+                                  className="form-control"
+                                  value={selectedBusinessCategory}
+                                  onChange={(e) =>
+                                    setSelectedBusinessCategory(e.target.value)
+                                  }
+                                >
+                                  <option>Select Business Category</option>
+                                  <option selected value="Affordable">
+                                    Affordable
+                                  </option>
+                                  <option value="Standard">Standard</option>
+                                  <option value="Premium">Premium</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Amount</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Amount"
+                                  value={formData.paid_amount}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "paid_amount",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Discount Amount</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Discount Amount"
+                                  value={formData.discount_amount}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "discount_amount",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Discount Percent</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Discount Percent"
+                                  value={formData.discount_percent}
+                                  disabled
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "discount_percent",
+                                      e.target.value
+                                    )
+                                  }
                                 />
                               </div>
                             </div>

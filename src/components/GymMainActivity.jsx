@@ -189,7 +189,7 @@ const GymMainActivity = () => {
                                                 <div className="vrt-list-thumb col-md-4">
                                                     <div className="vrt-list-thumb-figure">
                                                         <Link
-                                                            to={`/listing-view?business_id=${business._id}`}
+                                                            to={`/gym-listing-view?business_id=${business._id}`}
                                                             className="d-block text-center m-auto"
                                                         >
                                                             <img
@@ -206,7 +206,7 @@ const GymMainActivity = () => {
                                                 <div className="vrt-list-content col-md-8">
                                                     <h4 className="mb-0 ft-bold">
                                                         <Link
-                                                            to={`/listing-view?business_id=${business._id}`}
+                                                            to={`/gym-listing-view?business_id=${business._id}`}
                                                             className="text-dark fs-md"
                                                         >
                                                             {business.business_name &&
@@ -284,6 +284,7 @@ const GymMainActivity = () => {
                                                 </div>
                                             </div>
                                         </div>
+                                        ++
                                     </div>
                                 </>
                             );

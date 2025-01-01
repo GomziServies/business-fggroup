@@ -57,7 +57,8 @@ const AddListing = () => {
     { platform: "Facebook", link: "Facebook.com" },
     { platform: "YouTube", link: "YouTube.com" },
   ]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedListingCategory, setSelectedListingCategory] = useState("");
+  const [selectedBusinessCategory, setSelectedBusinessCategory] = useState("");
   const [selectedFacilities, setSelectedFacilities] = useState("");
   const [selectedBusinessType, setSelectedBusinessType] = useState("");
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
@@ -402,7 +403,8 @@ const AddListing = () => {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
         description: formData.description,
-        business_category: [selectedCategory],
+        listing_category: [selectedListingCategory],
+        business_category: selectedBusinessCategory,
         business_logo: logoUrl,
         business_images: uploadedUrls.flat(),
         services: selectedFacilities.map((facilities) => facilities.value),
@@ -557,6 +559,43 @@ const AddListing = () => {
     }));
     setBusinessHours(allDaysTime);
   };
+
+  const categoryAmounts = {
+    Affordable: 30000,
+    Standard: 45000,
+    Premium: 90000,
+  };
+
+  useEffect(() => {
+    if (selectedBusinessCategory && categoryAmounts[selectedBusinessCategory]) {
+      setFormData((prev) => ({
+        ...prev,
+        paid_amount: categoryAmounts[selectedBusinessCategory].toString(),
+        discount_amount: "",
+        discount_percent: "",
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        paid_amount: "",
+        discount_amount: "",
+        discount_percent: "",
+      }));
+    }
+  }, [selectedBusinessCategory]);
+
+  // Effect to calculate discount percent based on discount amount
+  useEffect(() => {
+    const amount = parseFloat(formData.paid_amount);
+    const discountAmount = parseFloat(formData.discount_amount);
+    if (!isNaN(amount) && !isNaN(discountAmount)) {
+      const discountPercent = ((discountAmount / amount) * 100).toFixed(2);
+      setFormData((prev) => ({
+        ...prev,
+        discount_percent: discountPercent,
+      }));
+    }
+  }, [formData.discount_amount]);
 
   return (
     <div>
@@ -734,15 +773,17 @@ const AddListing = () => {
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                               <div className="form-group">
-                                <label className="mb-1">Categories</label>
+                                <label className="mb-1">
+                                  Listing Categories
+                                </label>
                                 <select
                                   className="form-control"
-                                  value={selectedCategory}
+                                  value={selectedListingCategory}
                                   onChange={(e) =>
-                                    setSelectedCategory(e.target.value)
+                                    setSelectedListingCategory(e.target.value)
                                   }
                                 >
-                                  <option>Select Category</option>
+                                  <option>Select Listing Category</option>
                                   <option selected value="Personal Trainer">
                                     Personal Trainer
                                   </option>
@@ -789,8 +830,7 @@ const AddListing = () => {
                                 />
                               </div>
                             </div>
-
-                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                               <div className="form-group">
                                 <label className="mb-1">Facilities</label>
                                 <Select
@@ -799,6 +839,80 @@ const AddListing = () => {
                                   value={selectedFacilities}
                                   onChange={handleSelectChange}
                                   placeholder="Select Facilities"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="col-xl-6 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">
+                                  Business Categories
+                                </label>
+                                <select
+                                  className="form-control"
+                                  value={selectedBusinessCategory}
+                                  onChange={(e) =>
+                                    setSelectedBusinessCategory(e.target.value)
+                                  }
+                                >
+                                  <option>Select Business Category</option>
+                                  <option selected value="Affordable">
+                                    Affordable
+                                  </option>
+                                  <option value="Standard">Standard</option>
+                                  <option value="Premium">Premium</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Amount</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Amount"
+                                  value={formData.paid_amount}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "paid_amount",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Discount Amount</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Discount Amount"
+                                  value={formData.discount_amount}
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "discount_amount",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                              <div className="form-group">
+                                <label className="mb-1">Discount Percent</label>
+                                <input
+                                  type="text"
+                                  className="form-control rounded"
+                                  placeholder="Enter Discount Percent"
+                                  value={formData.discount_percent}
+                                  disabled
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      "discount_percent",
+                                      e.target.value
+                                    )
+                                  }
                                 />
                               </div>
                             </div>

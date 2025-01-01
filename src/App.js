@@ -41,7 +41,7 @@ function App() {
         <Route path="/scalable-gym" element={<ScalableGym />} />
         <Route path="/member-engagement" element={<MemberEngagement />} />
         <Route path="/gym-listing" element={<GymListing />} />
-        <Route path="/view-gym-listing" element={<ViewGymListing />} />
+        <Route path="/gym-listing-view" element={<ViewGymListing />} />
       </Routes>
       <ScrollRestoration />
     </div>
