@@ -7,6 +7,7 @@ import WhatsappBtn from "../components/WhatsappBtn";
 import WhatsappBtnMain from "../components/WhatsappBtnMain";
 import GymMainActivity from "../components/GymMainActivity";
 import SimpleHeader from "../components/SimpleHeader";
+import SuccessStoryImages from "../components/SuccessStoryImages";
 
 const GymListing = () => {
     const [loading, setLoading] = useState(true);
@@ -81,6 +82,7 @@ const GymListing = () => {
                             </div>
                         </div>
                     </div>
+                    <SuccessStoryImages />
                     <section className="gray py-5">
                         <div className="container">
                             <div className="row">
@@ -109,42 +111,42 @@ const GymListing = () => {
                             <div className="row justify-content-center">
                                 <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-1.webp" className="img-fluid mx-auto" alt="" />
+                                        <img src="images/l-1.webp" className="img-fluid mx-auto" alt="fg group" width='70%' />
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-2.webp" className="img-fluid mx-auto" alt="" />
+                                        <img src="images/l-2.webp" className="img-fluid mx-auto" alt="fg group" width='70%' />
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-3.webp" className="img-fluid mx-auto" alt="" />
+                                        <img src="images/l-3.webp" className="img-fluid mx-auto" alt="fg group" width='70%' />
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-4.webp" className="img-fluid mx-auto" alt="" />
+                                        <img src="images/l-4.webp" className="img-fluid mx-auto" alt="fg group" width='70%' />
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-5.webp" className="img-fluid mx-auto" alt="" />
+                                        <img src="images/l-5.webp" className="img-fluid mx-auto" alt="fg group" width='70%' />
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-6.webp" className="img-fluid mx-auto" alt="" />
+                                        <img src="images/l-6.webp" className="img-fluid mx-auto" alt="fg group" width='70%' />
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-7.webp" className="img-fluid mx-auto" alt="" />
+                                        <img src="images/l-7.webp" className="img-fluid mx-auto" alt="fg group" width='70%' />
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div className="empl-thumb text-center px-3 py-4">
-                                        <img src="images/l-8.webp" className="img-fluid mx-auto" alt="" />
+                                        <img src="images/l-8.webp" className="img-fluid mx-auto" alt="fg group" width='70%' />
                                     </div>
                                 </div>
                             </div>
@@ -265,10 +267,10 @@ const GymListing = () => {
                                                     <p className="ft-medium">Trainers</p>
                                                 </div>
                                             </div>
-                                            <div className="btn-box clearfix mt-5">
-                                                <a href="index.html" className="download-btn play-store me-1 d-inline-flex"><img
+                                            <div className="btn-box clearfix text-start mt-5">
+                                                <a href="https://apps.apple.com/in/app/fg/id1661113769" className="download-btn play-store mx-1 d-inline-flex"><img
                                                     src="images/ios.webp" width="200" alt="" /></a>
-                                                <a href="index.html" className="download-btn play-store ms-2 mb-1 d-inline-flex"><img
+                                                <a href="https://play.google.com/store/apps/details?id=com.fwg_app&pli=1" className="download-btn play-store mx-1 mb-1 d-inline-flex"><img
                                                     src="images/and.webp" width="200" alt="" /></a>
                                             </div>
                                         </div>

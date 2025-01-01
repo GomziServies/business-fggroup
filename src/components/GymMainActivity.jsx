@@ -284,7 +284,6 @@ const GymMainActivity = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        ++
                                     </div>
                                 </>
                             );

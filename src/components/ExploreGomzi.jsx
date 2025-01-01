@@ -11,32 +11,32 @@ const ExploreGomzi = () => {
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         arrows: false,
         responsive: [
             {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-              }
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
             },
             {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-              }
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
             },
             {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
             }
-          ]
-      
+        ]
+
     };
     return (
         <>
@@ -70,7 +70,7 @@ const ExploreGomzi = () => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                "Join Gomzi" Button:* Click karein, basic details fill karein aur sirf 30 minutes mein registration complete karein.
+                                                    "Join Gomzi" Button:* Click karein, basic details fill karein aur sirf 30 minutes mein registration complete karein.
                                                 </p>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@ const ExploreGomzi = () => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                Har check-in par sirf *₹40, aur flat **29% service fee*—bilkul clear aur simple. GST alag se lagu hoga.
+                                                    Har check-in par sirf *₹40, aur flat **29% service fee*—bilkul clear aur simple. GST alag se lagu hoga.
                                                 </p>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@ const ExploreGomzi = () => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                Aapke *roz ke pending dues* automatically aapke bank account mein transfer ho jate hain—no extra effort!
+                                                    Aapke *roz ke pending dues* automatically aapke bank account mein transfer ho jate hain—no extra effort!
                                                 </p>
                                             </div>
                                         </div>
@@ -139,7 +139,7 @@ const ExploreGomzi = () => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                Aapke gym ka *professional photo shoot* kiya jata hai, jo naye clients ko attract karne mein madad karega (T&C apply).
+                                                    Aapke gym ka *professional photo shoot* kiya jata hai, jo naye clients ko attract karne mein madad karega (T&C apply).
                                                 </p>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@ const ExploreGomzi = () => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                *Dynamic pricing system* se aapka revenue barhane ke liye AI ka use hota hai, jo hamesha aapke profit ko maximize karega.
+                                                    *Dynamic pricing system* se aapka revenue barhane ke liye AI ka use hota hai, jo hamesha aapke profit ko maximize karega.
                                                 </p>
                                             </div>
                                         </div>
@@ -185,7 +185,7 @@ const ExploreGomzi = () => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                Apne gym clients ko Gomzi Nutrition supplements refer karke extra revenue earn karein. Har sale par aapko commission milega!
+                                                    Apne gym clients ko Gomzi Nutrition supplements refer karke extra revenue earn karein. Har sale par aapko commission milega!
                                                 </p>
                                             </div>
                                         </div>
@@ -208,7 +208,7 @@ const ExploreGomzi = () => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                Apne gym me FGIIT Academy ke fitness aur nutrition classes run karke commission earn karein. Knowledge share karein aur income bhi badhayein!
+                                                    Apne gym me FGIIT Academy ke fitness aur nutrition classes run karke commission earn karein. Knowledge share karein aur income bhi badhayein!
                                                 </p>
                                             </div>
                                         </div>
@@ -231,7 +231,7 @@ const ExploreGomzi = () => {
                                             </div>
                                             <div className="blg_desc">
                                                 <p>
-                                                Abhi join karein aur apne gym ke naye clients aur revenue mein boost dekhein!
+                                                    Abhi join karein aur apne gym ke naye clients aur revenue mein boost dekhein!
                                                 </p>
                                             </div>
                                         </div>
