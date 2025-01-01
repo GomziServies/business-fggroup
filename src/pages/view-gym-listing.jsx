@@ -1,50 +1,121 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from "react-helmet";
 import "../assets/css/style.css";
-import Header from "../components/Header";
 import WhatsappBtnMain from "../components/WhatsappBtnMain";
 import Slider from "react-slick";
 import Footer from "../components/Footer";
 import SimpleHeader from "../components/SimpleHeader";
 import { businessListingAxiosInstance } from "../js/api";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import StarIcon from "@mui/icons-material/Star";
+import validator from "validator";
 
 const ViewGymListing = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const business_id = searchParams.get("business_id");
+  const [businessData, setBusinessData] = useState([]);
+  // const [listNumber, setListNumber] = useState("");
+  // const [lightboxOpen, setLightboxOpen] = useState(false);
+  // const [selectedImage, setSelectedImage] = useState(null);
+  const [locationData, setLocationData] = useState([]);
+  const [contactData, setContactData] = useState([]);
+  // const [reviewData, setReviewData] = useState([]);
+  const [contacts, setContacts] = useState([]);
+  const [timings, setTimings] = useState([]);
+  const [amount, setAmount] = useState([]);
+  const [services, setServices] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [faqs, setFaqs] = useState([]);
+  const [businessImages, setBusinessImages] = useState([]);
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
+  const [userReviewsData, setUserReviewData] = useState([]);
+  // const [isFavorite, setIsFavorite] = useState(false);
+  // const [favoriteList, setFavoriteList] = useState([]);
+  // const [userData, setUserData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [allBusinessData, setAllBusinessData] = useState([]);
   const images = [
     "/images/revolutionizing-gyms-1.webp",
     "/images/revolutionizing-gyms-2.webp",
     "/images/revolutionizing-gyms-3.webp",
     "/images/revolutionizing-gyms-4.webp",
   ];
-    const [allBusinessData, setAllBusinessData] = useState([]);
 
-  const fetchAllBusinessData = async () => {
+  const fetchBusinessData = async () => {
     try {
+      setIsLoading(true);
       const requestData = {
-        filter: {
-          business_type: ["personal", "business"],
-        },
-        sort: {
-          business_name: "asc",
-          rating: "desc",
-        },
-        page: 1,
-        limit: 10,
+        listing_id: [business_id],
       };
 
       const response = await businessListingAxiosInstance.post(
         "/get-businesses",
         requestData
       );
-      const fetchedBusinessData = response.data.data;
-      setAllBusinessData(fetchedBusinessData);
+      const data = response.data.metadata;
+      const fetchedBusinessData = response.data.data[0];
+      const fetchedLocationData = fetchedBusinessData.locations[0];
+
+      const contacts = fetchedBusinessData.contacts || [];
+      setContacts(contacts);
+      const amount = fetchedBusinessData.amount || [];
+      setAmount(amount);
+      const timing = fetchedBusinessData.timings || [];
+      setTimings(timing);
+      const services = fetchedBusinessData.services || [];
+      setServices(services);
+      const tags = fetchedBusinessData.tags || [];
+      setTags(tags);
+      const faqs = fetchedBusinessData.faqs || [];
+      setFaqs(faqs);
+      const business_img = fetchedBusinessData.business_images || [];
+      setBusinessImages(business_img);
+
+      setBusinessData(fetchedBusinessData);
+      setLocationData(fetchedLocationData);
+      setContactData(fetchedLocationData.contact);
+      // setReviewData(fetchedBusinessData.review_stats);
+      // setListNumber(data.pagination.total);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.error("Error in Getting Business Data:", error);
     }
   };
 
+  const isValidWebsite = (website) => {
+    return validator.isURL(website, { require_protocol: true });
+  };
+
+  const slides = businessImages.map((image, index) => ({
+    src: "https://files.fggroup.in/" + image,
+    caption: `Image ${index + 1}`,
+  }));
+
+  const openLightbox = (index) => {
+    // setSelectedImage(index);
+    // setLightboxOpen(true);
+  };
+
+  const fetchReviewsData = async () => {
+    try {
+      const response = await businessListingAxiosInstance.get(
+        `/get-reviews?business_listing_id=${business_id}`
+      );
+      const fetchedReviewsData = response.data.data;
+      setUserReviewData(fetchedReviewsData);
+    } catch (error) {
+      console.error("Error in Getting Reviews Data:", error);
+    }
+  };
+
   useEffect(() => {
-    fetchAllBusinessData();
+    fetchBusinessData();
+    fetchReviewsData();
   }, []);
 
   const CustomPrevArrow = (props) => {
@@ -60,28 +131,13 @@ const ViewGymListing = () => {
     );
   };
 
-  const CustomNextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} custom-next`}
-        style={{ ...style }}
-        onClick={onClick}
-      >
-        &#8250;
-      </div>
-    );
-  };
-
   const settings = {
     infinite: true,
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    arrows: true,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
+    arrows: false,
     responsive: [
       {
         breakpoint: 600,
@@ -120,9 +176,19 @@ const ViewGymListing = () => {
         >
           <div className="slider-container">
             <Slider {...settings}>
-              {images.map((image, index) => (
-                <div className="item" key={index}>
-                  <img src={image} alt={`Slide ${index}`} />
+              {slides.map((slide, index) => (
+                <div
+                  key={index}
+                  onClick={() => openLightbox(index)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="">
+                    <img
+                      src={slide.src}
+                      alt={slide.caption}
+                      style={{ width: "100%" }}
+                    />
+                  </div>
                 </div>
               ))}
             </Slider>
@@ -132,33 +198,6 @@ const ViewGymListing = () => {
           <div className="container">
             <div className="row">
               <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-                <div className="bg-white rounded mb-4">
-                  <div className="jbd-01 px-4 py-4">
-                    <div className="jbd-details">
-                      <h5 className="ft-bold fs-lg text-start">
-                        About the Business
-                      </h5>
-
-                      <div className="d-block mt-3 text-start">
-                        <p>
-                          Neque porro quisquam est, qui dolorem ipsum quia dolor
-                          sit amet, consectetur, adipisci velit, sed quia non
-                          numquam eius modi tempora incidunt ut labore et dolore
-                          magnam aliquam quaerat voluptatem. Ut enim ad minima
-                          veniam, quis nostrum exercitationem ullam corporis
-                          suscipit laboriosam, nisi ut aliquid ex ea commodi
-                          consequatur
-                        </p>
-                        <p className="p-0 m-0 text-start">
-                          Temporibus autem quibusdam et aut officiis debitis aut
-                          rerum necessitatibus saepe eveniet ut et voluptates
-                          repudiandae sint et molestiae non recusandae. Itaque
-                          earum rerum hic tenetur
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <div className="bg-white rounded mb-4">
                   <div className="grouping-listings-single">
                     <div className="vrt-list-wrap">
@@ -178,7 +217,7 @@ const ViewGymListing = () => {
                               href="listing-search-v1.html"
                               className="text-dark fs-md"
                             >
-                              Incredible Pizza - San Antonio’s
+                              {businessData.business_name}
                               <span className="verified-badge">
                                 <i className="fas fa-check-circle"></i>
                               </span>
@@ -187,56 +226,54 @@ const ViewGymListing = () => {
                           <div className="Goodup-ft-first">
                             <div className="Goodup-rating">
                               <div className="Goodup-rates">
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
+                                {Array.from({
+                                  length:
+                                    businessData.review_stats &&
+                                    businessData.review_stats.average_rating,
+                                }).map((_, starIndex) => (
+                                  <StarIcon
+                                    key={starIndex}
+                                    sx={{
+                                      fontSize: "16px",
+                                      color: "#FFAE11",
+                                    }}
+                                  />
+                                ))}
+                                {Array.from({
+                                  length:
+                                    5 - businessData.review_stats &&
+                                    businessData.review_stats.average_rating,
+                                }).map((_, starIndex) => (
+                                  <StarIcon
+                                    key={starIndex}
+                                    sx={{ fontSize: "16px", color: "#000" }}
+                                  />
+                                ))}
                               </div>
                             </div>
                             <div className="Goodup-price-range">
                               <span className="small ft-medium">
-                                34 Reviews
+                                {(businessData.review_stats &&
+                                  businessData.review_stats.average_rating &&
+                                  businessData.review_stats &&
+                                  businessData.review_stats.average_rating.toFixed(
+                                    1
+                                  )) ||
+                                  "0"}{" "} Reviews
                               </span>
-                              <div className="d-inline ms-2">
-                                <span className="active">
-                                  <i className="fas fa-dollar-sign"></i>
-                                </span>
-                                <span className="active">
-                                  <i className="fas fa-dollar-sign"></i>
-                                </span>
-                                <span className="active">
-                                  <i className="fas fa-dollar-sign"></i>
-                                </span>
-                              </div>
                             </div>
                           </div>
-                          <div className="vrt-list-features mt-2 mb-2">
-                            <ul>
-                              <li>
-                                <a href="javascript:void(0);">Pizza</a>
-                              </li>
-                              <li>
-                                <a href="javascript:void(0);">Buffets</a>
-                              </li>
-                              <li>
-                                <a href="javascript:void(0);">Cafes</a>
-                              </li>
-                              <li>
-                                <a href="javascript:void(0);">Mexican</a>
-                              </li>
-                              <li>
-                                <a href="javascript:void(0);">Seafood</a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="vrt-list-sts">
-                            <p className="vrt-qgunke">
-                              <span className="ft-bold d14ixh">Closed</span>{" "}
-                              until 5:00 PM
-                            </p>
-                          </div>
-
+                          {tags.length > 0 && (
+                            <div className="vrt-list-features mt-2 mb-2">
+                              <ul>
+                                {tags.map((tags, index) => (
+                                  <li>
+                                    <a key={index} className="text-danger" href="javascript:void(0);">{tags}</a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                           <div className="vrt-list-desc">
                             <p className="vrt-qgunke">
                               Great service and great food. We asked for a
@@ -252,531 +289,214 @@ const ViewGymListing = () => {
                               </span>
                             </p>
                           </div>
-
-                          <div className="vrt-list-amenties">
+                        </div>
+                      </div>
+                      <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4 d-md-none d-block">
+                        <div className="coupon-details mt-3">
+                          <h5>Price &amp; Taxes</h5>
+                        </div>
+                        <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
+                          <div className="_adv_features">
                             <ul>
                               <li>
-                                <div className="vrt-amens no">
-                                  <span>Outdoor Dining</span>
-                                </div>
+                                Amount<span>₹ {businessData.amount?.paid_amount}</span>
                               </li>
                               <li>
-                                <div className="vrt-amens yes">
-                                  <span>Pets Allow</span>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="vrt-amens yes">
-                                  <span>Delivery</span>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="vrt-amens no">
-                                  <span>Parking</span>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="vrt-amens yes">
-                                  <span>Takeout</span>
-                                </div>
+                                Discount<span>- ₹ {businessData.amount?.discount_amount || '0'}</span>
                               </li>
                             </ul>
                           </div>
                         </div>
+                        <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
+                          <div className="Goodup-boo-space-foot mb-3">
+                            <span className="Goodup-boo-space-left">
+                              Total Payment
+                            </span>
+                            <h4 className="ft-bold theme-cl">₹ {businessData.amount?.paid_amount - businessData.amount?.discount_amount}</h4>
+                          </div>
+                        </div>
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <a
+                            href="#"
+                            className="btn text-light rounded full-width theme-bg"
+                          >
+                            Book It Now
+                          </a>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded d-md-none d-block">
+                        <div className="jbd-01 px-4 py-2">
+                          <div className="jbd-details mb-2">
+                            <div className="Goodup-lot-wrap d-block">
+                              <div className="row g-4">
+                                <div className="col-12">
+                                  <h5 className="ft-bold fs-lg">Live Site</h5>
+                                  <div className="list-map-capt">
+                                    <div className="lio-pact mt-3">
+                                      {contacts.map(
+                                        (contact, index) =>
+                                          contact.contact_type === "website" &&
+                                          isValidWebsite(contact.value) && (
+                                            <a
+                                              href={locationData.direction_link}
+                                              className="text-dark"
+                                              style={{ fontSize: '16px' }}
+                                            >
+                                              <span className="hkio-oilp ft-bold">
+                                                {contact.value}
+                                              </span>
+                                            </a>
+                                          )
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded d-md-none d-block">
+                        <div className="jbd-01 px-4 py-2">
+                          <div className="jbd-details mb-2">
+                            <div className="Goodup-lot-wrap d-block">
+                              <div className="row g-4">
+                                <div className="col-12">
+                                  <h5 className="ft-bold fs-lg">Location</h5>
+                                  <div className="list-map-capt">
+                                    <div className="lio-pact mt-3">
+                                      <span className="hkio-oilp ft-bold" style={{ fontSize: '16px' }}>
+                                        {contactData.value}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded d-md-none d-block">
+                        <div className="jbd-01 px-4 py-2">
+                          <div className="jbd-details mb-2">
+                            <div className="Goodup-lot-wrap d-block">
+                              <div className="row g-4">
+                                <div className="col-12">
+                                  <h5 className="ft-bold fs-lg">Location</h5>
+                                  <div className="list-map-capt">
+                                    <div className="lio-pact mt-3">
+                                      <a
+                                        href={locationData.direction_link}
+                                        className="text-dark"
+                                        style={{ fontSize: '16px' }}
+                                      >
+                                        <span className="hkio-oilp ft-bold">
+                                          {locationData.address_line_1},{" "}
+                                          {locationData.address_line_2},{" "}
+                                          {locationData.landmark}, {locationData.city},{" "}
+                                          {locationData.state} - {locationData.pin_code}
+                                        </span>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded d-md-none d-block">
+                        <div className="jbd-01 px-4 py-2">
+                          <div className="jbd-details mb-4">
+                            <div className="Goodup-lot-wrap d-block">
+                              <div className="row g-4">
+                                <div className="col-12">
+                                  <h5 className="ft-bold fs-lg">Drop a Mail</h5>
+                                  <div className="list-map-capt">
+                                    <div className="lio-pact mt-3">
+                                      {contacts.map(
+                                        (contact, index) =>
+                                          contact.contact_type === "email" && (
+                                            <span className="hkio-oilp ft-bold" style={{ fontSize: '16px' }}>
+                                              {contact.value}
+                                            </span>
+                                          )
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded mb-4">
+                  <div className="jbd-01 px-4 py-4">
+                    {businessData?.description && (
+                      <div className="jbd-details">
+                        <h5 className="ft-bold fs-lg text-start">
+                          About the Business
+                        </h5>
+                        <div className="d-block mt-3 text-start">
+                          <p>
+                            {businessData?.description}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="bg-white rounded mb-4">
                   <div className="jbd-01 px-4 py-4">
                     <div className="jbd-details">
                       <h5 className="ft-bold fs-lg">Amenities and More</h5>
-
-                      <div className="Goodup-all-features-list mt-3">
-                        <ul>
-                          <li>
-                            <div className="Goodup-afl-pace">
-                              <img
-                                src="/images/verify.svg"
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <span>AC</span>
-                            </div>
-                          </li>
-                          <li>
-                            <div className="Goodup-afl-pace">
-                              <img
-                                src="/images/verify.svg"
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <span>Free Wi-Fi</span>
-                            </div>
-                          </li>
-                          <li>
-                            <div className="Goodup-afl-pace">
-                              <img
-                                src="/images/verify.svg"
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <span>TV</span>
-                            </div>
-                          </li>
-                          <li>
-                            <div className="Goodup-afl-pace">
-                              <img
-                                src="/images/verify.svg"
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <span>Geyser</span>
-                            </div>
-                          </li>
-                          <li>
-                            <div className="Goodup-afl-pace">
-                              <img
-                                src="/images/verify.svg"
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <span>Power Backup</span>
-                            </div>
-                          </li>
-                          <li>
-                            <div className="Goodup-afl-pace">
-                              <img
-                                src="/images/verify.svg"
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <span>Elevator</span>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
+                      {services.length > 0 && (
+                        <div className="Goodup-all-features-list mt-3">
+                          <ul>
+                            {services.map((services, index) => (
+                              <li>
+                                <div className="Goodup-afl-pace">
+                                  <img
+                                    src="/images/verify.svg"
+                                    className="img-fluid"
+                                    alt=""
+                                  />
+                                  <span>{services}</span>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="bg-white rounded mb-4">
                   <div className="jbd-01 px-4 py-4">
                     <div className="jbd-details mb-4">
-                      <h5 className="ft-bold fs-lg">Recommended Reviews</h5>
-                      <div className="reviews-comments-wrap">
-                        <div className="reviews-comments-item">
-                          <div className="review-comments-avatar">
-                            <img
-                              src="/images/video-review-2.webp"
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </div>
-                          <div className="reviews-comments-item-text">
-                            <h4>
-                              <a href="#">Kayla E. Claxton</a>
-                              <span className="reviews-comments-item-date">
-                                <i className="ti-calendar theme-cl me-1"></i>27
-                                Oct 2019
-                              </span>
-                            </h4>
-                            <span className="agd-location">
-                              <i className="lni lni-map-marker me-1"></i>San
-                              Francisco, USA
-                            </span>
-                            <div className="listing-rating high">
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                            </div>
-                            <div className="clearfix"></div>
-                            <p>
-                              " Duis aute irure dolor in reprehenderit in
-                              voluptate velit esse cillum dolore eu fugiat nulla
-                              pariatur. Excepteur sint occaecat cupidatat non
-                              proident. "
-                            </p>
-                            <div className="pull-left reviews-reaction">
-                              <a href="#" className="comment-like active">
-                                <i className="ti-thumb-up"></i> 12
-                              </a>
-                              <a href="#" className="comment-dislike active">
-                                <i className="ti-thumb-down"></i> 1
-                              </a>
-                              <a href="#" className="comment-love active">
-                                <i className="ti-heart"></i> 07
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="reviews-comments-item">
-                          <div className="review-comments-avatar">
-                            <img
-                              src="/images/video-review-3.webp"
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </div>
-                          <div className="reviews-comments-item-text">
-                            <h4>
-                              <a href="#">Amy M. Taylor</a>
-                              <span className="reviews-comments-item-date">
-                                <i className="ti-calendar theme-cl me-1"></i>2
-                                Nov May 2019
-                              </span>
-                            </h4>
-                            <span className="agd-location">
-                              <i className="lni lni-map-marker me-1"></i>
-                              Liverpool, London UK
-                            </span>
-                            <div className="listing-rating mid">
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star"></i>
-                            </div>
-                            <div className="clearfix"></div>
-                            <p>
-                              " Duis aute irure dolor in reprehenderit in
-                              voluptate velit esse cillum dolore eu fugiat nulla
-                              pariatur. Excepteur sint occaecat cupidatat non
-                              proident. "
-                            </p>
-                            <div className="pull-left reviews-reaction">
-                              <a href="#" className="comment-like active">
-                                <i className="ti-thumb-up"></i> 12
-                              </a>
-                              <a href="#" className="comment-dislike active">
-                                <i className="ti-thumb-down"></i> 1
-                              </a>
-                              <a href="#" className="comment-love active">
-                                <i className="ti-heart"></i> 07
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="reviews-comments-item">
-                          <div className="review-comments-avatar">
-                            <img
-                              src="/images/video-review-2.webp"
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </div>
-                          <div className="reviews-comments-item-text">
-                            <h4>
-                              <a href="#">Susan C. Daggett</a>
-                              <span className="reviews-comments-item-date">
-                                <i className="ti-calendar theme-cl me-1"></i>10
-                                Nov 2019
-                              </span>
-                            </h4>
-                            <span className="agd-location">
-                              <i className="lni lni-map-marker me-1"></i>Denver,
-                              United State
-                            </span>
-                            <div className="listing-rating good">
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star active"></i>
-                              <i className="fas fa-star"></i>
-                            </div>
-                            <div className="clearfix"></div>
-                            <p>
-                              " Duis aute irure dolor in reprehenderit in
-                              voluptate velit esse cillum dolore eu fugiat nulla
-                              pariatur. Excepteur sint occaecat cupidatat non
-                              proident. "
-                            </p>
-                            <div className="pull-left reviews-reaction">
-                              <a href="#" className="comment-like active">
-                                <i className="ti-thumb-up"></i> 12
-                              </a>
-                              <a href="#" className="comment-dislike active">
-                                <i className="ti-thumb-down"></i> 1
-                              </a>
-                              <a href="#" className="comment-love active">
-                                <i className="ti-heart"></i> 07
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-
-                        <ul className="pagination">
-                          <li className="page-item">
-                            <a
-                              className="page-link"
-                              href="#"
-                              aria-label="Previous"
-                            >
-                              <span className="fas fa-arrow-circle-right"></span>
-                              <span className="sr-only">Previous</span>
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              1
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              2
-                            </a>
-                          </li>
-                          <li className="page-item active">
-                            <a className="page-link" href="#">
-                              3
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              ...
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              18
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Next">
-                              <span className="fas fa-arrow-circle-right"></span>
-                              <span className="sr-only">Next</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-block mb-2">
-                  <div className="jbd-01 py-2">
-                    <div className="jbd-details">
-                      <h5 className="ft-bold fs-lg">
-                        Frequently Asked Questions
-                      </h5>
-
-                      <div className="d-block mt-3">
-                        <div id="accordion2" className="accordion">
-                          <div className="card">
-                            <div className="card-header" id="h7">
-                              <h5 className="mb-0">
-                                <button
-                                  className="btn btn-link"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#ord7"
-                                  aria-expanded="true"
-                                  aria-controls="ord7"
-                                >
-                                  Can I get GoodUP listing for free?
-                                </button>
-                              </h5>
-                            </div>
-
-                            <div
-                              id="ord7"
-                              className="collapse show"
-                              aria-labelledby="h7"
-                              data-parent="#accordion2"
-                            >
-                              <div className="card-body">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est laborum.
-                              </div>
-                            </div>
-                          </div>
-                          <div className="card">
-                            <div className="card-header" id="h8">
-                              <h5 className="mb-0">
-                                <button
-                                  className="btn btn-link collapsed"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#ord8"
-                                  aria-expanded="false"
-                                  aria-controls="ord8"
-                                >
-                                  How to Permanently Delete Files From Windows?
-                                </button>
-                              </h5>
-                            </div>
-                            <div
-                              id="ord8"
-                              className="collapse"
-                              aria-labelledby="h8"
-                              data-parent="#accordion2"
-                            >
-                              <div className="card-body">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est laborum.
-                              </div>
-                            </div>
-                          </div>
-                          <div className="card">
-                            <div className="card-header" id="h9">
-                              <h5 className="mb-0">
-                                <button
-                                  className="btn btn-link collapsed"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#ord9"
-                                  aria-expanded="false"
-                                  aria-controls="ord9"
-                                >
-                                  Can I get GoodUP listing for free?
-                                </button>
-                              </h5>
-                            </div>
-                            <div
-                              id="ord9"
-                              className="collapse"
-                              aria-labelledby="h9"
-                              data-parent="#accordion2"
-                            >
-                              <div className="card-body">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est laborum.
-                              </div>
-                            </div>
-                          </div>
-                          <div className="card">
-                            <div className="card-header" id="h4">
-                              <h5 className="mb-0">
-                                <button
-                                  className="btn btn-link collapsed"
-                                  data-bs-toggle="collapse"
-                                  data-bs-target="#ord4"
-                                  aria-expanded="false"
-                                  aria-controls="ord4"
-                                >
-                                  For GoodUp which lisence is better for
-                                  business purpose?
-                                </button>
-                              </h5>
-                            </div>
-
-                            <div
-                              id="ord4"
-                              className="collapse"
-                              aria-labelledby="h4"
-                              data-parent="#accordion2"
-                            >
-                              <div className="card-body">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est laborum.
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white rounded mb-4">
-                  <div className="jbd-01 px-4 py-4">
-                    <div className="jbd-details mb-4">
-                      <h5 className="ft-bold fs-lg">Location &amp; Hours</h5>
                       <div className="Goodup-lot-wrap d-block">
                         <div className="row g-4">
-                          <div className="col-xl-6 col-lg-6 col-md-12">
-                            <div className="list-map-lot">
-                              <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.0148908503734!2d80.97350361499701!3d26.871267983145383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd9a9f6d1727%3A0xb87eabf63f7e4cee!2sCafe%20Repertwahr!5e0!3m2!1sen!2sin!4v1649059491407!5m2!1sen!2sin"
-                                width="100%"
-                                height="250"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                              ></iframe>
-                            </div>
-                            <div className="list-map-capt">
-                              <div className="lio-pact">
-                                <span className="ft-medium text-info">
-                                  2919 N Flores St
-                                </span>
-                              </div>
-                              <div className="lio-pact">
-                                <span className="hkio-oilp ft-bold">
-                                  San Antonio, TX 78212
-                                </span>
-                              </div>
-                              <div className="lio-pact">
-                                <p className="ft-medium">Alta Vista</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-xl-6 col-lg-6 col-md-12">
+                          <div className="col-12">
+                            <h5 className="ft-bold fs-lg">Working Hours</h5>
                             <table className="table table-borderless">
                               <tbody>
-                                <tr>
-                                  <th scope="row">Mon</th>
-                                  <td>5:00 PM - 8:30 PM</td>
-                                  <td className="text-success">Open now</td>
-                                </tr>
-                                <tr>
-                                  <td>Tue</td>
-                                  <td>5:00 PM - 8:30 PM</td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td>Wed</td>
-                                  <td>5:00 PM - 8:30 PM</td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td>Thu</td>
-                                  <td>5:00 PM - 8:30 PM</td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td>Fri</td>
-                                  <td>5:00 PM - 6:30 PM</td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td>Sat</td>
-                                  <td>Closed</td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td>Sun</td>
-                                  <td>Closed</td>
-                                  <td></td>
-                                </tr>
+                                {timings.map((day, index) => (
+                                  <tr>
+                                    <th scope="row">{day.title}</th>
+                                    <td>
+                                      {day.timings.length > 0
+                                        ? day.timings[0].from_time !==
+                                          "00:00" &&
+                                          day.timings[0].to_time !== "00:00"
+                                          ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
+                                          : "Closed"
+                                        : "Closed"}
+                                    </td>
+                                  </tr>
+                                ))}
                               </tbody>
                             </table>
                           </div>
@@ -785,41 +505,124 @@ const ViewGymListing = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 price-section">
-                <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4">
-                  <button className="btn btn-md rounded theme-bg text-light ft-medium fs-sm full-width">
-                    Login now to get upto 15% lower prices
-                  </button>
-                  <div className="price-details mt-3 text-start">
-                    <ul>
-                      <li>
-                        ₹1016 <span className="original-price">₹3969</span>{" "}
-                        <span className="discount">74% off</span>
-                      </li>
-                      <li>+ taxes & fees: ₹221</li>
-                    </ul>
+                <div className="bg-white rounded mb-4">
+                  <div className="jbd-01 px-4 py-4">
+                    <div className="jbd-details mb-4">
+                      <h5 className="ft-bold fs-lg">Recommended Reviews</h5>
+                      <div className="reviews-comments-wrap w-100">
+                        {userReviewsData.map((review, index) => (
+                          <div className="reviews-comments-item">
+                            <div className="review-comments-avatar">
+                              <img
+                                src={`https://files.fggroup.in/${review.createdBy_user.profile_image}`}
+                                className="img-fluid"
+                                alt=""
+                              />
+                            </div>
+                            <div className="reviews-comments-item-text">
+                              <h4>
+                                <a href="#">
+                                  {review.createdBy_user.user_name}
+                                </a>
+                                <span className="reviews-comments-item-date">
+                                  <i className="ti-calendar theme-cl me-1" />
+                                  {new Date(
+                                    review.createdAt
+                                  ).toLocaleDateString()}
+                                </span>
+                              </h4>
+                              {/* <span className="agd-location">
+                                  {review.helpful_count}{" "}
+                                  {review.helpful_count === 1
+                                    ? "Review"
+                                    : "Reviews"}
+                                </span> */}
+                              <div className="listing-rating high">
+                                {Array.from({ length: review.rating }).map(
+                                  (_, starIndex) => (
+                                    <StarIcon
+                                      key={starIndex}
+                                      sx={{
+                                        fontSize: "16px",
+                                        color: "#FFAE11",
+                                      }}
+                                    />
+                                  )
+                                )}
+                                {Array.from({
+                                  length: 5 - review.rating,
+                                }).map((_, starIndex) => (
+                                  <StarIcon
+                                    key={starIndex}
+                                    sx={{ fontSize: "16px", color: "#000" }}
+                                  />
+                                ))}
+                              </div>
+                              <div className="clearfix" />
+                              <p>{review.comment}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div className="d-block mb-2">
+                  {faqs.length > 0 && (
+                    <div className="jbd-01 py-2">
+                      <div className="jbd-details">
+                        <h5 className="ft-bold fs-lg">
+                          Frequently Asked Questions
+                        </h5>
+                        <div className="d-block mt-3">
+                          {faqs.map((faq, index) => (
+                            <div id="accordion2" className="accordion">
+                              <div className="card">
+                                <div className="card-header" id={`heading-${index}`}>
+                                  <h5 className="mb-0">
+                                    <button
+                                      className="btn btn-link"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#ord7"
+                                      aria-expanded="true"
+                                      aria-controls="ord7"
+                                    >
+                                      {index + 1}. {faq.question}
+                                    </button>
+                                  </h5>
+                                </div>
+                                <div
+                                  id="ord7"
+                                  className="collapse show"
+                                  aria-labelledby="h7"
+                                  data-parent="#accordion2"
+                                >
+                                  <div className="card-body">
+                                    {faq.answer}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 price-section d-md-block d-none">
+                <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4">
                   <div className="coupon-details mt-3">
-                    <h5>Classic</h5>
-                    <p className="text-green">WELCOME75 coupon applied</p>
+                    <h5>Price &amp; Taxes</h5>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
-                    <h6 className="ft-medium">Price &amp; Taxes</h6>
                     <div className="_adv_features">
                       <ul>
                         <li>
-                          I Night<span>$170</span>
+                          Amount<span>₹ {businessData.amount?.paid_amount}</span>
                         </li>
                         <li>
-                          Discount 25$<span>-$210</span>
-                        </li>
-                        <li>
-                          Service Fee<span>$13</span>
-                        </li>
-                        <li>
-                          Breakfast Per Adult<span>$24</span>
+                          Discount<span>- ₹ {businessData.amount?.discount_amount || '0'}</span>
                         </li>
                       </ul>
                     </div>
@@ -829,7 +632,7 @@ const ViewGymListing = () => {
                       <span className="Goodup-boo-space-left">
                         Total Payment
                       </span>
-                      <h4 className="ft-bold theme-cl">$218</h4>
+                      <h4 className="ft-bold theme-cl">₹ {businessData.amount?.paid_amount - businessData.amount?.discount_amount}</h4>
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12">
@@ -840,10 +643,111 @@ const ViewGymListing = () => {
                       Book It Now
                     </a>
                   </div>
-                  <div className="cancellation-policy mt-3">
-                    <h5>Cancellation Policy</h5>
-                    <p>Follow safety measures advised at the hotel</p>
-                    <p>By proceeding, you agree to our Guest Policies.</p>
+                </div>
+                <div className="bg-white rounded mb-4">
+                  <div className="jbd-01 px-4 py-4">
+                    <div className="jbd-details mb-4">
+                      <div className="Goodup-lot-wrap d-block">
+                        <div className="row g-4">
+                          <div className="col-12">
+                            <h5 className="ft-bold fs-lg">Live Site</h5>
+                            <div className="list-map-capt">
+                              <div className="lio-pact mt-3">
+                                {contacts.map(
+                                  (contact, index) =>
+                                    contact.contact_type === "website" &&
+                                    isValidWebsite(contact.value) && (
+                                      <a
+                                        href={locationData.direction_link}
+                                        className="text-dark"
+                                        style={{ fontSize: '16px' }}
+                                      >
+                                        <span className="hkio-oilp ft-bold">
+                                          {contact.value}
+                                        </span>
+                                      </a>
+                                    )
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded mb-4">
+                  <div className="jbd-01 px-4 py-4">
+                    <div className="jbd-details mb-4">
+                      <div className="Goodup-lot-wrap d-block">
+                        <div className="row g-4">
+                          <div className="col-12">
+                            <h5 className="ft-bold fs-lg">Location</h5>
+                            <div className="list-map-capt">
+                              <div className="lio-pact mt-3">
+                                <span className="hkio-oilp ft-bold" style={{ fontSize: '16px' }}>
+                                  {contactData.value}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded mb-4">
+                  <div className="jbd-01 px-4 py-4">
+                    <div className="jbd-details mb-4">
+                      <div className="Goodup-lot-wrap d-block">
+                        <div className="row g-4">
+                          <div className="col-12">
+                            <h5 className="ft-bold fs-lg">Location</h5>
+                            <div className="list-map-capt">
+                              <div className="lio-pact mt-3">
+                                <a
+                                  href={locationData.direction_link}
+                                  className="text-dark"
+                                  style={{ fontSize: '16px' }}
+                                >
+                                  <span className="hkio-oilp ft-bold">
+                                    {locationData.address_line_1},{" "}
+                                    {locationData.address_line_2},{" "}
+                                    {locationData.landmark}, {locationData.city},{" "}
+                                    {locationData.state} - {locationData.pin_code}
+                                  </span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded mb-4">
+                  <div className="jbd-01 px-4 py-4">
+                    <div className="jbd-details mb-4">
+                      <div className="Goodup-lot-wrap d-block">
+                        <div className="row g-4">
+                          <div className="col-12">
+                            <h5 className="ft-bold fs-lg">Drop a Mail</h5>
+                            <div className="list-map-capt">
+                              <div className="lio-pact mt-3">
+                                {contacts.map(
+                                  (contact, index) =>
+                                    contact.contact_type === "email" && (
+                                      <span className="hkio-oilp ft-bold" style={{ fontSize: '16px' }}>
+                                        {contact.value}
+                                      </span>
+                                    )
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
