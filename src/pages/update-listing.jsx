@@ -560,14 +560,14 @@ const UpdateListing = () => {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
         description: formData.description,
-        listing_category: selectedListingCategory.length > 0 ? selectedListingCategory : [selectedListingCategory],
-        business_category: selectedBusinessCategory,
         services: selectedFacilities.map((facilities) => facilities.value),
         tags: formData.tags || [],
         social_media: socialMediaLinks.map((link) => ({
           social_media_type: link.social_media_type,
           link: link.link,
         })),
+        listing_category: selectedListingCategory.length > 0 ? selectedListingCategory : [selectedListingCategory],
+        business_category: selectedBusinessCategory.length > 0 ? selectedBusinessCategory : [selectedBusinessCategory],
         amount: {
           paid_amount: formData.paid_amount,
           discount_amount: formData.discount_amount,

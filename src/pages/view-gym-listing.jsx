@@ -6,6 +6,8 @@ import WhatsappBtnMain from "../components/WhatsappBtnMain";
 import Slider from "react-slick";
 import Footer from "../components/Footer";
 import SimpleHeader from "../components/SimpleHeader";
+import { businessListingAxiosInstance } from "../js/api";
+import { useEffect, useState } from "react";
 
 const ViewGymListing = () => {
   const images = [
@@ -14,6 +16,36 @@ const ViewGymListing = () => {
     "/images/revolutionizing-gyms-3.webp",
     "/images/revolutionizing-gyms-4.webp",
   ];
+    const [allBusinessData, setAllBusinessData] = useState([]);
+
+  const fetchAllBusinessData = async () => {
+    try {
+      const requestData = {
+        filter: {
+          business_type: ["personal", "business"],
+        },
+        sort: {
+          business_name: "asc",
+          rating: "desc",
+        },
+        page: 1,
+        limit: 10,
+      };
+
+      const response = await businessListingAxiosInstance.post(
+        "/get-businesses",
+        requestData
+      );
+      const fetchedBusinessData = response.data.data;
+      setAllBusinessData(fetchedBusinessData);
+    } catch (error) {
+      console.error("Error in Getting Business Data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllBusinessData();
+  }, []);
 
   const CustomPrevArrow = (props) => {
     const { className, style, onClick } = props;
@@ -794,7 +826,9 @@ const ViewGymListing = () => {
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
                     <div className="Goodup-boo-space-foot mb-3">
-                      <span className="Goodup-boo-space-left">Total Payment</span>
+                      <span className="Goodup-boo-space-left">
+                        Total Payment
+                      </span>
                       <h4 className="ft-bold theme-cl">$218</h4>
                     </div>
                   </div>

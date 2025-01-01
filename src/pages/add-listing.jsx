@@ -403,8 +403,6 @@ const AddListing = () => {
         business_type: selectedBusinessType,
         business_name: formData.businessName,
         description: formData.description,
-        listing_category: [selectedListingCategory],
-        business_category: selectedBusinessCategory,
         business_logo: logoUrl,
         business_images: uploadedUrls.flat(),
         services: selectedFacilities.map((facilities) => facilities.value),
@@ -413,6 +411,12 @@ const AddListing = () => {
           social_media_type: link.platform.toLowerCase(),
           link: link.link,
         })),
+        listing_category: selectedListingCategory.length > 0 ? selectedListingCategory : [selectedListingCategory],
+        business_category: selectedBusinessCategory.length > 0 ? selectedBusinessCategory : [selectedBusinessCategory],
+        amount: {
+          paid_amount: formData.paid_amount,
+          discount_amount: formData.discount_amount,
+        },
         locations: [
           {
             location_name: formData.branch,
