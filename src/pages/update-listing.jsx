@@ -566,8 +566,14 @@ const UpdateListing = () => {
           social_media_type: link.social_media_type,
           link: link.link,
         })),
-        listing_category: selectedListingCategory.length > 0 ? selectedListingCategory : [selectedListingCategory],
-        business_category: selectedBusinessCategory.length > 0 ? selectedBusinessCategory : [selectedBusinessCategory],
+        listing_category:
+          selectedListingCategory.length > 0
+            ? selectedListingCategory
+            : [selectedListingCategory],
+        business_category:
+          selectedBusinessCategory.length > 0
+            ? selectedBusinessCategory
+            : [selectedBusinessCategory],
         amount: {
           paid_amount: formData.paid_amount,
           discount_amount: formData.discount_amount,
@@ -819,7 +825,7 @@ const UpdateListing = () => {
         </title>
         <meta
           name="description"
-          content="Keep your business details up-to-date in our directory. Update your listing easily to maintain accuracy and attract the right audience today!"
+          content="Update your business details to maintain accurate information and improve visibility. Ensure your listing reflects the latest services and offerings!"
         />
         <link
           rel="shortcut icon"

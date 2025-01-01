@@ -19,18 +19,6 @@ const AllGymListing = () => {
     }, 1000);
   }, []);
 
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const [videoUrl, setVideoUrl] = useState("");
-
-  const openVideoModal = (url) => {
-    setIsVideoOpen(true);
-    setVideoUrl(url);
-  };
-
-  const closeVideoModal = () => {
-    setIsVideoOpen(false);
-    setVideoUrl("");
-  };
   const [businessData, setBusinessData] = useState([]);
 
   const fetchBusinessData = async () => {
@@ -62,31 +50,16 @@ const AllGymListing = () => {
     fetchBusinessData();
   }, []);
 
-  const handleCall = (number) => {
-    window.location.href = `tel:${number}`;
-  };
-
-  const handleChat = (number) => {
-    const whatsappNumber = number;
-    if (whatsappNumber) {
-      const message = encodeURIComponent("I want to know about your services.");
-      window.location.href = `https://wa.me/${whatsappNumber}?text=${message}`;
-    }
-  };
-
-  const handleBusinessClick = (id) => {
-    window.location.href = `/list/company-view?business_id=${id}`;
-  };
   return (
     <div>
       <Helmet>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Gym Listing</title>
+        <title>Explore All Gym Listings - Find Fitness Centers Near You</title>
         <meta
           name="description"
-          content="Discover top business listings and services. Add your business, connect with customers, and explore opportunities to grow your brand on our platform!"
+          content="Browse our comprehensive gym listings to find fitness centers, gyms, and wellness facilities near you. Connect with the perfect gym for your fitness goals!"
         />
         <link
           rel="shortcut icon"
@@ -104,10 +77,7 @@ const AllGymListing = () => {
         <div id="main-wrapper">
           <SimpleHeader />
           <div className="clearfix" />
-          <section
-            className="container-fluid p-0 text-start d-none d-md-block"
-            style={{ marginTop: "70px" }}
-          >
+          <section className="container-fluid p-0 text-start d-none d-md-block section-margin">
             <img
               src="images/main-page-banner.webp"
               className="img"
@@ -115,10 +85,7 @@ const AllGymListing = () => {
               width="100%"
             />
           </section>
-          <section
-            className="container-fluid p-0 text-start d-block d-md-none"
-            style={{ marginTop: "70px" }}
-          >
+          <section className="container-fluid p-0 text-start d-block d-md-none section-margin">
             <img
               src="images/main-page-banner-mobile.webp"
               className="img"

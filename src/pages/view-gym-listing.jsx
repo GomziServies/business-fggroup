@@ -152,10 +152,10 @@ const ViewGymListing = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Gym Listing</title>
+        <title>View Gym Listings - Find Top Fitness Centers Near You</title>
         <meta
           name="description"
-          content="Discover top business listings and services. Add your business, connect with customers, and explore opportunities to grow your brand on our platform!"
+          content="Explore detailed gym listings to discover fitness centers, programs, and amenities near you. Find the perfect gym to meet your fitness goals today!"
         />
         <link
           rel="shortcut icon"

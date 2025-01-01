@@ -20,11 +20,11 @@ const StrategiesforModernGyms = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          Free Business Listings - Promote Your Brand Without Any Cost
+        Strategies for Modern Gyms - Enhance Member Experience & Growth
         </title>
         <meta
           name="description"
-          content="List your business for free on our platform. Boost your visibility, connect with new customers, and grow your brand with no cost or hassle. Start now!"
+          content="Explore effective strategies to transform modern gyms. Learn how to improve member engagement, increase retention, and grow your fitness business with innovation."
         />
         <link
           rel="shortcut icon"
@@ -42,7 +42,7 @@ const StrategiesforModernGyms = () => {
           >
             <div className="container-fluid">
               <div className="describe mt-5">
-                <h1 style={{ color: "#333" }} className="text-center mb-5">
+                <h1 className="text-center mb-5">
                   <span className="m-0 text-orange-color">
                     {" "}
                     Top Revenue-Boosting{" "}

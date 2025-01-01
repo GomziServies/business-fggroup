@@ -10484,8 +10484,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .view-gym-listing .nav-btn:hover {
-  transform: translateY(-50%) scale(1.1); /* Scale up slightly */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Deeper shadow on hover */
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
 .view-gym-listing .custom-prev {
@@ -10497,14 +10497,13 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .view-gym-listing .custom-prev::after {
-  content: '\276E'; /* Left arrow */
+  content: '\276E';
 }
 
 .view-gym-listing .custom-next::after {
-  content: '\276F'; /* Right arrow */
+  content: '\276F';
 }
 
-/* General Styling */
 .price-section .jb-apply-form {
   background-color: #ffffff;
   border-radius: 8px;
@@ -10583,7 +10582,6 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   color: green !important;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .price-section .jb-apply-form {
     padding: 15px;
@@ -10599,4 +10597,14 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
   .price-section .offers-details p {
     font-size: 13px;
   }
+}
+.section-margin{
+  margin-top: 70px;
+}
+.section-margin-blog{
+  margin-top: 100px;
+  margin-bottom: 70px;
+}
+.border-radius-ten{
+  border-radius: 10px;
 }

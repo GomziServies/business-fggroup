@@ -187,8 +187,11 @@ const ListingList = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Comprehensive Listing Directory - Add Your Business Today</title>
-        <meta name="description" content="Explore our detailed listing directory or add your own business. Connect with a larger audience and increase your visibility with our easy-to-use platform!" />
+        <title>Business Listing Directory - Browse or Add Your Listing Today</title>
+        <meta
+          name="description"
+          content="Explore our business listing directory or add your own. Connect with customers, boost visibility, and showcase your brand with ease!"
+        />
         <link
           rel="shortcut icon"
           type="image/x-icon"
@@ -202,10 +205,9 @@ const ListingList = () => {
           <Header />
           <div className="clearfix" />
           <section
-            className="bg-cover py-5 position-relative"
+            className="bg-cover py-5 position-relative section-margin"
             style={{
               background: "red url(images/cover.jpg) no-repeat",
-              marginTop: "70px",
             }}
             data-overlay={3}
           >
@@ -296,7 +298,9 @@ const ListingList = () => {
               <div className="dashboard-tlbar d-block mb-md-5 mb-3">
                 <div className="row">
                   <div className="colxl-12 col-lg-12 col-md-12">
-                    <h1 className="ft-medium fs-1 listing-title">Manage Listings</h1>
+                    <h1 className="ft-medium fs-1 listing-title">
+                      Manage Listings
+                    </h1>
                   </div>
                 </div>
               </div>
@@ -322,7 +326,7 @@ const ListingList = () => {
                                     <div className="Goodup-grid-upper">
                                       <div className="Goodup-pos ab-left">
                                         {business.approval_status.status ==
-                                          "APPROVED" ? (
+                                        "APPROVED" ? (
                                           <div className="Goodup-status open me-2">
                                             APPROVED
                                           </div>
@@ -439,7 +443,10 @@ const ListingList = () => {
                                   className="list-img"
                                 />
                                 <h4>No Listing Data Found</h4>
-                                <Link to="/add-listing" class="add-list-btn mt-2">
+                                <Link
+                                  to="/add-listing"
+                                  class="add-list-btn mt-2"
+                                >
                                   <i class="fas fa-plus me-2"></i>Add Listing
                                 </Link>
                               </div>

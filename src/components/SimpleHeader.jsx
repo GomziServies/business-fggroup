@@ -121,14 +121,14 @@ function SimpleHeader() {
     <>
       <div className="container-fluid main p-0 m-0">
         <div className="d-lg-block d-none log">
-          <Link to="/">
+          <Link to="/gym-listing">
             <div>
               <img src="images/logo.png" width="80%" alt="Fg Group" />
             </div>
           </Link>
         </div>
         <div className="d-lg-none d-sm-block t0 log1">
-          <Link to="/">
+          <Link to="/gym-listing">
             <div>
               <img src="images/logo.png" width="100%" alt="Fg Group" />
             </div>
@@ -137,7 +137,7 @@ function SimpleHeader() {
         <div className="lang">
           <ul>
             <li>
-              <Link to="/">
+              <Link to="/gym-listing">
                 <p className="m-0">Home</p>
               </Link>
             </li>
@@ -159,7 +159,7 @@ function SimpleHeader() {
           <span className="closebtn" onClick={sideclose}>
             ×
           </span>
-          <Link to="/" style={{ marginTop: 50 }}>
+          <Link to="/gym-listing" style={{ marginTop: 50 }}>
             <img
               className="lazy mx-auto"
               src="images/logo.png"
@@ -167,7 +167,7 @@ function SimpleHeader() {
               alt="Fg Group"
             />
           </Link>
-          <Link to="/">Home</Link>
+          <Link to="/gym-listing">Home</Link>
           <Link to="/all-gym-listing">Listing</Link>
           {/* {isLogin ? <Link to="/profile">Profile</Link> : ""} */}
           {/* <div className="d-flex justify-content-center mt-3">

@@ -608,12 +608,11 @@ const AddListing = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          Add Your Business Listing - Promote Your Brand &amp; Reach More
-          Customers
+        Add Your Business Listing - Get Featured on Our Platform
         </title>
         <meta
           name="description"
-          content="Add your business to our listing page and boost visibility. Reach new customers, enhance brand presence, and grow your business with our easy listing process!"
+          content="Add your business to our platform and boost visibility. Showcase your services, attract customers, and grow your brand with our easy listing process!"
         />
         <link
           rel="shortcut icon"

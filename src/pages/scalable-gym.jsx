@@ -20,11 +20,11 @@ const ScalableGym = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          Free Business Listings - Promote Your Brand Without Any Cost
+        Scalable Gym Solutions - Grow Your Fitness Business with Ease
         </title>
         <meta
           name="description"
-          content="List your business for free on our platform. Boost your visibility, connect with new customers, and grow your brand with no cost or hassle. Start now!"
+          content="Explore scalable solutions for gyms to expand operations, optimize services, and attract more members. Build a successful and sustainable fitness business."
         />
         <link
           rel="shortcut icon"
@@ -36,29 +36,25 @@ const ScalableGym = () => {
         {loading && <div className="preloader" />}
         <div id="main-wrapper">
           <Header />
-          <section
-            className="blog-ul-li text-start"
-            style={{ marginTop: "100px", marginBottom: "100px" }}
-          >
+          <section className="blog-ul-li text-start section-margin-blog">
             <div className="container-fluid">
               <div className="describe mt-5">
-                <h1 style={{ color: "#333" }} className="text-center mb-5">
+                <h1 className="text-center mb-2">
                   <span className="m-0 text-orange-color">
                     {" "}
                     From Local to Global:{" "}
                   </span>{" "}
                   Building a Scalable Gym Business Model
                 </h1>
-                <div className="thm-bg-clr dector mb-5"></div>
+                <div className="thm-bg-clr dector mb-3"></div>
               </div>
               <div className="container">
                 <div className="row justify-content-center">
-                  <div className="col-lg-8 mt-4">
+                  <div className="col-lg-8">
                     <img
-                      className="lazy my-3"
+                      className="lazy my-3 border-radius-ten"
                       src={process.env.PUBLIC_URL + "/images/scalable-gym.webp"}
                       width="100%"
-                      style={{ borderRadius: "10px" }}
                       alt="Nutrition Science"
                     />
                     <div className="tabata-one mt-5">
@@ -78,12 +74,11 @@ const ScalableGym = () => {
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. Franchising Opportunities</h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL + "/images/scalable-gym-1.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -107,13 +102,12 @@ const ScalableGym = () => {
                         2. Investing in a Strong Brand Identity
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL +
                           "/images/revolutionizing-gyms-2.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -136,12 +130,11 @@ const ScalableGym = () => {
                         3. Leveraging Technology for Expansion
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL + "/images/scalable-gym-3.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -164,12 +157,11 @@ const ScalableGym = () => {
                         4. Establishing Strategic Partnerships
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL + "/images/scalable-gym-4.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -192,12 +184,11 @@ const ScalableGym = () => {
                         5. Creating a Global Online Presence
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL + "/images/scalable-gym-5.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">

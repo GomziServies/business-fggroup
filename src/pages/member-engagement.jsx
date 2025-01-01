@@ -20,11 +20,11 @@ const MemberEngagement = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          Free Business Listings - Promote Your Brand Without Any Cost
+          Member Engagement Tips - Boost Community Interaction & Growth
         </title>
         <meta
           name="description"
-          content="List your business for free on our platform. Boost your visibility, connect with new customers, and grow your brand with no cost or hassle. Start now!"
+          content="Explore effective strategies for increasing member engagement. Learn how to build strong connections, foster loyalty, and grow your community or business."
         />
         <link
           rel="shortcut icon"
@@ -36,13 +36,10 @@ const MemberEngagement = () => {
         {loading && <div className="preloader" />}
         <div id="main-wrapper">
           <Header />
-          <section
-            className="blog-ul-li text-start"
-            style={{ marginTop: "100px", marginBottom: "100px" }}
-          >
+          <section className="blog-ul-li text-start section-margin-blog">
             <div className="container-fluid">
               <div className="describe mt-5">
-                <h1 style={{ color: "#333" }} className="text-center mb-5">
+                <h1 className="text-center mb-2">
                   <span className="m-0 text-orange-color">
                     {" "}
                     The Power of Community:{" "}
@@ -55,13 +52,12 @@ const MemberEngagement = () => {
                 <div className="row justify-content-center">
                   <div className="col-lg-8 mt-4">
                     <img
-                      className="lazy my-3"
+                      className="lazy my-3 border-radius-ten"
                       src={
                         process.env.PUBLIC_URL +
                         "/images/member-engagement-blog.webp"
                       }
                       width="100%"
-                      style={{ borderRadius: "10px" }}
                       alt="Nutrition Science"
                     />
                     <div className="tabata-one mt-5">
@@ -81,13 +77,11 @@ const MemberEngagement = () => {
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. Creating Social Spaces:</h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
-                          process.env.PUBLIC_URL +
-                          "/images/scalable-gym.webp"
+                          process.env.PUBLIC_URL + "/images/scalable-gym.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -107,13 +101,11 @@ const MemberEngagement = () => {
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">2. Hosting Group Activities:</h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
-                          process.env.PUBLIC_URL +
-                          "/images/modern-gyms-4.webp"
+                          process.env.PUBLIC_URL + "/images/modern-gyms-4.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -135,13 +127,12 @@ const MemberEngagement = () => {
                         3. Personalized Member Experiences:
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL +
                           "/images/member-engagement-3.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -160,13 +151,11 @@ const MemberEngagement = () => {
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">4. Encouraging Member Feedback:</h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
-                          process.env.PUBLIC_URL +
-                          "/images/modern-gyms-1.webp"
+                          process.env.PUBLIC_URL + "/images/modern-gyms-1.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -187,13 +176,12 @@ const MemberEngagement = () => {
                         5. Leveraging Social Media and Online Communities:
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL +
                           "/images/member-engagement-5.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">

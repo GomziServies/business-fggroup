@@ -20,11 +20,11 @@ const RevolutionizingGyms = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          Free Business Listings - Promote Your Brand Without Any Cost
+        Revolutionizing Gyms - Transforming Fitness Experiences Today
         </title>
         <meta
           name="description"
-          content="List your business for free on our platform. Boost your visibility, connect with new customers, and grow your brand with no cost or hassle. Start now!"
+          content="Discover how we're revolutionizing gyms with cutting-edge technology, innovative training programs, and personalized fitness experiences for all."
         />
         <link
           rel="shortcut icon"
@@ -36,13 +36,10 @@ const RevolutionizingGyms = () => {
         {loading && <div className="preloader" />}
         <div id="main-wrapper">
           <Header />
-          <section
-            className="blog-ul-li text-start"
-            style={{ marginTop: "100px", marginBottom: "100px" }}
-          >
+          <section className="blog-ul-li text-start section-margin-blog">
             <div className="container-fluid">
               <div className="describe mt-5">
-                <h1 style={{ color: "#333" }} className="text-center mb-5">
+                <h1 className="text-center mb-2">
                   <span className="m-0 text-orange-color">
                     {" "}
                     The Future of Fitness:{" "}
@@ -55,13 +52,12 @@ const RevolutionizingGyms = () => {
                 <div className="row justify-content-center">
                   <div className="col-lg-8 mt-4">
                     <img
-                      className="lazy my-3"
+                      className="lazy my-3 border-radius-ten"
                       src={
                         process.env.PUBLIC_URL +
                         "/images/revolutionizing-gyms.webp"
                       }
                       width="100%"
-                      style={{ borderRadius: "10px" }}
                       alt="Nutrition Science"
                     />
                     <div className="tabata-one mt-5">
@@ -83,13 +79,12 @@ const RevolutionizingGyms = () => {
                     <div className="tabata-one mt-5">
                       <h2 className="h2-fs">1. AI-Powered Personal Trainers</h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL +
                           "/images/revolutionizing-gyms-1.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -118,24 +113,16 @@ const RevolutionizingGyms = () => {
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="mt-5 h4-fs"
-                        style={{
-                          fontFamily:
-                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
-                      >
+                      <h2 className="mt-5 h4-fs">
                         2. Smart Equipment and Wearables :{" "}
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL +
                           "/images/revolutionizing-gyms-2.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -159,24 +146,16 @@ const RevolutionizingGyms = () => {
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="mt-5 h4-fs"
-                        style={{
-                          fontFamily:
-                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
-                      >
+                      <h2 className="mt-5 h4-fs">
                         3. Virtual and Augmented Reality Workouts: :-
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL +
                           "/images/revolutionizing-gyms-3.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -197,24 +176,16 @@ const RevolutionizingGyms = () => {
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="mt-5 h4-fs"
-                        style={{
-                          fontFamily:
-                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
-                      >
+                      <h2 className="mt-5 h4-fs">
                         4. Streamlined Operations with Management Software :-
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL +
                           "/images/revolutionizing-gyms-4.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -234,24 +205,16 @@ const RevolutionizingGyms = () => {
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="mt-5 h4-fs"
-                        style={{
-                          fontFamily:
-                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
-                      >
+                      <h2 className="mt-5 h4-fs">
                         5. The Rise of Hybrid Fitness Models :-
                       </h2>
                       <img
-                        className="lazy my-3"
+                        className="lazy my-3 border-radius-ten"
                         src={
                           process.env.PUBLIC_URL +
                           "/images/revolutionizing-gyms-5.webp"
                         }
                         width="100%"
-                        style={{ borderRadius: "10px" }}
                         alt="Nutrition Science"
                       />
                       <p className="mt-3">
@@ -271,16 +234,7 @@ const RevolutionizingGyms = () => {
                       </p>
                     </div>
                     <div className="tabata-one mt-5">
-                      <h2
-                        className="mt-5 h4-fs"
-                        style={{
-                          fontFamily:
-                            "Apple-System, Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, STXihei, sans-serif",
-                          fontWeight: "700",
-                        }}
-                      >
-                        Conclusion
-                      </h2>
+                      <h2 className="mt-5 h4-fs">Conclusion</h2>
                       <p className="mt-3">
                         Technology is redefining the fitness landscape,
                         providing innovative tools to benefit both gym owners

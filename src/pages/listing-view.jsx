@@ -10,9 +10,7 @@ import { businessListingAxiosInstance } from "../js/api";
 import Dummy_img from "../assets/dummy-image-square.jpg";
 import User_img from "../assets/user-profile.png";
 import Footer from "../components/Footer";
-
 import { useLocation } from "react-router-dom";
-import Typography from "@mui/material/Typography";
 import "yet-another-react-lightbox/styles.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,8 +18,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/animation.css";
 import validator from "validator";
 import Slider from "react-slick";
-import { Col, Row } from "react-bootstrap";
-import CircleIcon from "@mui/icons-material/Circle";
 import StarIcon from "@mui/icons-material/Star";
 import WhatsappBtn from "../components/WhatsappBtn";
 
@@ -289,10 +285,7 @@ const ListingView = () => {
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
-          <section
-            className="featured-wraps gray text-start"
-            style={{ marginTop: "70px" }}
-          >
+          <section className="featured-wraps gray text-start section-margin">
             <div className="container">
               <div className="row">
                 <div className="col-xl-12 col-lg-12 col-md-12">
