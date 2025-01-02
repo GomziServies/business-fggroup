@@ -1,26 +1,29 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Profile from './pages/profile';
-import Login from './pages/login';
-import ListingList from './pages/listing-list';
-import AddListing from './pages/add-listing';
-import ListingView from './pages/listing-view';
-import UpdateListing from './pages/update-listing';
-import AffordableList from './pages/affordable-list';
-import StandardList from './pages/standard-list';
-import PremiumList from './pages/premium-list';
-import AllListingList from './pages/all-listing-list';
-import MemberEngagement from './pages/member-engagement';
-import RevolutionizingGyms from './pages/revolutionizing-gyms';
-import StrategiesforModernGyms from './pages/strategies-for-modern-gyms';
-import ScalableGym from './pages/scalable-gym';
-import ScrollRestoration from './components/ScrollRestoration';
-import GymListing from './pages/gym-listing';
-import ViewGymListing from './pages/view-gym-listing';
-import AllGymListing from './pages/all-gym-listing';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Profile from "./pages/profile";
+import Login from "./pages/login";
+import ListingList from "./pages/listing-list";
+import AddListing from "./pages/add-listing";
+import ListingView from "./pages/listing-view";
+import UpdateListing from "./pages/update-listing";
+import AffordableList from "./pages/affordable-list";
+import StandardList from "./pages/standard-list";
+import PremiumList from "./pages/premium-list";
+import AllListingList from "./pages/all-listing-list";
+import MemberEngagement from "./pages/member-engagement";
+import RevolutionizingGyms from "./pages/revolutionizing-gyms";
+import StrategiesforModernGyms from "./pages/strategies-for-modern-gyms";
+import ScalableGym from "./pages/scalable-gym";
+import ScrollRestoration from "./components/ScrollRestoration";
+import GymListing from "./pages/gym-listing";
+import ViewGymListing from "./pages/view-gym-listing";
+import AllGymListing from "./pages/all-gym-listing";
+import { lazy } from "react";
 
 function App() {
+  const NotFoundPage = lazy(() => import("./pages/404"));
+
   return (
     <div className="text-center font-bold">
       <Routes>
@@ -42,6 +45,7 @@ function App() {
         <Route path="/member-engagement" element={<MemberEngagement />} />
         <Route path="/gym-listing" element={<GymListing />} />
         <Route path="/gym-listing-view" element={<ViewGymListing />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ScrollRestoration />
     </div>

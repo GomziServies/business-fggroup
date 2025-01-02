@@ -10608,3 +10608,9 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 .border-radius-ten {
   border-radius: 10px;
 }
+.main-loading-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
