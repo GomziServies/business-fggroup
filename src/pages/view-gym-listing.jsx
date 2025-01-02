@@ -563,6 +563,9 @@ const ViewGymListing = () => {
                             </div>
                           </div>
                         ))}
+                        {userReviewsData?.length === 0 && (
+                          <h5>No Review Found</h5>
+                        )}
                       </div>
                     </div>
                   </div>

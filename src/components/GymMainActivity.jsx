@@ -5,7 +5,7 @@ import User_img from "../assets/user-profile.png";
 import "../index.css";
 import { Link } from "react-router-dom";
 
-const GymMainActivity = () => {
+const GymMainActivity = ({ searchData }) => {
     const [businessData, setBusinessData] = useState([]);
 
     const fetchBusinessData = async () => {
@@ -26,7 +26,16 @@ const GymMainActivity = () => {
                 "/get-businesses",
                 requestData
             );
-            const fetchedBusinessData = response.data.data;
+            let fetchedBusinessData = response.data.data;
+
+            console.log("searchData :- ", searchData);
+
+            if (searchData) {
+                fetchedBusinessData = fetchedBusinessData.filter(
+                    (addressData) => addressData.locations[0].city === searchData
+                );
+            }
+
             setBusinessData(fetchedBusinessData);
         } catch (error) {
             console.error("Error in Getting Business Data:", error);
@@ -35,7 +44,7 @@ const GymMainActivity = () => {
 
     useEffect(() => {
         fetchBusinessData();
-    }, []);
+    }, [searchData]);
 
     const handleCall = (number) => {
         window.location.href = `tel:${number}`;
@@ -289,7 +298,7 @@ const GymMainActivity = () => {
                             );
                         })}
                         <div className="col-12 d-flex justify-content-center mt-3">
-                            <Link to="/all-listing" class="view-list-btn me-2">
+                            <Link to="/all-gym-listing" class="view-list-btn me-2">
                                 <i class="fas fa-eye me-2"></i>View More
                             </Link>
                         </div>

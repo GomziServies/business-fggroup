@@ -9,6 +9,9 @@ import SimpleHeader from "../components/SimpleHeader";
 import { businessListingAxiosInstance } from "../js/api";
 import Dummy_img from "../assets/dummy-image-square.jpg";
 import User_img from "../assets/user-profile.png";
+import WhatsappBtn from "../components/WhatsappBtn";
+import VideoReview from "../components/VideoReview";
+import ModalVideo from "react-modal-video";
 
 const AllGymListing = () => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +21,19 @@ const AllGymListing = () => {
       setLoading(false);
     }, 1000);
   }, []);
+
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [videoUrl, setVideoUrl] = useState("");
+
+  const openVideoModal = (url) => {
+    setIsVideoOpen(true);
+    setVideoUrl(url);
+  };
+
+  const closeVideoModal = () => {
+    setIsVideoOpen(false);
+    setVideoUrl("");
+  };
 
   const [businessData, setBusinessData] = useState([]);
 
@@ -69,7 +85,7 @@ const AllGymListing = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <WhatsappBtnMain
-        message={"Hello, I wanted to know more about Business Listing."}
+        message={"Hello, I wanted to know more about Gym Listing."}
         options={{ pageRef: true }}
       />
       <>
@@ -93,70 +109,17 @@ const AllGymListing = () => {
               width="100%"
             />
           </section>
-          <section class="space min">
+          <section class="space min gray py-5">
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div class="sec_title position-relative text-center mb-5">
-                    <h6 class="theme-cl mb-0">Featured Listings</h6>
-                    <h2 class="ft-bold">Goodup in Los Angeles</h2>
+                    <h6 class="theme-cl mb-0">Recent Listings</h6>
+                    <h2 class="ft-bold">Browse Recent Listings</h2>
                   </div>
                 </div>
               </div>
               <div class="row align-items-center">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                  <ul
-                    class="nav nav-tabs small-tab mb-3"
-                    id="myTab"
-                    role="tablist"
-                  >
-                    <li class="nav-item" role="presentation">
-                      <button
-                        class="nav-link active"
-                        id="places-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#places"
-                        type="button"
-                        role="tab"
-                        aria-controls="places"
-                        aria-selected="true"
-                      >
-                        Afforradble
-                      </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button
-                        class="nav-link"
-                        id="events-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#events"
-                        type="button"
-                        role="tab"
-                        aria-controls="events"
-                        aria-selected="false"
-                        tabindex="-1"
-                      >
-                        Standards
-                      </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button
-                        class="nav-link"
-                        id="car-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#car"
-                        type="button"
-                        role="tab"
-                        aria-controls="car"
-                        aria-selected="false"
-                        tabindex="-1"
-                      >
-                        Premiums
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-
                 <div className="row justify-content-center text-start">
                   {businessData.map((business) => {
                     const description = business?.description;
@@ -286,7 +249,7 @@ const AllGymListing = () => {
                             </div>
                             <div className="Goodup-grid-thumb">
                               <Link
-                                to={`/listing-view?business_id=${business._id}`}
+                                to={`/gym-listing-view?business_id=${business._id}`}
                                 className="d-block text-center m-auto"
                               >
                                 <img
@@ -316,7 +279,7 @@ const AllGymListing = () => {
                                       style={{
                                         color:
                                           index <
-                                          business.review_stats.average_rating
+                                            business.review_stats.average_rating
                                             ? "#F09000"
                                             : "#ccc",
                                       }}
@@ -335,7 +298,7 @@ const AllGymListing = () => {
                             <div className="Goodup-caption px-3 py-2">
                               <div className="Goodup-author">
                                 <Link
-                                  to={`/listing-view?business_id=${business._id}`}
+                                  to={`/gym-listing-view?business_id=${business._id}`}
                                 >
                                   <img
                                     src={`https://files.fggroup.in/${business.business_logo}`}
@@ -350,7 +313,7 @@ const AllGymListing = () => {
                               <div className="Goodup-cates multi">
                                 {business.business_category.map((category) => (
                                   <Link
-                                    to={`/listing-view?business_id=${business._id}`}
+                                    to={`/gym-listing-view?business_id=${business._id}`}
                                     className="cats-1"
                                   >
                                     {category}
@@ -359,13 +322,13 @@ const AllGymListing = () => {
                               </div>
                               <h4 className="mb-0 medium text-bold">
                                 <Link
-                                  to={`/listing-view?business_id=${business._id}`}
+                                  to={`/gym-listing-view?business_id=${business._id}`}
                                   className="text-dark fs-md"
                                 >
                                   {business.business_name &&
-                                  business.business_name.length > 30
+                                    business.business_name.length > 30
                                     ? business.business_name.substring(0, 30) +
-                                      "..."
+                                    "..."
                                     : business.business_name}
 
                                   <span className="verified-badge">
@@ -422,6 +385,229 @@ const AllGymListing = () => {
               </div>
             </div>
           </section>
+          <section className="space pb-mb-5 pb-4 gray">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                  <div className="sec_title position-relative text-center mb-5">
+                    <h6 className="mb-0 theme-cl">Popular Features</h6>
+                    <h2 className="ft-bold">Our Features</h2>
+                  </div>
+                </div>
+              </div>
+              <div className="row align-items-center">
+                <div className="col-md-4 col-6">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/viral-marketing.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Verified Gym Listings
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/group.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Fitness Classes Finder
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/trainer.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Trainer Matching Service
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/membership-card.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Flexible Membership
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/virtual-reality-fitness.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Virtual Gym Tours
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/rating.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Client Testimonials
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/nutrition.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Integrated Nutrition Plans
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/international-childrens-day.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Community Support
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6 d-md-block d-none">
+                  <div className="cats-wrap text-center">
+                    <div className="Goodup-catg-wrap">
+                      <div className="Goodup-catg-icon">
+                        <img
+                          src="images/building.png"
+                          className="img"
+                          alt="Img Slide"
+                        />
+                      </div>
+                      <div className="Goodup-catg-caption">
+                        <h4 className="fs-md mb-0 ft-medium m-catrio">
+                          Personalized Gym Recommendations
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <ModalVideo
+            channel="youtube"
+            isOpen={isVideoOpen}
+            videoId={videoUrl}
+            onClose={closeVideoModal}
+          />
+          <VideoReview openVideoModal={openVideoModal} />
+          <section
+            className="space bg-cover text-start"
+            style={{
+              background: "#03343b url(images/landing-bg.png) no-repeat",
+            }}
+          >
+            <div className="container py-5">
+              <div className="row justify-content-center">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                  <div className="sec_title position-relative text-center mb-5">
+                    <h2 className="ft-bold text-light whastapp-title">
+                      Join GOMZI Today and Discover Exclusive Deals - Connect
+                      with Us Instantly!
+                    </h2>
+                    <h6 className="text-light mb-0 d-md-block d-none">
+                      Unlock Success with GOMZI - Connect Now over whatsapp for
+                      Advance Perks!
+                    </h6>
+                    <p className="ft-bold text-light mt-4"></p>
+                  </div>
+                </div>
+              </div>
+              <div className="row align-items-center justify-content-center">
+                <div className="col-xl-7 col-lg-10 col-md-12 col-sm-12 col-12">
+                  <form className="rounded p-1">
+                    <div className="d-flex justify-content-center">
+                      <div className="form-group mb-0">
+                        <WhatsappBtn
+                          message={
+                            "Hello, I wanted to know more about Gym Listing."
+                          }
+                          options={{ pageRef: true }}
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
           <Footer />
           <div
             className="modal fade"
@@ -472,7 +658,7 @@ const AllGymListing = () => {
                             className="checkbox-custom"
                             name="dd"
                             type="checkbox"
-                            // defaultChecked=""
+                          // defaultChecked=""
                           />
                           <label htmlFor="dd" className="checkbox-custom-label">
                             Remember Me

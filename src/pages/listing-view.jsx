@@ -506,7 +506,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                              "00:00" &&
+                                            "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -582,6 +582,9 @@ const ListingView = () => {
                               </div>
                             </div>
                           ))}
+                          {userReviewsData?.length === 0 && (
+                            <h5>No Review Found</h5>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -871,7 +874,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                        business.review_stats.average_rating
+                                          business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}

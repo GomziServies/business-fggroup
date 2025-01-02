@@ -7673,7 +7673,7 @@ button.aps-clone {
   padding: 10px 20px;
   font-weight: 500;
   color: #ffffff !important;
-  background: #8bc34a;
+  background: #fc7e00;
   border-radius: 4px;
 }
 .abs-list-sec {
@@ -10497,11 +10497,11 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .view-gym-listing .custom-prev::after {
-  content: '\276E';
+  content: "\276E";
 }
 
 .view-gym-listing .custom-next::after {
-  content: '\276F';
+  content: "\276F";
 }
 
 .price-section .jb-apply-form {
@@ -10598,13 +10598,13 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
     font-size: 13px;
   }
 }
-.section-margin{
+.section-margin {
   margin-top: 70px;
 }
-.section-margin-blog{
+.section-margin-blog {
   margin-top: 100px;
   margin-bottom: 70px;
 }
-.border-radius-ten{
+.border-radius-ten {
   border-radius: 10px;
 }

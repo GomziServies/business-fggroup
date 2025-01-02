@@ -11,12 +11,29 @@ import SuccessStoryImages from "../components/SuccessStoryImages";
 
 const GymListing = () => {
   const [loading, setLoading] = useState(true);
+  const [searchData, setSearchData] = useState('');
+  const [inputData, setInputData] = useState('');
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   }, []);
+
+  const handleSearchCity = (e) => {
+    e.preventDefault();
+    setSearchData(inputData);
+
+    const targetElement = document.getElementById("gymMainActivity");
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleInputchange = (event) => {
+    const value = event.target.value
+    setInputData(value)
+  }
 
   return (
     <div>
@@ -74,12 +91,13 @@ const GymListing = () => {
                         type="text"
                         className="form-control radius"
                         placeholder="Gym Search By city...."
+                        onChange={handleInputchange}
                       />
                     </div>
                     <div className="main-search-button">
                       <button
                         className="btn full-width theme-bg text-white"
-                        type="button"
+                        onClick={handleSearchCity}
                       >
                         Search<i className="fas fa-search"></i>
                       </button>
@@ -90,14 +108,14 @@ const GymListing = () => {
             </div>
           </div>
           <SuccessStoryImages />
-          <section className="gray py-5">
+          <section className="gray py-5" id="gymMainActivity">
             <div className="container">
               <div className="row">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                   <div className="row justify-content-center mt-5 g-2">
                     <div className="text-start col-12">
                       <div className="d-block grouping-listings">
-                        <GymMainActivity />
+                        <GymMainActivity searchData={searchData} />
                       </div>
                     </div>
                   </div>
@@ -127,7 +145,7 @@ const GymListing = () => {
                       src="images/l-1.webp"
                       className="img-fluid mx-auto"
                       alt="fg group"
-                      width="70%"
+                      width="55%"
                     />
                   </div>
                 </div>
@@ -137,7 +155,7 @@ const GymListing = () => {
                       src="images/l-2.webp"
                       className="img-fluid mx-auto"
                       alt="fg group"
-                      width="70%"
+                      width="55%"
                     />
                   </div>
                 </div>
@@ -147,7 +165,7 @@ const GymListing = () => {
                       src="images/l-3.webp"
                       className="img-fluid mx-auto"
                       alt="fg group"
-                      width="70%"
+                      width="55%"
                     />
                   </div>
                 </div>
@@ -157,7 +175,7 @@ const GymListing = () => {
                       src="images/l-4.webp"
                       className="img-fluid mx-auto"
                       alt="fg group"
-                      width="70%"
+                      width="55%"
                     />
                   </div>
                 </div>
@@ -167,7 +185,7 @@ const GymListing = () => {
                       src="images/l-5.webp"
                       className="img-fluid mx-auto"
                       alt="fg group"
-                      width="70%"
+                      width="55%"
                     />
                   </div>
                 </div>
@@ -177,7 +195,7 @@ const GymListing = () => {
                       src="images/l-6.webp"
                       className="img-fluid mx-auto"
                       alt="fg group"
-                      width="70%"
+                      width="55%"
                     />
                   </div>
                 </div>
@@ -187,7 +205,7 @@ const GymListing = () => {
                       src="images/l-7.webp"
                       className="img-fluid mx-auto"
                       alt="fg group"
-                      width="70%"
+                      width="55%"
                     />
                   </div>
                 </div>
@@ -197,7 +215,7 @@ const GymListing = () => {
                       src="images/l-8.webp"
                       className="img-fluid mx-auto"
                       alt="fg group"
-                      width="70%"
+                      width="55%"
                     />
                   </div>
                 </div>
@@ -247,12 +265,12 @@ const GymListing = () => {
                   </div>
                 </div>
               </div>
-              <div className="row justify-content-center">
+              <div className="row justify-content-center text-start">
                 <div className="col-xl-10 col-lg-11 col-md-12 col-12">
                   <div id="accordion2" className="accordion">
                     <div className="card">
                       <div className="card-header" id="h7">
-                        <h5 className="mb-0">
+                        <h5 className="mb-0 text-start">
                           <button
                             className="btn btn-link"
                             data-bs-toggle="collapse"
@@ -280,7 +298,7 @@ const GymListing = () => {
                     </div>
                     <div className="card">
                       <div className="card-header" id="h8">
-                        <h5 className="mb-0">
+                        <h5 className="mb-0 text-start">
                           <button
                             className="btn btn-link collapsed"
                             data-bs-toggle="collapse"
@@ -309,7 +327,7 @@ const GymListing = () => {
                     </div>
                     <div className="card">
                       <div className="card-header" id="h9">
-                        <h5 className="mb-0">
+                        <h5 className="mb-0 text-start">
                           <button
                             className="btn btn-link collapsed"
                             data-bs-toggle="collapse"
@@ -498,7 +516,7 @@ const GymListing = () => {
                             className="checkbox-custom"
                             name="dd"
                             type="checkbox"
-                            // defaultChecked=""
+                          // defaultChecked=""
                           />
                           <label htmlFor="dd" className="checkbox-custom-label">
                             Remember Me
