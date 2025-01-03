@@ -214,7 +214,7 @@ const ViewGymListing = () => {
                         <div className="vrt-list-content">
                           <h4 className="mb-0 ft-medium">
                             <a
-                              href="listing-search-v1.html"
+                              href="#"
                               className="text-dark fs-md"
                             >
                               {businessData.business_name}

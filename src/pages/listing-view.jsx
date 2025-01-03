@@ -506,7 +506,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                            "00:00" &&
+                                              "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -843,8 +843,8 @@ const ListingView = () => {
                             </div>
                           </div>
                           <div className="Goodup-grid-thumb">
-                            <Link
-                              to={`/listing-view?business_id=${business._id}`}
+                            <a
+                              href={`/listing-view?business_id=${business._id}`}
                               className="d-block text-center m-auto"
                             >
                               <img
@@ -855,7 +855,7 @@ const ListingView = () => {
                                 }}
                                 alt={business.business_name}
                               />
-                            </Link>
+                            </a>
                           </div>
                           <div className="Goodup-rating overlay">
                             <div className="Goodup-pr-average high">
@@ -874,7 +874,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                          business.review_stats.average_rating
+                                        business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}
@@ -892,7 +892,7 @@ const ListingView = () => {
                         <div className="Goodup-grid-fl-wrap">
                           <div className="Goodup-caption px-3 py-2">
                             <div className="Goodup-author">
-                              <a href="author-detail.html">
+                              <a href="#">
                                 <img
                                   src={`https://files.fggroup.in/${business.business_logo}`}
                                   className="img-fluid circle"
@@ -905,20 +905,14 @@ const ListingView = () => {
                             </div>
                             <div className="Goodup-cates multi">
                               {business.business_category.map((category) => (
-                                <a
-                                  href="half-map-search-1.html"
-                                  className="cats-1"
-                                >
+                                <a href="#" className="cats-1">
                                   {category}
                                 </a>
                               ))}
-                              <a href="half-map-search-1.html">+2</a>
+                              <a href="#">+2</a>
                             </div>
                             <h4 className="mb-0 medium text-bold">
-                              <a
-                                href="single-listing-detail-3.html"
-                                className="text-dark fs-md"
-                              >
+                              <a href="#" className="text-dark fs-md">
                                 {business.business_name}
                                 <span className="verified-badge">
                                   <i className="fas fa-check-circle" />
