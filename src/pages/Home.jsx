@@ -86,7 +86,7 @@ const Home = () => {
             />
           </section>
           <ExploreGomzi />
-          <section className="space min">
+          <section>
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-12">
@@ -569,7 +569,7 @@ const Home = () => {
             onClose={closeVideoModal}
           />
           <VideoReview openVideoModal={openVideoModal} />
-          <section className="middle text-start">
+          <section className="text-start">
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
