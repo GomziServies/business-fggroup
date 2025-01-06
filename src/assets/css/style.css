@@ -1507,6 +1507,10 @@ button.close {
   .hidden-xs-down {
     display: none !important;
   }
+
+  .Goodup-price-wrap {
+    height: auto !important;
+  }
 }
 
 @media (min-width: 576px) {
@@ -4879,7 +4883,12 @@ ul.doc.ratting-view li i.filled {
   text-align: left;
   position: relative;
   z-index: 1;
+  height: 600px;
 }
+
+@media all (min-width: 767px) {
+}
+
 .Goodup-price-wrap:hover,
 .Goodup-price-wrap:focus,
 .Goodup-price-wrap:active {
