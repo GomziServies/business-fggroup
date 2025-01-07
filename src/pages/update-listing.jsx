@@ -1434,7 +1434,7 @@ const UpdateListing = () => {
                               {businessPhotos && businessPhotos.length > 0 ? (
                                 <div>
                                   <div
-                                    className="d-flex"
+                                    className="d-flex flex-wrap"
                                     style={{
                                       border: "2px dashed #ccc",
                                       padding: "20px",
