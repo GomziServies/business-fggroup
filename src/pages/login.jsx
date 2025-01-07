@@ -71,9 +71,13 @@ const Login = () => {
         getUserData();
         setOtpDialogOpen(false);
         toast.success("OTP Verified!");
-        const activeServices = response.data.data.active_services;
-        if (activeServices.includes("BUSINESS-LISTING")) {
-          toast.success("Login Successful!");
+
+        const IsBusinessUser = response.data.data.active_services.find(
+          (service) => service === "BUSINESS-LISTING"
+        );
+
+        if (!IsBusinessUser) {
+          await axiosInstance.post("/account/enable-business-listing");
         }
         window.location.href = "/";
       } else {

@@ -85,6 +85,7 @@ function Header() {
         getUserData();
         setOtpDialogOpen(false);
         toast.success("OTP Verified!");
+        setIsLogin(true)
 
         const IsBusinessUser = response.data.data.active_services.find(
           (service) => service === "BUSINESS-LISTING"
