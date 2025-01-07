@@ -19,6 +19,7 @@ function Header() {
     event.preventDefault();
     setShowModal(true);
   };
+
   const handleClose = () => setShowModal(false);
 
   useEffect(() => {
@@ -84,9 +85,13 @@ function Header() {
         getUserData();
         setOtpDialogOpen(false);
         toast.success("OTP Verified!");
-        const activeServices = response.data.data.active_services;
-        if (activeServices.includes("BUSINESS-LISTING")) {
-          toast.success("Login Successful!");
+
+        const IsBusinessUser = response.data.data.active_services.find(
+          (service) => service === "BUSINESS-LISTING"
+        );
+
+        if (!IsBusinessUser) {
+          await axiosInstance.post("/account/enable-business-listing");
         }
       } else {
         toast.error("Failed to verify OTP. Please try again.");
