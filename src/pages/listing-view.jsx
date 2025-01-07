@@ -506,7 +506,7 @@ const ListingView = () => {
                                       <td>
                                         {day.timings.length > 0
                                           ? day.timings[0].from_time !==
-                                              "00:00" &&
+                                            "00:00" &&
                                             day.timings[0].to_time !== "00:00"
                                             ? `${day.timings[0].from_time} - ${day.timings[0].to_time}`
                                             : "Closed"
@@ -535,6 +535,9 @@ const ListingView = () => {
                                 <img
                                   src={`https://files.fggroup.in/${review.createdBy_user.profile_image}`}
                                   className="img-fluid"
+                                  onError={(e) => {
+                                    e.target.src = User_img;
+                                  }}
                                   alt=""
                                 />
                               </div>
@@ -874,7 +877,7 @@ const ListingView = () => {
                                     style={{
                                       color:
                                         index <
-                                        business.review_stats.average_rating
+                                          business.review_stats.average_rating
                                           ? "#F09000"
                                           : "#ccc",
                                     }}
