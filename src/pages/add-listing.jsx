@@ -63,6 +63,8 @@ const AddListing = () => {
   const [selectedBusinessType, setSelectedBusinessType] = useState("");
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingOne, setLoadingOne] = useState(false);
+  const [loadingTwo, setLoadingTwo] = useState(false);
 
   const facilities = [
     { value: "WiFi", label: "WiFi" },
@@ -166,6 +168,7 @@ const AddListing = () => {
   };
 
   const handleCropLogoChange = (event) => {
+    setLoadingOne(true);
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -175,6 +178,7 @@ const AddListing = () => {
       };
       reader.readAsDataURL(file);
     }
+    setLoadingOne(false);
   };
 
   const handleSelectLogo = () => {
@@ -207,6 +211,7 @@ const AddListing = () => {
   };
 
   const handleBusinessCropComplete = async () => {
+    setLoadingTwo(true);
     if (businessImageSrc && businessPhoto) {
       try {
         const croppedImg = await getCroppedImg(businessImageSrc, businessPhoto);
@@ -226,6 +231,7 @@ const AddListing = () => {
         console.error("Error cropping the business photo:", error);
       }
     }
+    setLoadingTwo(false);
   };
 
   // ----------------------------------------------------------------------------------
@@ -622,7 +628,13 @@ const AddListing = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
-        {loading && <div className="preloader" />}
+      {loading && (
+          <div className="loader-background">
+            <div className="spinner-box">
+              <div className="three-quarter-spinner"></div>
+            </div>
+          </div>
+        )}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
@@ -1125,8 +1137,16 @@ const AddListing = () => {
                           <div className="row">
                             <div className="col-12">
                               <label className="mb-1">Upload Logo</label>
+                              
                               {logoPreview ? (
-                                <div>
+                                <div className="position-relative">
+                                  {loadingOne && (
+                                    <div className="w-100 d-flex justify-content-center position-absolute">
+                                      <div class="spinner-box spinner-width">
+                                        <div class="three-quarter-spinner three-quarter-spinner-width"></div>
+                                      </div>
+                                    </div>
+                                  )}
                                   <img
                                     src={logoPreview}
                                     alt="Logo Preview"
@@ -1183,7 +1203,7 @@ const AddListing = () => {
                               {businessPhotos && businessPhotos.length > 0 ? (
                                 <div>
                                   <div
-                                    className="row"
+                                    className="row position-relative"
                                     style={{
                                       border: "2px dashed #ccc",
                                       padding: "20px",
@@ -1191,6 +1211,13 @@ const AddListing = () => {
                                       cursor: "pointer",
                                     }}
                                   >
+                                     {loadingTwo && (
+                                      <div className="loader-background-image position-absolute">
+                                        <div className="spinner-box-image">
+                                          <div className="three-quarter-spinner-image"></div>
+                                        </div>
+                                      </div>
+                                    )}
                                     {businessPhotos.map((photo, index) => (
                                       <div
                                         key={index}
@@ -1263,7 +1290,7 @@ const AddListing = () => {
                                   id="featured-image"
                                   onClick={handleSelectFeature}
                                   style={{
-                                    border: "2px dashed #ccc",
+                                    border: "2px dashed #ccc", 
                                     padding: "20px",
                                     textAlign: "center",
                                     cursor: "pointer",

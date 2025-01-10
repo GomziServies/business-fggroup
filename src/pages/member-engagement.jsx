@@ -33,7 +33,13 @@ const MemberEngagement = () => {
         />
       </Helmet>
       <>
-        {loading && <div className="preloader" />}
+      {loading && (
+          <div className="loader-background">
+            <div className="spinner-box">
+              <div className="three-quarter-spinner"></div>
+            </div>
+          </div>
+        )}
         <div id="main-wrapper">
           <Header />
           <section className="blog-ul-li text-start section-margin-blog">

@@ -30,8 +30,6 @@ const ViewGymListing = () => {
   const [tags, setTags] = useState([]);
   const [faqs, setFaqs] = useState([]);
   const [businessImages, setBusinessImages] = useState([]);
-  const [review, setReview] = useState("");
-  const [rating, setRating] = useState(0);
   const [userReviewsData, setUserReviewData] = useState([]);
   // const [isFavorite, setIsFavorite] = useState(false);
   // const [favoriteList, setFavoriteList] = useState([]);

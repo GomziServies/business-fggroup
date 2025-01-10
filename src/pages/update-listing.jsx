@@ -64,6 +64,8 @@ const UpdateListing = () => {
     { day: "Mon", open: "10:00 AM", close: "7:00 PM" },
   ]);
   const [loading, setLoading] = useState(true);
+  const [loadingOne, setLoadingOne] = useState(false);
+  const [loadingTwo, setLoadingTwo] = useState(false);
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
 
   const [userData, setUserData] = useState({
@@ -161,6 +163,7 @@ const UpdateListing = () => {
   }, []);
 
   const handleCropComplete = async () => {
+    setLoadingOne(true);
     if (imageSrc && profilePhoto) {
       try {
         const croppedImg = await getCroppedImg(imageSrc, profilePhoto);
@@ -234,6 +237,7 @@ const UpdateListing = () => {
         console.error("Error cropping the image:", error);
       }
     }
+    setLoadingOne(false);
   };
 
   const handleClose = () => {
@@ -341,6 +345,7 @@ const UpdateListing = () => {
   };
 
   const handleBusinessCropComplete = async () => {
+    setLoadingTwo(true);
     if (businessImageSrc && profilePhoto) {
       try {
         const croppedImg = await getCroppedImg(businessImageSrc, profilePhoto);
@@ -408,6 +413,8 @@ const UpdateListing = () => {
         });
       }
     }
+
+    setLoadingTwo(false);
   };
 
   const handleAddFaq = () => {
@@ -835,7 +842,13 @@ const UpdateListing = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
-        {loading && <div className="preloader" />}
+        {loading && (
+          <div className="loader-background">
+            <div className="spinner-box">
+              <div className="three-quarter-spinner"></div>
+            </div>
+          </div>
+        )}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
@@ -1376,8 +1389,16 @@ const UpdateListing = () => {
                           <div className="row">
                             <div className="col-12">
                               <label className="mb-1">Upload Logo</label>
+
                               {logoPreview ? (
-                                <div>
+                                <div className="position-relative">
+                                  {loadingOne && (
+                                    <div className="w-100 d-flex justify-content-center position-absolute">
+                                      <div class="spinner-box spinner-width">
+                                        <div class="three-quarter-spinner three-quarter-spinner-width"></div>
+                                      </div>
+                                    </div>
+                                  )}
                                   <img
                                     src={logoPreview}
                                     alt="Logo Preview"
@@ -1392,6 +1413,7 @@ const UpdateListing = () => {
                                       cursor: "pointer",
                                     }}
                                   />
+
                                   <div className="mt-2 text-center">
                                     <button
                                       className="btn btn-primary rounded-pill px-3 py-1"
@@ -1434,7 +1456,7 @@ const UpdateListing = () => {
                               {businessPhotos && businessPhotos.length > 0 ? (
                                 <div>
                                   <div
-                                    className="d-flex flex-wrap"
+                                    className="row position-relative"
                                     style={{
                                       border: "2px dashed #ccc",
                                       padding: "20px",
@@ -1442,6 +1464,13 @@ const UpdateListing = () => {
                                       cursor: "pointer",
                                     }}
                                   >
+                                    {loadingTwo && (
+                                      <div className="loader-background-image position-absolute">
+                                        <div className="spinner-box-image">
+                                          <div className="three-quarter-spinner-image"></div>
+                                        </div>
+                                      </div>
+                                    )}
                                     {businessPhotos.map((photo, index) => (
                                       <div
                                         key={index}

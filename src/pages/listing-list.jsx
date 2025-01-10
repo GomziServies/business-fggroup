@@ -14,13 +14,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const ListingList = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // }, []);
 
   const handleLogout = async () => {
     try {
@@ -84,6 +84,7 @@ const ListingList = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const getBusinessData = async () => {
+    setLoading(true);
     try {
       const response = await businessListingAxiosInstance.get("/get-listing");
       const fetchedBusinessData = response.data.data;
@@ -91,6 +92,7 @@ const ListingList = () => {
     } catch (error) {
       console.error("Error in Getting Business Data:", error);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -187,7 +189,9 @@ const ListingList = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Business Listing Directory - Browse or Add Your Listing Today</title>
+        <title>
+          Business Listing Directory - Browse or Add Your Listing Today
+        </title>
         <meta
           name="description"
           content="Explore our business listing directory or add your own. Connect with customers, boost visibility, and showcase your brand with ease!"
@@ -200,7 +204,13 @@ const ListingList = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
-        {loading && <div className="preloader" />}
+        {/* {loading && (
+          <div className="loader-background">
+            <div className="spinner-box">
+              <div className="three-quarter-spinner"></div>
+            </div>
+          </div>
+        )} */}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
@@ -435,7 +445,15 @@ const ListingList = () => {
                                 </div>
                               );
                             })}
-                            {businessData.length === 0 && (
+
+                            {loading && (
+                              <div className="w-100 d-flex justify-content-center">
+                                <div class="spinner-box spinner-width">
+                                  <div class="three-quarter-spinner three-quarter-spinner-width"></div>
+                                </div>
+                              </div>
+                            )}
+                            {businessData.length === 0 && !loading && (
                               <div className="col-12 d-flex flex-column align-items-center">
                                 <img
                                   src="/images/listing-not-found.webp"

@@ -89,7 +89,13 @@ const AllGymListing = () => {
         options={{ pageRef: true }}
       />
       <>
-        {loading && <div className="preloader" />}
+        {loading && (
+          <div className="loader-background">
+            <div className="spinner-box">
+              <div className="three-quarter-spinner"></div>
+            </div>
+          </div>
+        )}
         <div id="main-wrapper">
           <SimpleHeader />
           <div className="clearfix" />
@@ -279,7 +285,7 @@ const AllGymListing = () => {
                                       style={{
                                         color:
                                           index <
-                                            business.review_stats.average_rating
+                                          business.review_stats.average_rating
                                             ? "#F09000"
                                             : "#ccc",
                                       }}
@@ -326,9 +332,9 @@ const AllGymListing = () => {
                                   className="text-dark fs-md"
                                 >
                                   {business.business_name &&
-                                    business.business_name.length > 30
+                                  business.business_name.length > 30
                                     ? business.business_name.substring(0, 30) +
-                                    "..."
+                                      "..."
                                     : business.business_name}
 
                                   <span className="verified-badge">
@@ -658,7 +664,7 @@ const AllGymListing = () => {
                             className="checkbox-custom"
                             name="dd"
                             type="checkbox"
-                          // defaultChecked=""
+                            // defaultChecked=""
                           />
                           <label htmlFor="dd" className="checkbox-custom-label">
                             Remember Me

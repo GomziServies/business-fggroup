@@ -15,7 +15,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingOne, setLoadingOne] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -78,6 +79,7 @@ const Profile = () => {
   };
 
   const handlePhotoChange = async (e) => {
+    setLoadingOne(true);
     const file = e.target.files[0];
 
     const formDataForUpload = new FormData();
@@ -105,6 +107,7 @@ const Profile = () => {
       console.error("Error uploading photo:", error);
       toast.error("Error uploading profile photo");
     }
+    setLoadingOne(false);
   };
 
   const handleRemovePhoto = async () => {
@@ -126,6 +129,7 @@ const Profile = () => {
   };
 
   const updateData = async () => {
+    setIsLoading(true);
     try {
       const response = await axiosInstance.post(
         "/account/update-profile",
@@ -142,6 +146,7 @@ const Profile = () => {
       console.error("Error updating user data:", error);
       toast.error("Error updating user data");
     }
+    setIsLoading(false);
   };
 
   const handleSubmit = async (event) => {
@@ -197,7 +202,13 @@ const Profile = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
-        {loading && <div className="preloader" />}
+      {loading && (
+          <div className="loader-background">
+            <div className="spinner-box">
+              <div className="three-quarter-spinner"></div>
+            </div>
+          </div>
+        )}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />
@@ -326,7 +337,7 @@ const Profile = () => {
                         <div>
                           <div className="d-flex rounded px-3 py-3 mb-3">
                             <div className="dash-figure">
-                              <div className="dash-figure-thumb">
+                              <div className="dash-figure-thumb position-relative">
                                 <img
                                   src={formData.profilePhoto}
                                   className="img-fluid rounded"
@@ -335,6 +346,13 @@ const Profile = () => {
                                     e.target.src = User_img;
                                   }}
                                 />
+                                 {loadingOne && (
+                                  <div className="w-100 d-flex justify-content-center position-absolute">
+                                    <div class="spinner-box spinner-width">
+                                      <div class="three-quarter-spinner three-quarter-spinner-width"></div>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                               <input
                                 accept="image/*"
@@ -540,6 +558,13 @@ const Profile = () => {
         </div>
       </>
       <ToastContainer />
+      {isLoading && (
+        <div className="loader-background">
+          <div className="spinner-box">
+            <div className="three-quarter-spinner"></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

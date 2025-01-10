@@ -59,7 +59,13 @@ const Home = () => {
         options={{ pageRef: true }}
       />
       <>
-        {loading && <div className="preloader" />}
+      {loading && (
+          <div className="loader-background">
+            <div className="spinner-box">
+              <div className="three-quarter-spinner"></div>
+            </div>
+          </div>
+        )}
         <div id="main-wrapper">
           <Header />
           <div className="clearfix" />

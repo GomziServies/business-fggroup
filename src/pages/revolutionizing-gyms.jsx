@@ -20,7 +20,7 @@ const RevolutionizingGyms = () => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-        Revolutionizing Gyms - Transforming Fitness Experiences Today
+          Revolutionizing Gyms - Transforming Fitness Experiences Today
         </title>
         <meta
           name="description"
@@ -33,7 +33,13 @@ const RevolutionizingGyms = () => {
         />
       </Helmet>
       <>
-        {loading && <div className="preloader" />}
+        {loading && (
+          <div className="loader-background">
+            <div className="spinner-box">
+              <div className="three-quarter-spinner"></div>
+            </div>
+          </div>
+        )}
         <div id="main-wrapper">
           <Header />
           <section className="blog-ul-li text-start section-margin-blog">
