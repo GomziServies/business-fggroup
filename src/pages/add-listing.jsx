@@ -417,8 +417,14 @@ const AddListing = () => {
           social_media_type: link.platform.toLowerCase(),
           link: link.link,
         })),
-        listing_category: selectedListingCategory.length > 0 ? selectedListingCategory : [selectedListingCategory],
-        business_category: selectedBusinessCategory.length > 0 ? selectedBusinessCategory : [selectedBusinessCategory],
+        listing_category:
+          selectedListingCategory.length > 0
+            ? selectedListingCategory
+            : [selectedListingCategory],
+        business_category:
+          selectedBusinessCategory.length > 0
+            ? selectedBusinessCategory
+            : [selectedBusinessCategory],
         amount: {
           paid_amount: formData.paid_amount,
           discount_amount: formData.discount_amount,
@@ -482,6 +488,7 @@ const AddListing = () => {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
+    setIsLoading(false);
   };
 
   const handleLogout = async () => {
@@ -613,9 +620,7 @@ const AddListing = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-        Add Your Business Listing - Get Featured on Our Platform
-        </title>
+        <title>Add Your Business Listing - Get Featured on Our Platform</title>
         <meta
           name="description"
           content="Add your business to our platform and boost visibility. Showcase your services, attract customers, and grow your brand with our easy listing process!"
@@ -628,7 +633,7 @@ const AddListing = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
-      {loading && (
+        {loading && (
           <div className="loader-background">
             <div className="spinner-box">
               <div className="three-quarter-spinner"></div>
@@ -1137,7 +1142,7 @@ const AddListing = () => {
                           <div className="row">
                             <div className="col-12">
                               <label className="mb-1">Upload Logo</label>
-                              
+
                               {logoPreview ? (
                                 <div className="position-relative">
                                   {loadingOne && (
@@ -1211,7 +1216,7 @@ const AddListing = () => {
                                       cursor: "pointer",
                                     }}
                                   >
-                                     {loadingTwo && (
+                                    {loadingTwo && (
                                       <div className="loader-background-image position-absolute">
                                         <div className="spinner-box-image">
                                           <div className="three-quarter-spinner-image"></div>
@@ -1290,7 +1295,7 @@ const AddListing = () => {
                                   id="featured-image"
                                   onClick={handleSelectFeature}
                                   style={{
-                                    border: "2px dashed #ccc", 
+                                    border: "2px dashed #ccc",
                                     padding: "20px",
                                     textAlign: "center",
                                     cursor: "pointer",
@@ -1510,6 +1515,14 @@ const AddListing = () => {
             </div>
           </div>
           <Footer />
+
+          {isLoading && (
+            <div className="loader-background">
+              <div className="spinner-box">
+                <div className="three-quarter-spinner"></div>
+              </div>
+            </div>
+          )}
           <a
             id="tops-button"
             className="top-scroll"

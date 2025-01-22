@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useCallback, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from "react-helmet";
@@ -66,6 +68,7 @@ const UpdateListing = () => {
   const [loading, setLoading] = useState(true);
   const [loadingOne, setLoadingOne] = useState(false);
   const [loadingTwo, setLoadingTwo] = useState(false);
+  const [loadingNew, setLoadingNew] = useState(false);
   const [isDetailsCorrect, setIsDetailsCorrect] = useState(false);
 
   const [userData, setUserData] = useState({
@@ -142,7 +145,6 @@ const UpdateListing = () => {
   };
 
   const [businessPhotos, setBusinessPhotos] = useState([]);
-  const [featurePreview, setFeaturePreview] = useState(null);
   const [currentBusinessPhotoIndex, setCurrentBusinessPhotoIndex] =
     useState(null);
   const [logoImage, setLogoImage] = useState(null);
@@ -559,6 +561,7 @@ const UpdateListing = () => {
   }, []);
 
   const handleSubmit = async (event) => {
+    setLoadingNew(true);
     event.preventDefault();
 
     try {
@@ -644,6 +647,7 @@ const UpdateListing = () => {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
+    setLoadingNew(false);
   };
 
   const getStatusBadge = (status, feedback) => {
@@ -1770,6 +1774,13 @@ const UpdateListing = () => {
           </div>
           <Footer />
 
+          {loadingNew && (
+            <div className="loader-background">
+              <div className="spinner-box">
+                <div className="three-quarter-spinner"></div>
+              </div>
+            </div>
+          )}
           <a
             id="tops-button"
             className="top-scroll"
