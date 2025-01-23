@@ -11,13 +11,6 @@ const HomeRecentActivity = () => {
   const fetchBusinessData = async () => {
     try {
       const requestData = {
-        filter: {
-          business_type: ["personal", "business"],
-        },
-        sort: {
-          business_name: "desc",
-          rating: "desc",
-        },
         page: 1,
         limit: 6,
       };
@@ -26,7 +19,18 @@ const HomeRecentActivity = () => {
         "/get-businesses",
         requestData
       );
-      const fetchedBusinessData = response.data.data;
+      let fetchedBusinessData = response.data.data;
+
+      fetchedBusinessData = fetchedBusinessData.filter(
+        (business) =>
+          business.review_stats?.total_ratings !== undefined &&
+          business.review_stats.total_ratings >= 0
+      );
+
+      fetchedBusinessData.sort(
+        (a, b) => b.review_stats.total_ratings - a.review_stats.total_ratings
+      );
+
       setBusinessData(fetchedBusinessData);
     } catch (error) {
       console.error("Error in Getting Business Data:", error);
@@ -67,6 +71,7 @@ const HomeRecentActivity = () => {
               </div>
             </div>
           </div>
+
           <div className="row justify-content-center text-start">
             {businessData.map((business) => {
               const description = business?.description;
@@ -265,7 +270,7 @@ const HomeRecentActivity = () => {
                             className="text-dark fs-md"
                           >
                             {business.business_name &&
-                              business.business_name.length > 30
+                            business.business_name.length > 30
                               ? business.business_name.substring(0, 30) + "..."
                               : business.business_name}
 

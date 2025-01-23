@@ -40,8 +40,8 @@ const AllListingList = () => {
     last_name: "",
     mobile: "",
     email: "",
-    address_line_1: " ",
-    address_line_2: " ",
+    address_line_1: "",
+    address_line_2: "",
     city: "",
     state: "",
     pin_code: "",
@@ -115,13 +115,8 @@ const AllListingList = () => {
     try {
       const requestData = {
         filter: {
-          business_type: ["personal", "business"],
-          tags: tags,
-          rating: rating,
-        },
-        sort: {
-          business_name: "desc",
-          rating: "desc",
+          ...(tags && { tags: tags }),
+          ...(rating && { rating: rating }),
         },
         page: 1,
         limit: limit,
@@ -132,6 +127,16 @@ const AllListingList = () => {
         requestData
       );
       let fetchedBusinessData = response.data.data;
+
+      fetchedBusinessData = fetchedBusinessData.filter(
+        (business) =>
+          business.review_stats?.total_ratings !== undefined &&
+          business.review_stats.total_ratings >= 0
+      );
+
+      fetchedBusinessData.sort(
+        (a, b) => b.review_stats.total_ratings - a.review_stats.total_ratings
+      );
 
       if (selectedCategory) {
         fetchedBusinessData = fetchedBusinessData.filter(
@@ -293,8 +298,13 @@ const AllListingList = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Explore All Business Listings - Discover Top Brands &amp; Services</title>
-        <meta name="description" content="Browse our comprehensive list of businesses. Discover top brands, services, and opportunities in various categories. Find the right business for your needs!" />
+        <title>
+          Explore All Business Listings - Discover Top Brands &amp; Services
+        </title>
+        <meta
+          name="description"
+          content="Browse our comprehensive list of businesses. Discover top brands, services, and opportunities in various categories. Find the right business for your needs!"
+        />
         <link
           rel="shortcut icon"
           type="image/x-icon"
@@ -303,7 +313,7 @@ const AllListingList = () => {
         <link href="css/styles.css" rel="stylesheet" />
       </Helmet>
       <>
-      {loading && (
+        {loading && (
           <div className="loader-background">
             <div className="spinner-box">
               <div className="three-quarter-spinner"></div>
@@ -635,8 +645,8 @@ const AllListingList = () => {
                                                 style={{
                                                   color:
                                                     index <
-                                                      business.review_stats
-                                                        .average_rating
+                                                    business.review_stats
+                                                      .average_rating
                                                       ? "#F09000"
                                                       : "#ccc",
                                                 }}
@@ -689,11 +699,11 @@ const AllListingList = () => {
                                             className="text-dark fs-md"
                                           >
                                             {business.business_name &&
-                                              business.business_name.length > 30
+                                            business.business_name.length > 30
                                               ? business.business_name.substring(
-                                                0,
-                                                30
-                                              ) + "..."
+                                                  0,
+                                                  30
+                                                ) + "..."
                                               : business.business_name}
                                             <span className="verified-badge">
                                               <i className="fas fa-check-circle" />
