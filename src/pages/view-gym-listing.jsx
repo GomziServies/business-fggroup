@@ -17,12 +17,8 @@ const ViewGymListing = () => {
   const searchParams = new URLSearchParams(location.search);
   const business_id = searchParams.get("business_id");
   const [businessData, setBusinessData] = useState([]);
-  // const [listNumber, setListNumber] = useState("");
-  // const [lightboxOpen, setLightboxOpen] = useState(false);
-  // const [selectedImage, setSelectedImage] = useState(null);
   const [locationData, setLocationData] = useState([]);
   const [contactData, setContactData] = useState([]);
-  // const [reviewData, setReviewData] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [timings, setTimings] = useState([]);
   const [amount, setAmount] = useState([]);
@@ -31,18 +27,7 @@ const ViewGymListing = () => {
   const [faqs, setFaqs] = useState([]);
   const [businessImages, setBusinessImages] = useState([]);
   const [userReviewsData, setUserReviewData] = useState([]);
-  // const [isFavorite, setIsFavorite] = useState(false);
-  // const [favoriteList, setFavoriteList] = useState([]);
-  // const [userData, setUserData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [loading, setLoading] = useState(true);
-  const [allBusinessData, setAllBusinessData] = useState([]);
-  const images = [
-    "/images/revolutionizing-gyms-1.webp",
-    "/images/revolutionizing-gyms-2.webp",
-    "/images/revolutionizing-gyms-3.webp",
-    "/images/revolutionizing-gyms-4.webp",
-  ];
 
   const fetchBusinessData = async () => {
     try {
@@ -77,8 +62,6 @@ const ViewGymListing = () => {
       setBusinessData(fetchedBusinessData);
       setLocationData(fetchedLocationData);
       setContactData(fetchedLocationData.contact);
-      // setReviewData(fetchedBusinessData.review_stats);
-      // setListNumber(data.pagination.total);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
